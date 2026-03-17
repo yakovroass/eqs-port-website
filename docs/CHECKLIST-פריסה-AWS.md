@@ -36,12 +36,12 @@
 ### שלב ג: חיבור הדומיין מ-Hostinger
 
 - [ ] **11.** ב-Amplify: לחץ על האפליקציה → **Hosting** → **Custom domains** (או **Domain management**)
-- [ ] **12.** לחץ **Add domain** והזן את הדומיין שלך (למשל `eqsport.com` ו/או `www.eqsport.com`)
-- [ ] **13.** Amplify יציג **אילו רשומות DNS להוסיף** (CNAME, A וכו') – השאר את הטאב פתוח או העתק לרשימה
+- [ ] **12.** לחץ **Add domain** והזן **eqsport.io**. בחר **Manual configuration** (לא Route 53 – מתאים ל-Free Tier ו-Hostinger)
+- [ ] **13.** **Configure domain** – Amplify יציג **אילו רשומות DNS להוסיף** (CNAME, A וכו'). השאר את הטאב פתוח או העתק
 - [ ] **14.** היכנס ל-**Hostinger** → ניהול הדומיין → **DNS / DNS Zone**
 - [ ] **15.** הוסף או ערוך רשומות **בדיוק** כמו ש-Amplify ביקש (שם, סוג, ערך)
 - [ ] **16.** שמור ב-Hostinger וחכה כמה דקות (לפעמים עד 24 שעות) – אחר כך הדומיין יפנה לאתר ב-AWS
-- [ ] **17.** בדוק בדפדפן: `https://הדומיין-שלך.com` – אמור להציג את האתר עם מנעול (HTTPS אוטומטי ב-Amplify)
+- [ ] **17.** בדוק בדפדפן: **https://eqsport.io** ו-**https://www.eqsport.io** – אמור להציג את האתר עם מנעול (HTTPS אוטומטי ב-Amplify)
 
 ---
 

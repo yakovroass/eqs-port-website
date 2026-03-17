@@ -51,7 +51,7 @@
 
 1. **ב-Amplify:**  
    - בחר את האפליקציה → **Hosting** → **Custom domains** (או **Domain management**).  
-   - לחץ **Add domain** והזן את הדומיין שלך (למשל `eqsport.com` ו/או `www.eqsport.com`).  
+   - לחץ **Add domain** והזן את הדומיין שלך: **eqsport.io** (ו/או **www.eqsport.io**).  
    - Amplify יבדוק בעלות ויציג אילו רשומות DNS להוסיף (בדרך כלל CNAME עבור `www` ורשומות נוספות עבור השורש).
 
 2. **ב-Hostinger:**  
