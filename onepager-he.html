@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EQS.PORT — דף אחד</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: 210mm 420mm; margin: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    width: 210mm;
+    min-height: 420mm;
+    background: #050810;
+    color: #e8ecf4;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 420mm;
+    padding: 14mm 16mm;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.link-accent { color: #00a8ff; }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 2px solid rgba(0,168,255,0.3);
+    margin-bottom: 16px;
+  }
+  .logo-area { display: flex; align-items: center; gap: 14px; direction: ltr; }
+  .logo-img { width: 60px; height: 60px; object-fit: contain; }
+  .logo-text { font-size: 36px; font-weight: 900; letter-spacing: 2px; color: #fff; direction: ltr; }
+  .logo-dot { color: #00a8ff; }
+  .tagline { font-size: 9.5px; color: #8892a8; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; direction: ltr; }
+  .contact-strip { text-align: left; font-size: 9px; color: #8892a8; line-height: 1.7; direction: rtl; }
+  .contact-strip strong { color: #e8ecf4; font-size: 10px; }
+
+  /* ── SECTION HEADERS ── */
+  .sh {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  .sh-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+  .sh-icon.blue { background: rgba(0,168,255,0.15); }
+  .sh-icon.amber { background: rgba(245,158,11,0.15); }
+  .sh-icon.green { background: rgba(34,197,94,0.15); }
+  .sh-icon.purple { background: rgba(139,92,246,0.15); }
+  .sh-text { flex: 1; }
+  .sh-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 3px; color: #00a8ff; line-height: 1;
+  }
+  .sh-label.amber { color: #f59e0b; }
+  .sh-label.green { color: #22c55e; }
+  .sh-label.purple { color: #a78bfa; }
+  .sh-title { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; margin-top: 2px; }
+  .sh-title span { color: #00a8ff; }
+  .sh-title span.amber { color: #f59e0b; }
+  .sh-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(0,168,255,0.3), transparent); margin-top: 8px; }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center; padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(0,168,255,0.07), rgba(99,102,241,0.07));
+    border-radius: 14px; border: 1px solid rgba(0,168,255,0.15); margin-bottom: 6px;
+  }
+  .hero-headline { font-size: 26px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+  .hero-headline span {
+    background: linear-gradient(90deg, #00a8ff, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub { font-size: 10.5px; color: #8892a8; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+  /* ── STATS ── */
+  .stats-row { display: flex; justify-content: center; gap: 32px; margin: 14px 0; direction: ltr; }
+  .stat { text-align: center; }
+  .stat-value { font-size: 24px; font-weight: 900; color: #00a8ff; direction: ltr; }
+  .stat-label { font-size: 8px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+
+  /* ── GRIDS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ── PROBLEM ── */
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .problem-item {
+    display: flex; gap: 8px; align-items: flex-start;
+    padding: 8px 10px; border-radius: 8px;
+    border: 1px solid rgba(245,158,11,0.15); background: rgba(245,158,11,0.03);
+  }
+  .problem-num {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: rgba(245,158,11,0.15); color: #f59e0b;
+    font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; direction: ltr;
+  }
+  .problem-text { font-size: 9px; color: #c0c8d8; line-height: 1.5; }
+  .problem-text strong { color: #fff; font-size: 9.5px; }
+
+  /* ── MARKET TABLE ── */
+  .market-table { width: 100%; border-collapse: collapse; font-size: 9px; margin-top: 8px; }
+  .market-table th {
+    text-align: right; color: #00a8ff; font-weight: 700;
+    padding: 5px 8px; border-bottom: 1px solid rgba(0,168,255,0.25);
+    font-size: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .market-table td { padding: 5px 8px; color: #c0c8d8; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .market-table tr:last-child td {
+    color: #00a8ff; font-weight: 700;
+    border-top: 1px solid rgba(0,168,255,0.25); border-bottom: none;
+  }
+  .market-table td:nth-child(2) { font-weight: 700; color: #fff; direction: ltr; }
+
+  /* ── PROCESS ── */
+  .process-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin-top: 10px; }
+  .process-old {
+    background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.18);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .process-old-title { font-size: 10px; font-weight: 700; color: #f59e0b; margin-bottom: 6px; }
+  .process-old-text { font-size: 8.5px; color: #8892a8; line-height: 1.5; }
+  .process-old-list { font-size: 7.5px; color: #8892a8; line-height: 1.4; columns: 2; column-gap: 10px; margin-top: 6px; direction: rtl; }
+  .vs-badge { font-size: 16px; font-weight: 900; color: #fff; text-align: center; direction: ltr; }
+  .process-new {
+    background: rgba(0,168,255,0.05); border: 1px solid rgba(0,168,255,0.25);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .process-new-title { font-size: 10px; font-weight: 700; color: #00a8ff; margin-bottom: 8px; }
+  .process-step { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .process-step:last-child { margin-bottom: 0; }
+  .step-num {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, #00a8ff, #6366f1);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; color: #050810; flex-shrink: 0; direction: ltr;
+  }
+  .step-text { font-size: 10px; color: #e8ecf4; font-weight: 600; }
+  .step-sub { font-size: 8px; color: #8892a8; }
+
+  /* ── CAPABILITIES ── */
+  .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+  .cap-item {
+    background: rgba(10,14,26,0.6); border: 1px solid rgba(0,168,255,0.12);
+    border-radius: 8px; padding: 9px 11px;
+  }
+  .cap-item .cap-title { font-size: 9.5px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .cap-item .cap-desc { font-size: 8px; color: #8892a8; line-height: 1.5; }
+
+  /* ── INVESTMENT ── */
+  .invest-box {
+    background: linear-gradient(135deg, rgba(0,168,255,0.08), rgba(99,102,241,0.08));
+    border: 1px solid rgba(0,168,255,0.2); border-radius: 12px; padding: 14px 16px;
+  }
+  .invest-amount { font-size: 28px; font-weight: 900; color: #00a8ff; margin-bottom: 2px; direction: ltr; }
+  .invest-label { font-size: 9px; color: #8892a8; text-transform: uppercase; letter-spacing: 1.5px; }
+  .fund-bar { display: flex; gap: 2px; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0 6px; direction: ltr; }
+  .fund-bar div { border-radius: 3px; }
+  .fund-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 8px; color: #8892a8; }
+  .fund-legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .fund-dot { width: 7px; height: 7px; border-radius: 2px; display: inline-block; }
+
+  /* ── REVENUE ── */
+  .rev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .rev-item { display: flex; align-items: flex-start; gap: 7px; font-size: 9px; }
+  .rev-icon { color: #00a8ff; margin-top: 2px; flex-shrink: 0; font-size: 8px; }
+  .rev-title { font-weight: 700; color: #fff; }
+  .rev-desc { color: #8892a8; font-size: 8px; margin-top: 1px; }
+
+  /* ── PROVEN ── */
+  .proven-box {
+    margin-top: 14px; padding: 14px 18px;
+    border: 1px solid rgba(34,197,94,0.25); border-radius: 10px;
+    background: rgba(34,197,94,0.04);
+  }
+  .proven-title { font-size: 12px; font-weight: 700; color: #22c55e; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .proven-text { font-size: 9.5px; color: #c0c8d8; line-height: 1.6; }
+
+  /* ── VISION ── */
+  .vision-card {
+    background: linear-gradient(135deg, rgba(0,168,255,0.06), rgba(34,197,94,0.06));
+    border: 1px solid rgba(34,197,94,0.18); border-radius: 12px;
+    padding: 18px 22px; text-align: center; margin-top: 16px;
+  }
+  .vision-text { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.6; }
+  .vision-text span {
+    background: linear-gradient(90deg, #00a8ff, #a78bfa, #22c55e);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .vision-stats {
+    display: flex; justify-content: center; gap: 32px; margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid rgba(0,168,255,0.1); direction: ltr;
+  }
+  .vision-stat { text-align: center; }
+  .vision-stat-val { font-size: 18px; font-weight: 800; color: #00a8ff; direction: ltr; }
+  .vision-stat-label { font-size: 7.5px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid rgba(0,168,255,0.15);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8px; color: #555; direction: ltr;
+  }
+  .footer a { color: #8892a8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="header">
+    <div class="logo-area">
+      <img class="logo-img" src="logo.png" alt="EQS.PORT" />
+      <div>
+        <div class="logo-text">EQS<span class="logo-dot">.</span>PORT</div>
+        <div class="tagline">פלטפורמת סחר תעשייתי גלובלי מונעת AI</div>
+      </div>
+    </div>
+    <div class="contact-strip">
+      <strong>יעקב רואס</strong> — מייסד ומנכ"ל<br>
+      <a href="tel:+972542611226">+972 (0) 54-261-1226</a> &nbsp;|&nbsp; <a href="mailto:yakovroass@gmail.com" class="link-accent">yakovroass@gmail.com</a><br>
+      <a href="https://linkedin.com/in/yakovroass" class="link-accent">linkedin.com/in/yakovroass</a> &nbsp;|&nbsp; <a href="https://wa.me/972542611226" class="link-accent">WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ═══════ HERO ═══════ -->
+  <div class="hero">
+    <div class="hero-headline">מניעים את <span>הסחר התעשייתי הגלובלי</span></div>
+    <div class="hero-sub">
+      פלטפורמת AI רב-לשונית שסורקת את העולם כדי למצוא את תובנות הרכש הטובות ביותר לכל קונה — מחברת חברות ברחבי העולם באמצעות נתונים, קשרים והתאמה חכמה ביותר מ-100 מדינות.
+    </div>
+  </div>
+
+  <!-- ═══════ KEY STATS ═══════ -->
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value">+3,000</div><div class="stat-label">אנשי קשר בתעשייה</div></div>
+    <div class="stat"><div class="stat-value">+100</div><div class="stat-label">מדינות</div></div>
+    <div class="stat"><div class="stat-value">+4,000</div><div class="stat-label">מאגר נמלים</div></div>
+    <div class="stat"><div class="stat-value">+30,000</div><div class="stat-label">מסמכים טכניים</div></div>
+  </div>
+
+  <!-- ═══════ THE PROBLEM ═══════ -->
+  <div class="sh">
+    <div class="sh-icon amber">⚠</div>
+    <div class="sh-text">
+      <div class="sh-label amber">הבעיה</div>
+      <div class="sh-title">רכש גלובלי הוא <span class="amber">שבור</span></div>
+    </div>
+    <div class="sh-line"></div>
+  </div>
+  <div class="problem-grid">
+    <div class="problem-item">
+      <div class="problem-num">01</div>
+      <div class="problem-text"><strong>מקורות מפוזרים</strong><br>ציוד מפורסם בעשרות שווקים, בשפות שונות, ללא חיפוש אחיד.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">02</div>
+      <div class="problem-text"><strong>חוסר שקיפות מחירים</strong><br>שווי שוק הוגן בלתי אפשרי לקבוע ללא מומחיות עמוקה ונתונים.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">03</div>
+      <div class="problem-text"><strong>לוגיסטיקה מורכבת</strong><br>מטענים חריגים, הובלה ימית, אישורי הרמה כבדה, מכס — כל שלב הוא צוואר בקבוק.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">04</div>
+      <div class="problem-text"><strong>חסמים רגולטוריים</strong><br>אישורי יבוא, אימות VIN, דרישות תאימות משתנות בכל מדינה.</div>
+    </div>
+  </div>
+
+  <!-- ═══════ MARKET OPPORTUNITY ═══════ -->
+  <div class="sh">
+    <div class="sh-icon green">📈</div>
+    <div class="sh-text">
+      <div class="sh-label green">הזדמנות שוק</div>
+      <div class="sh-title">שוק בר-השגה של <span>$432B+</span></div>
+    </div>
+    <div class="sh-line"></div>
+  </div>
+  <table class="market-table">
+    <thead><tr><th>קטגוריה</th><th>גודל שוק</th><th>צמיחה</th><th>לקוחות פוטנציאליים</th></tr></thead>
+    <tbody>
+      <tr><td>חומרים ואספקה תעשייתית</td><td>$260B+</td><td>~5% CAGR</td><td>~1.5M חברות</td></tr>
+      <tr><td>ציוד משומש והשכרה</td><td>$140B+</td><td>~7% CAGR</td><td>~100K חברות</td></tr>
+      <tr><td>חלפים ורכיבים</td><td>$32B+</td><td>~6% CAGR</td><td>~1M בעלים</td></tr>
+      <tr><td>סה"כ שוק ישיר</td><td>$432B+</td><td>62% עד 2030</td><td>2M+ חברות</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════ HOW IT WORKS ═══════ -->
+  <div class="sh">
+    <div class="sh-icon blue">⚡</div>
+    <div class="sh-text">
+      <div class="sh-label">איך זה עובד</div>
+      <div class="sh-title">מ-15+ שלבים ל<span>3 בלבד</span></div>
+    </div>
+    <div class="sh-line"></div>
+  </div>
+  <div class="process-compare">
+    <div class="process-old">
+      <div class="process-old-title">היום: 15+ שלבים · 4-8 חודשים</div>
+      <div class="process-old-text">לפחות 15 שלבים מפוצלים — ובפועל הרבה יותר. חודשים של תיאום עם עשרות צדדים שלישיים, בשפות שונות, רגולציות ואזורי זמן.</div>
+      <div class="process-old-list">
+        1. חיפוש שוק גלובלי<br>
+        2. היסטוריית ציוד ו-VIN<br>
+        3. בדיקה טכנית<br>
+        4. ניתוח נתונים והצעות<br>
+        5. רישיון יבוא רשמי<br>
+        6. מו"מ מחיר מחדש<br>
+        7. MOU ופרופורמה<br>
+        8. מימון ותשלום מט"ח<br>
+        9. מסמכי ייצוא ובעלות<br>
+        10. הצעות מטען וביטוח<br>
+        11. הרמה כבדה במקור<br>
+        12. מעבר נמל וליווי<br>
+        13. העמסה ימית ו-VGM<br>
+        14. מעקב אוניה ו-ETA<br>
+        15. מכס ומשלוח
+      </div>
+    </div>
+    <div class="vs-badge">VS.</div>
+    <div class="process-new">
+      <div class="process-new-title">EQS.PORT: 3 שלבים · 1-3 שבועות</div>
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-info"><div class="step-text">גלישה</div><div class="step-sub">סריקה אלגוריתמית · הצעות מנותחות · הכל-באחד</div></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-info"><div class="step-text">אישור</div><div class="step-sub">בחר תוכנית · חתום SLA · המשך לתשלום</div></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-info"><div class="step-text">קבלה</div><div class="step-sub">המכונה באתר · מוכנה לעבודה · תמיכה מלאה</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ PLATFORM CAPABILITIES ═══════ -->
+  <div class="sh">
+    <div class="sh-icon purple">🧠</div>
+    <div class="sh-text">
+      <div class="sh-label purple">יכולות הפלטפורמה</div>
+      <div class="sh-title">הכל ב<span>מערכת אחת</span></div>
+    </div>
+    <div class="sh-line"></div>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-item"><div class="cap-title">🔍 חיפוש גלובלי</div><div class="cap-desc">סריקה מונעת AI ב-Mascus, Craneslist, Machineryline ועוד</div></div>
+    <div class="cap-item"><div class="cap-title">💰 הערכת שווי חכמה</div><div class="cap-desc">תמחור בזמן אמת, פחת, התאמת שעות, רב-מטבעי</div></div>
+    <div class="cap-item"><div class="cap-title">📨 CRM ומסרים</div><div class="cap-desc">3,000+ אנשי קשר, תבניות WhatsApp, מעקב אוטומטי</div></div>
+    <div class="cap-item"><div class="cap-title">🚢 לוגיסטיקה</div><div class="cap-desc">4,000+ נמלים, 60 עמודות נתונים, מיטוב מסלולים</div></div>
+    <div class="cap-item"><div class="cap-title">📋 רישיונות יבוא</div><div class="cap-desc">טפסי צמ"א, אימות VIN, אוטומציה רגולטורית</div></div>
+    <div class="cap-item"><div class="cap-title">📄 מאגר טכני</div><div class="cap-desc">30,000+ קבצי PDF — מפרטים, טבלאות עומסים, נתוני הנדסה</div></div>
+    <div class="cap-item"><div class="cap-title">🗺️ מפה אינטראקטיבית</div><div class="cap-desc">מוכרים ממופים, ויזואליזציית נמלים, מסלולי שילוח</div></div>
+    <div class="cap-item"><div class="cap-title">📑 מחולל הצעות מחיר</div><div class="cap-desc">PDF מקצועי, ניהול לקוחות, רב-מטבעי</div></div>
+    <div class="cap-item"><div class="cap-title">📊 ניתוח AI</div><div class="cap-desc">סינון רעשי שוק, אינדקס משתנים מורכב</div></div>
+  </div>
+
+  <!-- ═══════ INVESTMENT + REVENUE ═══════ -->
+  <div class="two-col" style="margin-top:22px">
+    <div>
+      <div class="sh" style="margin-top:0">
+        <div class="sh-icon blue">💎</div>
+        <div class="sh-text"><div class="sh-label">השקעה</div></div>
+      </div>
+      <div class="invest-box">
+        <div class="invest-amount">$3M USD</div>
+        <div class="invest-label">סבב סיד</div>
+      </div>
+      <div style="font-size:9px;color:#8892a8;margin-top:8px;font-weight:600">חלוקת כספים</div>
+      <div class="fund-bar">
+        <div style="width:40%;background:#00a8ff"></div>
+        <div style="width:25%;background:#6366f1"></div>
+        <div style="width:20%;background:#22c55e"></div>
+        <div style="width:15%;background:#f59e0b"></div>
+      </div>
+      <div class="fund-legend">
+        <span><span class="fund-dot" style="background:#00a8ff"></span> 40% פיתוח</span>
+        <span><span class="fund-dot" style="background:#6366f1"></span> 25% מכירות</span>
+        <span><span class="fund-dot" style="background:#22c55e"></span> 20% תפעול</span>
+        <span><span class="fund-dot" style="background:#f59e0b"></span> 15% תשתית</span>
+      </div>
+    </div>
+    <div>
+      <div class="sh" style="margin-top:0">
+        <div class="sh-icon green">💰</div>
+        <div class="sh-text"><div class="sh-label green">מודל הכנסות</div></div>
+      </div>
+      <div class="rev-grid">
+        <div class="rev-item">
+          <div class="rev-icon">◆</div>
+          <div><div class="rev-title">הסכמי שירות</div><div class="rev-desc">הכנסה חוזרת דרך ניהול רכש</div></div>
+        </div>
+        <div class="rev-item">
+          <div class="rev-icon">◆</div>
+          <div><div class="rev-title">פלטפורמת SaaS</div><div class="rev-desc">מנוי למודיעין שוק</div></div>
+        </div>
+        <div class="rev-item">
+          <div class="rev-icon">◆</div>
+          <div><div class="rev-title">עמלות עסקה</div><div class="rev-desc">2-5% לכל עסקה שבוצעה</div></div>
+        </div>
+        <div class="rev-item">
+          <div class="rev-icon">◆</div>
+          <div><div class="rev-title">אינטגרציית API</div><div class="rev-desc">הזנות נתונים ואינטגרציות לארגונים</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ PROVEN TRACK RECORD ═══════ -->
+  <div class="proven-box">
+    <div class="proven-title">✓ רקורד מוכח</div>
+    <div class="proven-text">ביצוע מוצלח של רכש בינלאומי מורכב כולל עגורנים, ציוד כבד, מכונות תעשייתיות ורכש חלפים. חיסכון של מאות אלפי דולרים והוכחת ההשפעה של הפלטפורמה על סחר בעולם האמיתי במגוון תחומים.</div>
+  </div>
+
+  <!-- ═══════ VISION ═══════ -->
+  <div class="vision-card">
+    <div class="vision-text">
+      כל חברה בעולם קונה משהו.<br>
+      <span>אנחנו מחליפים את מחלקת הרכש שלהם — או הופכים לשותף החזק ביותר שלהם.</span>
+    </div>
+    <div class="vision-stats">
+      <div class="vision-stat"><div class="vision-stat-val">$432B+</div><div class="vision-stat-label">שוק נוכחי</div></div>
+      <div class="vision-stat"><div class="vision-stat-val">$12T+</div><div class="vision-stat-label">חזון B2B גלובלי</div></div>
+      <div class="vision-stat"><div class="vision-stat-val">195</div><div class="vision-stat-label">מדינות יעד</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="footer">
+    <div>&copy; 2026 EQS.PORT — כל הזכויות שמורות &nbsp;|&nbsp; חסוי</div>
+    <div>
+      <a href="mailto:yakovroass@gmail.com">yakovroass@gmail.com</a> &nbsp;|&nbsp;
+      <a href="tel:+972542611226">+972 54-261-1226</a> &nbsp;|&nbsp;
+      <a href="https://wa.me/972542611226">WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

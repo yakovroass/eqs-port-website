@@ -1,0 +1,36 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+export const metadata: Metadata = {
+  title: "EQS.PORT | AI-Powered Global Industrial Trade",
+  description:
+    "Multilingual Platforms. AI-Driven Insights. Market-Scale Analytics. B2B AI powering global industrial trade with 3,000+ connections in 100+ countries.",
+  keywords: [
+    "industrial trade",
+    "AI procurement",
+    "heavy equipment",
+    "global trade platform",
+    "B2B",
+    "construction equipment",
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`dark ${inter.variable}`}>
+      <body className={`${inter.className} antialiased overflow-x-hidden`}>{children}</body>
+    </html>
+  );
+}
