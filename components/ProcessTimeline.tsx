@@ -51,7 +51,7 @@ export default function ProcessTimeline() {
             </p>
             <div className="bg-dark-950/50 border-t border-amber-500/10">
               <Image
-                src="/process-15steps.png"
+                src="/images/process-15steps.png"
                 alt={lang === "en" ? "15-step procurement and delivery process flowchart" : "תרשים זרימה: 15 שלבי הרכש והמשלוח"}
                 width={887}
                 height={829}
@@ -132,7 +132,7 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden border border-accent/20 bg-dark-800/30"
             >
               <Image
-                src="/eqs-3steps.png"
+                src="/images/eqs-3steps.png"
                 alt="EQS.PORT 3-Step Process: Browse, Approval, Machine On Site"
                 width={952}
                 height={689}
@@ -183,7 +183,7 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden border border-gray-700/30 bg-dark-800/50"
             >
               <Image
-                src="/global-search.png"
+                src="/images/global-search.png"
                 alt="EQS.PORT Global Equipment Search"
                 width={1395}
                 height={667}
@@ -209,7 +209,7 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden border border-gray-700/30 bg-dark-800/50"
             >
               <Image
-                src="/global-ports.png"
+                src="/images/global-ports.png"
                 alt="Global Ports & Connections Network"
                 width={1710}
                 height={860}
@@ -235,7 +235,7 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden border border-gray-700/30 bg-dark-800/50"
             >
               <Image
-                src="/crane-app.png"
+                src="/images/crane-app.png"
                 alt="EQS.PORT Crane Specifications App"
                 width={1760}
                 height={3317}
@@ -261,7 +261,7 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden border border-gray-700/30 bg-dark-800/50"
             >
               <Image
-                src="/africa-minerals.png"
+                src="/images/africa-minerals.png"
                 alt="Africa Strategic Minerals Map 2026"
                 width={901}
                 height={1024}

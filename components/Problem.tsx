@@ -26,15 +26,8 @@ export default function Problem() {
               {tx(t.problem.label, lang)}
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {lang === "en" ? (
-              <span className="inline-flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-0 leading-tight sm:leading-normal">
-                <span>The Global Market</span>
-                <span className="sm:pl-1.5">Is Complex</span>
-              </span>
-            ) : (
-              tx(t.problem.headline, lang)
-            )}
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-6 text-white">
+            {tx(t.problem.headline, lang)}
           </h2>
           <p
             className={`text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed ${

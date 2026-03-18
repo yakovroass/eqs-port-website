@@ -81,7 +81,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between gap-3 min-h-[4.5rem] sm:min-h-[5rem] py-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between gap-3 min-h-[4.75rem] sm:min-h-[5.5rem] py-2">
         <button
           type="button"
           onClick={() => handleClick("#hero")}
@@ -94,12 +94,12 @@ export default function Navbar() {
             height={555}
             priority
             quality={95}
-            sizes="(max-width: 640px) 56px, 96px"
-            className="w-12 h-12 sm:w-14 sm:h-14 object-contain shrink-0 rounded-xl"
+            sizes="(max-width: 640px) 56px, 72px"
+            className="w-14 h-14 sm:w-16 sm:h-16 object-contain shrink-0 rounded-xl"
           />
           <span
             dir="ltr"
-            className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none text-[clamp(1.15rem,5vw,2rem)] sm:text-3xl md:text-4xl"
+            className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none flex items-center h-14 sm:h-16 text-[clamp(1.85rem,6.5vw,2.45rem)] sm:text-[clamp(2.35rem,5vw,3.15rem)]"
           >
             EQS<span className="text-white">.</span>
             PORT
@@ -139,7 +139,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full end-0 mt-2 w-[min(16.5rem,calc(100vw-1.5rem))] z-[100] rounded-xl border border-gray-600/40 bg-dark-900/98 backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden"
+                  className="absolute top-full end-0 mt-2 w-[min(16.5rem,calc(100vw-1.5rem))] z-[100] rounded-xl border border-gray-700 bg-[#0b0f18] shadow-2xl shadow-black/50 overflow-hidden"
                 >
                   <div
                     className={`py-2 px-1 flex flex-col gap-0.5 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain ${dir === "rtl" ? "items-stretch" : ""}`}
