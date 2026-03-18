@@ -148,11 +148,11 @@ export default function FutureTargets() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                           </svg>
                         </div>
-                        <span className={`text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-gradient-to-r ${phase.color} bg-clip-text text-transparent`}>
+                        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-stone-100">
                           {phase.phase[lang]}
                         </span>
                         {i === 0 && (
-                          <span className="text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-accent/20 text-accent font-semibold animate-pulse">
+                          <span className="text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-white/15 text-amber-200 font-semibold animate-pulse">
                             {lang === "en" ? "ACTIVE" : "פעיל"}
                           </span>
                         )}
@@ -179,7 +179,7 @@ export default function FutureTargets() {
                             }
                           >
                             <div
-                              className={`font-black bg-gradient-to-r ${phase.color} bg-clip-text text-transparent tabular-nums leading-none ${
+                              className={`font-black text-white tabular-nums leading-none drop-shadow-sm ${
                                 phase.stats.length >= 4
                                   ? "text-lg min-[380px]:text-xl sm:text-2xl md:text-3xl"
                                   : "text-2xl sm:text-3xl"
@@ -189,7 +189,7 @@ export default function FutureTargets() {
                               <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2} />
                             </div>
                             <div
-                              className={`text-gray-500 mt-1 leading-snug hyphens-auto ${
+                              className={`text-stone-300 mt-1 leading-snug hyphens-auto ${
                                 phase.stats.length >= 4
                                   ? "text-[9px] min-[380px]:text-[10px] sm:text-xs px-0.5"
                                   : "text-[10px] sm:text-xs"
@@ -232,7 +232,7 @@ export default function FutureTargets() {
                 whileHover={{ scale: 1.03, borderColor: "rgba(168,85,247,0.3)" }}
                 className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-gray-700/20 bg-white/[0.02] backdrop-blur-sm text-center group cursor-default"
               >
-                <div className="text-lg sm:text-xl font-bold text-purple-400 mb-2 shrink-0">{market.size}</div>
+                <div className="text-lg sm:text-xl font-bold text-stone-100 mb-2 shrink-0">{market.size}</div>
                 <div className="text-[10px] sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors leading-snug px-1">{market.name[lang]}</div>
               </motion.div>
             ))}
@@ -246,24 +246,22 @@ export default function FutureTargets() {
             className="max-w-3xl mx-auto text-center"
           >
             <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-purple-500/10 to-cyan-500/5" />
-              <div className="relative px-6 sm:px-12 py-10 sm:py-14 border border-purple-500/15 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-stone-500/5 via-stone-400/8 to-stone-600/5" />
+              <div className="relative px-6 sm:px-12 py-10 sm:py-14 border border-stone-600/25 rounded-2xl">
                 <p className="text-lg sm:text-2xl font-bold text-white leading-relaxed mb-3">
                   {lang === "en"
                     ? "Every company in the world buys something."
                     : "כל חברה בעולם קונה משהו."}
                 </p>
-                <p className="text-base sm:text-xl text-gray-400 leading-relaxed mb-4">
+                <p className="text-base sm:text-xl text-stone-300 leading-relaxed mb-4">
                   {lang === "en"
                     ? "We replace their procurement department — or become their strongest partner. Scanning the globe, leveraging data, and connecting them to the best sources through our network."
                     : "אנחנו מחליפים את מחלקת הרכש שלהם — או הופכים לשותף החזק ביותר שלהם. סורקים את העולם, ממנפים נתונים, ומחברים אותם למקורות הטובים ביותר דרך הרשת שלנו."}
                 </p>
-                <p className="text-lg sm:text-2xl font-bold leading-relaxed">
-                  <span className="bg-gradient-to-r from-accent via-purple-400 to-cyan-300 bg-clip-text text-transparent">
-                    {lang === "en"
-                      ? "We know everyone. We connect everyone. That's the moat."
-                      : "אנחנו מכירים את כולם. אנחנו מחברים את כולם. זה היתרון התחרותי."}
-                  </span>
+                <p className="text-lg sm:text-2xl font-bold leading-relaxed text-stone-100">
+                  {lang === "en"
+                    ? "We connect everyone — that's our competitive edge."
+                    : "אנחנו מחברים את כולם וזה היתרון התחרותי."}
                 </p>
               </div>
             </div>

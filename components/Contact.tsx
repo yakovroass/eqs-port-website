@@ -71,13 +71,11 @@ export default function Contact() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         if (res.status === 503) {
-          const subject = encodeURIComponent(`Investment Inquiry from ${formData.name} — ${formData.company}`);
-          const body = encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\n${formData.message}`
+          setError(
+            lang === "he"
+              ? "שליחה מהאתר לא הוגדרה עדיין. הוסף WEB3FORMS_ACCESS_KEY ב-Amplify (ראה מסמך טופס) או שלח מייל ישירות ל-yakovroass@gmail.com"
+              : "Site email isn’t set up yet. Add WEB3FORMS_ACCESS_KEY in Amplify (see docs) or email yakovroass@gmail.com directly."
           );
-          window.open(`mailto:yakovroass@gmail.com?subject=${subject}&body=${body}`);
-          setSent(true);
-          setTimeout(() => setSent(false), 4000);
           return;
         }
         setError(data.error || (lang === "he" ? "שליחה נכשלה. נסה שוב או שלח למייל." : "Send failed. Try again or email us."));

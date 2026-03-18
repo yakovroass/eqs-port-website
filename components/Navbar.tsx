@@ -108,59 +108,61 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <LanguageToggle />
-          <button
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col justify-center gap-[5px] px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] items-center rounded-lg border border-accent/20 bg-dark-800/50 hover:bg-accent/10 hover:border-accent/40 transition-colors"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.2 }}
-              className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.15 }}
-              className="w-[15px] h-[1.5px] bg-accent rounded-full block"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.2 }}
-              className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
-            />
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex flex-col justify-center gap-[5px] px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] items-center rounded-lg border border-accent/20 bg-dark-800/50 hover:bg-accent/10 hover:border-accent/40 transition-colors"
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+            >
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.15 }}
+                className="w-[15px] h-[1.5px] bg-accent rounded-full block"
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
+              />
+            </button>
+            <AnimatePresence>
+              {menuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full end-0 mt-2 w-[min(16.5rem,calc(100vw-1.5rem))] z-[100] rounded-xl border border-gray-600/40 bg-dark-900/98 backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden"
+                >
+                  <div
+                    className={`py-2 px-1 flex flex-col gap-0.5 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain ${dir === "rtl" ? "items-stretch" : ""}`}
+                  >
+                    {NAV_HREFS.map((href, i) => (
+                      <button
+                        key={href}
+                        type="button"
+                        onClick={() => handleClick(href)}
+                        className={`w-full px-3 py-2.5 text-sm text-gray-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors ${
+                          dir === "rtl" ? "text-right" : "text-left"
+                        }`}
+                      >
+                        {navLabelAt(i, lang)}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="bg-dark-900/98 backdrop-blur-xl border-b border-accent/15 overflow-hidden shadow-lg shadow-black/20"
-          >
-            <div
-              className={`px-4 py-3 flex flex-col gap-0.5 max-h-[min(70vh,28rem)] overflow-y-auto overscroll-contain ${dir === "rtl" ? "items-stretch" : ""}`}
-            >
-              {NAV_HREFS.map((href, i) => (
-                <button
-                  key={href}
-                  type="button"
-                  onClick={() => handleClick(href)}
-                  className={`w-full px-4 py-3 text-base text-gray-100 hover:text-accent hover:bg-accent/10 rounded-xl transition-colors border border-transparent hover:border-accent/20 ${
-                    dir === "rtl" ? "text-right" : "text-left"
-                  }`}
-                >
-                  {navLabelAt(i, lang)}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   );
 }

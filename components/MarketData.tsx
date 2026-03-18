@@ -83,7 +83,7 @@ function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
           whileInView={{ height: toH }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="w-10 sm:w-16 md:w-20 bg-neon-cyan rounded-t-md flex items-center justify-center shadow-[0_0_12px_rgba(0,229,255,0.25)]"
+          className="w-10 sm:w-16 md:w-20 bg-emerald-600 rounded-t-md flex items-center justify-center"
         >
           <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{toLabel}</span>
         </motion.div>
