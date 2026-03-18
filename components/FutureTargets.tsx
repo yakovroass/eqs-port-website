@@ -20,7 +20,7 @@ const phases = [
       { value: 4000, suffix: "+", label: { en: "Ports Database", he: "מאגר נמלים" } },
       { value: 30000, suffix: "+", label: { en: "Technical Docs", he: "מסמכים טכניים" } },
     ],
-    color: "from-accent to-blue-500",
+    color: "from-accent to-cyan-300",
     glow: "bg-accent/10",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -58,8 +58,8 @@ const phases = [
       { value: 12, suffix: "T+", label: { en: "Global Procurement", he: "רכש גלובלי" }, prefix: "$" },
       { value: 195, suffix: "", label: { en: "Countries Connected", he: "מדינות מחוברות" } },
     ],
-    color: "from-emerald-400 to-green-500",
-    glow: "bg-emerald-500/10",
+    color: "from-cyan-300 to-accent-light",
+    glow: "bg-accent/10",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
@@ -100,7 +100,7 @@ export default function FutureTargets() {
       </div>
 
       <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
@@ -246,7 +246,7 @@ export default function FutureTargets() {
             className="max-w-3xl mx-auto text-center"
           >
             <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-purple-500/10 to-emerald-500/5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-purple-500/10 to-cyan-500/5" />
               <div className="relative px-6 sm:px-12 py-10 sm:py-14 border border-purple-500/15 rounded-2xl">
                 <p className="text-lg sm:text-2xl font-bold text-white leading-relaxed mb-3">
                   {lang === "en"
@@ -259,7 +259,7 @@ export default function FutureTargets() {
                     : "אנחנו מחליפים את מחלקת הרכש שלהם — או הופכים לשותף החזק ביותר שלהם. סורקים את העולם, ממנפים נתונים, ומחברים אותם למקורות הטובים ביותר דרך הרשת שלנו."}
                 </p>
                 <p className="text-lg sm:text-2xl font-bold leading-relaxed">
-                  <span className="bg-gradient-to-r from-accent via-purple-400 to-emerald-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-accent via-purple-400 to-cyan-300 bg-clip-text text-transparent">
                     {lang === "en"
                       ? "We know everyone. We connect everyone. That's the moat."
                       : "אנחנו מכירים את כולם. אנחנו מחברים את כולם. זה היתרון התחרותי."}

@@ -15,7 +15,7 @@ function MockupWindow({ children, title }: { children: React.ReactNode; title: s
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500/60" />
           <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-          <div className="w-3 h-3 rounded-full bg-green-500/60" />
+          <div className="w-3 h-3 rounded-full bg-accent/70" />
         </div>
         <span className="text-xs text-gray-500 ml-2 font-mono">{title}</span>
       </div>
@@ -72,8 +72,8 @@ const mockups: Record<string, () => React.ReactNode> = {
     <MockupWindow title="EQS.PORT — AI Analysis">
       <div className="space-y-2 mb-3">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-[10px] text-green-400">AI Engine Active — Processing 2,847 sources</span>
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent">AI Engine Active — Processing 2,847 sources</span>
         </div>
         <div className="h-2 bg-dark-600/60 rounded-full overflow-hidden">
           <motion.div animate={{ width: ["0%", "100%"] }} transition={{ duration: 3, repeat: Infinity }} className="h-full bg-gradient-to-r from-accent to-neon-cyan rounded-full" />
@@ -136,7 +136,7 @@ const mockups: Record<string, () => React.ReactNode> = {
           <div key={i} className="px-3 py-2 rounded-lg bg-dark-600/40 border border-gray-700/30">
             <div className="flex justify-between items-center mb-1">
               <span className="text-[10px] text-accent font-medium">{m.to}</span>
-              <span className="text-[9px] text-green-400">{m.status}</span>
+              <span className="text-[9px] text-cyan-300">{m.status}</span>
             </div>
             <p className="text-[10px] text-gray-500 truncate">{m.msg}</p>
           </div>
@@ -173,12 +173,12 @@ const mockups: Record<string, () => React.ReactNode> = {
         <div className="text-[9px] text-gray-500 uppercase mb-1">Technical details & government forms</div>
         {["Machine Type: Mobile Crane", "Manufacturer: Liebherr", "Model: LTM 1300-6.2", "VIN: WLH1300GXM1234", "Import Year: 2024"].map((field) => (
           <div key={field} className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-600/40 border border-gray-700/30">
-            <div className="w-2 h-2 rounded-full bg-green-400/60" />
+            <div className="w-2 h-2 rounded-full bg-accent/70" />
             <span className="text-[10px] text-gray-400">{field}</span>
           </div>
         ))}
-        <div className="px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-center">
-          <span className="text-[10px] text-green-400 font-medium">✓ Regulation-compliant import permit ready</span>
+        <div className="px-3 py-2 rounded-lg bg-accent/10 border border-accent/25 text-center">
+          <span className="text-[10px] text-accent font-medium">✓ Regulation-compliant import permit ready</span>
         </div>
       </div>
     </MockupWindow>

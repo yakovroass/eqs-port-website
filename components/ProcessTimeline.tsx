@@ -14,7 +14,7 @@ const eqsSteps = [
       en: ["World's best offers", "All-in-one quotes"],
       he: ["ההצעות הטובות בעולם", "הצעות מחיר הכל-באחד"],
     },
-    color: "from-accent to-blue-400",
+    color: "from-accent to-cyan-300",
   },
   {
     num: "2",
@@ -23,7 +23,7 @@ const eqsSteps = [
       en: ["Payment arrangements", "Get updates & ETA"],
       he: ["הסדרי תשלום", "קבל עדכונים ו-ETA"],
     },
-    color: "from-blue-400 to-emerald-400",
+    color: "from-cyan-300 to-accent-light",
   },
 ];
 

@@ -83,7 +83,7 @@ function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
           whileInView={{ height: toH }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="w-10 sm:w-16 md:w-20 bg-green-500 rounded-t-md flex items-center justify-center"
+          className="w-10 sm:w-16 md:w-20 bg-neon-cyan rounded-t-md flex items-center justify-center shadow-[0_0_12px_rgba(0,229,255,0.25)]"
         >
           <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{toLabel}</span>
         </motion.div>
@@ -102,7 +102,7 @@ export default function MarketData() {
   return (
     <section id="market" className="relative py-24 md:py-32 overflow-hidden">
       <div className="animated-grid-bg absolute inset-0" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-green-500/3 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
