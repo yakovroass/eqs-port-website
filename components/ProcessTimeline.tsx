@@ -77,8 +77,8 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* 1 + 2 — שני בלוקים */}
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto mb-8 items-start">
+        {/* מובייל: סריקה אלגוריתמית + חתום SLA אחד ליד השני בלי מספרים; דסקטופ: עם 1 ו-2 */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-8 items-start">
           {eqsSteps.map((step, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
               <motion.div
@@ -86,17 +86,17 @@ export default function ProcessTimeline() {
                 className="relative rounded-2xl overflow-hidden"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-[0.06]`} />
-                <div className="relative p-6 sm:p-7 flex flex-col items-center text-center">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white text-xl font-black shadow-lg mb-3`}>
+                <div className="relative p-4 sm:p-7 flex flex-col items-center text-center">
+                  <div className={`hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} items-center justify-center text-white text-xl font-black shadow-lg mb-3`}>
                     {step.num}
                   </div>
-                  <span className={`text-sm font-semibold uppercase tracking-widest bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-3`}>
+                  <span className="text-sm font-semibold uppercase tracking-widest text-cyan-300 mb-2 sm:mb-3">
                     {step.subtitle[lang]}
                   </span>
                   <ul className="space-y-2 w-full">
                     {step.points[lang].map((point, j) => (
                       <li key={j} className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                        <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <svg className="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
                         {point}

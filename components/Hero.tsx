@@ -58,8 +58,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.25 }}
           className="mb-5 px-0.5 mt-16 sm:mt-20 lg:mt-0 font-black tracking-tight"
         >
-          {/* מובייל: שתי שורות, פונט גדול */}
-          <div className="sm:hidden flex flex-col gap-1 leading-[1.1]">
+          {/* מובייל: שתי שורות, פונט כמו דסקטופ (Inter), גרדיאנט בהיר */}
+          <div className="sm:hidden flex flex-col gap-1 leading-[1.1] font-black tracking-tight">
             <span className="gradient-text block text-[clamp(2.5rem,11vw,4rem)]">
               {tx(t.hero.headlineMobileLine1, lang)}
             </span>
@@ -67,13 +67,18 @@ export default function Hero() {
               {tx(t.hero.headlineMobileLine2, lang)}
             </span>
           </div>
-          {/* טאבלט+ : שורה אחת */}
+          {/* טאבלט+ : אנגלית — שתי שורות "Global Industrial" / "Procurement Platform"; עברית — כותרת אחת */}
           <div className="hidden sm:block text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.08]">
             {tx(t.hero.headline1, lang).trim() ? (
               <>
                 <span className="text-white">{tx(t.hero.headline1, lang)}</span>
                 <br />
                 <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
+              </>
+            ) : lang === "en" ? (
+              <>
+                <span className="gradient-text block">Global Industrial</span>
+                <span className="gradient-text block">Procurement Platform</span>
               </>
             ) : (
               <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
