@@ -74,7 +74,7 @@ function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
           whileInView={{ height: fromH }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="w-10 sm:w-16 md:w-20 bg-cyan-400 rounded-t-md flex items-center justify-center"
+          className="w-10 sm:w-16 md:w-20 bg-accent rounded-t-md flex items-center justify-center"
         >
           <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{fromLabel}</span>
         </motion.div>
@@ -83,7 +83,7 @@ function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
           whileInView={{ height: toH }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="w-10 sm:w-16 md:w-20 bg-emerald-400 rounded-t-md flex items-center justify-center"
+          className="w-10 sm:w-16 md:w-20 bg-emerald-500 rounded-t-md flex items-center justify-center"
         >
           <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{toLabel}</span>
         </motion.div>
@@ -210,7 +210,7 @@ export default function MarketData() {
         <ScrollReveal delay={0.3}>
           <div className="grid grid-cols-3 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-12 mt-12 max-w-xl sm:max-w-none mx-auto px-1">
             <div className="text-center min-w-0 px-0.5">
-              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-cyan-300 tabular-nums leading-none">
+              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 $<AnimatedCounter target={432} suffix="B+" duration={2} />
               </div>
               <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
@@ -218,7 +218,7 @@ export default function MarketData() {
               </div>
             </div>
             <div className="text-center min-w-0 px-0.5">
-              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-cyan-300 tabular-nums leading-none">
+              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 <AnimatedCounter target={2} suffix="M+" duration={1.5} />
               </div>
               <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">

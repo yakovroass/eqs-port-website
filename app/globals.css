@@ -85,10 +85,10 @@ body {
     background-clip: text;
   }
 
-  /* מובייל: גרדיאנט בהיר יותר (תכלת בוהק) */
+  /* מובייל: גרדיאנט בהיר משמעותית (תכלת כמעט לבן) */
   @media (max-width: 768px) {
     .gradient-text {
-      background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 50%, #22d3ee 100%);
+      background: linear-gradient(90deg, #bae6fd 0%, #7dd3fc 40%, #67e8f9 100%);
       -webkit-background-clip: text;
       background-clip: text;
     }

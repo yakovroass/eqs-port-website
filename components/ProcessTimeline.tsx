@@ -77,29 +77,29 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* מובייל: סריקה אלגוריתמית + חתום SLA אחד ליד השני בלי מספרים; דסקטופ: עם 1 ו-2 */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-8 items-start">
+        {/* מובייל: שני כרטיסים באותו גודל, V מיושר לטקסט; דסקטופ: עם 1 ו-2 */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-8 items-stretch">
           {eqsSteps.map((step, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
               <motion.div
                 whileHover={{ y: -2 }}
-                className="relative rounded-2xl overflow-hidden"
+                className="relative rounded-2xl overflow-hidden flex flex-col min-h-[180px] sm:min-h-0"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-[0.06]`} />
-                <div className="relative p-4 sm:p-7 flex flex-col items-center text-center">
+                <div className="relative p-4 sm:p-7 flex flex-col items-center text-center flex-1">
                   <div className={`hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} items-center justify-center text-white text-xl font-black shadow-lg mb-3`}>
                     {step.num}
                   </div>
-                  <span className="text-sm font-semibold uppercase tracking-widest text-cyan-300 mb-2 sm:mb-3">
+                  <span className="text-sm font-semibold uppercase tracking-widest text-accent mb-2 sm:mb-3">
                     {step.subtitle[lang]}
                   </span>
-                  <ul className="space-y-2 w-full">
+                  <ul className="space-y-2 w-full flex-1 flex flex-col items-start sm:items-center text-start sm:text-center">
                     {step.points[lang].map((point, j) => (
-                      <li key={j} className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                        <svg className="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <li key={j} className="flex items-start gap-2 text-sm text-gray-400">
+                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
-                        {point}
+                        <span>{point}</span>
                       </li>
                     ))}
                   </ul>
