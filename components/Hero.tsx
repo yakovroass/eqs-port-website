@@ -67,13 +67,13 @@ export default function Hero() {
               {tx(t.hero.headlineMobileLine2, lang)}
             </span>
           </div>
-          {/* טאבלט+ : אנגלית — שתי שורות; עברית — כותרת באותו פונט כמו תת-כותרת */}
-          <div className={`hidden sm:block leading-[1.08] ${lang === "he" ? "text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-200" : "text-4xl md:text-5xl lg:text-6xl xl:text-7xl"}`}>
+          {/* טאבלט+ : אנגלית ועברית — אותו גודל ואותו גרדיאנט */}
+          <div className="hidden sm:block text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.08] font-black">
             {tx(t.hero.headline1, lang).trim() ? (
               <>
                 <span className="text-white">{tx(t.hero.headline1, lang)}</span>
                 <br />
-                <span className={lang === "he" ? "text-gray-200" : "gradient-text"}>{tx(t.hero.headline2, lang)}</span>
+                <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
               </>
             ) : lang === "en" ? (
               <>
@@ -81,7 +81,7 @@ export default function Hero() {
                 <span className="gradient-text block">Procurement Platform</span>
               </>
             ) : (
-              <span className="text-gray-200">{tx(t.hero.headline2, lang)}</span>
+              <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
             )}
           </div>
         </motion.h1>
