@@ -22,25 +22,36 @@ export default function Problem() {
       <div className="relative z-10 section-container">
         <ScrollReveal>
           <div className="text-center mb-6">
-            <span className="section-label headline-font text-2xl sm:text-3xl md:text-4xl text-amber-400 tracking-wide uppercase">
+            <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
               {tx(t.problem.label, lang)}
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {tx(t.problem.headline, lang)}
+            {lang === "en" ? (
+              <span className="inline-flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-0 leading-tight sm:leading-normal">
+                <span>The Global Market</span>
+                <span className="sm:pl-1.5">Is Complex</span>
+              </span>
+            ) : (
+              tx(t.problem.headline, lang)
+            )}
           </h2>
-          <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
+          <p
+            className={`text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed ${
+              lang === "he" ? "whitespace-pre-line" : ""
+            }`}
+          >
             {tx(t.problem.sub, lang)}
           </p>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto items-start">
           {pains.map((pain, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
               <motion.div
                 whileHover={{ x: lang === "he" ? -4 : 4 }}
-                className="relative rounded-xl bg-white/[0.03] backdrop-blur-sm p-6 h-full
-                           border border-gray-700/30 hover:border-amber-500/20 transition-all group"
+                className="relative rounded-xl bg-white/[0.03] backdrop-blur-sm p-6 sm:p-7
+                           border border-gray-700/30 hover:border-amber-500/20 transition-all group h-fit"
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/10

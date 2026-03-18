@@ -51,13 +51,22 @@ export default function SolutionOverview() {
         {/* הפתרון: כותרת ראשית + תת כותרת */}
         <ScrollReveal>
           <div className="text-center mb-6">
-            <span className="section-label headline-font text-2xl sm:text-3xl md:text-4xl text-amber-400 tracking-wide uppercase">
-              {tx(t.nav.solution, lang)}
+            <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
+              {tx(t.solution.label, lang)}
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {tx(t.solution.headline, lang)}{" "}
-            <span className="gradient-text">{tx(t.solution.headlineAccent, lang)}</span>
+            {/* מובייל: שתי שורות */}
+            <div className="sm:hidden flex flex-col gap-1 items-center leading-tight">
+              <span className="text-white">
+                {tx(t.solution.headline, lang).replace(/,\s*$/, "").trim()}
+              </span>
+              <span className="gradient-text">{tx(t.solution.headlineAccent, lang)}</span>
+            </div>
+            <div className="hidden sm:block">
+              {tx(t.solution.headline, lang)}{" "}
+              <span className="gradient-text">{tx(t.solution.headlineAccent, lang)}</span>
+            </div>
           </h2>
           <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
             {tx(t.solution.sub, lang)}
@@ -69,34 +78,34 @@ export default function SolutionOverview() {
           className="min-h-[200px]"
           onMouseLeave={() => setActive(null)}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mb-8 items-stretch">
             {capKeys.map((key, i) => {
               const item = t.capItems[key];
               const isActive = active === key;
               return (
-                <ScrollReveal key={key} delay={i * 0.05}>
+                <ScrollReveal key={key} delay={i * 0.05} className="h-full min-h-0">
                   <motion.div
                     role="button"
                     tabIndex={0}
                     onMouseEnter={() => setActive(key)}
                     onFocus={() => setActive(key)}
                     onBlur={() => setActive(null)}
-                    whileHover={{ scale: 1.05 }}
-                    className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
+                    whileHover={{ scale: 1.02 }}
+                    className={`h-full min-h-[168px] sm:min-h-[188px] flex flex-col text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
                       isActive
                         ? "bg-accent/20 border-accent shadow-[0_0_24px_rgba(0,168,255,0.35)] ring-2 ring-accent/50"
                         : "glass-card border-gray-600/50 hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_28px_rgba(0,168,255,0.25)] hover:ring-2 hover:ring-accent/40"
                     }`}
                   >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-colors ${
+                    <div className={`w-10 h-10 shrink-0 rounded-lg flex items-center justify-center mb-3 transition-colors ${
                       isActive ? "bg-accent/30 text-accent" : "bg-dark-600/60 text-gray-400 hover:bg-accent/25 hover:text-accent"
                     }`}>
                       {capIcons[key]}
                     </div>
-                    <h3 className={`text-sm font-semibold mb-1 transition-colors ${isActive ? "text-accent" : "text-white"}`}>
+                    <h3 className={`text-sm font-semibold mb-2 transition-colors shrink-0 ${isActive ? "text-accent" : "text-white"}`}>
                       {tx(item.title, lang)}
                     </h3>
-                    <p className="text-[11px] text-gray-500 leading-relaxed line-clamp-2">
+                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed line-clamp-3 flex-1 min-h-0">
                       {tx(item.desc, lang)}
                     </p>
                   </motion.div>

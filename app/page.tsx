@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, dir }}>
-      <div dir={dir} className="overflow-x-hidden max-w-[100vw] relative">
+      <div dir={dir} className="mobile-readable overflow-x-hidden max-w-[100vw] relative">
         <div className="animated-grid-bg fixed inset-0 pointer-events-none z-0" />
         <MouseGlow />
         <Navbar />

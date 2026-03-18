@@ -50,65 +50,74 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <GridBackground />
-      <div className="relative z-10 section-container text-center">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 mb-6 sm:mb-8 mt-16 sm:mt-20 lg:mt-0"
-        >
-          <span className="w-2 h-2 rounded-full bg-accent animate-glow-pulse" />
-          <span className="text-sm text-accent font-medium tracking-wide">
-            {tx(t.hero.badge, lang)}
-          </span>
-        </motion.div>
-
-        {/* Headline */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto text-center px-2 sm:px-6 lg:px-8">
+        {/* Headline — כותרת אחת (ללא תג מעל הכותרת) */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6"
+          transition={{ duration: 0.8, delay: 0.25 }}
+          className="mb-5 px-0.5 mt-16 sm:mt-20 lg:mt-0 font-black tracking-tight"
         >
-          {lang === "he" ? (
-            <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
-          ) : (
-            <>
-              <span className="text-white">{tx(t.hero.headline1, lang)}</span>
-              <br />
+          {/* מובייל: שתי שורות, פונט גדול */}
+          <div className="sm:hidden flex flex-col gap-1 leading-[1.1]">
+            <span className="gradient-text block text-[clamp(2.5rem,11vw,4rem)]">
+              {tx(t.hero.headlineMobileLine1, lang)}
+            </span>
+            <span className="gradient-text block text-[clamp(2.5rem,11vw,4rem)]">
+              {tx(t.hero.headlineMobileLine2, lang)}
+            </span>
+          </div>
+          {/* טאבלט+ : שורה אחת */}
+          <div className="hidden sm:block text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.08]">
+            {tx(t.hero.headline1, lang).trim() ? (
+              <>
+                <span className="text-white">{tx(t.hero.headline1, lang)}</span>
+                <br />
+                <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
+              </>
+            ) : (
               <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
-            </>
-          )}
+            )}
+          </div>
         </motion.h1>
 
-        {/* Sub-headline */}
+        {/* תת-כותרת — מובייל: שתי שורות */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed whitespace-pre-line"
+          className="sm:hidden text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-snug whitespace-pre-line px-1"
+        >
+          {tx(t.hero.subMobile, lang)}
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="hidden sm:block text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto mb-14 leading-relaxed"
         >
           {tx(t.hero.sub, lang)}
         </motion.p>
 
-        {/* Stats */}
+        {/* Stats — מובייל רוחב מלא; מ־sm ומעלה רוחב כמו תת-הכותרת (max-w-3xl) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-12 md:gap-24 mb-14"
+          className="grid grid-cols-3 gap-1 sm:max-w-3xl sm:mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-14 w-full"
         >
           {[
             { value: 3000, suffix: "+", label: tx(t.hero.stat1Label, lang) },
             { value: 100, suffix: "+", label: tx(t.hero.stat2Label, lang) },
             { value: 50, suffix: "%", label: tx(t.hero.stat3Label, lang) },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-accent">
+            <div key={stat.label} className="flex flex-col items-center w-full min-w-0 sm:px-4">
+              <div className="w-full text-center text-[clamp(1.85rem,6.8vw,3.15rem)] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent tabular-nums leading-none">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2.5} />
               </div>
-              <div className="text-base md:text-lg text-gray-300 mt-2 tracking-wide">{stat.label}</div>
+              <div className="w-full max-w-full text-center text-sm min-[400px]:text-base sm:text-2xl md:text-3xl text-gray-300 mt-1.5 sm:mt-2 tracking-wide leading-snug px-0.5 sm:px-0 hyphens-auto">
+                {stat.label}
+              </div>
             </div>
           ))}
         </motion.div>

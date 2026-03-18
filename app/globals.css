@@ -9,8 +9,8 @@
   --bg-secondary: #0a0e1a;
   --accent: #00a8ff;
   --accent-glow: rgba(0, 168, 255, 0.15);
-  --text-primary: #e8ecf4;
-  --text-secondary: #8892a8;
+  --text-primary: #eef2fa;
+  --text-secondary: #a8b4cc;
 }
 
 * {
@@ -116,6 +116,23 @@ body {
 [dir="rtl"] .rtl\:left-auto { left: auto !important; }
 [dir="rtl"] .rtl\:right-4 { right: 1rem !important; }
 [dir="rtl"] .rtl\:right-6 { right: 1.5rem !important; }
+
+/* Mobile / narrow: muted grays read too dark on OLED & small screens */
+@media (max-width: 768px) {
+  .mobile-readable .text-gray-400 {
+    color: rgb(200 210 226) !important;
+  }
+  .mobile-readable .text-gray-500 {
+    color: rgb(176 188 208) !important;
+  }
+  .mobile-readable .text-gray-600 {
+    color: rgb(160 174 196) !important;
+  }
+  .mobile-readable .glass-card {
+    background: rgba(14, 18, 32, 0.88);
+    border-color: rgba(0, 168, 255, 0.18);
+  }
+}
 
 .animated-grid-bg {
   background-image:

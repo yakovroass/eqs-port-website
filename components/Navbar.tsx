@@ -1,25 +1,68 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 import LanguageToggle from "./LanguageToggle";
 
-const NAV_KEYS = ["home", "problem", "market", "solution", "process", "future", "invest", "contact"] as const;
-const NAV_HREFS = ["#hero", "#problem", "#market", "#solution", "#process", "#future", "#invest", "#contact"];
+const NAV_HREFS = ["#hero", "#problem", "#market", "#solution", "#process", "#future", "#invest", "#contact"] as const;
+
+function navLabelAt(index: number, lang: "en" | "he"): string {
+  switch (index) {
+    case 0:
+      return tx(t.nav.home, lang);
+    case 1:
+      return tx(t.problem.label, lang);
+    case 2:
+      return tx(t.market.label, lang);
+    case 3:
+      return tx(t.solution.label, lang);
+    case 4:
+      return tx(t.process.label, lang);
+    case 5:
+      return tx(t.roadmap.label, lang);
+    case 6:
+      return tx(t.invest.label, lang);
+    case 7:
+      return tx(t.contact.label, lang);
+    default:
+      return "";
+  }
+}
 
 export default function Navbar() {
-  const { lang } = useLanguage();
+  const { lang, dir } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown, true);
+    return () => document.removeEventListener("pointerdown", onPointerDown, true);
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
@@ -28,6 +71,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
+      ref={navRef}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -37,55 +81,69 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between h-20 sm:h-22 lg:h-28">
-        <button onClick={() => handleClick("#hero")} className="flex items-center gap-2 sm:gap-4 lg:gap-5 group min-w-0">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between min-h-[4.5rem] sm:min-h-[5.5rem] lg:min-h-28 py-2">
+        <button onClick={() => handleClick("#hero")} className="flex items-center gap-4 sm:gap-6 lg:gap-8 group min-w-0 flex-1 pr-2">
           <Image
             src="/logo.png"
             alt="EQS.PORT"
-            width={400}
-            height={400}
+            width={587}
+            height={555}
             priority
             quality={95}
-            sizes="88px"
-            className="w-14 h-14 sm:w-16 sm:h-16 lg:w-[88px] lg:h-[88px] object-contain shrink-0 rounded-xl"
+            sizes="(max-width: 640px) 56px, (max-width: 1024px) 64px, 96px"
+            className="w-14 h-14 sm:w-[4.5rem] sm:h-[4.5rem] lg:w-24 lg:h-24 object-contain shrink-0 rounded-xl"
           />
-          <span dir="ltr" className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight sm:tracking-wider text-white group-hover:text-gray-100 transition-colors">
-            EQS<span className="text-accent glow-text">.</span>PORT
+          <span
+            dir="ltr"
+            className="text-[clamp(1.35rem,8.5vw,2.35rem)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter sm:tracking-tight leading-[0.92] text-white group-hover:text-gray-100 transition-colors"
+          >
+            EQS<span className="text-white">.</span>{" "}PORT
           </span>
         </button>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1 shrink-0">
-          {NAV_KEYS.map((key, i) => (
+        <div className="hidden lg:flex items-center gap-1 shrink-0 flex-wrap justify-end max-w-[58%] xl:max-w-none">
+          {NAV_HREFS.map((href, i) => (
             <button
-              key={key}
-              onClick={() => handleClick(NAV_HREFS[i])}
-              className="px-3 py-2 text-sm text-gray-400 hover:text-accent transition-colors rounded-lg hover:bg-accent/5"
+              key={href}
+              onClick={() => handleClick(href)}
+              className="px-2.5 py-2 text-xs xl:text-sm text-gray-400 hover:text-accent transition-colors rounded-lg hover:bg-accent/5 text-center leading-snug max-w-[8.5rem] xl:max-w-none"
             >
-              {tx(t.nav[key], lang)}
+              {navLabelAt(i, lang)}
             </button>
           ))}
-          <div className="ml-2">
+          <div className="ml-2 shrink-0">
             <LanguageToggle />
           </div>
         </div>
 
-        {/* Mobile controls */}
         <div className="lg:hidden flex items-center gap-1 shrink-0">
           <LanguageToggle />
           <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex flex-col gap-1.5 p-1.5"
-            aria-label="Toggle menu"
+            className="flex flex-col justify-center gap-[5px] p-1.5 min-w-[2.25rem] min-h-[2.25rem] items-center"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            <motion.span animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="w-5 h-0.5 bg-gray-300 block" />
-            <motion.span animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }} className="w-5 h-0.5 bg-gray-300 block" />
-            <motion.span animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="w-5 h-0.5 bg-gray-300 block" />
+            <motion.span
+              animate={mobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="w-[15px] h-[1.5px] bg-gray-300 rounded-full block origin-center"
+            />
+            <motion.span
+              animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.15 }}
+              className="w-[15px] h-[1.5px] bg-gray-300 rounded-full block"
+            />
+            <motion.span
+              animate={mobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="w-[15px] h-[1.5px] bg-gray-300 rounded-full block origin-center"
+            />
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -94,14 +152,17 @@ export default function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="lg:hidden bg-dark-900/95 backdrop-blur-xl border-b border-accent/10 overflow-hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-1">
-              {NAV_KEYS.map((key, i) => (
+            <div className={`px-4 py-3 flex flex-col gap-0.5 ${dir === "rtl" ? "items-stretch" : ""}`}>
+              {NAV_HREFS.map((href, i) => (
                 <button
-                  key={key}
-                  onClick={() => handleClick(NAV_HREFS[i])}
-                  className="text-left px-4 py-3 text-gray-300 hover:text-accent hover:bg-accent/5 rounded-lg transition-colors"
+                  key={href}
+                  type="button"
+                  onClick={() => handleClick(href)}
+                  className={`w-full px-3 py-2.5 text-sm text-gray-300 hover:text-accent hover:bg-accent/5 rounded-lg transition-colors ${
+                    dir === "rtl" ? "text-right" : "text-left"
+                  }`}
                 >
-                  {tx(t.nav[key], lang)}
+                  {navLabelAt(i, lang)}
                 </button>
               ))}
             </div>

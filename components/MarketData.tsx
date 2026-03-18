@@ -17,7 +17,7 @@ const charts = [
   {
     title: { en: "Crane Market", he: "שוק המנופים" },
     unit: "USD B",
-    from: { year: "2023", value: 35.6, label: "35.6 B" },
+    from: { year: "2024", value: 35.6, label: "35.6 B" },
     to: { year: "2030", value: 49.1, label: "49.1 B" },
     maxVal: 60,
   },
@@ -107,7 +107,7 @@ export default function MarketData() {
       <div className="relative z-10 section-container">
         <ScrollReveal>
           <div className="text-center mb-6">
-            <span className="section-label headline-font text-2xl sm:text-3xl md:text-4xl text-amber-400 tracking-wide uppercase">
+            <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
               {tx(t.market.label, lang)}
             </span>
           </div>
@@ -119,23 +119,33 @@ export default function MarketData() {
           </p>
         </ScrollReveal>
 
-        {/* Growth charts */}
+        {/* Growth charts — כותרת בגובה קבוע + גרף בתחתית: יישור EN/HE */}
         <ScrollReveal>
-          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-3xl mx-auto mb-16">
+          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-3xl mx-auto mb-16 items-stretch">
             {charts.map((chart) => (
-              <div key={chart.from.label} className="glass-card rounded-lg sm:rounded-xl p-2 sm:p-5 text-center flex flex-col">
-                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white mb-0.5 sm:mb-1">
-                  {chart.title[lang]}
-                </h3>
-                <div className="text-[10px] sm:text-xs text-gray-500 mb-3 sm:mb-6">({chart.unit})</div>
-                <GrowthBar
-                  fromPct={(chart.from.value / chart.maxVal) * 100}
-                  toPct={(chart.to.value / chart.maxVal) * 100}
-                  fromLabel={chart.from.label}
-                  toLabel={chart.to.label}
-                  fromYear={chart.from.year}
-                  toYear={chart.to.year}
-                />
+              <div
+                key={chart.from.label}
+                className="flex flex-col min-h-[300px] sm:min-h-[320px]"
+              >
+                <div
+                  className="glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center
+                    h-[5.5rem] min-[400px]:h-[6rem] sm:h-[6.5rem] md:h-[7rem] shrink-0"
+                >
+                  <h3 className="text-[11px] min-[380px]:text-sm sm:text-base md:text-lg font-semibold text-white leading-snug line-clamp-3">
+                    {chart.title[lang]}
+                  </h3>
+                  <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 shrink-0">({chart.unit})</div>
+                </div>
+                <div className="glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 min-h-[200px] sm:min-h-[210px] flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2">
+                  <GrowthBar
+                    fromPct={(chart.from.value / chart.maxVal) * 100}
+                    toPct={(chart.to.value / chart.maxVal) * 100}
+                    fromLabel={chart.from.label}
+                    toLabel={chart.to.label}
+                    fromYear={chart.from.year}
+                    toYear={chart.to.year}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -198,24 +208,30 @@ export default function MarketData() {
 
         {/* Big number highlight */}
         <ScrollReveal delay={0.3}>
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mt-12">
-            <div className="text-center">
-              <div className="text-3xl sm:text-5xl font-black text-white">
+          <div className="grid grid-cols-3 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-12 mt-12 max-w-xl sm:max-w-none mx-auto px-1">
+            <div className="text-center min-w-0 px-0.5">
+              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 $<AnimatedCounter target={432} suffix="B+" duration={2} />
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{lang === "en" ? "Total Market" : "שוק כולל"}</div>
+              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+                {lang === "en" ? "Total Market" : "שוק כולל"}
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-5xl font-black text-white">
+            <div className="text-center min-w-0 px-0.5">
+              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 <AnimatedCounter target={2} suffix="M+" duration={1.5} />
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{lang === "en" ? "Potential Clients" : "לקוחות פוטנציאליים"}</div>
+              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+                {lang === "en" ? "Potential Clients" : "לקוחות פוטנציאליים"}
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-5xl font-black gradient-text">
+            <div className="text-center min-w-0 px-0.5">
+              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black gradient-text tabular-nums leading-none">
                 <AnimatedCounter target={62} suffix="%" duration={2} />
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{lang === "en" ? "Projected Growth by 2030" : "צמיחה צפויה עד 2030"}</div>
+              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+                {lang === "en" ? "Projected Growth by 2030" : "צמיחה צפויה עד 2030"}
+              </div>
             </div>
           </div>
         </ScrollReveal>

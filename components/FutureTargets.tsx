@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import AnimatedCounter from "./AnimatedCounter";
-import { useLanguage } from "@/lib/useLanguage";
+import { useLanguage, tx } from "@/lib/useLanguage";
+import { t } from "@/lib/translations";
 
 const phases = [
   {
@@ -103,9 +104,9 @@ export default function FutureTargets() {
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
-          <div className="text-center mb-4">
-            <span className="text-purple-400 font-mono text-base sm:text-lg tracking-widest uppercase">
-              {lang === "en" ? "Future Roadmap" : "מפת דרכים עתידית"}
+          <div className="text-center mb-6">
+            <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
+              {tx(t.roadmap.label, lang)}
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
@@ -113,9 +114,7 @@ export default function FutureTargets() {
             <span className="gradient-text">{lang === "en" ? "Just the Beginning" : "ההתחלה"}</span>
           </h2>
           <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
-            {lang === "en"
-              ? "We're starting with equipment — but we're building for every buyer on earth. Our network, data, and connections are the foundation of a global procurement intelligence system that will scan the world to find the best deal for every customer."
-              : "אנחנו מתחילים עם ציוד — אבל אנחנו בונים לכל קונה בעולם. הרשת, הנתונים והקשרים שלנו הם הבסיס למערכת מודיעין רכש גלובלית שתסרוק את העולם כדי למצוא את העסקה הטובה ביותר לכל לקוח."}
+            {tx(t.roadmap.intro, lang)}
           </p>
         </ScrollReveal>
 
@@ -123,7 +122,7 @@ export default function FutureTargets() {
         <div className="max-w-4xl mx-auto mb-24 space-y-8 sm:space-y-0">
           {phases.map((phase, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative flex gap-4 sm:gap-8">
+              <div className="relative flex gap-4 sm:gap-8 w-full min-w-0 max-w-full">
                 {/* Timeline column */}
                 <div className={`hidden sm:flex flex-col items-center shrink-0 ${lang === "he" ? "order-last" : ""}`}>
                   <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${phase.color} flex items-center justify-center text-white shadow-lg shadow-accent/10 z-10`}>
@@ -137,11 +136,11 @@ export default function FutureTargets() {
                 {/* Card */}
                 <motion.div
                   whileHover={{ scale: 1.01 }}
-                  className="flex-1 mb-8 sm:mb-12"
+                  className="flex-1 mb-8 sm:mb-12 min-w-0 w-full max-w-full"
                 >
-                  <div className={`relative rounded-2xl overflow-hidden`}>
+                  <div className="relative rounded-2xl overflow-hidden max-w-full">
                     <div className={`absolute inset-0 ${phase.glow} opacity-50`} />
-                    <div className="relative p-6 sm:p-8 border border-gray-700/30 rounded-2xl hover:border-gray-600/40 transition-all">
+                    <div className="relative px-3 py-5 sm:p-8 border border-gray-700/30 rounded-2xl hover:border-gray-600/40 transition-all sm:px-8 max-w-full min-w-0 box-border">
                       <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
                         {/* Mobile icon */}
                         <div className={`sm:hidden w-10 h-10 rounded-xl bg-gradient-to-br ${phase.color} flex items-center justify-center text-white shadow-lg`}>
@@ -162,14 +161,42 @@ export default function FutureTargets() {
                       <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{phase.title[lang]}</h3>
                       <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6">{phase.desc[lang]}</p>
 
-                      {/* Phase stats */}
-                      <div className="flex flex-wrap gap-6 sm:gap-10 pt-4 border-t border-gray-700/20">
+                      {/* Phase stats — שלב 1 במובייל: רשת 2×2 בתוך רוחב המסך (בלי גלילה אופקית) */}
+                      <div
+                        className={
+                          phase.stats.length >= 4
+                            ? "grid grid-cols-2 gap-x-2 gap-y-4 pt-4 border-t border-gray-700/20 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6 md:gap-x-12"
+                            : "flex flex-wrap gap-6 sm:gap-10 pt-4 border-t border-gray-700/20"
+                        }
+                      >
                         {phase.stats.map((stat, j) => (
-                          <div key={j}>
-                            <div className={`text-2xl sm:text-3xl font-black bg-gradient-to-r ${phase.color} bg-clip-text text-transparent`}>
-                              {stat.prefix || ""}<AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2} />
+                          <div
+                            key={j}
+                            className={
+                              phase.stats.length >= 4
+                                ? "min-w-0 text-center sm:text-start sm:w-auto sm:shrink-0"
+                                : ""
+                            }
+                          >
+                            <div
+                              className={`font-black bg-gradient-to-r ${phase.color} bg-clip-text text-transparent tabular-nums leading-none ${
+                                phase.stats.length >= 4
+                                  ? "text-lg min-[380px]:text-xl sm:text-2xl md:text-3xl"
+                                  : "text-2xl sm:text-3xl"
+                              }`}
+                            >
+                              {stat.prefix || ""}
+                              <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2} />
                             </div>
-                            <div className="text-[10px] sm:text-xs text-gray-500 mt-0.5">{stat.label[lang]}</div>
+                            <div
+                              className={`text-gray-500 mt-1 leading-snug hyphens-auto ${
+                                phase.stats.length >= 4
+                                  ? "text-[9px] min-[380px]:text-[10px] sm:text-xs px-0.5"
+                                  : "text-[10px] sm:text-xs"
+                              }`}
+                            >
+                              {stat.label[lang]}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -181,25 +208,20 @@ export default function FutureTargets() {
           ))}
         </div>
 
-        {/* Expanding markets */}
+        {/* שווקים — כותרת בינונית + פסקה */}
         <ScrollReveal delay={0.2}>
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <span className="text-purple-400 font-mono text-base sm:text-lg tracking-widest uppercase">
-              {lang === "en" ? "Expansion Targets" : "יעדי הרחבה"}
-            </span>
-            <h3 className="text-xl sm:text-3xl font-bold text-white mt-3 mb-4">
-              {lang === "en" ? "Markets We'll Unlock" : "שווקים שניכנס אליהם"}
+          <div className="max-w-3xl mx-auto text-center mb-12 px-2">
+            <h3 className="text-xl sm:text-2xl md:text-[1.65rem] font-bold text-white mb-4 leading-snug">
+              {tx(t.roadmap.marketsHeadline, lang)}
             </h3>
-            <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
-              {lang === "en"
-                ? "We already work with companies in these industries. Every market we enter multiplies our data, strengthens our network, and serves more buyers."
-                : "אנחנו כבר עובדים עם חברות בתעשיות האלה. כל שוק שנכנס אליו מכפיל את הנתונים שלנו, מחזק את הרשת שלנו, ומשרת יותר קונים."}
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
+              {tx(t.roadmap.marketsSub, lang)}
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.3}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 max-w-4xl mx-auto mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 max-w-4xl mx-auto mb-16 items-stretch">
             {futureMarkets.map((market, i) => (
               <motion.div
                 key={i}
@@ -207,11 +229,11 @@ export default function FutureTargets() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                whileHover={{ scale: 1.04, borderColor: "rgba(168,85,247,0.3)" }}
-                className="relative rounded-xl p-5 sm:p-6 border border-gray-700/20 bg-white/[0.02] backdrop-blur-sm text-center group cursor-default"
+                whileHover={{ scale: 1.03, borderColor: "rgba(168,85,247,0.3)" }}
+                className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-gray-700/20 bg-white/[0.02] backdrop-blur-sm text-center group cursor-default"
               >
-                <div className="text-lg sm:text-xl font-bold text-purple-400 mb-1.5">{market.size}</div>
-                <div className="text-[10px] sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors">{market.name[lang]}</div>
+                <div className="text-lg sm:text-xl font-bold text-purple-400 mb-2 shrink-0">{market.size}</div>
+                <div className="text-[10px] sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors leading-snug px-1">{market.name[lang]}</div>
               </motion.div>
             ))}
           </div>
