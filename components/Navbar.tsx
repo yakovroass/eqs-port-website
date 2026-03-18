@@ -81,8 +81,12 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between min-h-[4.5rem] sm:min-h-[5.5rem] lg:min-h-28 py-2">
-        <button onClick={() => handleClick("#hero")} className="flex items-center gap-4 sm:gap-6 lg:gap-8 group min-w-0 flex-1 pr-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-x-2 gap-y-2 min-h-[4.5rem] sm:min-h-[5.5rem] lg:min-h-[4.75rem] lg:py-2.5 xl:min-h-28 xl:py-2">
+        <button
+          type="button"
+          onClick={() => handleClick("#hero")}
+          className="flex items-center gap-2 sm:gap-4 lg:gap-3 xl:gap-6 group shrink-0 max-w-[100%] sm:max-w-none"
+        >
           <Image
             src="/logo.png"
             alt="EQS.PORT"
@@ -91,27 +95,31 @@ export default function Navbar() {
             priority
             quality={95}
             sizes="(max-width: 640px) 56px, (max-width: 1024px) 64px, 96px"
-            className="w-14 h-14 sm:w-[4.5rem] sm:h-[4.5rem] lg:w-24 lg:h-24 object-contain shrink-0 rounded-xl"
+            className="w-12 h-12 sm:w-14 sm:h-14 lg:w-14 lg:h-14 xl:w-[4.5rem] xl:h-[4.5rem] 2xl:w-24 2xl:h-24 object-contain shrink-0 rounded-xl"
           />
           <span
             dir="ltr"
-            className="text-[clamp(1.35rem,8.5vw,2.35rem)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter sm:tracking-tight leading-[0.92] text-white group-hover:text-gray-100 transition-colors"
+            className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none
+              text-[clamp(1.15rem,5vw,1.85rem)] sm:text-3xl md:text-4xl
+              lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl"
           >
-            EQS<span className="text-white">.</span>{" "}PORT
+            EQS<span className="text-white">.</span>
+            PORT
           </span>
         </button>
 
-        <div className="hidden lg:flex items-center gap-1 shrink-0 flex-wrap justify-end max-w-[58%] xl:max-w-none">
+        <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 shrink min-w-0 flex-1 justify-end flex-wrap lg:max-w-[calc(100%-11rem)] xl:max-w-[calc(100%-14rem)] 2xl:max-w-none">
           {NAV_HREFS.map((href, i) => (
             <button
               key={href}
+              type="button"
               onClick={() => handleClick(href)}
-              className="px-2.5 py-2 text-xs xl:text-sm text-gray-400 hover:text-accent transition-colors rounded-lg hover:bg-accent/5 text-center leading-snug max-w-[8.5rem] xl:max-w-none"
+              className="px-1.5 xl:px-2.5 py-1.5 xl:py-2 text-[10px] xl:text-xs 2xl:text-sm text-gray-400 hover:text-accent transition-colors rounded-lg hover:bg-accent/5 text-center leading-tight max-w-[7rem] xl:max-w-[8rem] 2xl:max-w-none"
             >
               {navLabelAt(i, lang)}
             </button>
           ))}
-          <div className="ml-2 shrink-0">
+          <div className="ms-1 xl:ms-2 shrink-0">
             <LanguageToggle />
           </div>
         </div>
