@@ -1,47 +1,21 @@
-# צ'קליסט – פריסה ל-AWS וחיבור דומיין Hostinger
+# צ'קליסט – חיבור הדומיין eqsport.io
 
-הפרויקט עובר build בהצלחה. סמן ✓ כשסיימת.
-
----
-
-## ✅ בוצע אוטומטית
-
-- **העלאה ל-GitHub:** הרפו `yakovroass/eqs-port-website` מעודכן בענף `main`.
-- **Build מקומי:** עבר בהצלחה. קובץ `amplify.yml` מוכן ל-Amplify.
+מה שכבר בוצע: GitHub, Amplify (האפליקציה עולה ורצה).  
+נשאר: לחבר את הדומיין מ-Hostinger.  
+**הסבר מפורט:** ראה [נשאר-לך-לעשות.md](נשאר-לך-לעשות.md)
 
 ---
 
-## מה נשאר – רק אתה יכול (התחברות לחשבונות)
+### Amplify – הוספת הדומיין והעתקת רשומות DNS
 
-### שלב א: חשבון AWS (פעם אחת)
+- [ ] **1.** Amplify → האפליקציה eqs-port-website → **Hosting** → **Custom domains** → **Add domain**
+- [ ] **2.** הזן **eqsport.io** → בחר **Manual configuration** (גלול למטה אם צריך) → **Configure domain**
+- [ ] **3.** העתק את **כל** רשומות ה-DNS ש-Amplify מציג (CNAME וכו')
 
-- [ ] **1.** היכנס ל־https://aws.amazon.com ולחץ **Create an AWS Account**
-- [ ] **2.** מלא פרטים (אימייל, סיסמה, כרטיס אשראי – לחיוב מינימלי/חינם בהתאם לשימוש)
-- [ ] **3.** אשר את החשבון (אימות טלפון/אימייל אם נדרש)
-
----
-
-### שלב ב: העלאת האתר ל-Amplify
-
-- [ ] **4.** היכנס ל־https://console.aws.amazon.com/amplify/
-- [ ] **5.** לחץ **Create new app** → **Host web app**
-- [ ] **6.** בחר את ספק ה-Git (GitHub / GitLab / Bitbucket) וחבר את החשבון אם עדיין לא מחובר
-- [ ] **7.** בחר את **הרפו של הפרויקט** (eqs-port-website) ואת **הענף** (למשל `main`)
-- [ ] **8.** אשר **Save and deploy** – Amplify יריץ build לפי `amplify.yml`
-- [ ] **9.** חכה לסיום ה-build (סטטוס ירוק). תקבל כתובת כמו: `https://main.xxxxx.amplifyapp.com`
-- [ ] **10.** פתח את הכתובת בדפדפן וודא שהאתר עובד
-
----
-
-### שלב ג: חיבור הדומיין מ-Hostinger
-
-- [ ] **11.** ב-Amplify: לחץ על האפליקציה → **Hosting** → **Custom domains** (או **Domain management**)
-- [ ] **12.** לחץ **Add domain** והזן **eqsport.io**. בחר **Manual configuration** (לא Route 53 – מתאים ל-Free Tier ו-Hostinger)
-- [ ] **13.** **Configure domain** – Amplify יציג **אילו רשומות DNS להוסיף** (CNAME, A וכו'). השאר את הטאב פתוח או העתק
-- [ ] **14.** היכנס ל-**Hostinger** → ניהול הדומיין → **DNS / DNS Zone**
-- [ ] **15.** הוסף או ערוך רשומות **בדיוק** כמו ש-Amplify ביקש (שם, סוג, ערך)
-- [ ] **16.** שמור ב-Hostinger וחכה כמה דקות (לפעמים עד 24 שעות) – אחר כך הדומיין יפנה לאתר ב-AWS
-- [ ] **17.** בדוק בדפדפן: **https://eqsport.io** ו-**https://www.eqsport.io** – אמור להציג את האתר עם מנעול (HTTPS אוטומטי ב-Amplify)
+### Hostinger – הזנת הרשומות
+- [ ] **4.** Hostinger → הדומיין **eqsport.io** → **DNS** / **DNS Zone**
+- [ ] **5.** הוסף רשומה לכל מה שהעתקת (שם, סוג, ערך – **בדיוק** כמו ב-Amplify) → שמור
+- [ ] **6.** בדיקה: **https://eqsport.io** ו-**https://www.eqsport.io** – אחרי כמה דקות עד 24 שעות יופיע האתר עם מנעול
 
 ---
 

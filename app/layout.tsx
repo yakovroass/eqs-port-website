@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.eqsport.io"),
   title: "EQS.PORT | AI-Powered Global Industrial Trade",
   description:
     "Multilingual Platforms. AI-Driven Insights. Market-Scale Analytics. B2B AI powering global industrial trade with 3,000+ connections in 100+ countries.",
