@@ -45,13 +45,13 @@ export default function Problem() {
           </p>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto items-start">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto items-stretch">
           {pains.map((pain, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
               <motion.div
                 whileHover={{ x: lang === "he" ? -4 : 4 }}
                 className="relative rounded-xl bg-white/[0.03] backdrop-blur-sm p-6 sm:p-7
-                           border border-gray-700/30 hover:border-amber-500/20 transition-all group h-fit"
+                           border border-gray-700/30 hover:border-amber-500/20 transition-all group h-full flex flex-col"
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/10

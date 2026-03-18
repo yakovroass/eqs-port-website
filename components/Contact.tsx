@@ -55,16 +55,42 @@ export default function Contact() {
   const { lang } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Investment Inquiry from ${formData.name} — ${formData.company}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\n${formData.message}`
-    );
-    window.open(`mailto:yakovroass@gmail.com?subject=${subject}&body=${body}`);
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+    setError(null);
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        if (res.status === 503) {
+          const subject = encodeURIComponent(`Investment Inquiry from ${formData.name} — ${formData.company}`);
+          const body = encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\n${formData.message}`
+          );
+          window.open(`mailto:yakovroass@gmail.com?subject=${subject}&body=${body}`);
+          setSent(true);
+          setTimeout(() => setSent(false), 4000);
+          return;
+        }
+        setError(data.error || (lang === "he" ? "שליחה נכשלה. נסה שוב או שלח למייל." : "Send failed. Try again or email us."));
+        return;
+      }
+      setSent(true);
+      setFormData({ name: "", email: "", company: "", message: "" });
+      setTimeout(() => setSent(false), 4000);
+    } catch {
+      setError(lang === "he" ? "שגיאת רשת. נסה שוב או שלח למייל." : "Network error. Try again or email us.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass = "w-full px-4 py-3 bg-dark-700/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all";
@@ -142,15 +168,21 @@ export default function Contact() {
                   <label className="block text-sm text-gray-400 mb-1.5">{tx(t.contact.message, lang)}</label>
                   <textarea required rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className={`${inputClass} resize-none`} placeholder={tx(t.contact.messagePh, lang)} />
                 </div>
+                {error && (
+                  <p className="text-sm text-red-400" role="alert">
+                    {error}
+                  </p>
+                )}
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full py-3.5 rounded-xl font-semibold text-lg transition-all ${
+                  disabled={sending}
+                  whileHover={sending ? undefined : { scale: 1.02 }}
+                  whileTap={sending ? undefined : { scale: 0.98 }}
+                  className={`w-full py-3.5 rounded-xl font-semibold text-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed ${
                     sent ? "bg-green-500 text-white" : "bg-accent hover:bg-accent-light text-dark-900"
                   }`}
                 >
-                  {sent ? tx(t.contact.sent, lang) : tx(t.contact.send, lang)}
+                  {sending ? tx(t.contact.sending, lang) : sent ? tx(t.contact.sentSuccess, lang) : tx(t.contact.send, lang)}
                 </motion.button>
               </form>
             </div>
