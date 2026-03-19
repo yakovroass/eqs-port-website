@@ -6,27 +6,6 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
-const eqsSteps = [
-  {
-    num: "1",
-    subtitle: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
-    points: {
-      en: ["World's best offers", "All-in-one quotes"],
-      he: ["ההצעות הטובות בעולם", "הצעות מחיר הכל-באחד"],
-    },
-    color: "from-accent to-cyan-300",
-  },
-  {
-    num: "2",
-    subtitle: { en: "Sign SLA", he: "חתום SLA" },
-    points: {
-      en: ["Payment arrangements", "Get updates & ETA"],
-      he: ["הסדרי תשלום", "קבל עדכונים ו-ETA"],
-    },
-    color: "from-cyan-300 to-accent-light",
-  },
-];
-
 export default function ProcessTimeline() {
   const { lang } = useLanguage();
 
@@ -65,7 +44,7 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* כשאת כל זה אפשר... — רק טקסט, בלי מסגרות */}
+        {/* כשאת כל זה אפשר להחליף ב... — כותרת + 3 שורות */}
         <ScrollReveal>
           <div className="max-w-3xl mx-auto my-14 sm:my-20 text-center">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
@@ -77,37 +56,27 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* מובייל: שני כרטיסים באותו גודל, V מיושר לטקסט; דסקטופ: עם 1 ו-2 */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-8 items-stretch">
-          {eqsSteps.map((step, i) => (
-            <ScrollReveal key={i} delay={i * 0.15}>
-              <motion.div
-                whileHover={{ y: -2 }}
-                className="relative rounded-2xl overflow-hidden flex flex-col min-h-[180px] sm:min-h-0"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-[0.06]`} />
-                <div className="relative p-4 sm:p-7 flex flex-col items-center text-center flex-1">
-                  <div className={`hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} items-center justify-center text-white text-xl font-black shadow-lg mb-3`}>
-                    {step.num}
-                  </div>
-                  <span className="text-sm font-semibold uppercase tracking-widest text-accent mb-2 sm:mb-3">
-                    {step.subtitle[lang]}
-                  </span>
-                  <ul className="space-y-2 w-full flex-1 flex flex-col items-start sm:items-center text-start sm:text-center">
-                    {step.points[lang].map((point, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-gray-400">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                        </svg>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
+        {/* קוביה אחת מאוחדת — 5 שלבים */}
+        <ScrollReveal>
+          <motion.div
+            whileHover={{ y: -2 }}
+            className="relative max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-br from-accent/5 via-transparent to-cyan-500/5"
+          >
+            <div className="absolute inset-0 bg-dark-900/60 backdrop-blur-sm" />
+            <div className="relative p-6 sm:p-8">
+              <ul className="space-y-4 sm:space-y-5">
+                {t.process.unifiedSteps[lang].map((step, i) => (
+                  <li key={i} className="flex items-center gap-4 text-gray-200">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-accent font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <span className="text-base sm:text-lg">{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </ScrollReveal>
 
         {/* חץ בעיגול */}
         <ScrollReveal>

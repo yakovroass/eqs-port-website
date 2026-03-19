@@ -219,8 +219,24 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "You ask and we execute everything — procurement, logistics, permits, documents. Better, faster, cheaper.",
-      he: "אתה מבקש ואנחנו מבצעים הכל —\nרכש, לוגיסטיקה, היתרים, מסמכים. טוב יותר, מהר יותר, זול יותר.",
+      en: "You ask and we execute everything.\nProcurement, logistics, permits, documents.\nBetter, faster, cheaper.",
+      he: "אתה מבקש ואנחנו מבצעים הכל.\nרכש, לוגיסטיקה, היתרים, מסמכים.\nטוב יותר, מהר יותר, זול יותר.",
+    },
+    unifiedSteps: {
+      en: [
+        "Use algorithmic scanning",
+        "Review the best offers worldwide",
+        "Get all-in-one quotes",
+        "Sign SLA and arrange payment",
+        "Get updates and ETA",
+      ],
+      he: [
+        "השתמש בסריקה אלגוריתמית",
+        "בחן את ההצעות הטובות בעולם",
+        "קבל הצעות מחיר הכל-באחד",
+        "חתום על SLA ובצע הסדרי תשלום",
+        "קבל עדכונים ו-ETA",
+      ],
     },
     phase1: { en: "BROWSE", he: "סריקה" },
     phase2: { en: "APPROVAL", he: "אישור" },
