@@ -31,6 +31,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`dark ${inter.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(location.pathname==="/"&&!location.search.includes("_"))location.replace("/?_="+Date.now());`,
+          }}
+        />
+      </head>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>{children}</body>
     </html>
   );

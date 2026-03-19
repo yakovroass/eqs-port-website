@@ -11,8 +11,10 @@ export function middleware(request: NextRequest) {
   if (pathname === "/" && !searchParams.has("_")) {
     const url = request.nextUrl.clone();
     url.searchParams.set("_", String(Date.now()));
-    const res = NextResponse.redirect(url, 302);
-    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
+    const res = NextResponse.redirect(url, 307);
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.headers.set("Pragma", "no-cache");
+    res.headers.set("Expires", "0");
     return res;
   }
 
