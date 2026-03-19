@@ -72,7 +72,7 @@ export default function Contact() {
 
   const inputClass = "w-full px-4 py-3 bg-dark-700/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all";
 
-  const phoneDisplay = "+972 (0) 542-611-226";
+  const phoneDisplay = "+972(0)542-611-226";
 
   const contactLinks = [
     {
@@ -122,9 +122,13 @@ export default function Contact() {
             {tx(t.contact.headline, lang)}{" "}
             <span className="gradient-text">{tx(t.contact.headlineAccent, lang)}</span>
           </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg">
+          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-10 text-lg">
             {tx(t.contact.sub, lang)}
           </p>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <DownloadRow className="w-full mb-10" />
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto items-stretch">
@@ -204,8 +208,6 @@ export default function Contact() {
                   <span>{tx(t.contact.whatsapp, lang)}</span>
                 </a>
               </div>
-
-              <DownloadRow className="w-full" />
 
               <div className="glass-card rounded-2xl p-5 text-center w-full mt-6 md:mt-auto">
                 <div className="text-base text-gray-500 mb-1">{tx(t.contact.targeting, lang)}</div>

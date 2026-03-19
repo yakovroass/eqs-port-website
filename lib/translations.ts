@@ -382,7 +382,7 @@ export const t = {
     targeting: { en: "Targeting", he: "מטרה" },
     seriesTarget: { en: "Series A — 2027.Q4", he: "Series A — 2027.Q4" },
     contactEmail: { en: "yakovroass@gmail.com", he: "yakovroass@gmail.com" },
-    contactPhone: { en: "+972 (0) 54-261-1226", he: "+972 (0) 54-261-1226" },
+    contactPhone: { en: "+972(0)542-611-226", he: "+972(0)542-611-226" },
     contactLinkedIn: { en: "LinkedIn", he: "LinkedIn" },
     website: { en: "Website", he: "אתר" },
   },
