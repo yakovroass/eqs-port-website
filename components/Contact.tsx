@@ -127,9 +127,9 @@ export default function Contact() {
           </p>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto items-stretch">
           <ScrollReveal direction={lang === "he" ? "right" : "left"}>
-            <div className="glass-card rounded-2xl p-6 sm:p-8">
+            <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-base text-gray-400 mb-1.5">{tx(t.contact.name, lang)}</label>
@@ -168,8 +168,8 @@ export default function Contact() {
           </ScrollReveal>
 
           <ScrollReveal direction={lang === "he" ? "left" : "right"} delay={0.2}>
-            <div className="flex flex-col gap-4">
-              <div className="glass-card rounded-2xl p-6 sm:p-8">
+            <div className="flex flex-col gap-4 w-full max-w-xl md:max-w-none md:h-full">
+              <div className="glass-card rounded-2xl p-6 sm:p-8 w-full">
                 <h3 className="text-2xl font-semibold text-white mb-5">Yakov Roass</h3>
                 <div className="space-y-4">
                   {contactLinks.map((item) => (
@@ -205,9 +205,9 @@ export default function Contact() {
                 </a>
               </div>
 
-              <DownloadRow />
+              <DownloadRow className="w-full" />
 
-              <div className="glass-card rounded-2xl p-5 text-center">
+              <div className="glass-card rounded-2xl p-5 text-center w-full mt-6 md:mt-auto">
                 <div className="text-base text-gray-500 mb-1">{tx(t.contact.targeting, lang)}</div>
                 <div className="text-2xl font-bold text-white">{tx(t.contact.seriesTarget, lang)}</div>
               </div>

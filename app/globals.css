@@ -77,21 +77,12 @@ body {
     border: 1px solid rgba(0, 168, 255, 0.4);
   }
 
-  /* כותרות בגוון בולט ובהיר על רקע כהה — דסקטופ ומובייל */
+  /* כותרות — אותו גרדיאנט במחשב ובטלפון */
   .gradient-text {
     color: transparent;
     background: linear-gradient(90deg, #e0f2fe 0%, #bae6fd 35%, #7dd3fc 70%, #a5f3fc 100%);
     -webkit-background-clip: text;
     background-clip: text;
-  }
-
-  /* מובייל: גוון כמעט לבן כדי שיבלט על רקע כהה */
-  @media (max-width: 768px) {
-    .gradient-text {
-      background: linear-gradient(90deg, #ffffff 0%, #f0f9ff 20%, #e0f2fe 45%, #bae6fd 75%, #e0f2fe 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
   }
 
   .glass-card {
