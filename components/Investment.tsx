@@ -20,7 +20,7 @@ export default function Investment() {
   ];
 
   const dlBtn =
-    "flex flex-1 min-w-0 max-w-[10.5rem] sm:max-w-none items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl font-semibold whitespace-nowrap text-[11px] sm:text-sm transition-colors";
+    "flex flex-1 min-w-0 max-w-[10.5rem] sm:max-w-none items-center justify-center gap-2 py-3.5 sm:py-4 px-3 sm:px-5 rounded-xl font-semibold whitespace-nowrap text-xs sm:text-base leading-snug transition-colors";
 
   return (
     <section id="invest" className="relative py-24 md:py-32 overflow-hidden">
@@ -35,7 +35,7 @@ export default function Investment() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-14">
-            {tx(t.invest.headline, lang)}{" "}
+            {tx(t.invest.headline, lang)}{lang === "he" ? "" : " "}
             <span className="gradient-text">{tx(t.invest.headlineAccent, lang)}</span>
           </h2>
         </ScrollReveal>
@@ -105,7 +105,7 @@ export default function Investment() {
                     whileTap={{ scale: 0.98 }}
                     className={`${dlBtn} border border-accent/40 text-accent hover:bg-accent/10`}
                   >
-                    <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                     </svg>
                     <span className="sm:hidden">{tx(t.invest.downloadPdfShort, lang)}</span>
@@ -118,7 +118,7 @@ export default function Investment() {
                     whileTap={{ scale: 0.98 }}
                     className={`${dlBtn} border border-amber-500/40 text-amber-300 hover:bg-amber-500/15`}
                   >
-                    <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                     </svg>
                     <span className="sm:hidden">{tx(t.invest.downloadOnePagerShort, lang)}</span>

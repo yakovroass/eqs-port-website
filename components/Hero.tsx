@@ -109,7 +109,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid grid-cols-3 gap-1 sm:max-w-3xl sm:mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-14 w-full"
+          className="grid grid-cols-3 gap-1 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-14 w-full justify-items-center"
         >
           {[
             { value: 3000, suffix: "+", label: tx(t.hero.stat1Label, lang) },

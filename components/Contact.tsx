@@ -8,19 +8,19 @@ import { t } from "@/lib/translations";
 
 function DownloadRow({ className = "" }: { className?: string }) {
   const { lang } = useLanguage();
-  const baseBtn = "flex flex-1 min-w-0 items-center justify-center gap-0.5 sm:gap-2 py-2.5 px-0.5 sm:px-3 rounded-xl font-semibold whitespace-nowrap text-[10px] min-[400px]:text-[11px] sm:text-sm leading-tight transition-colors border";
+  const baseBtn = "flex flex-1 min-w-0 items-center justify-center gap-1.5 sm:gap-2 py-3.5 sm:py-4 px-2 sm:px-4 rounded-xl font-semibold whitespace-nowrap text-xs min-[400px]:text-sm sm:text-base leading-snug transition-colors border";
 
   return (
     <div className={`flex flex-nowrap gap-1.5 sm:gap-3 w-full max-w-xl mx-auto ${className}`}>
       <a href="/pitch-deck.pdf" download className={`${baseBtn} border-accent/30 text-accent hover:bg-accent/10`}>
-        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+        <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
         <span className="truncate sm:hidden">{tx(t.contact.downloadPdfShort, lang)}</span>
         <span className="truncate hidden sm:inline">{tx(t.contact.downloadPdf, lang)}</span>
       </a>
       <a href="/EQS.PORT.1P.pdf" download className={`${baseBtn} border-amber-500/40 text-amber-300 hover:bg-amber-500/15`}>
-        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+        <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
         <span className="truncate sm:hidden">{tx(t.contact.downloadOnePagerShort, lang)}</span>
