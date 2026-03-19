@@ -1,5 +1,4 @@
-# Amplify Custom Headers — דף הבית לא במטמון, כדי שלחיצה על הקישור תציג תמיד גרסה עדכנית
-# See: https://docs.aws.amazon.com/amplify/latest/userguide/setting-custom-headers.html
+# Cache-Control for root so visitors always get latest version (no-store)
 customHeaders:
   - pattern: '/'
     headers:
