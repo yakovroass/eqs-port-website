@@ -9,11 +9,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const ogTitle = "EQS. PORT | Industrial Trade Platform";
+const ogDescription =
+  "Multilingual. AI Insights. B2B Analytics.\n3,000+ Connections in 100+ Countries.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.eqsport.io"),
-  title: "EQS. PORT | Global Industrial Trade Platform",
-  description:
-    "Multilingual. AI Insights. Market Analytics. B2B Trade. 3,000+ Connections in 100+ Countries.",
+  title: ogTitle,
+  description: ogDescription,
   keywords: [
     "industrial trade",
     "AI procurement",
@@ -23,9 +26,8 @@ export const metadata: Metadata = {
     "construction equipment",
   ],
   openGraph: {
-    title: "EQS. PORT | Global Industrial Trade Platform",
-    description:
-      "Multilingual. AI Insights. Market Analytics. B2B Trade. 3,000+ Connections in 100+ Countries.",
+    title: ogTitle,
+    description: ogDescription,
     url: "https://www.eqsport.io",
     siteName: "EQS. PORT",
     type: "website",
@@ -33,9 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "EQS. PORT | Global Industrial Trade Platform",
-    description:
-      "Multilingual. AI Insights. Market Analytics. B2B Trade. 3,000+ Connections in 100+ Countries.",
+    title: ogTitle,
+    description: ogDescription,
   },
 };
 
