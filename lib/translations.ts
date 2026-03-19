@@ -220,7 +220,7 @@ export const t = {
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
       en: "You ask and we execute everything — procurement, logistics, permits, documents. Better, faster, cheaper.",
-      he: "אתה מבקש ואנחנו מבצעים הכל — רכש, לוגיסטיקה, היתרים, מסמכים, טוב יותר, מהר יותר, זול יותר.",
+      he: "אתה מבקש ואנחנו מבצעים הכל —\nרכש, לוגיסטיקה, היתרים, מסמכים. טוב יותר, מהר יותר, זול יותר.",
     },
     phase1: { en: "BROWSE", he: "סריקה" },
     phase2: { en: "APPROVAL", he: "אישור" },

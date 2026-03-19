@@ -71,7 +71,7 @@ export default function ProcessTimeline() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
               {tx(t.process.replaceCaption, lang)}
             </h2>
-            <p className="text-gray-300 text-lg sm:text-xl leading-relaxed">
+            <p className="text-gray-300 text-lg sm:text-xl leading-relaxed whitespace-pre-line">
               {tx(t.process.replaceSub, lang)}
             </p>
           </div>
