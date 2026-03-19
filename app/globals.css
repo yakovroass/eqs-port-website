@@ -77,9 +77,10 @@ body {
     border: 1px solid rgba(0, 168, 255, 0.4);
   }
 
-  /* כותרות — אותו גרדיאנט במחשב ובטלפון */
+  /* כותרות — גרדיאנט במחשב */
   .gradient-text {
     color: transparent;
+    -webkit-text-fill-color: transparent;
     background: linear-gradient(90deg, #e0f2fe 0%, #bae6fd 35%, #7dd3fc 70%, #a5f3fc 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -89,6 +90,18 @@ body {
     background: rgba(10, 14, 26, 0.7);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 168, 255, 0.1);
+  }
+}
+
+/* מובייל (גלאקסי/Android וכו'): אילוץ גרדיאנט כמו בדסקטופ — חובה שייראה תכלת בהיר */
+@media (max-width: 768px) {
+  .gradient-text {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: linear-gradient(90deg, #e0f2fe 0%, #bae6fd 35%, #7dd3fc 70%, #a5f3fc 100%) !important;
+    background-size: 100% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
   }
 }
 
