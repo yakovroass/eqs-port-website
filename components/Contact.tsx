@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
@@ -32,47 +31,8 @@ function DownloadRow({ className = "" }: { className?: string }) {
 
 export default function Contact() {
   const { lang } = useLanguage();
-  const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setSending(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        if (res.status === 503) {
-          setError(
-            lang === "he"
-              ? "שליחה מהאתר לא הוגדרה עדיין. הוסף WEB3FORMS_ACCESS_KEY ב-Amplify (ראה מסמך טופס) או שלח מייל ישירות ל-yakovroass@gmail.com"
-              : "Site email isn’t set up yet. Add WEB3FORMS_ACCESS_KEY in Amplify (see docs) or email yakovroass@gmail.com directly."
-          );
-          return;
-        }
-        setError(data.error || (lang === "he" ? "שליחה נכשלה. נסה שוב או שלח למייל." : "Send failed. Try again or email us."));
-        return;
-      }
-      setSent(true);
-      setFormData({ name: "", email: "", company: "", message: "" });
-      setTimeout(() => setSent(false), 4000);
-    } catch {
-      setError(lang === "he" ? "שגיאת רשת. נסה שוב או שלח למייל." : "Network error. Try again or email us.");
-    } finally {
-      setSending(false);
-    }
-  };
-
-  const inputClass = "w-full px-4 py-3 bg-dark-700/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all";
-
-  const phoneDisplay = "+972(0)542-611-226";
+  const phoneDisplay = "+972(0) 542-611-226";
 
   const contactLinks = [
     {
@@ -122,57 +82,14 @@ export default function Contact() {
             {tx(t.contact.headline, lang)}{" "}
             <span className="gradient-text">{tx(t.contact.headlineAccent, lang)}</span>
           </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-10 text-lg">
+          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg">
             {tx(t.contact.sub, lang)}
           </p>
         </ScrollReveal>
 
-        <ScrollReveal>
-          <DownloadRow className="w-full mb-10" />
-        </ScrollReveal>
-
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto items-stretch">
-          <ScrollReveal direction={lang === "he" ? "right" : "left"}>
-            <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-base text-gray-400 mb-1.5">{tx(t.contact.name, lang)}</label>
-                  <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className={inputClass} placeholder={tx(t.contact.namePh, lang)} />
-                </div>
-                <div>
-                  <label className="block text-base text-gray-400 mb-1.5">{tx(t.contact.email, lang)}</label>
-                  <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className={inputClass} placeholder={tx(t.contact.emailPh, lang)} />
-                </div>
-                <div>
-                  <label className="block text-base text-gray-400 mb-1.5">{tx(t.contact.company, lang)}</label>
-                  <input type="text" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} className={inputClass} placeholder={tx(t.contact.companyPh, lang)} />
-                </div>
-                <div>
-                  <label className="block text-base text-gray-400 mb-1.5">{tx(t.contact.message, lang)}</label>
-                  <textarea required rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className={`${inputClass} resize-none`} placeholder={tx(t.contact.messagePh, lang)} />
-                </div>
-                {error && (
-                  <p className="text-sm text-red-400" role="alert">
-                    {error}
-                  </p>
-                )}
-                <motion.button
-                  type="submit"
-                  disabled={sending}
-                  whileHover={sending ? undefined : { scale: 1.02 }}
-                  whileTap={sending ? undefined : { scale: 0.98 }}
-                  className={`w-full py-3.5 rounded-xl font-semibold text-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed ${
-                    sent ? "bg-green-500 text-white" : "bg-accent hover:bg-accent-light text-dark-900"
-                  }`}
-                >
-                  {sending ? tx(t.contact.sending, lang) : sent ? tx(t.contact.sentSuccess, lang) : tx(t.contact.send, lang)}
-                </motion.button>
-              </form>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal direction={lang === "he" ? "left" : "right"} delay={0.2}>
-            <div className="flex flex-col gap-4 w-full max-w-xl md:max-w-none md:h-full">
+        <div className="max-w-xl mx-auto">
+          <ScrollReveal>
+            <div className="flex flex-col gap-4 w-full">
               <div className="glass-card rounded-2xl p-6 sm:p-8 w-full">
                 <h3 className="text-2xl font-semibold text-white mb-5">Yakov Roass</h3>
                 <div className="space-y-4">
@@ -209,7 +126,9 @@ export default function Contact() {
                 </a>
               </div>
 
-              <div className="glass-card rounded-2xl p-5 text-center w-full mt-6 md:mt-auto">
+              <DownloadRow className="w-full" />
+
+              <div className="glass-card rounded-2xl p-5 text-center w-full mt-6">
                 <div className="text-base text-gray-500 mb-1">{tx(t.contact.targeting, lang)}</div>
                 <div className="text-2xl font-bold text-white">{tx(t.contact.seriesTarget, lang)}</div>
               </div>
