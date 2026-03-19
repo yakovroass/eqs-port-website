@@ -37,6 +37,12 @@ export default function RootLayout({
             __html: `if(location.pathname==="/"&&!location.search.includes("_"))location.replace("/?_="+Date.now());`,
           }}
         />
+        {/* כותרות גרדיאנט — inline כדי שלא יישמרו ממטמון (WhatsApp/דפדפן) */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `.gradient-text{color:transparent;-webkit-text-fill-color:transparent;background:linear-gradient(90deg,#e0f2fe 0%,#bae6fd 35%,#7dd3fc 70%,#a5f3fc 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;}@media(max-width:768px){.gradient-text{color:transparent!important;-webkit-text-fill-color:transparent!important;background:linear-gradient(90deg,#e0f2fe 0%,#bae6fd 35%,#7dd3fc 70%,#a5f3fc 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;}main section.relative{padding-top:4rem!important;padding-bottom:4rem!important;}}`,
+          }}
+        />
       </head>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>{children}</body>
     </html>
