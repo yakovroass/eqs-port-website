@@ -49,7 +49,7 @@ export default function Investment() {
                     {tx(t.invest.seedLabel, lang)}
                   </p>
                   <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tabular-nums leading-none mb-3">
-                    {tx(t.invest.amount, lang)}
+                    <span dir="ltr" className="inline-block">{tx(t.invest.amount, lang)}</span>
                     {tx(t.invest.amountUnit, lang) ? (
                       <span className="text-xl sm:text-2xl md:text-3xl text-gray-400 font-semibold ms-2">
                         {tx(t.invest.amountUnit, lang)}
