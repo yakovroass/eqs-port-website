@@ -99,10 +99,10 @@ export default function Navbar() {
           />
           <span
             dir="ltr"
-            className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none flex items-center h-14 sm:h-16 text-[clamp(2rem,7vw,2.65rem)] sm:text-[clamp(2.5rem,5.5vw,3.35rem)]"
+            className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none flex items-center h-14 sm:h-16 text-[clamp(2.1rem,7.2vw,2.8rem)] sm:text-[clamp(2.6rem,5.8vw,3.5rem)]"
           >
             EQS<span className="text-white ml-0.5">.</span>
-            <span className="ml-1 sm:ml-1.5">PORT</span>
+            <span className="ml-1.5 sm:ml-2">PORT</span>
           </span>
         </button>
 

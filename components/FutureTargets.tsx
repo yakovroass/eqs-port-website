@@ -11,8 +11,8 @@ const phases = [
     phase: { en: "Phase 1 — Now", he: "שלב 1 — עכשיו" },
     title: { en: "Building the Network & Data Foundation", he: "בניית הרשת ובסיס הנתונים" },
     desc: {
-      en: "We're starting with heavy equipment and industrial procurement — but the real play is what we're building underneath: a global network of 3,000+ verified contacts across 100+ countries, deep supplier relationships, and proprietary market data that grows with every transaction. This is the infrastructure that makes everything else possible.",
-      he: "אנחנו מתחילים עם ציוד כבד ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת: רשת גלובלית של 3,000+ אנשי קשר מאומתים ביותר מ-100 מדינות, קשרי ספקים עמוקים, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו התשתית שמאפשרת את הכל.",
+      en: "We're starting with heavy equipment and industrial procurement — but the real play is what we're building underneath: a global network of 3,000+ contacts across 100+ countries, deep supplier relationships, and proprietary market data that grows with every transaction. This is the infrastructure that makes everything else possible — and what will take us to the next phases.",
+      he: "אנחנו מתחילים עם ציוד כבד ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת: רשת גלובלית של 3,000+ אנשי קשר ביותר מ-100 מדינות, קשרי ספקים עמוקים, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו התשתית שמאפשרת את הכל, מה שיקח אותנו לשלבים הבאים.",
     },
     stats: [
       { value: 3000, suffix: "+", label: { en: "Verified Contacts", he: "אנשי קשר מאומתים" } },
@@ -33,7 +33,7 @@ const phases = [
     title: { en: "Global Procurement Intelligence Engine", he: "מנוע מודיעין רכש גלובלי" },
     desc: {
       en: "Every buyer deserves the best deal — and we'll find it. Our system scans the entire world to deliver the best procurement insights for every customer. We become each company's procurement department — or their most powerful linked partner. Optimal pricing, verified suppliers, real-time availability, and quality assurance. Every transaction feeds the algorithm, every connection strengthens the network.",
-      he: "כל קונה ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. המערכת שלנו סורקת את העולם כולו כדי לספק את תובנות הרכש הטובות ביותר לכל לקוח. אנחנו הופכים למחלקת הרכש של כל חברה — או לשותף המקושר החזק ביותר שלהם. תמחור אופטימלי, ספקים מאומתים, זמינות בזמן אמת, והבטחת איכות. כל עסקה מזינה את האלגוריתם, כל חיבור מחזק את הרשת.",
+      he: "כל קונה ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. המערכת שלנו סורקת את העולם כולו כדי לספק את תובנות הרכש הטובות ביותר לכל לקוח. אנחנו הופכים למחלקת הרכש של כל חברה — או לשותף המקושר החזק ביותר שלה. תמחור אופטימלי, ספקים מאומתים, זמינות בזמן אמת, והבטחת איכות. כל עסקה מזינה את האלגוריתם, כל חיבור מחזק את הרשת.",
     },
     stats: [
       { value: 432, suffix: "B+", label: { en: "Addressable Market", he: "שוק ניתן לטיפול" }, prefix: "$" },
@@ -51,8 +51,8 @@ const phases = [
     phase: { en: "Phase 3 — The Vision", he: "שלב 3 — החזון" },
     title: { en: "The World's Procurement Operating System", he: "מערכת ההפעלה של הרכש העולמי" },
     desc: {
-      en: "A buyer in Germany needs steel from Brazil. A contractor in Dubai needs cranes from Japan. A factory in India needs spare parts from Europe. Our platform replaces the procurement department for companies that don't have one — and becomes the strongest linked partner for those that do. We scan the globe, match buyers with the best sources algorithmically, and execute procurement at massive scale across every vertical, every category, every country.",
-      he: "קונה בגרמניה צריך פלדה מברזיל. קבלן בדובאי צריך מנופים מיפן. מפעל בהודו צריך חלקי חילוף מאירופה. הפלטפורמה שלנו מחליפה את מחלקת הרכש לחברות שאין להן — והופכת לשותף המקושר החזק ביותר לאלה שיש להן. אנחנו סורקים את העולם, מתאימים קונים למקורות הטובים ביותר אלגוריתמית, ומבצעים רכש בקנה מידה עצום בכל ענף, כל קטגוריה, כל מדינה.",
+      en: "A buyer in Germany needs steel from Brazil. A contractor in Dubai needs cranes from Japan. A company in India needs materials from China. Our platform replaces companies' procurement departments — or becomes their strongest linked partner. We scan the globe, match buyers with the best sources algorithmically, and execute procurement at massive scale across every vertical, every category, every country.",
+      he: "קונה בגרמניה צריך פלדה מברזיל. קבלן בדובאי צריך מנופים מאירופה. חברה בהודו צריכה חומרים מסין. הפלטפורמה שלנו מחליפה את מחלקות הרכש של חברות — או הופכת לשותף המקושר החזק ביותר שלהן. אנחנו סורקים את העולם, מתאימים קונים למקורות הטובים ביותר אלגוריתמית, ומבצעים רכש בקנה מידה עצום בכל ענף, בכל קטגוריה, בכל מדינה.",
     },
     stats: [
       { value: 12, suffix: "T+", label: { en: "Global Procurement", he: "רכש גלובלי" }, prefix: "$" },
@@ -152,7 +152,7 @@ export default function FutureTargets() {
                           {phase.phase[lang]}
                         </span>
                         {i === 0 && (
-                          <span className="text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-white/15 text-amber-200 font-semibold animate-pulse">
+                          <span className="text-xs sm:text-sm px-3 py-1 rounded-full bg-white/20 text-amber-200 font-bold animate-pulse border border-amber-400/30">
                             {lang === "en" ? "ACTIVE" : "פעיל"}
                           </span>
                         )}
@@ -161,7 +161,7 @@ export default function FutureTargets() {
                       <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{phase.title[lang]}</h3>
                       <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6">{phase.desc[lang]}</p>
 
-                      {/* Phase stats — שלב 1 במובייל: רשת 2×2 בתוך רוחב המסך (בלי גלילה אופקית) */}
+                      {/* Phase stats — גודל תוויות אחיד לכל השלבים */}
                       <div
                         className={
                           phase.stats.length >= 4
@@ -178,23 +178,11 @@ export default function FutureTargets() {
                                 : ""
                             }
                           >
-                            <div
-                              className={`font-black text-white tabular-nums leading-none drop-shadow-sm ${
-                                phase.stats.length >= 4
-                                  ? "text-lg min-[380px]:text-xl sm:text-2xl md:text-3xl"
-                                  : "text-2xl sm:text-3xl"
-                              }`}
-                            >
+                            <div className="font-black text-white tabular-nums leading-none drop-shadow-sm text-lg min-[380px]:text-xl sm:text-2xl md:text-3xl">
                               {stat.prefix || ""}
                               <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2} />
                             </div>
-                            <div
-                              className={`text-stone-300 mt-1 leading-snug hyphens-auto ${
-                                phase.stats.length >= 4
-                                  ? "text-[9px] min-[380px]:text-[10px] sm:text-xs px-0.5"
-                                  : "text-[10px] sm:text-xs"
-                              }`}
-                            >
+                            <div className="text-stone-300 mt-1 leading-snug hyphens-auto text-[11px] min-[380px]:text-xs sm:text-sm px-0.5">
                               {stat.label[lang]}
                             </div>
                           </div>
@@ -208,10 +196,10 @@ export default function FutureTargets() {
           ))}
         </div>
 
-        {/* שווקים — כותרת בינונית + פסקה */}
+        {/* שווקים — כותרת גרדיאנט + קוביות מעוצבות */}
         <ScrollReveal delay={0.2}>
-          <div className="max-w-3xl mx-auto text-center mb-12 px-2">
-            <h3 className="text-xl sm:text-2xl md:text-[1.65rem] font-bold text-white mb-4 leading-snug">
+          <div className="max-w-3xl mx-auto text-center mb-10 px-2">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 leading-snug gradient-text">
               {tx(t.roadmap.marketsHeadline, lang)}
             </h3>
             <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
@@ -229,26 +217,25 @@ export default function FutureTargets() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                whileHover={{ scale: 1.03, borderColor: "rgba(168,85,247,0.3)" }}
-                className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-gray-700/20 bg-white/[0.02] backdrop-blur-sm text-center group cursor-default"
+                whileHover={{ scale: 1.03 }}
+                className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-accent/15 bg-accent/[0.04] backdrop-blur-sm text-center group cursor-default hover:border-accent/25 transition-colors"
               >
-                <div className="text-lg sm:text-xl font-bold text-stone-100 mb-2 shrink-0">{market.size}</div>
-                <div className="text-[10px] sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors leading-snug px-1">{market.name[lang]}</div>
+                <div className="text-lg sm:text-xl font-black text-white mb-2 shrink-0 tabular-nums">{market.size}</div>
+                <div className="text-xs sm:text-sm text-stone-300 group-hover:text-stone-100 transition-colors leading-snug px-1">{market.name[lang]}</div>
               </motion.div>
             ))}
           </div>
         </ScrollReveal>
 
-        {/* Bottom CTA statement */}
+        {/* Bottom CTA — כותרות עם גרדיאנט */}
         <ScrollReveal delay={0.4}>
           <motion.div
             whileHover={{ scale: 1.01 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-stone-500/5 via-stone-400/8 to-stone-600/5" />
-              <div className="relative px-6 sm:px-12 py-10 sm:py-14 border border-stone-600/25 rounded-2xl">
-                <p className="text-lg sm:text-2xl font-bold text-white leading-relaxed mb-3">
+            <div className="relative rounded-2xl overflow-hidden border border-accent/20 bg-accent/[0.04]">
+              <div className="relative px-6 sm:px-12 py-10 sm:py-14">
+                <p className="text-lg sm:text-2xl font-bold leading-relaxed mb-3 gradient-text">
                   {lang === "en"
                     ? "Every company in the world buys something."
                     : "כל חברה בעולם קונה משהו."}
@@ -258,7 +245,7 @@ export default function FutureTargets() {
                     ? "We replace their procurement department — or become their strongest partner. Scanning the globe, leveraging data, and connecting them to the best sources through our network."
                     : "אנחנו מחליפים את מחלקת הרכש שלהם — או הופכים לשותף החזק ביותר שלהם. סורקים את העולם, ממנפים נתונים, ומחברים אותם למקורות הטובים ביותר דרך הרשת שלנו."}
                 </p>
-                <p className="text-lg sm:text-2xl font-bold leading-relaxed text-stone-100">
+                <p className="text-lg sm:text-2xl font-bold leading-relaxed gradient-text">
                   {lang === "en"
                     ? "We connect everyone — that's our competitive edge."
                     : "אנחנו מחברים את כולם וזה היתרון התחרותי."}
