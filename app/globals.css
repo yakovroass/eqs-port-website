@@ -103,6 +103,11 @@ body {
     -webkit-background-clip: text !important;
     background-clip: text !important;
   }
+  /* צמצום רווחים אנכיים בסקשנים בטלפון */
+  main section.relative {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
 }
 
 @keyframes grid-bg {
