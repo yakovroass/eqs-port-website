@@ -103,9 +103,9 @@ body {
     -webkit-background-clip: text !important;
     background-clip: text !important;
   }
-  /* רווחים ברורים בין סקשנים במובייל — בין סוף סקשן לכותרת הבאה */
-  main section.relative {
-    padding-top: 4rem !important;
+  /* רווח גדול יותר: בין סוף סקשן לכותרת/תג של הסקשן הבא (לא Hero) */
+  main section.relative:not(#hero) {
+    padding-top: 5.5rem !important;
     padding-bottom: 4rem !important;
   }
 }
