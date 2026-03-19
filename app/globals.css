@@ -103,10 +103,10 @@ body {
     -webkit-background-clip: text !important;
     background-clip: text !important;
   }
-  /* רווחים אנכיים בסקשנים במובייל — מאוזן (לא צמוד מדי, לא גדול כמו דסקטופ) */
+  /* רווחים ברורים בין סקשנים במובייל — בין סוף סקשן לכותרת הבאה */
   main section.relative {
-    padding-top: 1.75rem !important;
-    padding-bottom: 1.75rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
   }
 }
 
