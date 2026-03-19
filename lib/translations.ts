@@ -205,8 +205,8 @@ export const t = {
     },
     realityTitle: { en: "How Procurement Looks Today", he: "ככה נראה הרכש היום" },
     replaceCaption: {
-      en: "When all of this can be replaced by...",
-      he: "כשאת כל זה אפשר להחליף ב...",
+      en: "And in a different way...",
+      he: "ובדרך אחרת...",
     },
     twoStepsLabel: { en: "2 simple steps", he: "2 שלבים פשוטים" },
     step1Title: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
