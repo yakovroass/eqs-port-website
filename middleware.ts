@@ -7,6 +7,17 @@ import type { NextRequest } from "next/server";
  */
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+  const base = request.nextUrl.origin;
+
+  // /go — קישור לשליחה: כל פתיחה פוגשת את השרת, תמיד גרסה עדכנית (גם מ-WhatsApp)
+  if (pathname === "/go") {
+    const url = new URL("/?_=" + Date.now(), base);
+    const res = NextResponse.redirect(url, 307);
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.headers.set("Pragma", "no-cache");
+    res.headers.set("Expires", "0");
+    return res;
+  }
 
   if (pathname === "/" && !searchParams.has("_")) {
     const url = request.nextUrl.clone();
@@ -22,5 +33,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/",
+  matcher: ["/", "/go"],
 };
