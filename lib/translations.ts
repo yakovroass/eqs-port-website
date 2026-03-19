@@ -302,8 +302,8 @@ export const t = {
     headline: { en: "Join the", he: "הצטרף ל" },
     headlineAccent: { en: "Future of Trade", he: "עתיד הסחר" },
     seedLabel: { en: "SEED ROUND", he: "סבב SEED" },
-    amount: "3M$",
-    amountUnit: { en: "USD", he: "" },
+    amount: { en: "3M$", he: "3M" },
+    amountUnit: { en: "", he: "$" },
     duration: {
       en: "24 months of operations and growth",
       he: "24 חודשי פעילות וצמיחה",
