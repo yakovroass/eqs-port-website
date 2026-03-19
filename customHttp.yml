@@ -1,0 +1,7 @@
+# Amplify Custom Headers — דף הבית לא במטמון, כדי שלחיצה על הקישור תציג תמיד גרסה עדכנית
+# See: https://docs.aws.amazon.com/amplify/latest/userguide/setting-custom-headers.html
+customHeaders:
+  - pattern: '/'
+    headers:
+      - key: 'Cache-Control'
+        value: 'no-store, no-cache, must-revalidate'

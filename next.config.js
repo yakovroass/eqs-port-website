@@ -6,17 +6,14 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: [
-          {
-            key: "Content-Security-Policy",
-            value: "upgrade-insecure-requests",
-          },
+          { key: "Content-Security-Policy", value: "upgrade-insecure-requests" },
         ],
       },
-      // דף הבית — must-revalidate כדי שעדכונים אחרי deploy יופיעו מהר (לא cache ישן)
+      // רק דף הבית — לא לשמור במטמון, כדי שלחיצה על הקישור תציג תמיד גרסה עדכנית
       {
         source: "/",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate" },
         ],
       },
     ];
