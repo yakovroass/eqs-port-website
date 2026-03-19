@@ -12,6 +12,13 @@ const nextConfig = {
           },
         ],
       },
+      // דף הבית — must-revalidate כדי שעדכונים אחרי deploy יופיעו מהר (לא cache ישן)
+      {
+        source: "/",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
     ];
   },
 };
