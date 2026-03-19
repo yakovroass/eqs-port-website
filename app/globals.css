@@ -77,12 +77,20 @@ body {
     border: 1px solid rgba(0, 168, 255, 0.4);
   }
 
-  /* אותו גרדיאנט במובייל ובדסקטופ — תכלת בהיר */
   .gradient-text {
     color: transparent;
     background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 50%, #22d3ee 100%);
     -webkit-background-clip: text;
     background-clip: text;
+  }
+
+  /* מובייל: גרדיאנט בהיר משמעותית כדי שהכותרות לא ייראו כהות */
+  @media (max-width: 768px) {
+    .gradient-text {
+      background: linear-gradient(90deg, #bae6fd 0%, #7dd3fc 35%, #67e8f9 70%, #a5f3fc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
   }
 
   .glass-card {
