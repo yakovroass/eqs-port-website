@@ -85,7 +85,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => handleClick("#hero")}
-          className="flex items-center gap-2 sm:gap-4 group shrink-0 min-w-0"
+          className="flex items-center gap-3 sm:gap-5 group shrink-0 min-w-0"
         >
           <Image
             src="/logo.png"
