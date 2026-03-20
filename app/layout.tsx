@@ -32,11 +32,20 @@ export const metadata: Metadata = {
     siteName: "EQS. PORT",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "EQS. PORT — Industrial Trade Platform",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: ogTitle,
     description: ogDescription,
+    images: ["/opengraph-image"],
   },
 };
 
