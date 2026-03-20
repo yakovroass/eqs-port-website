@@ -17,7 +17,7 @@ const SHIP_COUNT = 25;
 
 const DOT = 6;
 /** כניסה/יציאה מחוץ למסך דרך הדפנות */
-const EDGE_OFFSCREEN_PX = 120;
+const EDGE_OFFSCREEN_PX = 4;
 
 /** תנועה איטית */
 const DURATION_MIN_SEC = 220;
@@ -49,7 +49,7 @@ function dist(a: Pt, b: Pt) {
 }
 
 /** מרווח מעבר לקצה הקונטיינר — עד שהנקודה (והזוהר) באמת “מחוץ למסך” */
-const EXIT_MARGIN_PX = 120;
+const EXIT_MARGIN_PX = 24;
 
 function isOutsideView(px: number, py: number, w: number, h: number) {
   return (

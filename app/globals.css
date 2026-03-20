@@ -144,8 +144,8 @@ body {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    background-position: 0 -160px, 0 -160px, 0 -160px;
-    transform: translate3d(0, -36px, 0);
+    background-position: 0 -220px, 0 -220px, 0 -220px;
+    transform: translate3d(0, -72px, 0);
   }
 }
 
@@ -202,9 +202,11 @@ body {
 
 @media (max-width: 768px) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 45s linear infinite;
+    animation: grid-bg-mobile 24s linear infinite !important;
     will-change: background-position, transform;
     transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 
@@ -212,5 +214,13 @@ body {
   .animated-grid-bg {
     animation: none;
     will-change: auto;
+  }
+}
+
+/* מובייל חייב לזוז גם אם המכשיר על reduce-motion */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .animated-grid-bg {
+    animation: grid-bg-mobile 24s linear infinite !important;
+    will-change: background-position, transform;
   }
 }
