@@ -34,7 +34,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/logo.svg",
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
         alt: "EQS. PORT logo",
       },
     ],
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: ogTitle,
     description: ogDescription,
-    images: ["/logo.svg"],
+    images: ["/opengraph-image"],
   },
 };
 
