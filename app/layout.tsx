@@ -9,7 +9,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const ogTitle = "EQS. PORT | Industrial Trade Platform";
+const ogTitle = "EQS. PORT | Industrial Trade";
 const ogDescription =
   "Multilingual. AI Insights. B2B Analytics.\n3,000+ Connections in 100+ Countries.";
 
