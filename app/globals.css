@@ -196,13 +196,13 @@ body {
   background-size: 60px 60px, 60px 60px, 60px 60px;
   background-position: 0 0, 0 0, 0 0;
   background-repeat: repeat;
-  animation: grid-bg 70s linear infinite;
+  animation: grid-bg 160s linear infinite;
   will-change: background-position;
 }
 
 @media (max-width: 768px) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 24s linear infinite !important;
+    animation: grid-bg-mobile 110s linear infinite !important;
     will-change: background-position, transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -220,7 +220,7 @@ body {
 /* מובייל חייב לזוז גם אם המכשיר על reduce-motion */
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 24s linear infinite !important;
+    animation: grid-bg-mobile 110s linear infinite !important;
     will-change: background-position, transform;
   }
 }
