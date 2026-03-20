@@ -82,8 +82,12 @@ export default function Contact() {
             {tx(t.contact.headline, lang)}{" "}
             <span className="gradient-text">{tx(t.contact.headlineAccent, lang)}</span>
           </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg">
-            {tx(t.contact.sub, lang)}
+          <p
+            className={`text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg ${
+              lang === "he" ? "sm:whitespace-normal whitespace-pre-line" : ""
+            }`}
+          >
+            {lang === "he" ? tx(t.contact.subHeMobile, lang) : tx(t.contact.sub, lang)}
           </p>
         </ScrollReveal>
 

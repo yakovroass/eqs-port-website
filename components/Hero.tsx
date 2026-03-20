@@ -78,7 +78,7 @@ export default function Hero() {
             ) : lang === "en" ? (
               <>
                 <span className="gradient-text block">Global Industrial</span>
-                <span className="gradient-text block">Procurement Platform</span>
+                <span className="gradient-text block">Trade Platform</span>
               </>
             ) : (
               <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
@@ -120,7 +120,7 @@ export default function Hero() {
               <div className="w-full text-center text-[clamp(1.85rem,6.8vw,3.15rem)] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent tabular-nums leading-none">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2.5} />
               </div>
-              <div className="w-full max-w-full text-center text-sm min-[400px]:text-base sm:text-2xl md:text-3xl text-gray-300 mt-1.5 sm:mt-2 tracking-wide leading-snug px-0.5 sm:px-0 hyphens-auto">
+              <div className="w-full max-w-full text-center text-sm min-[400px]:text-base sm:text-2xl md:text-3xl text-gray-300 mt-1.5 sm:mt-2 tracking-wide leading-snug px-1 sm:px-2 hyphens-none text-balance">
                 {stat.label}
               </div>
             </div>

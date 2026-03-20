@@ -47,7 +47,7 @@ const tableRows = [
     category: { en: "Spare Parts & Components", he: "חלקי חילוף ורכיבים" },
     market: "$32B+",
     clients: { en: "~1 Million Equipment Owners", he: "~1 מיליון בעלי ציוד" },
-    focus: { en: "Maintenance & Longevity", he: "תחזוקה ואריכות חיים" },
+    focus: { en: "Parts, maintenance & service", he: "חלפים, תחזוקה ושירות" },
   },
 ];
 
@@ -58,39 +58,120 @@ const total = {
   focus: { en: "Europe, USA, Asia-Pacific", he: "אירופה, ארה\"ב, אסיה-פסיפיק" },
 };
 
-const CHART_H = 160;
+const CHART_H_DEFAULT = 160;
+/** גרף טריליונים — גבוה יותר כדי שהבארים והיחידה USD T יבלטו */
+const CHART_H_LARGE = 280;
 
-function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
-  fromPct: number; toPct: number; fromLabel: string; toLabel: string; fromYear: string; toYear: string;
+function GrowthBar({
+  fromPct,
+  toPct,
+  fromLabel,
+  toLabel,
+  fromYear,
+  toYear,
+  chartHeight = CHART_H_DEFAULT,
+  barClass = "w-10 sm:w-16 md:w-20",
+}: {
+  fromPct: number;
+  toPct: number;
+  fromLabel: string;
+  toLabel: string;
+  fromYear: string;
+  toYear: string;
+  chartHeight?: number;
+  barClass?: string;
 }) {
-  const fromH = Math.max(24, Math.round((fromPct / 100) * CHART_H));
-  const toH = Math.max(24, Math.round((toPct / 100) * CHART_H));
+  const fromH = Math.max(28, Math.round((fromPct / 100) * chartHeight));
+  const toH = Math.max(28, Math.round((toPct / 100) * chartHeight));
 
   return (
-    <div className="flex flex-col items-center flex-1" dir="ltr">
-      <div className="flex items-end gap-2 sm:gap-3 justify-center" style={{ height: CHART_H }}>
+    <div className="flex flex-col items-center flex-1 w-full" dir="ltr">
+      <div className="flex items-end gap-2 sm:gap-4 justify-center w-full" style={{ height: chartHeight }}>
         <motion.div
           initial={{ height: 0 }}
           whileInView={{ height: fromH }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="w-10 sm:w-16 md:w-20 bg-accent rounded-t-md flex items-center justify-center"
+          className={`${barClass} bg-accent rounded-t-md flex items-center justify-center shrink-0`}
         >
-          <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{fromLabel}</span>
+          <span className="text-[9px] sm:text-xs md:text-sm font-bold text-white whitespace-nowrap px-0.5" dir="ltr">
+            {fromLabel}
+          </span>
         </motion.div>
         <motion.div
           initial={{ height: 0 }}
           whileInView={{ height: toH }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="w-10 sm:w-16 md:w-20 bg-emerald-500 rounded-t-md flex items-center justify-center"
+          className={`${barClass} bg-emerald-500 rounded-t-md flex items-center justify-center shrink-0`}
         >
-          <span className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap" dir="ltr">{toLabel}</span>
+          <span className="text-[9px] sm:text-xs md:text-sm font-bold text-white whitespace-nowrap px-0.5" dir="ltr">
+            {toLabel}
+          </span>
         </motion.div>
       </div>
-      <div className="flex gap-2 sm:gap-3 mt-1.5" dir="ltr">
-        <span className="w-10 sm:w-16 md:w-20 text-center text-[9px] sm:text-[11px] text-gray-400">{fromYear}</span>
-        <span className="w-10 sm:w-16 md:w-20 text-center text-[9px] sm:text-[11px] text-gray-400">{toYear}</span>
+      <div className={`flex gap-2 sm:gap-4 mt-1.5 ${barClass.includes("w-14") ? "gap-3 sm:gap-4" : ""}`} dir="ltr">
+        <span className={`${barClass} text-center text-[9px] sm:text-[11px] text-gray-400 shrink-0`}>{fromYear}</span>
+        <span className={`${barClass} text-center text-[9px] sm:text-[11px] text-gray-400 shrink-0`}>{toYear}</span>
+      </div>
+    </div>
+  );
+}
+
+function ChartCard({
+  chart,
+  lang,
+  chartHeight,
+  barClass,
+  minHClass,
+  largeTitle = false,
+}: {
+  chart: (typeof charts)[0];
+  lang: "en" | "he";
+  chartHeight: number;
+  barClass: string;
+  minHClass: string;
+  largeTitle?: boolean;
+}) {
+  return (
+    <div className={`flex flex-col ${minHClass}`}>
+      <div
+        className={`glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${
+          largeTitle
+            ? "h-[6.25rem] min-[400px]:h-[6.75rem] sm:h-[7.25rem] md:h-[7.75rem]"
+            : "h-[5.5rem] min-[400px]:h-[6rem] sm:h-[6.5rem] md:h-[7rem]"
+        }`}
+      >
+        <h3
+          className={`font-semibold text-white leading-snug line-clamp-3 ${
+            largeTitle
+              ? "text-sm min-[380px]:text-base sm:text-lg md:text-xl"
+              : "text-[11px] min-[380px]:text-sm sm:text-base md:text-lg"
+          }`}
+        >
+          {chart.title[lang]}
+        </h3>
+        <div
+          className={`mt-1 shrink-0 font-medium ${
+            largeTitle ? "text-[10px] sm:text-sm text-emerald-400/90" : "text-[9px] sm:text-xs text-gray-500"
+          }`}
+        >
+          ({chart.unit})
+        </div>
+      </div>
+      <div
+        className={`glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartHeight >= CHART_H_LARGE ? "min-h-[280px] sm:min-h-[300px]" : "min-h-[200px] sm:min-h-[210px]"}`}
+      >
+        <GrowthBar
+          fromPct={(chart.from.value / chart.maxVal) * 100}
+          toPct={(chart.to.value / chart.maxVal) * 100}
+          fromLabel={chart.from.label}
+          toLabel={chart.to.label}
+          fromYear={chart.from.year}
+          toYear={chart.to.year}
+          chartHeight={chartHeight}
+          barClass={barClass}
+        />
       </div>
     </div>
   );
@@ -98,6 +179,7 @@ function GrowthBar({ fromPct, toPct, fromLabel, toLabel, fromYear, toYear }: {
 
 export default function MarketData() {
   const { lang } = useLanguage();
+  const [chartTrillions, ...chartsBillions] = charts;
 
   return (
     <section id="market" className="relative py-24 md:py-32 overflow-hidden">
@@ -119,34 +201,28 @@ export default function MarketData() {
           </p>
         </ScrollReveal>
 
-        {/* Growth charts — כותרת בגובה קבוע + גרף בתחתית: יישור EN/HE */}
+        {/* Growth charts — טריליונים למעלה (גדול), מיליארדים בשתי עמודות למטה */}
         <ScrollReveal>
-          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-3xl mx-auto mb-16 items-stretch">
-            {charts.map((chart) => (
-              <div
+          <div className="max-w-3xl mx-auto mb-8 sm:mb-10">
+            <ChartCard
+              chart={chartTrillions}
+              lang={lang}
+              chartHeight={CHART_H_LARGE}
+              barClass="w-16 sm:w-28 md:w-36"
+              minHClass="min-h-[360px] sm:min-h-[380px] max-w-xl mx-auto"
+              largeTitle
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-16 items-stretch">
+            {chartsBillions.map((chart) => (
+              <ChartCard
                 key={chart.from.label}
-                className="flex flex-col min-h-[300px] sm:min-h-[320px]"
-              >
-                <div
-                  className="glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center
-                    h-[5.5rem] min-[400px]:h-[6rem] sm:h-[6.5rem] md:h-[7rem] shrink-0"
-                >
-                  <h3 className="text-[11px] min-[380px]:text-sm sm:text-base md:text-lg font-semibold text-white leading-snug line-clamp-3">
-                    {chart.title[lang]}
-                  </h3>
-                  <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 shrink-0">({chart.unit})</div>
-                </div>
-                <div className="glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 min-h-[200px] sm:min-h-[210px] flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2">
-                  <GrowthBar
-                    fromPct={(chart.from.value / chart.maxVal) * 100}
-                    toPct={(chart.to.value / chart.maxVal) * 100}
-                    fromLabel={chart.from.label}
-                    toLabel={chart.to.label}
-                    fromYear={chart.from.year}
-                    toYear={chart.to.year}
-                  />
-                </div>
-              </div>
+                chart={chart}
+                lang={lang}
+                chartHeight={CHART_H_DEFAULT}
+                barClass="w-10 sm:w-16 md:w-20"
+                minHClass="min-h-[300px] sm:min-h-[320px]"
+              />
             ))}
           </div>
         </ScrollReveal>

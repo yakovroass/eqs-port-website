@@ -11,11 +11,11 @@ const phases = [
     phase: { en: "Phase 1 — Now", he: "שלב 1 — עכשיו" },
     title: { en: "Building the Network & Data Foundation", he: "בניית הרשת ובסיס הנתונים" },
     desc: {
-      en: "We're starting with heavy equipment and industrial procurement — but the real play is what we're building underneath: a global network of 3,000+ contacts across 100+ countries, deep supplier relationships, and proprietary market data that grows with every transaction. This is the infrastructure that makes everything else possible — and what will take us to the next phases.",
-      he: "אנחנו מתחילים עם ציוד כבד ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת: רשת גלובלית של 3,000+ אנשי קשר ביותר מ-100 מדינות, קשרי ספקים עמוקים, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו התשתית שמאפשרת את הכל, מה שיקח אותנו לשלבים הבאים.",
+      en: "We're starting with heavy equipment and industrial procurement — but the real play is what we're building underneath: a global network of 3,000+ contacts across 100+ countries, deep supplier relationships, and proprietary market data that grows with every transaction. This is the infrastructure that enables everything — and what takes us to the next stage.",
+      he: "אנחנו מתחילים עם ציוד כבד ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת — רשת גלובלית של 3,000+ אנשי קשר ביותר מ-100 מדינות, בניית קשרי ספקים עמוקים, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו תשתית שמאפשרת הכל, וזה מה שיקח אותנו לשלב הבא...",
     },
     stats: [
-      { value: 3000, suffix: "+", label: { en: "Verified Contacts", he: "אנשי קשר מאומתים" } },
+      { value: 3000, suffix: "+", label: { en: "Contacts", he: "אנשי קשר" } },
       { value: 100, suffix: "+", label: { en: "Countries", he: "מדינות" } },
       { value: 4000, suffix: "+", label: { en: "Ports Database", he: "מאגר נמלים" } },
       { value: 30000, suffix: "+", label: { en: "Technical Docs", he: "מסמכים טכניים" } },
@@ -29,37 +29,20 @@ const phases = [
     ),
   },
   {
-    phase: { en: "Phase 2 — Near Future", he: "שלב 2 — עתיד קרוב" },
-    title: { en: "Global Procurement Intelligence Engine", he: "מנוע מודיעין רכש גלובלי" },
+    phase: { en: "Phase 2 — Near Future & Vision", he: "שלב 2 — העתיד הקרוב והחזון" },
+    title: { en: "The Global Trade Operating System", he: "מערכת ההפעלה של המסחר העולמי" },
     desc: {
-      en: "Every buyer deserves the best deal — and we'll find it. Our system scans the entire world to deliver the best procurement insights for every customer. We become each company's procurement department — or their most powerful linked partner. Optimal pricing, verified suppliers, real-time availability, and quality assurance. Every transaction feeds the algorithm, every connection strengthens the network.",
-      he: "כל קונה ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. המערכת שלנו סורקת את העולם כולו כדי לספק את תובנות הרכש הטובות ביותר לכל לקוח. אנחנו הופכים למחלקת הרכש של כל חברה — או לשותף המקושר החזק ביותר שלה. תמחור אופטימלי, ספקים מאומתים, זמינות בזמן אמת, והבטחת איכות. כל עסקה מזינה את האלגוריתם, כל חיבור מחזק את הרשת.",
+      en: "Every buyer everywhere deserves the best deal — and we'll find it. A buyer in Germany needs steel from Brazil; a contractor in Dubai needs cranes from Europe; a company in India needs materials from China. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers to the right sources, execute procurement, and build trade lanes at massive scale across every category and country.",
+      he: "כל קונה בכל מקום ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. קונה בגרמניה צריך פלדה מברזיל. קבלן בדובאי צריך מנופים מאירופה. חברה בהודו צריכה חומרים מסין. הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים למקורות הטובים, מבצעים רכש ומייצרים קווי מסחר בקנה מידה עצום, בכל קטגוריה, בכל מדינה.",
     },
     stats: [
       { value: 432, suffix: "B+", label: { en: "Addressable Market", he: "שוק ניתן לטיפול" }, prefix: "$" },
       { value: 2, suffix: "M+", label: { en: "Potential Buyers", he: "קונים פוטנציאליים" } },
-    ],
-    color: "from-purple-500 to-violet-500",
-    glow: "bg-purple-500/10",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
-      </svg>
-    ),
-  },
-  {
-    phase: { en: "Phase 3 — The Vision", he: "שלב 3 — החזון" },
-    title: { en: "The World's Procurement Operating System", he: "מערכת ההפעלה של הרכש העולמי" },
-    desc: {
-      en: "A buyer in Germany needs steel from Brazil. A contractor in Dubai needs cranes from Japan. A company in India needs materials from China. Our platform replaces companies' procurement departments — or becomes their strongest linked partner. We scan the globe, match buyers with the best sources algorithmically, and execute procurement at massive scale across every vertical, every category, every country.",
-      he: "קונה בגרמניה צריך פלדה מברזיל. קבלן בדובאי צריך מנופים מאירופה. חברה בהודו צריכה חומרים מסין. הפלטפורמה שלנו מחליפה את מחלקות הרכש של חברות — או הופכת לשותף המקושר החזק ביותר שלהן. אנחנו סורקים את העולם, מתאימים קונים למקורות הטובים ביותר אלגוריתמית, ומבצעים רכש בקנה מידה עצום בכל ענף, בכל קטגוריה, בכל מדינה.",
-    },
-    stats: [
-      { value: 12, suffix: "T+", label: { en: "Global Procurement", he: "רכש גלובלי" }, prefix: "$" },
+      { value: 12, suffix: "T+", label: { en: "Global Trade", he: "רכש גלובלי" }, prefix: "$" },
       { value: 195, suffix: "", label: { en: "Countries Connected", he: "מדינות מחוברות" } },
     ],
-    color: "from-cyan-300 to-accent-light",
-    glow: "bg-accent/10",
+    color: "from-purple-500 to-cyan-300",
+    glow: "bg-purple-500/10",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
@@ -110,7 +93,7 @@ export default function FutureTargets() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {lang === "en" ? "This Is" : "זה רק"}{" "}
+            {lang === "en" ? "This Is" : "זו רק"}{" "}
             <span className="gradient-text">{lang === "en" ? "Just the Beginning" : "ההתחלה"}</span>
           </h2>
           <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
@@ -202,8 +185,12 @@ export default function FutureTargets() {
             <h3 className="text-xl sm:text-2xl font-bold mb-4 leading-snug gradient-text">
               {tx(t.roadmap.marketsHeadline, lang)}
             </h3>
-            <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
-              {tx(t.roadmap.marketsSub, lang)}
+            <p
+              className={`text-gray-400 text-base sm:text-lg leading-relaxed ${
+                lang === "he" ? "sm:whitespace-normal whitespace-pre-line" : ""
+              }`}
+            >
+              {lang === "he" ? tx(t.roadmap.marketsSubMobile, lang) : tx(t.roadmap.marketsSub, lang)}
             </p>
           </div>
         </ScrollReveal>
@@ -221,38 +208,21 @@ export default function FutureTargets() {
                 className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-accent/15 bg-accent/[0.04] backdrop-blur-sm text-center group cursor-default hover:border-accent/25 transition-colors"
               >
                 <div className="text-lg sm:text-xl font-black text-white mb-2 shrink-0 tabular-nums">{market.size}</div>
-                <div className="text-xs sm:text-sm text-stone-300 group-hover:text-stone-100 transition-colors leading-snug px-1">{market.name[lang]}</div>
+                <div className="text-sm sm:text-base text-stone-300 group-hover:text-stone-100 transition-colors leading-snug px-1">{market.name[lang]}</div>
               </motion.div>
             ))}
           </div>
         </ScrollReveal>
 
-        {/* Bottom CTA — כותרות עם גרדיאנט */}
+        {/* Bottom summary — טקסט מסכם אחד עם גרדיאנט (ללא קוביית מסגרת) */}
         <ScrollReveal delay={0.4}>
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <div className="relative rounded-2xl overflow-hidden border border-accent/20 bg-accent/[0.04]">
-              <div className="relative px-6 sm:px-12 py-10 sm:py-14">
-                <p className="text-lg sm:text-2xl font-bold leading-relaxed mb-3 gradient-text">
-                  {lang === "en"
-                    ? "Every company in the world buys something."
-                    : "כל חברה בעולם קונה משהו."}
-                </p>
-                <p className="text-base sm:text-xl text-stone-300 leading-relaxed mb-4">
-                  {lang === "en"
-                    ? "We replace their procurement department — or become their strongest partner. Scanning the globe, leveraging data, and connecting them to the best sources through our network."
-                    : "אנחנו מחליפים את מחלקת הרכש שלהם — או הופכים לשותף החזק ביותר שלהם. סורקים את העולם, ממנפים נתונים, ומחברים אותם למקורות הטובים ביותר דרך הרשת שלנו."}
-                </p>
-                <p className="text-lg sm:text-2xl font-bold leading-relaxed gradient-text">
-                  {lang === "en"
-                    ? "We connect everyone — that's our competitive edge."
-                    : "אנחנו מחברים את כולם וזה היתרון התחרותי."}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+          <div className="max-w-3xl mx-auto text-center px-4 sm:px-8 py-6 sm:py-10">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold leading-relaxed gradient-text">
+              {lang === "en"
+                ? "Every company in the world buys something — we connect everyone through our network, replace procurement departments, and become the strongest partner. That’s our competitive edge."
+                : "כל חברה בעולם קונה משהו — אנחנו מחברים את כולם דרך הרשת שלנו, מחליפים את מחלקות הרכש והופכים לשותף החזק ביותר. זה היתרון התחרותי שלנו."}
+            </p>
+          </div>
         </ScrollReveal>
       </div>
     </section>

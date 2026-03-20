@@ -44,10 +44,10 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* כשאת כל זה אפשר להחליף ב... — כותרת + 3 שורות */}
+        {/* כשאת כל זה אפשר להחליף ב... — כותרת (גרדיאנט ירוק) + 3 שורות */}
         <ScrollReveal>
           <div className="max-w-3xl mx-auto my-14 sm:my-20 text-center">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text-emerald">
               {tx(t.process.replaceCaption, lang)}
             </h2>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed whitespace-pre-line">
@@ -56,18 +56,31 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* קוביה אחת מאוחדת — 5 שלבים */}
+        {/* חץ → חמשת השלבים + מחבר + תמונת 3 השלבים — קוביית ענבר אחת (כמו «ככה נראה הרכש היום») */}
         <ScrollReveal>
-          <motion.div
-            whileHover={{ y: -2 }}
-            className="relative max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-br from-accent/5 via-transparent to-cyan-500/5"
-          >
-            <div className="absolute inset-0 bg-dark-900/60 backdrop-blur-sm" />
-            <div className="relative p-6 sm:p-8">
-              <ul className="space-y-4 sm:space-y-5">
+          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden border border-amber-500/25 bg-amber-500/[0.04] shadow-lg shadow-amber-900/10">
+            <div className="flex justify-center py-5 border-b border-amber-500/15">
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center"
+              >
+                <svg className="w-7 h-7 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </motion.div>
+            </div>
+
+            <div className="px-5 py-6 sm:px-8 sm:py-8 border-b border-amber-500/15">
+              <ul className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
                 {t.process.unifiedSteps[lang].map((step, i) => (
                   <li key={i} className="flex items-center gap-4 text-gray-200">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-accent font-bold text-sm">
+                    <span
+                      className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl text-sm sm:text-base font-black tabular-nums
+                        bg-gradient-to-br from-emerald-400/35 via-emerald-500/25 to-emerald-700/30
+                        text-emerald-100 border border-emerald-400/45
+                        shadow-[0_0_16px_rgba(16,185,129,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]"
+                    >
                       {i + 1}
                     </span>
                     <span className="text-base sm:text-lg">{step}</span>
@@ -75,42 +88,30 @@ export default function ProcessTimeline() {
                 ))}
               </ul>
             </div>
-          </motion.div>
-        </ScrollReveal>
 
-        {/* חץ בעיגול */}
-        <ScrollReveal>
-          <div className="flex justify-center mb-8">
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="w-14 h-14 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center"
-            >
-              <svg className="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </motion.div>
-          </div>
-        </ScrollReveal>
+            <div
+              className="w-px h-10 sm:h-12 bg-gradient-to-b from-amber-500/50 via-emerald-500/40 to-emerald-600/30 mx-auto shrink-0"
+              aria-hidden
+            />
 
-        {/* תמונת התהליך */}
-        <ScrollReveal>
-          <div className="max-w-3xl mx-auto mb-12">
-            <motion.div
-              whileHover={{ scale: 1.01 }}
-              className="rounded-2xl overflow-hidden border border-accent/20 bg-dark-800/30"
-            >
-              <Image
-                src="/images/eqs-3steps.png"
-                alt="EQS.PORT 3-Step Process: Browse, Approval, Machine On Site"
-                width={952}
-                height={689}
-                quality={100}
-                unoptimized
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) min(952px, 90vw), 952px"
-                className="w-full h-auto max-w-[952px] mx-auto"
-              />
-            </motion.div>
+            <div className="bg-dark-950/50 border-t border-amber-500/10">
+              <motion.div whileHover={{ scale: 1.005 }} transition={{ duration: 0.2 }}>
+                <Image
+                  src="/images/eqs-3steps.png"
+                  alt={
+                    lang === "en"
+                      ? "EQS.PORT 3-Step Process: Browse, Approval, Machine On Site"
+                      : "תהליך EQS.PORT בשלושה שלבים: עיון, אישור, ציוד באתר"
+                  }
+                  width={952}
+                  height={689}
+                  quality={100}
+                  unoptimized
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) min(952px, 90vw), 952px"
+                  className="w-full h-auto block"
+                />
+              </motion.div>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -133,7 +134,7 @@ export default function ProcessTimeline() {
 
         {/* ── PART 3: GLOBAL REACH - stacked images ── */}
         <ScrollReveal delay={0.2}>
-          <h3 className="text-2xl sm:text-3xl font-bold text-center text-white mb-3">
+          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-3 gradient-text">
             {tx(t.process.globalReachTitle, lang)}
           </h3>
           <p className="sm:hidden text-gray-400 text-center max-w-2xl mx-auto mb-10 text-base sm:text-lg leading-relaxed whitespace-pre-line">

@@ -1,6 +1,0 @@
-# Cache-Control for root so visitors always get latest version (no-store)
-customHeaders:
-  - pattern: '/'
-    headers:
-      - key: 'Cache-Control'
-        value: 'no-store, no-cache, must-revalidate'

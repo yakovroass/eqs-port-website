@@ -16,12 +16,12 @@ export const t = {
     badge: { en: "B2B AI Platform", he: "פלטפורמת AI לסחר B2B" },
     headline1: { en: "", he: "" },
     headline2: {
-      en: "Global Industrial Procurement Platform",
-      he: "פלטפורמת רכש תעשייתי גלובלי",
+      en: "Global Industrial Trade Platform",
+      he: "פלטפורמת מסחר תעשייתי גלובלי",
     },
     /** שתי שורות במובייל בלבד */
-    headlineMobileLine1: { en: "Global Industrial", he: "פלטפורמת רכש" },
-    headlineMobileLine2: { en: "Procurement Platform", he: "תעשייתי גלובלי" },
+    headlineMobileLine1: { en: "Global Industrial", he: "פלטפורמת מסחר" },
+    headlineMobileLine2: { en: "Trade Platform", he: "תעשייתי גלובלי" },
     sub: {
       en: "Multilingual B2B systems. Market analytics. Actionable insights.",
       he: "מערכות B2B רב-לשוניות. אנליטיקות שוק. תובנות מעשיות.",
@@ -42,32 +42,32 @@ export const t = {
     label: { en: "The Problem", he: "הבעיה" },
     headline: { en: "The Global Market Is Complex", he: "השוק הגלובלי מורכב" },
     sub: {
-      en: "The global heavy equipment market is outdated. Buyers and sellers face challenges at every step.",
-      he: "שוק הציוד הכבד הגלובלי מיושן.\nקונים ומוכרים נתקלים באתגרים בכל שלב.",
+      en: "The global industrial trade market is constrained and outdated. Buyers and sellers face challenges at every step.",
+      he: "שוק המסחר התעשייתי הגלובלי מוגבל ומיושן, קונים ומוכרים נתקלים באתגרים בכל שלב.",
     },
     subBelow: {
       en: "Every step becomes a project, making it harder to manage the overall process.",
       he: "כל צעד הופך לפרויקט, מה שמקשה על ניהול התהליך הכולל.",
     },
-    pain1: { en: "Hundreds of Sources & Suppliers Worldwide", he: "מאות מקורות וספקים ברחבי העולם" },
+    pain1: { en: "Hundreds of Companies & Suppliers Worldwide", he: "מאות חברות וספקים ברחבי העולם" },
     pain1d: {
-      en: "Equipment listed across dozens of marketplaces, through many intermediaries, with no unified search — leading to slow work and reduced efficiency.",
-      he: "ציוד מפורסם בעשרות שווקים, דרך מתווכים רבים, ללא חיפוש אחיד, גורם לעבודה איטית ופוגע ביעילות.",
+      en: "Deals pass through multiple marketplaces and many intermediaries, with no unified search — which slows work and hurts efficiency.",
+      he: "עסקאות עוברות דרך מספר שווקים ודרך מתווכים רבים, ללא חיפוש אחיד, מה שגורם לעבודה איטית ופוגע ביעילות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
-      en: "No available pricing and many questions required; nearly impossible to determine fair market value without deep expertise and data.",
-      he: "אין מחירים זמינים ונדרשות שאלות רבות, בלתי אפשרי לקבוע שווי שוק הוגן ללא מומחיות ונתונים מעמיקים.",
+      en: "No transparent pricing and many back-and-forth questions; fair market value and product quality are hard to judge without deep expertise and data.",
+      he: "אין מחירים זמינים ונדרשות שאלות רבות, בלתי אפשרי לקבוע שווי שוק הוגן ואיכות מוצרים ללא מומחיות ונתונים מעמיקים.",
     },
     pain3: { en: "Complex Logistics", he: "לוגיסטיקה מורכבת" },
     pain3d: {
-      en: "Choosing preferred routes and obtaining transport permits, managing land and sea freight quotes, handling insurance and more...",
-      he: "בחירת נתיבים מועדפים והוצאת היתרי הובלה, ניהול הצעות למשלוח יבשתי וימי, טיפול בביטוחים ועוד...",
+      en: "Preferred routes and transport permits, equipment checks, land and sea freight quotes, insurance, and more...",
+      he: "בחירת נתיבים מועדפים והוצאת היתרי הובלה, בדיקת ציוד, ניהול הצעות למשלוח יבשתי וימי, טיפול בביטוחים ועוד...",
     },
     pain4: { en: "Regulatory Barriers", he: "חסמים רגולטוריים" },
     pain4d: {
-      en: "Verifying equipment details, comprehensive checks for regulations, obtaining import permits per compliance requirements that differ in every country...",
-      he: "אימות פרטי הציוד, בדיקות מקיפות לגבי תקנות, הוצאת היתרי יבוא על פי דרישות תאימות שונות בכל מדינה...",
+      en: "Verifying equipment and parts, compliance checks, import permits — requirements differ in every country...",
+      he: "אימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, הוצאת היתרי יבוא על פי דרישות תאימות שונות בכל מדינה...",
     },
   },
   market: {
@@ -151,15 +151,15 @@ export const t = {
     messaging: {
       title: { en: "Automated Messaging", he: "שליחת הודעות אוטומטית" },
       desc: {
-        en: "Multiple communication workflows based on automation and follow-up with suppliers and customers.",
-        he: "תהליכי תקשורת מרובים מבוססי אוטומציה ומעקב מול ספקים ולקוחות.",
+        en: "Multiple communication workflows with automation and smart follow-up across suppliers and customers.",
+        he: "תהליכי תקשורת מרובים מבוססי אוטומציה ומעקב חכם אחרי ספקים ולקוחות.",
       },
     },
     logistics: {
       title: { en: "Logistics & Shipping", he: "לוגיסטיקה ושילוח" },
       desc: {
-        en: "Mapping and management with service providers based on defined routes.",
-        he: "מיפוי וניהול מול ספקי שירות על בסיס נתיבים מוגדרים.",
+        en: "Mapping and management with providers along primary and alternate routes.",
+        he: "מיפוי וניהול מול ספקי שירות על בסיס נתיבים מוגדרים וחליפיים.",
       },
     },
     permits: {
@@ -200,8 +200,8 @@ export const t = {
       he: "לפחות 15 שלבים מפוצלים — ובפועל, הרבה יותר. הפלטפורמה שלנו מטפלת בכולם מאחורי הקלעים, מסריקת שוק אלגוריתמית ועד משלוח סופי לאתר.",
     },
     realitySub: {
-      en: "Market scanning the old way is grueling in a vast market, with costly missed opportunities. Price analysis. Detail verification. Permits. Site inspection. Negotiation. Contracts. Payments. Export documents. Shipping quotes. Loading. Tracking. Customs clearance. Final delivery. Months of work. Dozens of contacts and third parties — an exhausting process — that's how it's done today, and only for those who know how...",
-      he: "סריקת שוק בלתי אפשרית בשיטה ישנה ומעייפת בשוק עצום ואיבוד הזדמנויות יקרות. ניתוח מחירים. אימות פרטים. הוצאת היתרים. בדיקה בשטח. משא ומתן. חוזים. תשלומים. מסמכי יצוא. הצעות מחיר למשלוחים. העמסה. מעקב. שחרור ממכס. משלוח סופי. חודשים של עבודה. עשרות אנשי קשר וצדדים שלישיים — תהליך מייגע — ככה זה מתבצע היום, ורק על ידי מי שיודע איך...",
+      en: "Market scanning the old way is impossible — slow, exhausting, in a vast market, with costly missed opportunities. Price analysis. Detail verification. Permits. Site inspection. Negotiation. Contracts. Payments. Export documents. Shipping quotes. Loading. Tracking. Customs clearance. Final delivery. Months of work. Dozens of contacts and third parties — an exhausting process — and only for those who know how. For example, this is what buying a mobile crane can look like...",
+      he: "סריקת שוק בלתי אפשרית, בשיטה ישנה ומעייפת, בשוק עצום, ואיבוד הזדמנויות יקרות. ניתוח מחירים. אימות פרטים. הוצאת היתרים. בדיקה בשטח. משא ומתן. חוזים. תשלומים. מסמכי יצוא. הצעות מחיר למשלוחים. העמסה. מעקב. שחרור ממכס. משלוח סופי. חודשים של עבודה. עשרות אנשי קשר וצדדים שלישיים — תהליך מייגע, ורק על ידי מי שיודע איך. למשל כך נראה תהליך רכש של מנוף נייד...",
     },
     realityTitle: { en: "How Procurement Looks Today", he: "ככה נראה הרכש היום" },
     replaceCaption: {
@@ -219,8 +219,8 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "You ask and we execute everything.\nProcurement, logistics, permits, documents.\nBetter, faster, cheaper.",
-      he: "אתה מבקש ואנחנו מבצעים הכל.\nרכש, לוגיסטיקה, היתרים, מסמכים.\nטוב יותר, מהר יותר, זול יותר.",
+      en: "We simply execute everything.\nProcurement, logistics, permits, documents.\nBetter, faster, cheaper.",
+      he: "אנחנו פשוט מבצעים הכל.\nרכש, לוגיסטיקה, היתרים, מסמכים.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
@@ -257,8 +257,8 @@ export const t = {
       he: "חיפוש גלובלי חכם ויסודי",
     },
     globalSearchDesc: {
-      en: "Our platform scans thousands of sources worldwide — filtering by model, hours, price, and location, analyzing every listing, every seller, every piece of equipment.",
-      he: "הפלטפורמה שלנו סורקת אלפי מקורות ברחבי העולם — מסננת לפי דגם, שעות, מחיר ומיקום, מנתחת כל רישום, כל מוכר, כל ציוד.",
+      en: "Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, and piece of equipment.",
+      he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי תחום פעילות, נתונים, מיקום, מנתחת כל רישום, כל מוכר, כל ציוד.",
     },
     globalPortsTitle: {
       en: "Global port & supplier network",
@@ -268,7 +268,10 @@ export const t = {
       en: "Massive data repositories covering 4,000+ ports worldwide — contact details, capabilities, logistics data and technical specifications.",
       he: "מאגרי דאטה עצומים המכסים 4,000+ נמלים ברחבי העולם — פרטי קשר, יכולות, נתוני לוגיסטיקה ומאפיינים טכניים.",
     },
-    globalTechTitle: { en: "Technical intelligence", he: "מודיעין טכני" },
+    globalTechTitle: {
+      en: "Technical intelligence for heavy equipment & cranes",
+      he: "מודיעין טכני עבור ציוד כבד ומנופים",
+    },
     globalTechDesc: {
       en: "A repository of 30,000+ technical PDF files — load charts, specifications, and engineering data.",
       he: "מאגר מסמכים של 30,000+ קבצי PDF טכניים — טבלאות עומסים, מפרטים ונתונים הנדסיים.",
@@ -292,6 +295,11 @@ export const t = {
     marketsSub: {
       en: "Every market we enter is an opportunity — it multiplies our data and strengthens our network.",
       he: "כל שוק שנכנס אליו מהווה הזדמנות, מכפיל את הנתונים שלנו ומחזק את הרשת שלנו.",
+    },
+    /** מובייל עברית — שבירת שורה אחרי הפסיק */
+    marketsSubMobile: {
+      en: "Every market we enter is an opportunity — it multiplies our data and strengthens our network.",
+      he: "כל שוק שנכנס אליו מהווה הזדמנות,\nמכפיל נתונים ומחזק את הרשת שלנו.",
     },
     sub: { en: "This is just the beginning", he: "זו רק ההתחלה" },
     stats: { en: "3,000+ contacts · 100+ countries · 4,000+ ports · 30K+ docs · $432B+ addressable market · 2M+ potential buyers", he: "3,000+ אנשי קשר · 100+ מדינות · 4,000+ נמלים · 30K+ מסמכים · שוק פוטנציאלי $432B+ · 2M+ קונים פוטנציאליים" },
@@ -326,7 +334,7 @@ export const t = {
     },
     revenueTitle: { en: "Revenue Model", he: "מודל הכנסות" },
     rev1: { en: "Service Agreements", he: "הסכמי שירות" },
-    rev1d: { en: "Recurring revenue through managed procurement", he: "הכנסה חוזרת דרך ניהול רכש" },
+    rev1d: { en: "Revenue through managed procurement and sales", he: "הכנסה דרך ניהול רכש ומכר" },
     rev2: { en: "SaaS Platform", he: "פלטפורמת SaaS" },
     rev2d: { en: "Subscription-based market intelligence", he: "מודיעין שוק מבוסס מנוי" },
     rev3: { en: "API Integration", he: "אינטגרציית API" },
@@ -339,8 +347,8 @@ export const t = {
     fund6: { en: "Prepare for successful Series A round", he: "הכנה לסבב Series A מוצלח" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     proven: {
-      en: "We have successfully delivered complex cross-border procurement and heavy logistics — saving hundreds of thousands of dollars and demonstrating the platform's impact.",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים ולוגיסטיקה כבדה, חיסכון של מאות אלפי דולרים והוכחת השפעת הפלטפורמה.",
+      en: "We have successfully delivered complex cross-border procurement and heavy logistics — we saved hundreds of thousands of dollars and proved the platform's impact.",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים ולוגיסטיקה כבדה, חיסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
     },
     downloadPdfShort: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
     downloadOnePagerShort: { en: "One Pager (HEB)", he: "One Pager (HEB)" },
@@ -355,6 +363,11 @@ export const t = {
     sub: {
       en: "Interested in our vision? Reach out to discuss investment opportunities.",
       he: "מעוניין בחזון שלנו? פנה אלינו לדיון על הזדמנויות השקעה.",
+    },
+    /** מובייל עברית — שבירת שורה אחרי השאלה */
+    subHeMobile: {
+      en: "Interested in our vision? Reach out to discuss investment opportunities.",
+      he: "מעוניין בחזון שלנו?\nפנה אלינו לדיון על הזדמנויות השקעה.",
     },
     name: { en: "Name", he: "שם" },
     email: { en: "Email", he: "אימייל" },
@@ -382,7 +395,7 @@ export const t = {
     targeting: { en: "Targeting", he: "מטרה" },
     seriesTarget: { en: "Series A — 2027.Q4", he: "Series A — 2027.Q4" },
     contactEmail: { en: "yakovroass@gmail.com", he: "yakovroass@gmail.com" },
-    contactPhone: { en: "+972(0)542-611-226", he: "+972(0)542-611-226" },
+    contactPhone: { en: "+972 (0) 54-261-1226", he: "+972 (0) 54-261-1226" },
     contactLinkedIn: { en: "LinkedIn", he: "LinkedIn" },
     website: { en: "Website", he: "אתר" },
   },

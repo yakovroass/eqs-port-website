@@ -86,6 +86,15 @@ body {
     background-clip: text;
   }
 
+  /* כותרת משנה — גרדיאנט ירוק-זוהר (תהליך / הדגשות) */
+  .gradient-text-emerald {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #a7f3d0 0%, #34d399 40%, #10b981 70%, #6ee7b7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
   .glass-card {
     background: rgba(10, 14, 26, 0.7);
     backdrop-filter: blur(20px);
@@ -99,6 +108,15 @@ body {
     color: transparent !important;
     -webkit-text-fill-color: transparent !important;
     background: linear-gradient(90deg, #e0f2fe 0%, #bae6fd 35%, #7dd3fc 70%, #a5f3fc 100%) !important;
+    background-size: 100% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+
+  .gradient-text-emerald {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: linear-gradient(90deg, #a7f3d0 0%, #34d399 40%, #10b981 70%, #6ee7b7 100%) !important;
     background-size: 100% 100% !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
