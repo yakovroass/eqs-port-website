@@ -25,7 +25,7 @@ const DURATION_MAX_SEC = 320;
 
 /** נקודות צפות ב־Hero בלבד: 4 נקודות, אלכסונים אקראיים, ללא התנגשויות */
 const ORIGINAL_DOT_COUNT = 4;
-const ORIGINAL_DOT_SPEED_PX_PER_SEC = 20;
+const ORIGINAL_DOT_SPEED_PX_PER_SEC = 12;
 
 function randomRange(a: number, b: number) {
   const lo = Math.min(a, b);
@@ -571,11 +571,11 @@ function Particle({
     onComplete(index);
   }, [index, onComplete]);
 
-  // מתחילים תמיד בתוך המסלול כדי שלא ייעלמו מהמסך בין מחזור למחזור
-  const progress = 0.34;
+  // תמיד מתחילים מהכניסה למסלול וחוצים את המסך עד היציאה
+  const progress = 0;
   const fromX = path.from.x + (path.to.x - path.from.x) * progress;
   const fromY = path.from.y + (path.to.y - path.from.y) * progress;
-  const duration = path.duration * (1 - progress);
+  const duration = path.duration;
   const delay = 0;
 
   return (
