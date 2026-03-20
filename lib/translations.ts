@@ -57,7 +57,7 @@ export const t = {
     pain1: { en: "Hundreds of Companies & Suppliers Worldwide", he: "מאות חברות וספקים ברחבי העולם" },
     pain1d: {
       en: "Deals pass through multiple marketplaces and many intermediaries, with no unified search — which slows work and hurts efficiency.",
-      he: "עסקאות עוברות דרך מספר שווקים, דרך מתווכים רבים, ללא חיפוש אחיד, מה שגורם לעבודה איטית ופוגע ביעילות.",
+      he: "עסקאות עוברות דרך מספר שווקים, דרך מתווכים רבים, ללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
