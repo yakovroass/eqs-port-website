@@ -32,8 +32,8 @@ const phases = [
     phase: { en: "Phase 2 — Near Future & Vision", he: "שלב 2 — העתיד הקרוב והחזון" },
     title: { en: "The Global Trade Operating System", he: "מערכת ההפעלה של המסחר העולמי" },
     desc: {
-      en: "Every buyer everywhere deserves the best deal — and we'll find it. A buyer in Germany needs steel from Brazil; a contractor in Dubai needs cranes from Europe; a company in India needs materials from China. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers to the right sources, execute procurement, and build trade lanes at massive scale across every category and country.",
-      he: "כל קונה בכל מקום ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. קונה בגרמניה צריך פלדה מברזיל. קבלן בדובאי צריך מנופים מאירופה. חברה בהודו צריכה חומרים מסין. הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים למקורות הטובים, מבצעים רכש ומייצרים קווי מסחר בקנה מידה עצום, בכל קטגוריה, בכל מדינה.",
+      en: "Every buyer everywhere deserves the best deal — and we'll find it. A buyer in Germany needs steel from Brazil; a contractor in Dubai needs cranes from Europe; a company in India needs materials from China. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement, and build trade lanes at massive scale across every category and country.",
+      he: "כל קונה בכל מקום ראוי לעסקה הטובה ביותר — ואנחנו נמצא אותה. הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים ומוכרים, מבצעים רכש ומייצרים קווי מסחר בקנה מידה עצום, בכל קטגוריה, בכל מדינה.",
     },
     stats: [
       { value: 432, suffix: "B+", label: { en: "Addressable Market", he: "שוק ניתן לטיפול" }, prefix: "$" },
@@ -127,8 +127,18 @@ export default function FutureTargets() {
                       <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
                         {/* Mobile icon */}
                         <div className={`sm:hidden w-10 h-10 rounded-xl bg-gradient-to-br ${phase.color} flex items-center justify-center text-white shadow-lg`}>
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          <svg
+                            className={`w-5 h-5 ${i === 1 ? "animate-pulse" : ""}`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d={i === 1 ? "M11 17l-5-5m0 0l5-5m-5 5h12" : "M13 7l5 5m0 0l-5 5m5-5H6"}
+                            />
                           </svg>
                         </div>
                         <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-stone-100">

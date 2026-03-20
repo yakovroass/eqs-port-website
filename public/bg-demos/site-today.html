@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>רקע כמו באתר — היום</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background-color: #050810;
+      }
+
+      @keyframes grid-bg {
+        0% {
+          background-position: 0 0, 0 0, 0 0;
+        }
+        100% {
+          background-position: 0 -100px, 0 -100px, 0 -100px;
+        }
+      }
+
+      .animated-grid-bg {
+        background-image:
+          radial-gradient(circle, rgba(0, 168, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(rgba(0, 168, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 168, 255, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px, 60px 60px, 60px 60px;
+        background-position: 0 0, 0 0, 0 0;
+        background-repeat: repeat;
+        animation: grid-bg 20s linear infinite;
+        will-change: background-position;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .animated-grid-bg {
+          animation: none;
+          will-change: auto;
+        }
+      }
+
+      #layer-grid {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* שיוט כמו אוניות — לינארי מקצה לקצה, ללא הלוך־חזור באמצע */
+      #layer-particles {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+        direction: ltr;
+      }
+      @keyframes sail1 {
+        from {
+          left: -6%;
+          top: 22%;
+        }
+        to {
+          left: 106%;
+          top: 19%;
+        }
+      }
+      @keyframes sail2 {
+        from {
+          left: 106%;
+          top: 38%;
+        }
+        to {
+          left: -6%;
+          top: 41%;
+        }
+      }
+      @keyframes sail3 {
+        from {
+          left: -8%;
+          top: 58%;
+        }
+        to {
+          left: 108%;
+          top: 55%;
+        }
+      }
+      @keyframes sail4 {
+        from {
+          left: 108%;
+          top: 72%;
+        }
+        to {
+          left: -8%;
+          top: 68%;
+        }
+      }
+      @keyframes sail5 {
+        from {
+          left: -5%;
+          top: 14%;
+        }
+        to {
+          left: 105%;
+          top: 11%;
+        }
+      }
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 9999px;
+        background: rgba(0, 168, 255, 0.45);
+        box-shadow:
+          0 0 10px rgba(0, 168, 255, 0.65),
+          0 0 4px rgba(0, 168, 255, 0.9);
+        filter: blur(1px);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      .p1 {
+        animation-name: sail1;
+        animation-duration: 52s;
+        animation-delay: 0s;
+      }
+      .p2 {
+        animation-name: sail2;
+        animation-duration: 64s;
+        animation-delay: 8s;
+      }
+      .p3 {
+        animation-name: sail3;
+        animation-duration: 72s;
+        animation-delay: 3s;
+      }
+      .p4 {
+        animation-name: sail4;
+        animation-duration: 58s;
+        animation-delay: 18s;
+      }
+      .p5 {
+        animation-name: sail5;
+        animation-duration: 48s;
+        animation-delay: 12s;
+      }
+
+      #layer-glow {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      #glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        margin: 0;
+        border-radius: 50%;
+        opacity: 0.3;
+        background: radial-gradient(
+          circle,
+          rgba(0, 168, 255, 0.08) 0%,
+          rgba(0, 168, 255, 0.02) 40%,
+          transparent 70%
+        );
+        transition: left 0.15s ease-out, top 0.15s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="layer-grid" class="animated-grid-bg" aria-hidden="true"></div>
+
+    <div id="layer-particles" aria-hidden="true">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+    </div>
+
+    <div id="layer-glow" aria-hidden="true">
+      <div id="glow"></div>
+    </div>
+    <script>
+      (function () {
+        var g = document.getElementById("glow");
+        function move(e) {
+          g.style.left = e.clientX - 300 + "px";
+          g.style.top = e.clientY - 300 + "px";
+        }
+        window.addEventListener("mousemove", move, { passive: true });
+        move({ clientX: -200, clientY: -200 });
+      })();
+    </script>
+  </body>
+</html>

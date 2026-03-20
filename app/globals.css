@@ -128,9 +128,14 @@ body {
   }
 }
 
+/* רק למעלה — כמו במקור (רשת “זורמת” כלפי מעלה) */
 @keyframes grid-bg {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 -100px; }
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 -100px, 0 -100px, 0 -100px;
+  }
 }
 
 /* Same font as main section headlines - use for section labels so they match */
@@ -174,9 +179,19 @@ body {
 
 .animated-grid-bg {
   background-image:
-    radial-gradient(circle, rgba(0, 168, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(rgba(0, 168, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 168, 255, 0.05) 1px, transparent 1px);
+    radial-gradient(circle, rgba(0, 168, 255, 0.1) 1px, transparent 1.2px),
+    linear-gradient(rgba(0, 168, 255, 0.035) 1.3px, transparent 1.3px),
+    linear-gradient(90deg, rgba(0, 168, 255, 0.035) 1.3px, transparent 1.3px);
   background-size: 60px 60px, 60px 60px, 60px 60px;
-  animation: grid-bg 20s linear infinite;
+  background-position: 0 0, 0 0, 0 0;
+  background-repeat: repeat;
+  animation: grid-bg 22s linear infinite;
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-grid-bg {
+    animation: none;
+    will-change: auto;
+  }
 }

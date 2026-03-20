@@ -43,16 +43,21 @@ export const t = {
     headline: { en: "The Global Market Is Complex", he: "השוק הגלובלי מורכב" },
     sub: {
       en: "The global industrial trade market is constrained and outdated. Buyers and sellers face challenges at every step.",
-      he: "שוק המסחר התעשייתי הגלובלי מוגבל ומיושן, קונים ומוכרים נתקלים באתגרים בכל שלב.",
+      he: "המערכות הדיגיטליות בשוק המסחר התעשייתי מוגבלות, קונים ומוכרים נתקלים באתגרים בכל שלב, ומאבדים זמן יקר.",
     },
     subBelow: {
       en: "Every step becomes a project, making it harder to manage the overall process.",
       he: "כל צעד הופך לפרויקט, מה שמקשה על ניהול התהליך הכולל.",
     },
+    pain0: { en: "Outdated procurement systems", he: "מערכות רכש מיושנות" },
+    pain0d: {
+      en: "The global industrial trade market relies on outdated workflows, and buyers and sellers face friction at every step.",
+      he: "המערכות הדיגיטליות בשוק המסחר התעשייתי מוגבלות, קונים ומוכרים נתקלים באתגרים בכל שלב, ומאבדים זמן יקר.",
+    },
     pain1: { en: "Hundreds of Companies & Suppliers Worldwide", he: "מאות חברות וספקים ברחבי העולם" },
     pain1d: {
       en: "Deals pass through multiple marketplaces and many intermediaries, with no unified search — which slows work and hurts efficiency.",
-      he: "עסקאות עוברות דרך מספר שווקים ודרך מתווכים רבים, ללא חיפוש אחיד, מה שגורם לעבודה איטית ופוגע ביעילות.",
+      he: "עסקאות עוברות דרך מספר שווקים, דרך מתווכים רבים, ללא חיפוש אחיד, מה שגורם לעבודה איטית ופוגע ביעילות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
@@ -200,8 +205,8 @@ export const t = {
       he: "לפחות 15 שלבים מפוצלים — ובפועל, הרבה יותר. הפלטפורמה שלנו מטפלת בכולם מאחורי הקלעים, מסריקת שוק אלגוריתמית ועד משלוח סופי לאתר.",
     },
     realitySub: {
-      en: "Market scanning the old way is impossible — slow, exhausting, in a vast market, with costly missed opportunities. Price analysis. Detail verification. Permits. Site inspection. Negotiation. Contracts. Payments. Export documents. Shipping quotes. Loading. Tracking. Customs clearance. Final delivery. Months of work. Dozens of contacts and third parties — an exhausting process — and only for those who know how. For example, this is what buying a mobile crane can look like...",
-      he: "סריקת שוק בלתי אפשרית, בשיטה ישנה ומעייפת, בשוק עצום, ואיבוד הזדמנויות יקרות. ניתוח מחירים. אימות פרטים. הוצאת היתרים. בדיקה בשטח. משא ומתן. חוזים. תשלומים. מסמכי יצוא. הצעות מחיר למשלוחים. העמסה. מעקב. שחרור ממכס. משלוח סופי. חודשים של עבודה. עשרות אנשי קשר וצדדים שלישיים — תהליך מייגע, ורק על ידי מי שיודע איך. למשל כך נראה תהליך רכש של מנוף נייד...",
+      en: "Market scanning the old way is impossible — slow and exhausting in a vast market, with costly missed opportunities. Price analysis. Detail verification. Permits. Site inspection. Negotiation. Contracts. Payments. Export documents. Shipping quotes. Loading. Tracking. Customs clearance. Final delivery. Months of work. An exhausting process — for example, this is what buying a mobile crane can look like...",
+      he: "סריקת השוק כולו בלתי אפשרית, השיטה ישנה ומעייפת, והזדמנויות יקרות הולכות לאיבוד. ניתוח מחירים. אימות פרטים. הוצאת היתרים. בדיקה בשטח. משא ומתן. חוזים. תשלומים. מסמכי יצוא. הצעות מחיר למשלוחים. העמסה. מעקב. שחרור ממכס. משלוח סופי. חודשים של עבודה. תהליך מייגע, למשל כך נראה תהליך רכש של מנוף נייד...",
     },
     realityTitle: { en: "How Procurement Looks Today", he: "ככה נראה הרכש היום" },
     replaceCaption: {
@@ -220,7 +225,7 @@ export const t = {
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
       en: "We simply execute everything.\nProcurement, logistics, permits, documents.\nBetter, faster, cheaper.",
-      he: "אנחנו פשוט מבצעים הכל.\nרכש, לוגיסטיקה, היתרים, מסמכים.\nטוב יותר, מהר יותר, זול יותר.",
+      he: "אנחנו פשוט מבצעים את הכל.\nרכש, לוגיסטיקה, היתרים.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
@@ -258,7 +263,7 @@ export const t = {
     },
     globalSearchDesc: {
       en: "Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, and piece of equipment.",
-      he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי תחום פעילות, נתונים, מיקום, מנתחת כל רישום, כל מוכר, כל ציוד.",
+      he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי נתונים, מיקום, מבצעת ניתוחי עומק לכל רישום, לכל מוכר, לכל ציוד.",
     },
     globalPortsTitle: {
       en: "Global port & supplier network",
@@ -286,7 +291,7 @@ export const t = {
     label: { en: "Future Roadmap", he: "מפת דרכים עתידית" },
     intro: {
       en: "Our data and connections are the foundation for a global procurement intelligence system that will scan the world to find the best deal for every customer.",
-      he: "הנתונים והקשרים שלנו הם הבסיס למערכת מודיעין רכש גלובלית שתסרוק את העולם כדי למצוא את העסקה הטובה ביותר לכל לקוח.",
+      he: "הפעילות הנתונים והקשרים שלנו הם הבסיס למערכת מסחר גלובלית שתסרוק את העולם כדי למצוא את העסקה הטובה ביותר לכל לקוח.",
     },
     marketsHeadline: {
       en: "Each market in these industries is vast on its own.",
@@ -334,7 +339,7 @@ export const t = {
     },
     revenueTitle: { en: "Revenue Model", he: "מודל הכנסות" },
     rev1: { en: "Service Agreements", he: "הסכמי שירות" },
-    rev1d: { en: "Revenue through managed procurement and sales", he: "הכנסה דרך ניהול רכש ומכר" },
+    rev1d: { en: "Revenue through managed procurement and sales", he: "הכנסה דרך ניהול רכש ומכירות" },
     rev2: { en: "SaaS Platform", he: "פלטפורמת SaaS" },
     rev2d: { en: "Subscription-based market intelligence", he: "מודיעין שוק מבוסס מנוי" },
     rev3: { en: "API Integration", he: "אינטגרציית API" },
@@ -343,7 +348,7 @@ export const t = {
     fund2: { en: "Scale DevOps capabilities and infrastructure", he: "הרחבת יכולות DevOps ותשתיות" },
     fund3: { en: "Expand logistics and operations network", he: "הרחבת רשת לוגיסטיקה ותפעול" },
     fund4: { en: "Improve user strategies and market positioning", he: "שיפור אסטרטגיות משתמש ומיצוב שוק" },
-    fund5: { en: "Establish solid market footprint", he: "ביסוס נוכחות בשוק" },
+    fund5: { en: "Establish solid market footprint and launch pilots", he: "ביסוס נוכחות בשוק הגלובלי והקמת פיילוט" },
     fund6: { en: "Prepare for successful Series A round", he: "הכנה לסבב Series A מוצלח" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     proven: {

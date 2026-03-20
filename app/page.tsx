@@ -5,6 +5,7 @@ import { LanguageContext } from "@/lib/useLanguage";
 import type { Lang } from "@/lib/translations";
 import Navbar from "@/components/Navbar";
 import MouseGlow from "@/components/MouseGlow";
+import HeroFloatingParticles from "@/components/HeroFloatingParticles";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import MarketData from "@/components/MarketData";
@@ -38,6 +39,9 @@ export default function Home() {
     <LanguageContext.Provider value={{ lang, setLang, dir }}>
       <div dir={dir} className="mobile-readable overflow-x-hidden max-w-[100vw] relative">
         <div className="animated-grid-bg fixed inset-0 pointer-events-none z-0" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden>
+          <HeroFloatingParticles variant="ships" />
+        </div>
         <MouseGlow />
         <Navbar />
         <main>

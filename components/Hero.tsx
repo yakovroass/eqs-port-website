@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
+import HeroFloatingParticles from "./HeroFloatingParticles";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
@@ -20,22 +21,8 @@ function GridBackground() {
         }}
       />
 
-      {/* Floating particles */}
-      {[
-        { top: "20%", left: "15%", dur: 8, del: 0 },
-        { top: "30%", right: "20%", dur: 6, del: 1 },
-        { top: "60%", left: "35%", dur: 10, del: 2 },
-        { top: "70%", right: "10%", dur: 7, del: 3 },
-        { top: "15%", left: "60%", dur: 9, del: 1.5 },
-      ].map((p, i) => (
-        <motion.div
-          key={i}
-          animate={{ y: [0, -15, 0], x: [0, 8, 0] }}
-          transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: p.del }}
-          className="absolute w-1.5 h-1.5 bg-accent/30 rounded-full blur-[1px]"
-          style={{ top: p.top, left: p.left, right: (p as Record<string, unknown>).right as string }}
-        />
-      ))}
+      <HeroFloatingParticles variant="original" />
+
     </div>
   );
 }

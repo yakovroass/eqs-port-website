@@ -44,10 +44,10 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* כשאת כל זה אפשר להחליף ב... — כותרת (גרדיאנט ירוק) + 3 שורות */}
+        {/* כשאת כל זה אפשר להחליף ב... — כותרת בגרדיאנט כחול כמו יתר הכותרות */}
         <ScrollReveal>
-          <div className="max-w-3xl mx-auto my-14 sm:my-20 text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text-emerald">
+          <div className="max-w-3xl mx-auto mt-14 sm:mt-20 mb-8 sm:mb-10 text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text">
               {tx(t.process.replaceCaption, lang)}
             </h2>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed whitespace-pre-line">
@@ -56,30 +56,30 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* חץ → חמשת השלבים + מחבר + תמונת 3 השלבים — קוביית ענבר אחת (כמו «ככה נראה הרכש היום») */}
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden border border-amber-500/25 bg-amber-500/[0.04] shadow-lg shadow-amber-900/10">
-            <div className="flex justify-center py-5 border-b border-amber-500/15">
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center"
-              >
-                <svg className="w-7 h-7 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </motion.div>
-            </div>
+        <div className="flex justify-center my-8 sm:my-10">
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="w-14 h-14 rounded-full bg-white/5 border border-cyan-300/35 flex items-center justify-center shadow-[0_0_16px_rgba(56,189,248,0.35)]"
+          >
+            <svg className="w-7 h-7 text-cyan-100 drop-shadow-[0_0_8px_rgba(103,232,249,0.65)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </motion.div>
+        </div>
 
-            <div className="px-5 py-6 sm:px-8 sm:py-8 border-b border-amber-500/15">
+        {/* חמשת השלבים + תמונת 3 השלבים — בתוך קובייה אחת, בסגנון לא ירוק */}
+        <ScrollReveal>
+          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden border border-cyan-400/25 bg-cyan-500/[0.04] shadow-lg shadow-cyan-900/10">
+            <div className="px-5 py-6 sm:px-8 sm:py-8 border-b border-cyan-400/20">
               <ul className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
                 {t.process.unifiedSteps[lang].map((step, i) => (
                   <li key={i} className="flex items-center gap-4 text-gray-200">
                     <span
                       className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl text-sm sm:text-base font-black tabular-nums
-                        bg-gradient-to-br from-emerald-400/35 via-emerald-500/25 to-emerald-700/30
-                        text-emerald-100 border border-emerald-400/45
-                        shadow-[0_0_16px_rgba(16,185,129,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]"
+                        bg-gradient-to-br from-cyan-400/35 via-sky-500/25 to-blue-700/30
+                        text-cyan-100 border border-cyan-400/45
+                        shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
                     >
                       {i + 1}
                     </span>
@@ -89,12 +89,7 @@ export default function ProcessTimeline() {
               </ul>
             </div>
 
-            <div
-              className="w-px h-10 sm:h-12 bg-gradient-to-b from-amber-500/50 via-emerald-500/40 to-emerald-600/30 mx-auto shrink-0"
-              aria-hidden
-            />
-
-            <div className="bg-dark-950/50 border-t border-amber-500/10">
+            <div className="bg-dark-950/50 border-t border-cyan-400/15">
               <motion.div whileHover={{ scale: 1.005 }} transition={{ duration: 0.2 }}>
                 <Image
                   src="/images/eqs-3steps.png"

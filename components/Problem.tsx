@@ -8,6 +8,7 @@ import { t } from "@/lib/translations";
 export default function Problem() {
   const { lang } = useLanguage();
   const pains = [
+    { title: tx(t.problem.pain0, lang), desc: tx(t.problem.pain0d, lang) },
     { title: tx(t.problem.pain1, lang), desc: tx(t.problem.pain1d, lang) },
     { title: tx(t.problem.pain2, lang), desc: tx(t.problem.pain2d, lang) },
     { title: tx(t.problem.pain3, lang), desc: tx(t.problem.pain3d, lang) },
@@ -29,16 +30,9 @@ export default function Problem() {
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6 text-white">
             {tx(t.problem.headline, lang)}
           </h2>
-          <p
-            className={`text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed ${
-              lang === "he" ? "whitespace-pre-line" : ""
-            }`}
-          >
-            {tx(t.problem.sub, lang)}
-          </p>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto items-stretch">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-5xl mx-auto items-stretch">
           {pains.map((pain, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
               <motion.div

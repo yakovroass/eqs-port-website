@@ -71,6 +71,7 @@ function GrowthBar({
   toYear,
   chartHeight = CHART_H_DEFAULT,
   barClass = "w-10 sm:w-16 md:w-20",
+  heightBoost = 1,
 }: {
   fromPct: number;
   toPct: number;
@@ -80,9 +81,10 @@ function GrowthBar({
   toYear: string;
   chartHeight?: number;
   barClass?: string;
+  heightBoost?: number;
 }) {
-  const fromH = Math.max(28, Math.round((fromPct / 100) * chartHeight));
-  const toH = Math.max(28, Math.round((toPct / 100) * chartHeight));
+  const fromH = Math.max(28, Math.min(chartHeight, Math.round((fromPct / 100) * chartHeight * heightBoost)));
+  const toH = Math.max(28, Math.min(chartHeight, Math.round((toPct / 100) * chartHeight * heightBoost)));
 
   return (
     <div className="flex flex-col items-center flex-1 w-full" dir="ltr">
@@ -111,8 +113,8 @@ function GrowthBar({
         </motion.div>
       </div>
       <div className={`flex gap-2 sm:gap-4 mt-1.5 ${barClass.includes("w-14") ? "gap-3 sm:gap-4" : ""}`} dir="ltr">
-        <span className={`${barClass} text-center text-[9px] sm:text-[11px] text-gray-400 shrink-0`}>{fromYear}</span>
-        <span className={`${barClass} text-center text-[9px] sm:text-[11px] text-gray-400 shrink-0`}>{toYear}</span>
+        <span className={`${barClass} text-center text-[10px] sm:text-xs md:text-sm text-gray-300 shrink-0`}>{fromYear}</span>
+        <span className={`${barClass} text-center text-[10px] sm:text-xs md:text-sm text-gray-300 shrink-0`}>{toYear}</span>
       </div>
     </div>
   );
@@ -125,6 +127,7 @@ function ChartCard({
   barClass,
   minHClass,
   largeTitle = false,
+  heightBoost = 1,
 }: {
   chart: (typeof charts)[0];
   lang: "en" | "he";
@@ -132,6 +135,7 @@ function ChartCard({
   barClass: string;
   minHClass: string;
   largeTitle?: boolean;
+  heightBoost?: number;
 }) {
   return (
     <div className={`flex flex-col ${minHClass}`}>
@@ -171,6 +175,7 @@ function ChartCard({
           toYear={chart.to.year}
           chartHeight={chartHeight}
           barClass={barClass}
+          heightBoost={heightBoost}
         />
       </div>
     </div>
@@ -179,7 +184,6 @@ function ChartCard({
 
 export default function MarketData() {
   const { lang } = useLanguage();
-  const [chartTrillions, ...chartsBillions] = charts;
 
   return (
     <section id="market" className="relative py-24 md:py-32 overflow-hidden">
@@ -201,27 +205,19 @@ export default function MarketData() {
           </p>
         </ScrollReveal>
 
-        {/* Growth charts — טריליונים למעלה (גדול), מיליארדים בשתי עמודות למטה */}
+        {/* Growth charts — שלושת הגרפים יחד */}
         <ScrollReveal>
-          <div className="max-w-3xl mx-auto mb-8 sm:mb-10">
-            <ChartCard
-              chart={chartTrillions}
-              lang={lang}
-              chartHeight={CHART_H_LARGE}
-              barClass="w-16 sm:w-28 md:w-36"
-              minHClass="min-h-[360px] sm:min-h-[380px] max-w-xl mx-auto"
-              largeTitle
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto mb-16 items-stretch">
-            {chartsBillions.map((chart) => (
+          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-6xl mx-auto mb-16 items-stretch">
+            {charts.map((chart, i) => (
               <ChartCard
-                key={chart.from.label}
+                key={`${chart.from.label}-${i}`}
                 chart={chart}
                 lang={lang}
                 chartHeight={CHART_H_DEFAULT}
                 barClass="w-10 sm:w-16 md:w-20"
                 minHClass="min-h-[300px] sm:min-h-[320px]"
+                largeTitle={false}
+                heightBoost={i === 0 ? 1.22 : 1}
               />
             ))}
           </div>
