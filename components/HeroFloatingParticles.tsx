@@ -17,7 +17,7 @@ const SHIP_COUNT = 25;
 
 const DOT = 6;
 /** כניסה/יציאה מחוץ למסך דרך הדפנות */
-const EDGE_OFFSCREEN_PX = 28;
+const EDGE_OFFSCREEN_PX = 120;
 
 /** תנועה איטית */
 const DURATION_MIN_SEC = 220;
@@ -25,7 +25,7 @@ const DURATION_MAX_SEC = 320;
 
 /** נקודות צפות ב־Hero בלבד: 4 נקודות, אלכסונים אקראיים, ללא התנגשויות */
 const ORIGINAL_DOT_COUNT = 4;
-const ORIGINAL_DOT_SPEED_PX_PER_SEC = 12;
+const ORIGINAL_DOT_SPEED_PX_PER_SEC = 5;
 
 function randomRange(a: number, b: number) {
   const lo = Math.min(a, b);
@@ -49,7 +49,7 @@ function dist(a: Pt, b: Pt) {
 }
 
 /** מרווח מעבר לקצה הקונטיינר — עד שהנקודה (והזוהר) באמת “מחוץ למסך” */
-const EXIT_MARGIN_PX = 32;
+const EXIT_MARGIN_PX = 120;
 
 function isOutsideView(px: number, py: number, w: number, h: number) {
   return (
@@ -628,7 +628,7 @@ function ShipsFloatingParticles() {
 
   useEffect(() => {
     if (sw < 41 || sh < 41) return;
-    const speedPxPerSec = 9;
+    const speedPxPerSec = 4;
     const init = generateAllPaths(sw, sh).map((p) => ({
       ...p,
       duration: dist(p.from, p.to) / speedPxPerSec,
@@ -639,7 +639,7 @@ function ShipsFloatingParticles() {
   const handleParticleComplete = useCallback(
     (i: number) => {
       if (sw < 41 || sh < 41) return;
-      const speedPxPerSec = 9;
+      const speedPxPerSec = 4;
       setPaths((prev) => {
         if (!prev) return prev;
         const others: Segment[] = prev

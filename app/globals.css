@@ -138,6 +138,17 @@ body {
   }
 }
 
+@keyframes grid-bg-mobile {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    background-position: 0 -160px, 0 -160px, 0 -160px;
+    transform: translate3d(0, -36px, 0);
+  }
+}
+
 /* Same font as main section headlines - use for section labels so they match */
 .headline-font {
   font-family: "Inter", system-ui, sans-serif !important;
@@ -185,8 +196,16 @@ body {
   background-size: 60px 60px, 60px 60px, 60px 60px;
   background-position: 0 0, 0 0, 0 0;
   background-repeat: repeat;
-  animation: grid-bg 22s linear infinite;
+  animation: grid-bg 70s linear infinite;
   will-change: background-position;
+}
+
+@media (max-width: 768px) {
+  .animated-grid-bg {
+    animation: grid-bg-mobile 45s linear infinite;
+    will-change: background-position, transform;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
