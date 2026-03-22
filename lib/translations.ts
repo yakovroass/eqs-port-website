@@ -41,10 +41,7 @@ export const t = {
   problem: {
     label: { en: "The Problem", he: "הבעיה" },
     headline: { en: "The Global Market Is Complex", he: "השוק הגלובלי מורכב" },
-    sub: {
-      en: "The global industrial trade market is constrained and outdated. Buyers and sellers face challenges at every step.",
-      he: "המערכות הדיגיטליות בשוק המסחר התעשייתי מוגבלות, קונים ומוכרים נתקלים באתגרים בכל שלב, ומאבדים זמן יקר.",
-    },
+    sub: { en: "", he: "" },
     subBelow: {
       en: "Every step becomes a project: buyers and sellers face challenges at every stage and lose valuable time.",
       he: "כל צעד הופך לפרויקט, קונים ומוכרים נתקלים באתגרים בכל שלב ומאבדים זמן יקר.",

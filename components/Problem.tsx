@@ -7,6 +7,7 @@ import { t } from "@/lib/translations";
 
 export default function Problem() {
   const { lang } = useLanguage();
+  const subText = tx(t.problem.sub, lang).trim();
   const pains = [
     { title: tx(t.problem.pain1, lang), desc: tx(t.problem.pain1d, lang) },
     { title: tx(t.problem.pain2, lang), desc: tx(t.problem.pain2d, lang) },
@@ -25,12 +26,14 @@ export default function Problem() {
               {tx(t.problem.label, lang)}
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-6 text-white">
+          <h2
+            className={`text-3xl md:text-5xl font-bold text-center text-white ${subText ? "mb-6" : "mb-12"}`}
+          >
             {tx(t.problem.headline, lang)}
           </h2>
-          <p className="text-gray-400 text-center max-w-3xl mx-auto mb-12 text-lg leading-relaxed">
-            {tx(t.problem.sub, lang)}
-          </p>
+          {subText ? (
+            <p className="text-gray-400 text-center max-w-3xl mx-auto mb-12 text-lg leading-relaxed">{subText}</p>
+          ) : null}
         </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-5xl mx-auto items-stretch">
