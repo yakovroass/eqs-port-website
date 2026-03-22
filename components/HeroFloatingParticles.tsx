@@ -231,6 +231,61 @@ function randomCandidate(w: number, h: number, pad: number): Segment {
   return { from: pointOnEdge(a, w, h, pad), to: pointOnEdge(b, w, h, pad) };
 }
 
+/**
+ * מסלולי אוניות: שילוב מפורש של מצד־לצד, מלמעלה־למטה, אלכסוני חזק,
+ * וקצה↔קצה אקראי — כדי שיופיעו יותר קווים שונים על המסך.
+ */
+function randomShipSegment(w: number, h: number, pad: number): Segment {
+  const maxX = w - pad - DOT;
+  const maxY = h - pad - DOT;
+  const roll = Math.random();
+
+  if (roll < 0.2) {
+    /* אופקי (מצד לצד) — לפעמים עם הטיית Y לאלכסון עדין */
+    const y = randomRange(pad + h * 0.07, maxY - h * 0.07);
+    const ySkew = randomRange(-h * 0.2, h * 0.2);
+    const y2 = Math.min(maxY, Math.max(pad, y + ySkew));
+    return {
+      from: { x: -EDGE_OFFSCREEN_PX, y },
+      to: { x: w + EDGE_OFFSCREEN_PX, y: y2 },
+    };
+  }
+  if (roll < 0.4) {
+    /* אנכי */
+    const x = randomRange(pad + w * 0.07, maxX - w * 0.07);
+    const xSkew = randomRange(-w * 0.2, w * 0.2);
+    const x2 = Math.min(maxX, Math.max(pad, x + xSkew));
+    return {
+      from: { x, y: -EDGE_OFFSCREEN_PX },
+      to: { x: x2, y: h + EDGE_OFFSCREEN_PX },
+    };
+  }
+  if (roll < 0.55) {
+    /* אלכסון “חוצה” — נקודות פנימיות קרובות לפינות נגדיות */
+    const pickLow = Math.random() < 0.5;
+    const from = pickLow
+      ? {
+          x: randomRange(pad, maxX * 0.42),
+          y: h + EDGE_OFFSCREEN_PX,
+        }
+      : {
+          x: randomRange(maxX * 0.58, maxX),
+          y: -EDGE_OFFSCREEN_PX,
+        };
+    const to = pickLow
+      ? {
+          x: randomRange(maxX * 0.55, maxX),
+          y: -EDGE_OFFSCREEN_PX,
+        }
+      : {
+          x: randomRange(pad, maxX * 0.45),
+          y: h + EDGE_OFFSCREEN_PX,
+        };
+    return { from, to };
+  }
+  return randomCandidate(w, h, pad);
+}
+
 function fallbackPath(w: number, h: number, pad: number, variant: number): Path {
   const corners: Segment[] = [
     { from: { x: pad, y: pad }, to: { x: w - pad - DOT, y: h - pad - DOT } },
@@ -252,12 +307,15 @@ function fallbackPath(w: number, h: number, pad: number, variant: number): Path 
   );
 }
 
+type SegmentPicker = (w: number, h: number, pad: number) => Segment;
+
 function generatePathAvoidingCore(
   w: number,
   h: number,
   others: Segment[],
   variant: number,
   th: { minCross: number; segClear: number; endClear: number },
+  pickSegment: SegmentPicker = randomCandidate,
 ): Path {
   const pad = 14;
   const { minCross, segClear, endClear } = th;
@@ -265,8 +323,8 @@ function generatePathAvoidingCore(
   let best: Path | null = null;
   let bestScore = -1;
 
-  for (let attempt = 0; attempt < 110; attempt++) {
-    const { from, to } = randomCandidate(w, h, pad);
+  for (let attempt = 0; attempt < 130; attempt++) {
+    const { from, to } = pickSegment(w, h, pad);
     if (dist(from, to) < minCross) continue;
 
     const dSeg = minDistToOthers(from, to, others);
@@ -312,6 +370,7 @@ function generateShipPathAvoiding(
     others,
     variant,
     shipThresholds(w, h),
+    randomShipSegment,
   );
 }
 
@@ -445,17 +504,20 @@ function GalleryShipSprite({
   const data = `/ship-refs/${shipFile}?v=${SHIP_REF_SVG_CACHE}`;
   return (
     <div
-      className="pointer-events-none select-none overflow-visible"
+      className="pointer-events-none select-none overflow-visible [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]"
       style={{
         width: "clamp(4rem, 15vw, 7.25rem)",
         aspectRatio: "1580 / 330",
-        transform: `translate(-50%, -50%) rotate(${headingDeg}deg)`,
+        transform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
+        WebkitTransform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
       }}
     >
       <object
         type="image/svg+xml"
         data={data}
-        className="block h-full w-full opacity-[0.9] bg-transparent [background:transparent]"
+        className="block h-full w-full opacity-[0.9] bg-transparent [background:transparent] [transform:translateZ(0)] [-webkit-transform:translateZ(0)]"
         aria-hidden
         tabIndex={-1}
       />

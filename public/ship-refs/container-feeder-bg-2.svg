@@ -2,70 +2,115 @@
   <defs>
     <style type="text/css"><![CDATA[
       /* פנסים — הבהוב איטי יותר */
+      @-webkit-keyframes navBlinkCf {
+        0%, 48% { opacity: 1; }
+        58%, 92% { opacity: 0.08; }
+        100% { opacity: 1; }
+      }
       @keyframes navBlinkCf {
         0%, 48% { opacity: 1; }
         58%, 92% { opacity: 0.08; }
         100% { opacity: 1; }
       }
       .nvPortCf {
+        -webkit-animation: navBlinkCf 8.5s ease-in-out infinite;
         animation: navBlinkCf 8.5s ease-in-out infinite;
+        -webkit-animation-delay: 0s;
         animation-delay: 0s;
       }
       .nvStbdCf {
+        -webkit-animation: navBlinkCf 8.5s ease-in-out infinite;
         animation: navBlinkCf 8.5s ease-in-out infinite;
+        -webkit-animation-delay: 4.25s;
         animation-delay: 4.25s;
+      }
+      @-webkit-keyframes beamBreathCf {
+        0%, 100% { opacity: 0.98; }
+        50% { opacity: 0.78; }
       }
       @keyframes beamBreathCf {
         0%, 100% { opacity: 0.98; }
         50% { opacity: 0.78; }
       }
       .nvBeamsBreathCf {
+        -webkit-animation: beamBreathCf 8.5s ease-in-out infinite;
         animation: beamBreathCf 8.5s ease-in-out infinite;
       }
       /* אלומה קדמית — נדנוד ימינה־שמאל (חזק יותר) */
+      @-webkit-keyframes nvBowSwayAnimCf {
+        0%, 100% { -webkit-transform: rotate(-3.85deg); transform: rotate(-3.85deg); }
+        50% { -webkit-transform: rotate(3.85deg); transform: rotate(3.85deg); }
+      }
       @keyframes nvBowSwayAnimCf {
-        0%, 100% { transform: rotate(-1.92deg); }
-        50% { transform: rotate(1.92deg); }
+        0%, 100% { -webkit-transform: rotate(-3.85deg); transform: rotate(-3.85deg); }
+        50% { -webkit-transform: rotate(3.85deg); transform: rotate(3.85deg); }
       }
       .nvBowSwayCf {
+        -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
-        animation: nvBowSwayAnimCf 6s ease-in-out infinite;
+        -webkit-animation: nvBowSwayAnimCf 7.2s ease-in-out infinite;
+        animation: nvBowSwayAnimCf 7.2s ease-in-out infinite;
       }
       /* אלומה אחורית — נדנוד עדין (מנוגד לקדמה) */
+      @-webkit-keyframes nvSternSwayAnimCf {
+        0%, 100% { -webkit-transform: rotate(2.75deg); transform: rotate(2.75deg); }
+        50% { -webkit-transform: rotate(-2.75deg); transform: rotate(-2.75deg); }
+      }
       @keyframes nvSternSwayAnimCf {
-        0%, 100% { transform: rotate(1.35deg); }
-        50% { transform: rotate(-1.35deg); }
+        0%, 100% { -webkit-transform: rotate(2.75deg); transform: rotate(2.75deg); }
+        50% { -webkit-transform: rotate(-2.75deg); transform: rotate(-2.75deg); }
       }
       .nvSternSwayCf {
+        -webkit-transform-origin: 32px 80px;
         transform-origin: 32px 80px;
-        animation: nvSternSwayAnimCf 6.8s ease-in-out infinite;
+        -webkit-animation: nvSternSwayAnimCf 8s ease-in-out infinite;
+        animation: nvSternSwayAnimCf 8s ease-in-out infinite;
       }
-      /* צלחת מכ״ם — סיבוב מלא איטי */
+      /* צלחת מכ״ם — סיבוב מלא איטי (iOS/WebKit בתוך object: קידומת -webkit-) */
+      @-webkit-keyframes bridgeSearchSpinCf {
+        from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+        to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+      }
       @keyframes bridgeSearchSpinCf {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+        to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
       }
       .bridgeSearchSpinCf {
+        -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
+        -webkit-animation: bridgeSearchSpinCf 36s linear infinite;
         animation: bridgeSearchSpinCf 36s linear infinite;
       }
       /* סירות הצלה — דופק עדין חליפי כדי שיבלטו כציוד בטיחות */
+      @-webkit-keyframes lifeboatPulseCf {
+        0%, 100% { opacity: 1; filter: brightness(1); }
+        50% { opacity: 0.88; filter: brightness(1.12); }
+      }
       @keyframes lifeboatPulseCf {
         0%, 100% { opacity: 1; filter: brightness(1); }
         50% { opacity: 0.88; filter: brightness(1.12); }
       }
       .lifeboatPulseCf-a {
+        -webkit-animation: lifeboatPulseCf 2.6s ease-in-out infinite;
         animation: lifeboatPulseCf 2.6s ease-in-out infinite;
       }
       .lifeboatPulseCf-b {
+        -webkit-animation: lifeboatPulseCf 2.6s ease-in-out infinite;
         animation: lifeboatPulseCf 2.6s ease-in-out infinite;
+        -webkit-animation-delay: 1.3s;
         animation-delay: 1.3s;
       }
+      /*
+       * iOS/Android נוטים לדווח prefers-reduced-motion; כמו .animated-grid-bg במובייל —
+       * מכ״ם ואלומות נשארים בתנועה (דקורטיבי). רק סירות הצלה נעצרות ב-reduce.
+       */
       @media (prefers-reduced-motion: reduce) {
-        .nvBeamsBreathCf { animation: none; opacity: 0.92; }
-        .nvBowSwayCf, .nvSternSwayCf { animation: none; transform: none; }
-        .bridgeSearchSpinCf { animation: none; }
-        .lifeboatPulseCf-a, .lifeboatPulseCf-b { animation: none; opacity: 1; filter: none; }
+        .lifeboatPulseCf-a, .lifeboatPulseCf-b {
+          -webkit-animation: none;
+          animation: none;
+          opacity: 1;
+          filter: none;
+        }
       }
     ]]></style>
     <!-- גוף: גרדיאנט “ברק מתחלף” לאורך הדופן -->
