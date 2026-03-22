@@ -134,7 +134,7 @@ body {
     background-position: 0 0, 0 0;
   }
   100% {
-    background-position: 0 -100px, 0 -100px;
+    background-position: 0 -200px, 0 -200px;
   }
 }
 
@@ -196,7 +196,7 @@ body {
   background-size: 60px 60px, 60px 60px;
   background-position: 0 0, 0 0;
   background-repeat: repeat;
-  animation: grid-bg 142s linear infinite;
+  animation: grid-bg 78s linear infinite;
   will-change: background-position;
 }
 

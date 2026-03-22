@@ -6,23 +6,24 @@ import AnimatedCounter from "./AnimatedCounter";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
+/** גרפים — מספרים כפי שמופיעים בדוחות: ResearchAndMarkets/Globe Newswire, Grand View Research, Strategic Market Research */
 const charts = [
   {
-    title: { en: "Construction Market", he: "שוק הבנייה" },
+    title: { en: "Construction market", he: "שוק הבנייה" },
     unit: "USD T",
-    from: { year: "2024", value: 14.5, label: "14.5 T" },
-    to: { year: "2030", value: 23.5, label: "23.5 T" },
+    from: { year: "2024", value: 15.8, label: "15.8 T" },
+    to: { year: "2030", value: 21.7, label: "21.7 T" },
     maxVal: 30,
   },
   {
-    title: { en: "Crane Market", he: "שוק המנופים" },
+    title: { en: "The crane market", he: "שוק המנופים" },
     unit: "USD B",
-    from: { year: "2024", value: 35.6, label: "35.6 B" },
+    from: { year: "2023", value: 35.6, label: "35.6 B" },
     to: { year: "2030", value: 49.1, label: "49.1 B" },
     maxVal: 60,
   },
   {
-    title: { en: "Used Equipment", he: "ציוד משומש" },
+    title: { en: "Used construction equipment", he: "ציוד בנייה משומש" },
     unit: "USD B",
     from: { year: "2024", value: 22.5, label: "22.5 B" },
     to: { year: "2030", value: 35.8, label: "35.8 B" },
@@ -54,7 +55,7 @@ const tableRows = [
 const total = {
   category: { en: "TOTAL DIRECT MARKET POTENTIAL", he: "סה\"כ פוטנציאל שוק ישיר" },
   market: "$432B+",
-  clients: { en: "2M+ Global Companies", he: "2M+ חברות גלובליות" },
+  clients: { en: "2M+ Companies", he: "2M+ חברות" },
   focus: { en: "Europe, USA, Asia-Pacific", he: "אירופה, ארה\"ב, אסיה-פסיפיק" },
 };
 
@@ -137,14 +138,17 @@ function ChartCard({
   largeTitle?: boolean;
   heightBoost?: number;
 }) {
+  const titleBlockH = largeTitle
+    ? "h-[6.25rem] min-[400px]:h-[6.75rem] sm:h-[7.25rem] md:h-[7.75rem]"
+    : "h-[5.5rem] min-[400px]:h-[6rem] sm:h-[6.5rem] md:h-[7rem]";
+
+  const chartAreaMinH =
+    chartHeight >= CHART_H_LARGE ? "min-h-[280px] sm:min-h-[300px]" : "min-h-[200px] sm:min-h-[210px]";
+
   return (
     <div className={`flex flex-col ${minHClass}`}>
       <div
-        className={`glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${
-          largeTitle
-            ? "h-[6.25rem] min-[400px]:h-[6.75rem] sm:h-[7.25rem] md:h-[7.75rem]"
-            : "h-[5.5rem] min-[400px]:h-[6rem] sm:h-[6.5rem] md:h-[7rem]"
-        }`}
+        className={`glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
       >
         <h3
           className={`font-semibold text-white leading-snug line-clamp-3 ${
@@ -164,7 +168,7 @@ function ChartCard({
         </div>
       </div>
       <div
-        className={`glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartHeight >= CHART_H_LARGE ? "min-h-[280px] sm:min-h-[300px]" : "min-h-[200px] sm:min-h-[210px]"}`}
+        className={`glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
       >
         <GrowthBar
           fromPct={(chart.from.value / chart.maxVal) * 100}
@@ -204,16 +208,16 @@ export default function MarketData() {
           </p>
         </ScrollReveal>
 
-        {/* Growth charts — שלושת הגרפים יחד */}
+        {/* גרפי צמיחה — כל אחד בקוביית glass נפרדת, מיושרים לרוחב הטבלה */}
         <ScrollReveal>
-          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-6xl mx-auto mb-16 items-stretch">
+          <div className="max-w-5xl mx-auto grid grid-cols-3 gap-2 sm:gap-6 mb-12 sm:mb-14 items-stretch">
             {charts.map((chart, i) => (
               <ChartCard
                 key={`${chart.from.label}-${i}`}
                 chart={chart}
                 lang={lang}
                 chartHeight={CHART_H_DEFAULT}
-                barClass="w-10 sm:w-16 md:w-20"
+                barClass="w-10 sm:w-14 md:w-16"
                 minHClass="min-h-[300px] sm:min-h-[320px]"
                 largeTitle={false}
                 heightBoost={i === 0 ? 1.22 : 1}
@@ -222,13 +226,13 @@ export default function MarketData() {
           </div>
         </ScrollReveal>
 
-        {/* Market table */}
-        <ScrollReveal delay={0.2}>
-          <div className="max-w-5xl mx-auto">
-            <div className="overflow-x-auto rounded-xl border border-gray-700/30">
+        <ScrollReveal delay={0.08}>
+          <div className="max-w-5xl mx-auto mb-6">
+            <div className="glass-card rounded-xl overflow-hidden">
+              <div className="overflow-x-auto">
               <table className="w-full min-w-0">
                 <thead>
-                  <tr className="bg-accent/10 border-b border-accent/20">
+                  <tr className="border-b border-[rgba(0,168,255,0.12)] bg-white/[0.03]">
                     <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-accent uppercase tracking-wider">
                       {lang === "en" ? "Category" : "קטגוריה"}
                     </th>
@@ -251,7 +255,7 @@ export default function MarketData() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="border-b border-gray-700/20 hover:bg-accent/5 transition-colors"
+                      className="border-b border-white/[0.06] hover:bg-white/[0.03] transition-colors"
                     >
                       <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-gray-300 font-medium">{row.category[lang]}</td>
                       <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-bold">{row.market}</td>
@@ -264,7 +268,7 @@ export default function MarketData() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="bg-accent/10 border-t-2 border-accent/30"
+                    className="bg-white/[0.05] border-t border-[rgba(0,168,255,0.15)]"
                   >
                     <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-accent font-bold">{total.category[lang]}</td>
                     <td className="px-2 sm:px-5 py-3 text-sm sm:text-xl text-accent font-black">{total.market}</td>
@@ -273,35 +277,39 @@ export default function MarketData() {
                   </motion.tr>
                 </tbody>
               </table>
+              </div>
             </div>
+            <p className="mt-3 text-center text-[11px] sm:text-xs text-gray-500 leading-relaxed max-w-3xl mx-auto px-2">
+              {tx(t.market.dataNote, lang)}
+            </p>
           </div>
         </ScrollReveal>
 
-        {/* Big number highlight */}
-        <ScrollReveal delay={0.3}>
-          <div className="grid grid-cols-3 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-12 mt-12 max-w-xl sm:max-w-none mx-auto px-1">
-            <div className="text-center min-w-0 px-0.5">
-              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
+        {/* מונים — $432B · 2M+ · 62% */}
+        <ScrollReveal delay={0.2}>
+          <div className="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-12 md:gap-16 mt-10 max-w-2xl sm:max-w-none mx-auto px-2">
+            <div className="text-center min-w-0">
+              <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 $<AnimatedCounter target={432} suffix="B+" duration={2} />
               </div>
               <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
-                {lang === "en" ? "Total Market" : "שוק כולל"}
+                {tx(t.market.statDirectTotalLabel, lang)}
               </div>
             </div>
-            <div className="text-center min-w-0 px-0.5">
-              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
+            <div className="text-center min-w-0">
+              <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 <AnimatedCounter target={2} suffix="M+" duration={1.5} />
               </div>
               <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
-                {lang === "en" ? "Potential Clients" : "לקוחות פוטנציאליים"}
+                {tx(t.market.statPotentialClientsLabel, lang)}
               </div>
             </div>
-            <div className="text-center min-w-0 px-0.5">
-              <div className="text-[clamp(1.1rem,4.2vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-cyan-300 tabular-nums leading-none">
-                <AnimatedCounter target={62} suffix="%" duration={2} />
+            <div className="text-center min-w-0">
+              <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black tabular-nums leading-none" dir="ltr">
+                <AnimatedCounter target={62} suffix="%" duration={1.8} className="text-accent inline-block" />
               </div>
               <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
-                {lang === "en" ? "Projected Growth by 2030" : "צמיחה צפויה עד 2030"}
+                {tx(t.market.statGrowthLabel, lang)}
               </div>
             </div>
           </div>

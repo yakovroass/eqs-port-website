@@ -1,26 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
-import SoftwareMockup from "./SoftwareMockup";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
 type CapKey = "search" | "analysis" | "offers" | "crm" | "messaging" | "logistics" | "permits" | "spareparts" | "map" | "quotes";
-
-const mockupMap: Record<CapKey, "search" | "analysis" | "revalue" | "crm" | "messaging" | "logistics" | "permits" | "spareparts" | "map" | "quotes" | "alerts"> = {
-  search: "search",
-  analysis: "analysis",
-  offers: "revalue",
-  crm: "crm",
-  messaging: "messaging",
-  logistics: "logistics",
-  permits: "permits",
-  spareparts: "spareparts",
-  map: "map",
-  quotes: "alerts",
-};
 
 const capIcons: Record<CapKey, React.ReactNode> = {
   search: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>,
@@ -39,7 +24,6 @@ const capKeys: CapKey[] = ["search", "analysis", "offers", "crm", "messaging", "
 
 export default function SolutionOverview() {
   const { lang } = useLanguage();
-  const [active, setActive] = useState<CapKey | null>(null);
 
   return (
     <section id="solution" className="relative py-24 md:py-32 overflow-hidden">
@@ -47,7 +31,6 @@ export default function SolutionOverview() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-purple/3 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">
-        {/* הפתרון: כותרת ראשית + תת כותרת */}
         <ScrollReveal>
           <div className="text-center mb-6">
             <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
@@ -55,7 +38,6 @@ export default function SolutionOverview() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {/* מובייל: שתי שורות */}
             <div className="sm:hidden flex flex-col gap-1 items-center leading-tight">
               <span className="text-white">
                 {tx(t.solution.headline, lang).replace(/,\s*$/, "").trim()}
@@ -72,74 +54,28 @@ export default function SolutionOverview() {
           </p>
         </ScrollReveal>
 
-        {/* קוביות + תצוגה מורחבת – מעבר עכבר פותח את התצוגה למטה */}
-        <div
-          className="min-h-[200px]"
-          onMouseLeave={() => setActive(null)}
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mb-8 items-stretch">
-            {capKeys.map((key, i) => {
-              const item = t.capItems[key];
-              const isActive = active === key;
-              return (
-                <ScrollReveal key={key} delay={i * 0.05} className="h-full min-h-0">
-                  <motion.div
-                    role="button"
-                    tabIndex={0}
-                    onMouseEnter={() => setActive(key)}
-                    onFocus={() => setActive(key)}
-                    onBlur={() => setActive(null)}
-                    whileHover={{ scale: 1.02 }}
-                    className={`h-full min-h-[168px] sm:min-h-[188px] flex flex-col text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? "bg-accent/20 border-accent shadow-[0_0_24px_rgba(0,168,255,0.35)] ring-2 ring-accent/50"
-                        : "glass-card border-gray-600/50 hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_28px_rgba(0,168,255,0.25)] hover:ring-2 hover:ring-accent/40"
-                    }`}
-                  >
-                    <div className={`w-10 h-10 shrink-0 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                      isActive ? "bg-accent/30 text-accent" : "bg-dark-600/60 text-gray-400 hover:bg-accent/25 hover:text-accent"
-                    }`}>
-                      {capIcons[key]}
-                    </div>
-                    <h3 className={`text-sm font-semibold mb-2 transition-colors shrink-0 ${isActive ? "text-accent" : "text-white"}`}>
-                      {tx(item.title, lang)}
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed line-clamp-3 flex-1 min-h-0">
-                      {tx(item.desc, lang)}
-                    </p>
-                  </motion.div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-
-          <AnimatePresence mode="wait">
-            {active && (
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, height: 0, y: -10 }}
-                animate={{ opacity: 1, height: "auto", y: 0 }}
-                exit={{ opacity: 0, height: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className="overflow-hidden"
-              >
-                <div className="max-w-3xl mx-auto">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-accent/3 rounded-3xl blur-xl scale-105" />
-                    <div className="relative bg-dark-700/30 rounded-2xl p-4 border border-gray-700/30">
-                      <div className="mb-3 flex items-center justify-between">
-                        <div>
-                          <h3 className="text-lg font-semibold text-accent">{tx(t.capItems[active].title, lang)}</h3>
-                          <p className="text-sm text-gray-400">{tx(t.capItems[active].desc, lang)}</p>
-                        </div>
-                      </div>
-                      <SoftwareMockup variant={mockupMap[active]} />
-                    </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 items-stretch">
+          {capKeys.map((key, i) => {
+            const item = t.capItems[key];
+            return (
+              <ScrollReveal key={key} delay={i * 0.05} className="h-full min-h-0">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="group h-full min-h-[168px] sm:min-h-[188px] flex flex-col text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 glass-card border-gray-600/50 hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_28px_rgba(0,168,255,0.25)] hover:ring-2 hover:ring-accent/40"
+                >
+                  <div className="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center mb-3 transition-colors bg-dark-600/60 text-gray-400 group-hover:bg-accent/25 group-hover:text-accent">
+                    {capIcons[key]}
                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  <h3 className="text-sm font-semibold mb-2 transition-colors shrink-0 text-white group-hover:text-accent">
+                    {tx(item.title, lang)}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed line-clamp-3 flex-1 min-h-0">
+                    {tx(item.desc, lang)}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

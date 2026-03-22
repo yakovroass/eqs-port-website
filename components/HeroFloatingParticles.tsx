@@ -18,7 +18,7 @@ import {
  * (רקע חי בדף הבית + /bg-demos)
  */
 /** אוניות במקביל — וריאנטי מכולות שונים מסתובבים בין קבצי SVG */
-const SHIP_COUNT = 14;
+const SHIP_COUNT = 20;
 
 /** מהירות שיוט (px/s) — נמוך = איטי יותר */
 const SHIP_SAIL_SPEED_PX_PER_SEC = 2.05;

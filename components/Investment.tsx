@@ -15,8 +15,13 @@ export default function Investment() {
   ];
 
   const funds = [
-    tx(t.invest.fund1, lang), tx(t.invest.fund2, lang), tx(t.invest.fund3, lang),
-    tx(t.invest.fund4, lang), tx(t.invest.fund5, lang), tx(t.invest.fund6, lang),
+    tx(t.invest.fund1, lang),
+    tx(t.invest.fund2, lang),
+    tx(t.invest.fund3, lang),
+    tx(t.invest.fund4, lang),
+    tx(t.invest.fund5, lang),
+    tx(t.invest.fund6, lang),
+    tx(t.invest.fund7, lang),
   ];
 
   const dlBtn =
@@ -28,6 +33,28 @@ export default function Investment() {
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
+          <motion.div whileHover={{ scale: 1.01 }} className="max-w-4xl mx-auto mb-12 md:mb-14">
+            <div className="relative rounded-2xl overflow-hidden border border-accent/25 bg-gradient-to-br from-accent/[0.08] to-neon-cyan/[0.05]">
+              <div className="px-6 sm:px-10 py-8 sm:py-10">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                    <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center sm:text-start">
+                    {tx(t.invest.provenTitle, lang)}
+                  </h3>
+                </div>
+                <p className="max-w-3xl mx-auto text-center text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+                  {tx(t.invest.proven, lang)}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.08}>
           <div className="text-center mb-6">
             <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
               {tx(t.invest.label, lang)}
@@ -39,7 +66,7 @@ export default function Investment() {
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal>
+        <ScrollReveal delay={0.12}>
           <motion.div whileHover={{ scale: 1.002 }} className="max-w-4xl mx-auto mb-16">
             <div className="relative rounded-3xl p-[1px] bg-gradient-to-br from-accent/80 via-neon-cyan/50 to-neon-purple/60">
               <div className="bg-dark-900/95 backdrop-blur-sm rounded-3xl px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12">
@@ -58,12 +85,8 @@ export default function Investment() {
                   <p className="text-gray-400 text-base sm:text-lg">{tx(t.invest.duration, lang)}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-5 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-accent shrink-0" />
-                      {tx(t.invest.revenueTitle, lang)}
-                    </h3>
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12 md:items-center">
+                  <div className="min-w-0">
                     <ul className="space-y-3">
                       {revenueStreams.map((stream) => (
                         <li key={stream.title} className="flex gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-gray-800/60 hover:border-accent/15 transition-colors">
@@ -77,8 +100,8 @@ export default function Investment() {
                     </ul>
                   </div>
 
-                  <div>
-                    <ul className="space-y-2.5">
+                  <div className="min-w-0 md:ps-1">
+                    <ul className="space-y-3 sm:space-y-3.5">
                       {funds.map((use, i) => (
                         <motion.li
                           key={i}
@@ -86,7 +109,7 @@ export default function Investment() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: i * 0.06 }}
-                          className="flex items-start gap-3 text-sm sm:text-base text-gray-300"
+                          className="flex items-start gap-3 text-sm sm:text-base text-gray-300 leading-relaxed"
                         >
                           <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -126,28 +149,6 @@ export default function Investment() {
                     <span className="hidden sm:inline">{tx(t.invest.downloadOnePager, lang)}</span>
                   </motion.a>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <motion.div whileHover={{ scale: 1.01 }} className="max-w-4xl mx-auto">
-            <div className="relative rounded-2xl overflow-hidden border border-accent/25 bg-gradient-to-br from-accent/[0.08] to-neon-cyan/[0.05]">
-              <div className="px-6 sm:px-10 py-8 sm:py-10">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center sm:text-start">
-                    {tx(t.invest.provenTitle, lang)}
-                  </h3>
-                </div>
-                <p className="text-base sm:text-lg md:text-xl text-center text-gray-200 leading-relaxed max-w-3xl mx-auto">
-                  {tx(t.invest.proven, lang)}
-                </p>
               </div>
             </div>
           </motion.div>

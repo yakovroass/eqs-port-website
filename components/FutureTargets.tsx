@@ -51,15 +51,6 @@ const phases = [
   },
 ];
 
-const futureMarkets = [
-  { name: { en: "Construction Materials", he: "חומרי בנייה" }, size: "$1.3T" },
-  { name: { en: "Mining Equipment", he: "ציוד כרייה" }, size: "$150B" },
-  { name: { en: "Agricultural Machinery", he: "מכונות חקלאיות" }, size: "$180B" },
-  { name: { en: "Energy Infrastructure", he: "תשתיות אנרגיה" }, size: "$2.8T" },
-  { name: { en: "Maritime & Shipping", he: "ימי והובלה" }, size: "$400B" },
-  { name: { en: "Industrial Automation", he: "אוטומציה תעשייתית" }, size: "$300B" },
-];
-
 export default function FutureTargets() {
   const { lang } = useLanguage();
 
@@ -187,52 +178,6 @@ export default function FutureTargets() {
             </ScrollReveal>
           ))}
         </div>
-
-        {/* שווקים — כותרת גרדיאנט + קוביות מעוצבות */}
-        <ScrollReveal delay={0.2}>
-          <div className="max-w-3xl mx-auto text-center mb-10 px-2">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 leading-snug gradient-text">
-              {tx(t.roadmap.marketsHeadline, lang)}
-            </h3>
-            <p
-              className={`text-gray-400 text-base sm:text-lg leading-relaxed ${
-                lang === "he" ? "sm:whitespace-normal whitespace-pre-line" : ""
-              }`}
-            >
-              {lang === "he" ? tx(t.roadmap.marketsSubMobile, lang) : tx(t.roadmap.marketsSub, lang)}
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.3}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 max-w-4xl mx-auto mb-16 items-stretch">
-            {futureMarkets.map((market, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                whileHover={{ scale: 1.03 }}
-                className="relative rounded-xl p-5 sm:p-6 min-h-[118px] sm:min-h-[128px] h-full flex flex-col items-center justify-center border border-accent/15 bg-accent/[0.04] backdrop-blur-sm text-center group cursor-default hover:border-accent/25 transition-colors"
-              >
-                <div className="text-lg sm:text-xl font-black text-white mb-2 shrink-0 tabular-nums">{market.size}</div>
-                <div className="text-sm sm:text-base text-stone-300 group-hover:text-stone-100 transition-colors leading-snug px-1">{market.name[lang]}</div>
-              </motion.div>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Bottom summary — טקסט מסכם אחד עם גרדיאנט (ללא קוביית מסגרת) */}
-        <ScrollReveal delay={0.4}>
-          <div className="max-w-3xl mx-auto text-center px-4 sm:px-8 py-6 sm:py-10">
-            <p className="text-lg sm:text-xl md:text-2xl font-bold leading-relaxed gradient-text">
-              {lang === "en"
-                ? "Every company in the world buys something — we connect everyone through our network, replace procurement departments, and become the strongest partner. That’s our competitive edge."
-                : "כל חברה בעולם קונה משהו — אנחנו מחברים את כולם דרך הרשת שלנו, מחליפים את מחלקות הרכש והופכים לשותף החזק ביותר. זה היתרון התחרותי שלנו."}
-            </p>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );

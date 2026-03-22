@@ -109,28 +109,11 @@ export default function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* Result stats */}
-        <ScrollReveal>
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 mb-20">
-            {[
-              { val: "1-2", unit: { en: "Months", he: "חודשים" } },
-              { val: "2", unit: { en: "Steps", he: "שלבים" } },
-              { val: "1", unit: { en: "Platform", he: "פלטפורמה" } },
-              { val: "0", unit: { en: "Headaches", he: "כאבי ראש" } },
-            ].map((item, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl sm:text-4xl font-black text-accent">{item.val}</div>
-                <div className="text-xs text-gray-500 mt-1">{item.unit[lang]}</div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
         {/* ── PART 3: GLOBAL REACH - stacked images ── */}
         <ScrollReveal delay={0.2}>
-          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-3 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 sm:mb-6 gradient-text">
             {tx(t.process.globalReachTitle, lang)}
-          </h3>
+          </h2>
           <p className="sm:hidden text-gray-400 text-center max-w-2xl mx-auto mb-10 text-base sm:text-lg leading-relaxed whitespace-pre-line">
             {tx(t.process.globalReachIntroMobile, lang)}
           </p>

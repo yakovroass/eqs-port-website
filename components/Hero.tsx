@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
-import HeroFloatingParticles from "./HeroFloatingParticles";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
@@ -12,9 +11,7 @@ function GridBackground() {
       {/* רקע הרשת: רק מהדף (fixed) — כאן בלי רשת שנייה */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-radial from-accent/8 via-transparent to-transparent rounded-full" />
 
-      <div className="absolute inset-0 z-[1] pointer-events-none">
-        <HeroFloatingParticles variant="original" />
-      </div>
+      {/* אוניות: שכבה גלובלית ב־page.tsx (20) — כאן בלי נקודות כדי לא לכפול */}
 
       {/* Industrial silhouette overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-64 opacity-[0.03]"
