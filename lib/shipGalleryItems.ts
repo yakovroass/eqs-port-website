@@ -16,7 +16,7 @@ export const SHIP_GALLERY_SECTION_LABELS: Record<ShipGalleryCategory, string> = 
  * - `/ship-11-live` — אונייה 11 אחת על מסלול
  * - `/bg-demos` — אותו רקע אוניות כמו בדף הבית
  */
-export const SHIP_REF_SVG_CACHE = "75";
+export const SHIP_REF_SVG_CACHE = "76";
 
 /** מספור רציף — קבצים ב־public/ship-refs/ */
 export const SHIP_GALLERY_ITEMS: {

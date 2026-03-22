@@ -19,6 +19,19 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],
       },
+      // SVG אוניות — CDN/דפדפן לא יאחזו גרסה ישנה שבועות; ?v= בקוד + כאן revalidate
+      {
+        source: "/ship-refs/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
+      {
+        source: "/bg-demos",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
     ];
   },
 };
