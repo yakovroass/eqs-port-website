@@ -9,8 +9,12 @@ import { t } from "@/lib/translations";
 function GridBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
+      {/* רקע הרשת: רק מהדף (fixed) — כאן בלי רשת שנייה */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-radial from-accent/8 via-transparent to-transparent rounded-full" />
+
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <HeroFloatingParticles variant="original" />
+      </div>
 
       {/* Industrial silhouette overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-64 opacity-[0.03]"
@@ -20,8 +24,6 @@ function GridBackground() {
           backgroundPosition: "bottom",
         }}
       />
-
-      <HeroFloatingParticles variant="original" />
 
     </div>
   );

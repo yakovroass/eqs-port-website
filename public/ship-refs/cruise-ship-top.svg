@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 170" width="560" height="170" aria-label="Cruise">
+  <ellipse cx="280" cy="88" rx="240" ry="36" fill="#cbd5e1" opacity="0.15"/>
+  <path fill="#5c7d95"
+    d="M 32 88 L 40 52 L 52 44 L 140 38 L 420 40 L 480 48 L 520 72 L 528 88 L 520 104 L 480 128 L 420 136 L 140 138 L 52 132 L 40 124 L 32 88 Z"/>
+  <rect x="180" y="48" width="200" height="80" rx="4" fill="#ffffff"/>
+  <rect x="200" y="58" width="40" height="28" rx="2" fill="#bae6fd"/>
+  <rect x="250" y="58" width="40" height="28" rx="2" fill="#bbf7d0"/>
+  <rect x="300" y="58" width="40" height="28" rx="2" fill="#fecdd3"/>
+  <rect x="350" y="58" width="40" height="28" rx="2" fill="#e9d5ff"/>
+  <ellipse cx="280" cy="110" rx="70" ry="14" fill="#22c55e" opacity="0.35"/>
+  <rect x="48" y="60" width="72" height="56" rx="3" fill="#f1f5f9"/>
+</svg>

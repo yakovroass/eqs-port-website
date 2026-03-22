@@ -187,7 +187,6 @@ export default function MarketData() {
 
   return (
     <section id="market" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">

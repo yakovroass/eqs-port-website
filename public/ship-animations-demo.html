@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>דמו אוניות — מבט על, רקע שקוף</title>
+  <style>
+    :root {
+      --label: #475569;
+      --lane-border: rgba(0, 0, 0, 0.06);
+    }
+    * { box-sizing: border-box; }
+    /* רקע משבצות — רק כדי להדגים שקיפות; אפשר להחליף ל־#fff */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: #d4d4d4;
+      background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      color: #1e293b;
+      font-family: system-ui, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      padding: 1rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .explain {
+      max-width: 42rem;
+      margin: 0 auto 0.75rem;
+      padding: 0 1rem;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--label);
+    }
+    .explain strong { color: #0f172a; }
+    .lanes {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .lane {
+      position: relative;
+      height: 104px;
+      border-bottom: 1px solid var(--lane-border);
+      overflow: hidden;
+    }
+    .lane-label {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      z-index: 2;
+      font-size: 0.65rem;
+      letter-spacing: 0.03em;
+      color: var(--label);
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.65);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .ship {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 72px;
+      width: auto;
+      max-width: min(92vw, 440px);
+      object-fit: contain;
+      transform-origin: center center;
+      /* ללא זוהר “ים” — רק האובייקט */
+      will-change: transform;
+    }
+    .ship--east { transform: translateY(-50%) rotate(0deg); }
+    .ship--west { transform: translateY(-50%) rotate(180deg); }
+    .ship--ne { transform: translateY(-50%) rotate(-35deg); }
+
+    @keyframes cross-lr {
+      0% { left: -18%; }
+      100% { left: 118%; }
+    }
+    @keyframes cross-rl {
+      0% { left: 118%; }
+      100% { left: -18%; }
+    }
+    @keyframes cross-diagonal {
+      0% { left: -12%; top: 68%; }
+      100% { left: 112%; top: 32%; }
+    }
+    @keyframes orbit-soft {
+      0% { left: 8%; transform: translateY(-50%) rotate(0deg); }
+      25% { left: 38%; transform: translateY(-58%) rotate(-8deg); }
+      50% { left: 72%; transform: translateY(-50%) rotate(0deg); }
+      75% { left: 42%; transform: translateY(-42%) rotate(8deg); }
+      100% { left: 8%; transform: translateY(-50%) rotate(0deg); }
+    }
+    .lane:nth-child(1) .ship { animation: cross-lr 30s linear infinite; }
+    .lane:nth-child(2) .ship { animation: cross-rl 34s linear infinite; animation-delay: -6s; }
+    .lane:nth-child(3) .ship { animation: cross-lr 26s linear infinite; animation-delay: -3s; }
+    .lane:nth-child(4) .ship { animation: cross-diagonal 38s linear infinite; height: 68px; }
+    .lane:nth-child(5) .ship { animation: orbit-soft 48s ease-in-out infinite; height: 70px; }
+    .lane:nth-child(6) .ship { animation: cross-lr 42s linear infinite; animation-delay: -10s; height: 58px; opacity: 0.95; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+    footer code { background: rgba(255, 255, 255, 0.7); padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>דמו — אוניות במבט על (נכסים עם רקע שקוף)</h1>
+  <p class="explain">
+    <strong>הנכסים:</strong> קבצי <strong>SVG</strong> בתיקייה <code>public/ship-refs/</code> — רק האונייה, בלי ים.
+    אוניית מכולות: מכולות רק <strong>בצד אחד</strong> (קו מקווקו = אמצע סיפון).
+    רשימה מלאה (ממוספרת): <a href="/ship-gallery"><strong>/ship-gallery</strong></a> (אחרי <code>npm run dev</code>).
+  </p>
+
+  <div class="lanes">
+    <div class="lane">
+      <span class="lane-label">מכולות — שמאל→ימין</span>
+      <img class="ship ship--east" src="/ship-refs/container-ship-top.svg" alt="אוניית מכולות" />
+    </div>
+    <div class="lane">
+      <span class="lane-label">מכלית נפט — ימין→שמאל</span>
+      <img class="ship ship--west" src="/ship-refs/tanker-top.svg" alt="מכלית" />
+    </div>
+    <div class="lane">
+      <span class="lane-label">מובילה — איטי</span>
+      <img class="ship ship--east" src="/ship-refs/bulk-carrier-top.svg" alt="מובילה" />
+    </div>
+    <div class="lane">
+      <span class="lane-label">נושאת LNG — אלכסון</span>
+      <img class="ship ship--ne" src="/ship-refs/lng-carrier-top.svg" alt="נושאת גז" />
+    </div>
+    <div class="lane">
+      <span class="lane-label">מעבורת RoRo — מסלול מעוקל</span>
+      <img class="ship ship--east" src="/ship-refs/roro-ferry-top.svg" alt="מעבורת" />
+    </div>
+    <div class="lane">
+      <span class="lane-label">רב־שימושי (מכולות + מטען)</span>
+      <img class="ship ship--east" src="/ship-refs/multipurpose-top.svg" alt="" />
+    </div>
+  </div>
+
+  <footer>
+    <a href="/ship-gallery.html">גלריה — נפט, מובילה, כימיקלים, פחם, עפרה, ממברנה, רכב, בעלי חיים…</a>
+    · <code>/ship-animations-demo.html</code>
+  </footer>
+</body>
+</html>

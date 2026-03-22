@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="Livestock carrier">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36 C 505 44 548 72 556 84 C 548 96 505 124 458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  
+  <rect x="120" y="46" width="310" height="28" rx="2" fill="#2d4554" opacity="0.92"/>
+  <rect x="120" y="78" width="310" height="28" rx="2" fill="#2d4554" opacity="0.92"/>
+  <rect x="120" y="110" width="310" height="12" rx="2" fill="#3d5666" opacity="0.9"/>
+  
+  
+  <circle cx="140" cy="60" r="3" fill="#22c55e" opacity="0.5"/><circle cx="220" cy="92" r="3" fill="#22c55e" opacity="0.5"/><circle cx="320" cy="60" r="3" fill="#22c55e" opacity="0.5"/>
+  <rect x="48" y="52" width="52" height="64" rx="3" fill="#f1f5f9"/>
+  <rect x="70" y="44" width="12" height="12" rx="2" fill="#15803d"/>
+  <rect x="520" y="76" width="12" height="16" rx="2" fill="#ca8a04"/>
+</svg>

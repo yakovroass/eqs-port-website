@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 150" width="380" height="150" aria-label="Trawler">
+  <ellipse cx="190" cy="78" rx="150" ry="30" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 20 75 L 28 48 L 44 40 L 160 36 L 300 44 L 340 60 L 348 75 L 340 90 L 300 106 L 160 114 L 44 110 L 28 102 L 20 75 Z"/>
+  <rect x="80" y="52" width="160" height="46" rx="2" fill="#94a3b8"/>
+  <circle cx="48" cy="100" r="14" fill="#a8b4cc"/>
+  <circle cx="48" cy="100" r="6" fill="#94a3b8"/>
+  <rect x="52" y="48" width="36" height="40" rx="2" fill="#f1f5f9"/>
+</svg>

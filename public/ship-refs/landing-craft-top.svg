@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 140" width="420" height="140" aria-label="LCT">
+  <ellipse cx="210" cy="74" rx="170" ry="28" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 20 74 L 28 50 L 44 44 L 200 36 L 360 44 L 392 60 L 400 74 L 392 88 L 360 104 L 200 112 L 44 104 L 28 98 L 20 74 Z"/>
+  <path d="M 28 74 L 120 74 L 120 52 L 28 64 Z" fill="#a8a29e"/>
+  <rect x="130" y="52" width="200" height="44" rx="2" fill="#d6d3d1"/>
+</svg>

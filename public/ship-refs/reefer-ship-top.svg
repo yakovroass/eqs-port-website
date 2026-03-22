@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="Reefer container ship">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.22"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36 C 505 44 548 72 556 84 C 548 96 505 124 458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  <rect x="118" y="44" width="318" height="80" rx="2" fill="#94a3b8" opacity="0.28"/>
+  
+  <g>
+    <rect x="128" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="152" y="92" width="20" height="10" fill="#e0f2fe"/><rect x="176" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="200" y="92" width="20" height="10" fill="#bae6fd"/><rect x="224" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="248" y="92" width="20" height="10" fill="#e0f2fe"/><rect x="272" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="296" y="92" width="20" height="10" fill="#bae6fd"/><rect x="320" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="344" y="92" width="20" height="10" fill="#e0f2fe"/><rect x="368" y="92" width="20" height="10" fill="#f0f9ff"/><rect x="392" y="92" width="20" height="10" fill="#bae6fd"/>
+    <rect x="128" y="106" width="20" height="10" fill="#e0f2fe"/><rect x="152" y="106" width="20" height="10" fill="#f0f9ff"/><rect x="176" y="106" width="20" height="10" fill="#bae6fd"/><rect x="200" y="106" width="20" height="10" fill="#f0f9ff"/><rect x="224" y="106" width="20" height="10" fill="#e0f2fe"/><rect x="248" y="106" width="20" height="10" fill="#f0f9ff"/><rect x="272" y="106" width="20" height="10" fill="#bae6fd"/><rect x="296" y="106" width="20" height="10" fill="#e0f2fe"/><rect x="320" y="106" width="20" height="10" fill="#f0f9ff"/><rect x="344" y="106" width="20" height="10" fill="#bae6fd"/><rect x="368" y="106" width="20" height="10" fill="#e0f2fe"/><rect x="392" y="106" width="20" height="10" fill="#f0f9ff"/>
+  </g>
+  <rect x="48" y="52" width="52" height="64" rx="3" fill="#f1f5f9"/>
+  <rect x="54" y="56" width="40" height="22" rx="2" fill="#e2e8f0"/>
+  <rect x="70" y="44" width="14" height="14" rx="2" fill="#0ea5e9"/>
+  <rect x="518" y="76" width="14" height="16" rx="2" fill="#ca8a04"/>
+</svg>

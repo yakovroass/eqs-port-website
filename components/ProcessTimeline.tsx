@@ -11,7 +11,6 @@ export default function ProcessTimeline() {
 
   return (
     <section id="process" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
 
       <div className="relative z-10 section-container">
         {/* ── PART 1: THE HARD WAY TODAY ── */}

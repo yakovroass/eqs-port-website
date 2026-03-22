@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-520 -95 1580 330" width="1580" height="330" aria-label="Icebreaker">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @keyframes navBlinkCf {
+        0%, 42% { opacity: 1; }
+        54%, 91% { opacity: 0.07; }
+        100% { opacity: 1; }
+      }
+      .nvPortCf { animation: navBlinkCf 4.4s ease-in-out infinite; animation-delay: 0s; }
+      .nvStbdCf { animation: navBlinkCf 4.4s ease-in-out infinite; animation-delay: 2.2s; }
+      @keyframes beamBreathCf {
+        0%, 100% { opacity: 0.96; }
+        50% { opacity: 0.86; }
+      }
+      .nvBeamsBreathCf { animation: beamBreathCf 8.5s ease-in-out infinite; }
+      @media (prefers-reduced-motion: reduce) {
+        .nvBeamsBreathCf { animation: none; opacity: 0.92; }
+      }
+    ]]></style>
+    <linearGradient id="nvWB-ib" gradientUnits="userSpaceOnUse" x1="32" y1="80" x2="-300" y2="80">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/>
+      <stop offset="18%" stop-color="#fef9c3" stop-opacity="0.5"/>
+      <stop offset="55%" stop-color="#fefce8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nvWS-ib" gradientUnits="userSpaceOnUse" x1="488" y1="80" x2="1035" y2="80">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="18%" stop-color="#fef9c3" stop-opacity="0.48"/>
+      <stop offset="55%" stop-color="#fefce8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="nvRP-ib" gradientUnits="userSpaceOnUse" cx="183" cy="118" r="24">
+      <stop offset="0%" stop-color="#fecaca" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ef4444" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nvSG-ib" gradientUnits="userSpaceOnUse" cx="183" cy="42" r="24">
+      <stop offset="0%" stop-color="#d1fae5" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#22c55e" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="nvFW-ib" x="-90%" y="-90%" width="280%" height="280%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="nvFC-ib" x="-130%" y="-130%" width="360%" height="360%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="hullHaloSoft-ib" x="-28%" y="-28%" width="156%" height="156%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="b"/>
+      <feMerge><feMergeNode in="b"/></feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(260,0) scale(-1,1) translate(-260,0)">
+    <g filter="url(#hullHaloSoft-ib)" opacity="0.88" aria-hidden="true">
+      <ellipse cx="260" cy="80" rx="395" ry="86" fill="#f97316" opacity="0.085"/>
+      <ellipse cx="260" cy="80" rx="315" ry="68" fill="#78716c" opacity="0.07"/>
+      <ellipse cx="260" cy="80" rx="240" ry="52" fill="#a8a29e" opacity="0.05"/>
+    </g>
+    <g transform="translate(260,80) scale(0.975) translate(-262,-84)">
+      <path fill="#9a3412"
+        d="M 26 84 L 34 48 L 48 40 L 140 34 L 400 36 L 460 52 L 492 76 L 498 84 L 492 92 L 460 116 L 400 132 L 140 134 L 48 128 L 34 120 L 26 84 Z"/>
+      <rect x="130" y="52" width="260" height="64" rx="2" fill="#7c2d12" opacity="0.52"/>
+      <g transform="translate(14,0)" stroke="#57534e" stroke-width="0.55" aria-hidden="true">
+        <rect x="54" y="62" width="42" height="42" rx="2.5" fill="#e7e5e4"/>
+        <line x1="58" y1="75" x2="92" y2="75" stroke="#a8a29e" stroke-width="0.4"/>
+        <line x1="58" y1="91" x2="92" y2="91" stroke="#a8a29e" stroke-width="0.4"/>
+        <circle cx="75" cy="83" r="5.5" fill="none" stroke="#78716c" stroke-width="0.45" stroke-dasharray="2 2" opacity="0.85"/>
+        <circle cx="75" cy="83" r="3" fill="#d6d3d1" stroke="#44403c" stroke-width="0.55"/>
+      </g>
+    </g>
+    <g class="nvBeamsBreathCf" aria-hidden="true" pointer-events="none">
+      <path fill="url(#nvWB-ib)" filter="url(#nvFW-ib)" d="M 32 80 L -300 62 L -300 98 Z"/>
+      <path fill="url(#nvWS-ib)" filter="url(#nvFW-ib)" d="M 488 80 L 1035 44 L 1035 116 Z"/>
+    </g>
+  </g>
+  <g aria-hidden="true" pointer-events="none">
+    <circle class="nvPortCf" cx="183" cy="118" r="11" fill="url(#nvRP-ib)" filter="url(#nvFC-ib)"/>
+    <circle class="nvStbdCf" cx="183" cy="42" r="11" fill="url(#nvSG-ib)" filter="url(#nvFC-ib)"/>
+  </g>
+</svg>

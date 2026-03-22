@@ -65,7 +65,6 @@ export default function FutureTargets() {
 
   return (
     <section id="future" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
 
       {/* Animated network lines background */}
       <div className="absolute inset-0 opacity-[0.03]">

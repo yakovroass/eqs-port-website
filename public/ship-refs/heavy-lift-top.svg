@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" width="520" height="160" aria-label="Heavy lift">
+  <ellipse cx="260" cy="84" rx="220" ry="34" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 28 84 L 36 48 L 48 40 L 140 34 L 420 36 L 480 52 L 508 76 L 512 84 L 508 92 L 480 116 L 420 132 L 140 134 L 48 128 L 36 120 L 28 84 Z"/>
+  <rect x="100" y="52" width="320" height="64" rx="2" fill="#cbd5e1"/>
+  <rect x="140" y="60" width="120" height="48" rx="2" fill="#e7e5e4"/>
+  <rect x="280" y="64" width="100" height="40" rx="2" fill="#d6d3d1"/>
+  <rect x="52" y="58" width="44" height="52" rx="3" fill="#f1f5f9"/>
+</svg>

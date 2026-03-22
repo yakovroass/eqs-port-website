@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 240" width="180" height="240" aria-label="Stacked cones">
+  <defs>
+    <linearGradient id="lb9a" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ddd6fe" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="lb9b" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#fecdd3" stop-opacity="0.45"/>
+    </linearGradient>
+  </defs>
+  <path d="M 90 0 L 130 100 L 50 100 Z" fill="url(#lb9a)"/>
+  <path d="M 90 70 L 150 240 L 30 240 Z" fill="url(#lb9b)" opacity="0.85"/>
+</svg>

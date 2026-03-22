@@ -44,7 +44,8 @@ export default function Home() {
         </div>
         <MouseGlow />
         <Navbar />
-        <main>
+        {/* מעל שכבת האוניות (absolute z-0) — בלי זה התוכן עלול להישאר מתחת ולהיעלם */}
+        <main className="relative z-10">
           <Hero />
           <Problem />
           <MarketData />

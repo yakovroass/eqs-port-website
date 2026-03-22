@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-label="Diamond flare">
+  <defs>
+    <linearGradient id="gLbDiamond" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#fef3c7" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <path d="M 100 8 L 192 100 L 100 192 L 8 100 Z" fill="url(#gLbDiamond)"/>
+</svg>

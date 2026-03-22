@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" width="260" height="200" aria-label="Twin spots">
+  <defs>
+    <radialGradient id="lb8a" cx="35%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#fef9c3" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lb8b" cx="68%" cy="55%" r="42%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="65%" stop-color="#e0f2fe" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="90" cy="80" rx="72" ry="68" fill="url(#lb8a)"/>
+  <ellipse cx="175" cy="110" rx="68" ry="62" fill="url(#lb8b)"/>
+</svg>

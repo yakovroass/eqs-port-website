@@ -24,7 +24,6 @@ export default function Investment() {
 
   return (
     <section id="invest" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/3 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">

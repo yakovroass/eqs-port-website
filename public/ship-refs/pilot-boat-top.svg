@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 120" width="260" height="120" aria-label="Pilot boat">
+  <ellipse cx="130" cy="64" rx="100" ry="22" fill="#cbd5e1" opacity="0.18"/>
+  <path fill="#5c7d95"
+    d="M 16 62 L 24 40 L 40 34 L 120 30 L 210 38 L 232 52 L 238 62 L 232 72 L 210 86 L 120 94 L 40 90 L 24 84 L 16 62 Z"/>
+  <rect x="44" y="38" width="32" height="28" rx="2" fill="#ffffff"/>
+  <rect x="90" y="48" width="80" height="28" rx="2" fill="#0284c7" opacity="0.5"/>
+</svg>

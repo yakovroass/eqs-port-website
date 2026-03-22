@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 155" width="480" height="155" aria-label="Two hold bulker">
+  <ellipse cx="240" cy="80" rx="200" ry="32" fill="#94a3b8" opacity="0.18"/>
+  <path fill="#5c7d95" d="M 28 80 L 36 50 L 46 44 L 130 38 L 380 42 L 430 54 L 452 80 L 430 106 L 380 118 L 130 122 L 46 116 L 36 110 L 28 80 Z"/>
+  <rect x="120" y="48" width="140" height="64" rx="2" fill="#2d4554"/>
+  <rect x="270" y="48" width="140" height="64" rx="2" fill="#2d4554"/>
+  <rect x="124" y="52" width="132" height="8" fill="#4a6578"/>
+  <rect x="274" y="52" width="132" height="8" fill="#4a6578"/>
+  <rect x="258" y="36" width="8" height="88" fill="#64748b"/>
+  <rect x="48" y="54" width="44" height="52" rx="3" fill="#e8eef4"/>
+</svg>

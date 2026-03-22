@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="מובילה — מבט על">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36
+       C 505 44  548 72  556 84
+       C 548 96  505 124  458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  
+  <rect x="125" y="48" width="88" height="72" rx="2" fill="#2d4554"/>
+  <rect x="223" y="48" width="88" height="72" rx="2" fill="#2d4554"/>
+  <rect x="321" y="48" width="88" height="72" rx="2" fill="#2d4554"/>
+  <rect x="128" y="52" width="82" height="10" fill="#94a3b8"/>
+  <rect x="226" y="52" width="82" height="10" fill="#94a3b8"/>
+  <rect x="324" y="52" width="82" height="10" fill="#94a3b8"/>
+  
+  <rect x="210" y="34" width="8" height="100" rx="1" fill="#cbd5e1"/>
+  <rect x="206" y="30" width="16" height="8" rx="1" fill="#94a3b8"/>
+  <rect x="208" y="128" width="12" height="6" rx="1" fill="#a8b4cc"/>
+  <rect x="308" y="34" width="8" height="100" rx="1" fill="#cbd5e1"/>
+  <rect x="304" y="30" width="16" height="8" rx="1" fill="#94a3b8"/>
+  
+  <rect x="48" y="52" width="52" height="64" rx="3" fill="#f1f5f9"/>
+  <rect x="54" y="56" width="40" height="22" rx="2" fill="#e2e8f0"/>
+  <rect x="58" y="60" width="14" height="10" rx="1" fill="#38bdf8" opacity="0.35"/>
+  <rect x="54" y="84" width="40" height="24" rx="2" fill="#cbd5e1"/>
+  <rect x="70" y="44" width="12" height="12" rx="2" fill="#b91c1c"/>
+  <circle cx="528" cy="84" r="6" fill="#ca8a04"/>
+</svg>

@@ -131,20 +131,20 @@ body {
 /* רק למעלה — כמו במקור (רשת “זורמת” כלפי מעלה) */
 @keyframes grid-bg {
   0% {
-    background-position: 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0;
   }
   100% {
-    background-position: 0 -100px, 0 -100px, 0 -100px;
+    background-position: 0 -100px, 0 -100px;
   }
 }
 
 @keyframes grid-bg-mobile {
   0% {
-    background-position: 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0;
     transform: translate3d(0, 0, 0);
   }
   100% {
-    background-position: 0 -220px, 0 -220px, 0 -220px;
+    background-position: 0 -220px, 0 -220px;
     transform: translate3d(0, -72px, 0);
   }
 }
@@ -188,21 +188,21 @@ body {
   border-color: rgba(0, 168, 255, 0.18);
 }
 
+/* רשת אחת: רק קווים אופקיים+אנכיים (בלי שכבת נקודות נפרדת) */
 .animated-grid-bg {
   background-image:
-    radial-gradient(circle, rgba(0, 168, 255, 0.1) 1px, transparent 1.2px),
-    linear-gradient(rgba(0, 168, 255, 0.035) 1.3px, transparent 1.3px),
-    linear-gradient(90deg, rgba(0, 168, 255, 0.035) 1.3px, transparent 1.3px);
-  background-size: 60px 60px, 60px 60px, 60px 60px;
-  background-position: 0 0, 0 0, 0 0;
+    linear-gradient(rgba(0, 168, 255, 0.04) 1.3px, transparent 1.3px),
+    linear-gradient(90deg, rgba(0, 168, 255, 0.04) 1.3px, transparent 1.3px);
+  background-size: 60px 60px, 60px 60px;
+  background-position: 0 0, 0 0;
   background-repeat: repeat;
-  animation: grid-bg 160s linear infinite;
+  animation: grid-bg 142s linear infinite;
   will-change: background-position;
 }
 
 @media (max-width: 768px) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 110s linear infinite !important;
+    animation: grid-bg-mobile 98s linear infinite !important;
     will-change: background-position, transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -220,7 +220,37 @@ body {
 /* מובייל חייב לזוז גם אם המכשיר על reduce-motion */
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 110s linear infinite !important;
+    animation: grid-bg-mobile 98s linear infinite !important;
     will-change: background-position, transform;
+  }
+}
+
+/* אונייה 11 — שיט על מסלול (דף /ship-11-live); תנועה שמאלה — חרטום מצביע לכיוון ההפלגה */
+@keyframes ship-11-sail {
+  0% {
+    left: 118%;
+  }
+  100% {
+    left: -42%;
+  }
+}
+
+.ship-11-sail {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  height: 76%;
+  width: auto;
+  aspect-ratio: 1580 / 330;
+  max-height: 320px;
+  animation: ship-11-sail 220s linear infinite;
+  will-change: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ship-11-sail {
+    animation: none;
+    left: 12% !important;
+    transform: translateY(-50%) scaleX(-1);
   }
 }

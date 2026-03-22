@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="נושאת LNG — מבט על">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36
+       C 505 44  548 72  556 84
+       C 548 96  505 124  458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  
+  <ellipse cx="155" cy="84" rx="36" ry="26" fill="#6a8494"/>
+  <ellipse cx="235" cy="84" rx="36" ry="26" fill="#6a8494"/>
+  <ellipse cx="315" cy="84" rx="36" ry="26" fill="#6a8494"/>
+  <ellipse cx="395" cy="84" rx="36" ry="26" fill="#6a8494"/>
+  <ellipse cx="155" cy="90" rx="28" ry="7" fill="#cbd5e1" opacity="0.2"/>
+  <ellipse cx="315" cy="90" rx="28" ry="7" fill="#cbd5e1" opacity="0.2"/>
+  <ellipse cx="235" cy="84" rx="36" ry="26" fill="none" opacity="0.35"/>
+  
+  <rect x="48" y="52" width="52" height="64" rx="3" fill="#f8fafc"/>
+  <rect x="54" y="56" width="40" height="24" rx="2" fill="#e2e8f0"/>
+  <rect x="58" y="60" width="14" height="10" rx="1" fill="#2d4554" opacity="0.4"/>
+  <rect x="54" y="86" width="40" height="22" rx="2" fill="#cbd5e1"/>
+  <rect x="62" y="112" width="26" height="8" rx="1" fill="#cbd5e1"/>
+  <rect x="70" y="44" width="14" height="14" rx="2" fill="#b91c1c"/>
+  <path d="M 520 72 L 548 84 L 520 96 Z" fill="#ca8a04"/>
+</svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="מעבורת RoRo — מבט על">
+  <defs>
+    <linearGradient id="nvWB-rf" gradientUnits="userSpaceOnUse" x1="30" y1="88" x2="-40" y2="88">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.88"/>
+      <stop offset="28%" stop-color="#fef9c3" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nvWS-rf" gradientUnits="userSpaceOnUse" x1="554" y1="88" x2="618" y2="88">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="30%" stop-color="#fef9c3" stop-opacity="0.48"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="nvRP-rf" gradientUnits="userSpaceOnUse" cx="381" cy="104" r="56">
+      <stop offset="0%" stop-color="#fecaca" stop-opacity="0.98"/>
+      <stop offset="15%" stop-color="#ef4444" stop-opacity="0.82"/>
+      <stop offset="40%" stop-color="#ef4444" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nvSG-rf" gradientUnits="userSpaceOnUse" cx="381" cy="72" r="56">
+      <stop offset="0%" stop-color="#d1fae5" stop-opacity="0.98"/>
+      <stop offset="15%" stop-color="#22c55e" stop-opacity="0.82"/>
+      <stop offset="40%" stop-color="#22c55e" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="nvFW-rf" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="nvFC-rf" x="-130%" y="-130%" width="360%" height="360%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.18"/>
+  
+  <path fill="#5c7d95"
+    d="M 28 84 L 32 50 L 38 44 L 100 34 L 408 34 L 456 38
+       C 508 46  552 72  558 84
+       C 552 96  508 122  456 130 L 408 134 L 100 134 L 38 124 L 32 118 L 28 84 Z"/>
+  
+  
+  <path d="M 38 72 L 95 72 L 95 96 L 38 100 Z" fill="#818cf8"/>
+  <rect x="108" y="48" width="312" height="72" rx="2" fill="#ddd6fe" opacity="0.9"/>
+  
+  <rect x="118" y="56" width="36" height="14" rx="2" fill="#fbbf24"/>
+  <rect x="162" y="58" width="32" height="12" rx="2" fill="#34d399"/>
+  <rect x="204" y="56" width="38" height="14" rx="2" fill="#f472b6"/>
+  <rect x="252" y="58" width="34" height="12" rx="2" fill="#fbbf24"/>
+  <rect x="296" y="56" width="36" height="14" rx="2" fill="#38bdf8"/>
+  <rect x="342" y="58" width="30" height="12" rx="2" fill="#a78bfa"/>
+  <rect x="384" y="56" width="28" height="14" rx="2" fill="#fbbf24"/>
+  <rect x="118" y="82" width="32" height="12" rx="2" fill="#94a3b8"/>
+  <rect x="160" y="84" width="40" height="12" rx="2" fill="#cbd5e1"/>
+  <rect x="210" y="82" width="36" height="14" rx="2" fill="#34d399"/>
+  <rect x="258" y="84" width="34" height="12" rx="2" fill="#fbbf24"/>
+  
+  <rect x="48" y="50" width="52" height="68" rx="3" fill="#f1f5f9"/>
+  <rect x="54" y="54" width="40" height="28" rx="2" fill="#e2e8f0"/>
+  <rect x="58" y="58" width="16" height="12" rx="1" fill="#0ea5e9" opacity="0.35"/>
+  <rect x="54" y="88" width="40" height="22" rx="2" fill="#cbd5e1"/>
+  <rect x="520" y="76" width="14" height="16" rx="2" fill="#eab308"/>
+  <g aria-hidden="true" pointer-events="none">
+    <path fill="url(#nvWB-rf)" filter="url(#nvFW-rf)" d="M 30 88 L -38 60 L -38 116 Z"/>
+    <path fill="url(#nvWS-rf)" filter="url(#nvFW-rf)" d="M 554 88 L 626 56 L 626 120 Z"/>
+    <ellipse cx="381" cy="104" rx="16" ry="42" fill="url(#nvRP-rf)" filter="url(#nvFC-rf)"/>
+    <ellipse cx="381" cy="72" rx="16" ry="42" fill="url(#nvSG-rf)" filter="url(#nvFC-rf)"/>
+  </g>
+</svg>

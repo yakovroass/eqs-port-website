@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 130" width="300" height="130" aria-label="Patrol">
+  <ellipse cx="150" cy="68" rx="120" ry="24" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 18 68 L 26 42 L 42 36 L 140 32 L 250 40 L 276 56 L 282 68 L 276 80 L 250 96 L 140 104 L 42 100 L 26 94 L 18 68 Z"/>
+  <rect x="48" y="44" width="40" height="48" rx="2" fill="#e2e8f0"/>
+  
+  <circle cx="140" cy="18" r="4" fill="#ef4444"/>
+</svg>

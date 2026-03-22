@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="Large tanker">
+  <ellipse cx="290" cy="88" rx="248" ry="36" fill="#94a3b8" opacity="0.16"/>
+  <path fill="#5c7d95" d="M 32 88 L 40 50 L 48 42 L 108 34 L 412 34 L 458 38 C 505 46 548 72 556 88 C 548 104 505 130 458 138 L 412 142 L 108 142 L 48 134 L 40 126 L 32 88 Z"/>
+  <rect x="118" y="48" width="318" height="80" rx="2" fill="#2d4554" opacity="0.65"/>
+  <rect x="130" y="60" width="290" height="12" fill="#4a6578"/>
+  <rect x="130" y="80" width="290" height="12" fill="#4a6578"/>
+  <rect x="130" y="100" width="290" height="12" fill="#4a6578"/>
+  <rect x="240" y="68" width="40" height="40" rx="2" fill="#5c7d95"/>
+  <rect x="48" y="54" width="52" height="68" rx="3" fill="#e8eef4"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160" aria-label="Dredger">
+  <ellipse cx="240" cy="84" rx="200" ry="32" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 24 84 L 32 50 L 48 42 L 200 36 L 380 40 L 430 52 L 452 84 L 430 116 L 380 128 L 200 132 L 48 126 L 32 118 L 24 84 Z"/>
+  <rect x="100" y="52" width="220" height="64" rx="2" fill="#3d5666"/>
+  <path fill="#64748b" d="M 458 40 L 320 72 L 316 82 L 324 86 L 462 48 Z"/>
+  <path fill="#475569" d="M 322 78 L 280 118 L 272 122 L 278 128 L 328 86 Z"/>
+  <circle cx="460" cy="40" r="8" fill="#ca8a04"/>
+  <rect x="48" y="58" width="44" height="52" rx="3" fill="#f8fafc"/>
+</svg>

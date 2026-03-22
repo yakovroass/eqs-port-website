@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="מכלית נפט — מבט על">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#94a3b8" opacity="0.18"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36
+       C 505 44  548 72  556 84
+       C 548 96  505 124  458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  
+  <rect x="118" y="46" width="318" height="76" rx="3" fill="#2d4554" opacity="0.95"/>
+  <rect x="128" y="55" width="298" height="6" fill="#4a6578" opacity="0.95"/>
+  <rect x="132" y="69" width="290" height="5" fill="#5a7a8c" opacity="0.9"/>
+  <rect x="128" y="81" width="298" height="6" fill="#4a6578" opacity="0.92"/>
+  <rect x="132" y="95" width="290" height="5" fill="#5a7a8c" opacity="0.88"/>
+  <rect x="128" y="107" width="298" height="6" fill="#4a6578" opacity="0.85"/>
+  
+  <rect x="248" y="64" width="36" height="40" rx="3" fill="#a8b4cc"/>
+  <rect x="292" y="66" width="32" height="36" rx="2" fill="#cbd5e1"/>
+  <circle cx="266" cy="84" r="5" fill="#94a3b8"/>
+  <circle cx="308" cy="84" r="4" fill="#a8b4cc"/>
+  
+  <rect x="48" y="50" width="52" height="68" rx="3" fill="#f8fafc"/>
+  <rect x="54" y="54" width="40" height="26" rx="2" fill="#e2e8f0"/>
+  <rect x="58" y="58" width="16" height="12" rx="1" fill="#2d4554" opacity="0.4"/>
+  <rect x="54" y="86" width="40" height="20" rx="2" fill="#cbd5e1"/>
+  <rect x="62" y="110" width="26" height="8" rx="1" fill="#cbd5e1"/>
+  <rect x="70" y="42" width="14" height="14" rx="2" fill="#ea580c"/>
+  <rect x="520" y="76" width="12" height="16" rx="2" fill="#ca8a04"/>
+</svg>

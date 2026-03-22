@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 168" width="580" height="168" aria-label="Chemical tanker">
+  <ellipse cx="290" cy="88" rx="248" ry="38" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 32 84 L 40 46 L 46 40 L 108 32 L 412 32 L 458 36 C 505 44 548 72 556 84 C 548 96 505 124 458 132 L 412 136 L 108 136 L 46 128 L 40 122 L 32 84 Z"/>
+  
+  <rect x="118" y="48" width="318" height="72" rx="3" fill="#d6d3d1" opacity="0.85"/>
+  
+  <circle cx="145" cy="78" r="14" fill="#8a9faf"/><circle cx="178" cy="78" r="14" fill="#8a9faf"/>
+  <circle cx="211" cy="78" r="14" fill="#8a9faf"/><circle cx="244" cy="78" r="14" fill="#8a9faf"/>
+  <circle cx="277" cy="78" r="14" fill="#8a9faf"/><circle cx="310" cy="78" r="14" fill="#8a9faf"/>
+  <circle cx="343" cy="78" r="14" fill="#8a9faf"/><circle cx="376" cy="78" r="14" fill="#8a9faf"/>
+  <circle cx="409" cy="78" r="14" fill="#8a9faf"/>
+  <circle cx="162" cy="104" r="11" fill="#8a9faf"/><circle cx="198" cy="104" r="11" fill="#8a9faf"/>
+  <circle cx="234" cy="104" r="11" fill="#8a9faf"/><circle cx="270" cy="104" r="11" fill="#8a9faf"/>
+  <circle cx="306" cy="104" r="11" fill="#8a9faf"/><circle cx="342" cy="104" r="11" fill="#8a9faf"/>
+  <circle cx="378" cy="104" r="11" fill="#8a9faf"/>
+  <rect x="48" y="50" width="52" height="68" rx="3" fill="#f1f5f9"/>
+  <rect x="54" y="54" width="40" height="24" rx="2" fill="#e2e8f0"/>
+  <rect x="58" y="58" width="14" height="10" rx="1" fill="#38bdf8" opacity="0.35"/>
+  <rect x="70" y="42" width="12" height="12" rx="2" fill="#f59e0b"/>
+  <rect x="520" y="76" width="12" height="16" rx="2" fill="#ca8a04"/>
+</svg>

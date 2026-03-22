@@ -43,7 +43,6 @@ export default function Capabilities() {
 
   return (
     <section id="capabilities" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="animated-grid-bg absolute inset-0" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/3 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-purple/3 rounded-full blur-3xl" />
 

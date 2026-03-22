@@ -17,7 +17,6 @@ export default function Problem() {
 
   return (
     <section id="problem" className="relative pt-16 sm:pt-20 md:pt-24 pb-24 md:pb-32">
-      <div className="animated-grid-bg absolute inset-0" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/3 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">

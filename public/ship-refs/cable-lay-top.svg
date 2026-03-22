@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 155" width="500" height="155" aria-label="Cable layer">
+  <defs>
+    <linearGradient id="nvWB-cl" gradientUnits="userSpaceOnUse" x1="28" y1="80" x2="-45" y2="80">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.88"/>
+      <stop offset="28%" stop-color="#fef9c3" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nvWS-cl" gradientUnits="userSpaceOnUse" x1="468" y1="80" x2="498" y2="80">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="30%" stop-color="#fef9c3" stop-opacity="0.48"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="nvRP-cl" gradientUnits="userSpaceOnUse" cx="325" cy="98" r="48">
+      <stop offset="0%" stop-color="#fecaca" stop-opacity="0.98"/>
+      <stop offset="15%" stop-color="#ef4444" stop-opacity="0.82"/>
+      <stop offset="40%" stop-color="#ef4444" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nvSG-cl" gradientUnits="userSpaceOnUse" cx="325" cy="62" r="48">
+      <stop offset="0%" stop-color="#d1fae5" stop-opacity="0.98"/>
+      <stop offset="15%" stop-color="#22c55e" stop-opacity="0.82"/>
+      <stop offset="40%" stop-color="#22c55e" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="nvFW-cl" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="nvFC-cl" x="-130%" y="-130%" width="360%" height="360%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="250" cy="80" rx="210" ry="32" fill="#cbd5e1" opacity="0.18"/>
+  <path fill="#5c7d95"
+    d="M 26 80 L 34 48 L 48 40 L 140 34 L 360 36 L 420 48 L 468 72 L 474 80 L 468 88 L 420 112 L 360 124 L 140 126 L 48 120 L 34 112 L 26 80 Z"/>
+  <circle cx="280" cy="80" r="48" fill="#a8b4cc"/>
+  <circle cx="280" cy="80" r="18" fill="#94a3b8"/>
+  <rect x="52" y="56" width="56" height="48" rx="3" fill="#f8fafc"/>
+  <g aria-hidden="true" pointer-events="none">
+    <path fill="url(#nvWB-cl)" filter="url(#nvFW-cl)" d="M 28 80 L -45 52 L -45 108 Z"/>
+    <path fill="url(#nvWS-cl)" filter="url(#nvFW-cl)" d="M 468 80 L 500 50 L 500 110 Z"/>
+    <ellipse cx="325" cy="98" rx="13" ry="36" fill="url(#nvRP-cl)" filter="url(#nvFC-cl)"/>
+    <ellipse cx="325" cy="62" rx="13" ry="36" fill="url(#nvSG-cl)" filter="url(#nvFC-cl)"/>
+  </g>
+</svg>

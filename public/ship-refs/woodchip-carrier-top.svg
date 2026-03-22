@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" width="520" height="160" aria-label="Woodchip">
+  <ellipse cx="260" cy="84" rx="220" ry="34" fill="#cbd5e1" opacity="0.2"/>
+  <path fill="#5c7d95"
+    d="M 26 84 L 34 50 L 44 42 L 120 36 L 400 38 L 460 50 L 496 72 L 500 84 L 496 96 L 460 118 L 400 130 L 120 132 L 44 126 L 34 118 L 26 84 Z"/>
+  <rect x="110" y="48" width="300" height="72" rx="2" fill="#fde68a"/>
+  <ellipse cx="200" cy="84" rx="55" ry="28" fill="#fef3c7" opacity="0.6"/>
+  <ellipse cx="320" cy="84" rx="55" ry="28" fill="#fef3c7" opacity="0.6"/>
+  <rect x="48" y="56" width="52" height="56" rx="3" fill="#f1f5f9"/>
+</svg>

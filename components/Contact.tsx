@@ -69,7 +69,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
-      <div className="animated-grid-bg absolute inset-0" />
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
