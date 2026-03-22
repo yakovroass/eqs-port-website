@@ -33,27 +33,27 @@ const charts = [
 
 const tableRows = [
   {
-    category: { en: "Industrial Materials & Supplies", he: "חומרים ואספקה תעשייתית" },
+    category: { en: "Industrial materials & supplies", he: "חומרים ואספקה תעשייתית" },
     market: "$260B+",
-    clients: { en: "~1.5 Million", he: "~1.5 מיליון" },
-    focus: { en: "Infrastructure & Building Projects", he: "תשתיות ופרויקטי בנייה" },
+    clients: { en: "~1.5 million", he: "~1.5 מיליון" },
+    focus: { en: "Infrastructure and building projects", he: "תשתיות ופרויקטי בנייה" },
   },
   {
-    category: { en: "Used Equipment & Rental", he: "ציוד משומש והשכרה" },
+    category: { en: "Used equipment & rental", he: "ציוד משומש והשכרה" },
     market: "$140B+",
-    clients: { en: "~100,000 Rental Firms", he: "~100,000 חברות השכרה" },
-    focus: { en: "Heavy Machinery (Incl. Cranes)", he: "מכונות כבדות (כולל מנופים)" },
+    clients: { en: "~100,000 rental companies", he: "~100,000 חברות השכרה" },
+    focus: { en: "Heavy machinery (incl. cranes)", he: "מכונות כבדות (כולל מנופים)" },
   },
   {
-    category: { en: "Spare Parts & Components", he: "חלקי חילוף ורכיבים" },
+    category: { en: "Spare parts & components", he: "חלקי חילוף ורכיבים" },
     market: "$32B+",
-    clients: { en: "~1 Million Equipment Owners", he: "~1 מיליון בעלי ציוד" },
-    focus: { en: "Parts, maintenance & service", he: "חלפים, תחזוקה ושירות" },
+    clients: { en: "~1 million equipment owners", he: "~1 מיליון בעלי ציוד" },
+    focus: { en: "Parts, maintenance, and service", he: "חלפים, תחזוקה ושירות" },
   },
 ];
 
 const total = {
-  category: { en: "TOTAL DIRECT MARKET POTENTIAL", he: "סה\"כ פוטנציאל שוק ישיר" },
+  category: { en: "Total direct market potential", he: "סה\"כ פוטנציאל שוק ישיר" },
   market: "$432B+",
   clients: { en: "2M+ Companies", he: "2M+ חברות" },
   focus: { en: "Europe, USA, Asia-Pacific", he: "אירופה, ארה\"ב, אסיה-פסיפיק" },
@@ -148,7 +148,7 @@ function ChartCard({
   return (
     <div className={`flex flex-col ${minHClass}`}>
       <div
-        className={`glass-card rounded-t-lg sm:rounded-t-xl border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
+        className={`rounded-t-lg sm:rounded-t-xl border border-gray-700/30 border-b-0 bg-[rgb(10_18_36/0.3)] backdrop-blur-md px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
       >
         <h3
           className={`font-semibold text-white leading-snug line-clamp-3 ${
@@ -168,7 +168,7 @@ function ChartCard({
         </div>
       </div>
       <div
-        className={`glass-card rounded-b-lg sm:rounded-b-xl border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
+        className={`rounded-b-lg sm:rounded-b-xl border border-gray-700/30 border-t-0 -mt-px bg-[rgb(10_18_36/0.3)] backdrop-blur-md flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
       >
         <GrowthBar
           fromPct={(chart.from.value / chart.maxVal) * 100}
@@ -191,8 +191,6 @@ export default function MarketData() {
 
   return (
     <section id="market" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
-
       <div className="relative z-10 section-container">
         <ScrollReveal>
           <div className="text-center mb-6">
@@ -228,22 +226,22 @@ export default function MarketData() {
 
         <ScrollReveal delay={0.08}>
           <div className="max-w-5xl mx-auto mb-6">
-            <div className="glass-card rounded-xl overflow-hidden">
+            <div className="rounded-xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md">
               <div className="overflow-x-auto">
               <table className="w-full min-w-0">
                 <thead>
-                  <tr className="border-b border-[rgba(0,168,255,0.12)] bg-white/[0.03]">
-                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-accent uppercase tracking-wider">
+                  <tr className="border-b border-gray-700/25 bg-white/[0.05]">
+                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-white uppercase tracking-wider">
                       {lang === "en" ? "Category" : "קטגוריה"}
                     </th>
-                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-accent uppercase tracking-wider">
+                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-white uppercase tracking-wider">
                       {lang === "en" ? "Market" : "שוק"}
                     </th>
-                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-accent uppercase tracking-wider">
-                      {lang === "en" ? "Potential Clients (Companies)" : "לקוחות פוטנציאליים (חברות)"}
+                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-white uppercase tracking-wider">
+                      {lang === "en" ? "Potential clients (companies)" : "לקוחות פוטנציאליים (חברות)"}
                     </th>
-                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-accent uppercase tracking-wider hidden sm:table-cell">
-                      {lang === "en" ? "Key Focus / Regions" : "מיקוד מפתח / אזורים"}
+                    <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-white uppercase tracking-wider hidden sm:table-cell">
+                      {lang === "en" ? "Regions & focus" : "מיקוד מפתח / אזורים"}
                     </th>
                   </tr>
                 </thead>
@@ -257,10 +255,10 @@ export default function MarketData() {
                       transition={{ delay: i * 0.1 }}
                       className="border-b border-white/[0.06] hover:bg-white/[0.03] transition-colors"
                     >
-                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-gray-300 font-medium">{row.category[lang]}</td>
+                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-medium">{row.category[lang]}</td>
                       <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-bold">{row.market}</td>
-                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-gray-400">{row.clients[lang]}</td>
-                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-gray-500 hidden sm:table-cell">{row.focus[lang]}</td>
+                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white">{row.clients[lang]}</td>
+                      <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white hidden sm:table-cell">{row.focus[lang]}</td>
                     </motion.tr>
                   ))}
                   <motion.tr
@@ -268,12 +266,12 @@ export default function MarketData() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="bg-white/[0.05] border-t border-[rgba(0,168,255,0.15)]"
+                    className="bg-white/[0.05] border-t border-accent/15"
                   >
-                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-accent font-bold">{total.category[lang]}</td>
-                    <td className="px-2 sm:px-5 py-3 text-sm sm:text-xl text-accent font-black">{total.market}</td>
-                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-accent font-semibold">{total.clients[lang]}</td>
-                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-accent font-semibold hidden sm:table-cell">{total.focus[lang]}</td>
+                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-bold">{total.category[lang]}</td>
+                    <td className="px-2 sm:px-5 py-3 text-sm sm:text-xl text-white font-black">{total.market}</td>
+                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-semibold">{total.clients[lang]}</td>
+                    <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-semibold hidden sm:table-cell">{total.focus[lang]}</td>
                   </motion.tr>
                 </tbody>
               </table>
@@ -292,7 +290,7 @@ export default function MarketData() {
               <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 $<AnimatedCounter target={432} suffix="B+" duration={2} />
               </div>
-              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+              <div className="text-[9px] leading-snug sm:text-sm text-white/90 mt-1">
                 {tx(t.market.statDirectTotalLabel, lang)}
               </div>
             </div>
@@ -300,7 +298,7 @@ export default function MarketData() {
               <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black text-white tabular-nums leading-none">
                 <AnimatedCounter target={2} suffix="M+" duration={1.5} />
               </div>
-              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+              <div className="text-[9px] leading-snug sm:text-sm text-white/90 mt-1">
                 {tx(t.market.statPotentialClientsLabel, lang)}
               </div>
             </div>
@@ -308,7 +306,7 @@ export default function MarketData() {
               <div className="text-[clamp(1.05rem,3.8vw,1.85rem)] sm:text-3xl md:text-5xl font-black tabular-nums leading-none" dir="ltr">
                 <AnimatedCounter target={62} suffix="%" duration={1.8} className="text-accent inline-block" />
               </div>
-              <div className="text-[9px] leading-snug sm:text-sm text-gray-500 mt-1">
+              <div className="text-[9px] leading-snug sm:text-sm text-white/90 mt-1">
                 {tx(t.market.statGrowthLabel, lang)}
               </div>
             </div>

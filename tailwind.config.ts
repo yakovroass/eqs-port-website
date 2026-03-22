@@ -16,13 +16,13 @@ const config: Config = {
           500: "#1c2648",
         },
         accent: {
-          DEFAULT: "#00a8ff",
-          light: "#33bbff",
-          dark: "#0080cc",
-          glow: "rgba(0, 168, 255, 0.15)",
+          DEFAULT: "#33bbff",
+          light: "#66d4ff",
+          dark: "#0096d6",
+          glow: "rgba(51, 187, 255, 0.2)",
         },
         neon: {
-          blue: "#00a8ff",
+          blue: "#33bbff",
           cyan: "#00e5ff",
           purple: "#7c3aed",
         },

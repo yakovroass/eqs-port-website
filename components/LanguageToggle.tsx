@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { navChromeButton } from "@/lib/navChrome";
 import { useLanguage } from "@/lib/useLanguage";
 
 export default function LanguageToggle() {
@@ -8,14 +9,15 @@ export default function LanguageToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => setLang(lang === "en" ? "he" : "en")}
-      className="relative flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-accent/20 bg-accent/5 hover:bg-accent/10 transition-colors text-xs sm:text-sm"
+      className={`relative flex items-center justify-center min-h-[2.75rem] min-w-[2.75rem] px-2 text-xs sm:text-sm ${navChromeButton}`}
     >
       <motion.span
         key={lang}
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-accent font-medium"
+        className="text-gray-200 font-medium"
       >
         {lang === "en" ? "עב" : "EN"}
       </motion.span>

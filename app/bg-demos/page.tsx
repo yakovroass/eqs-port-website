@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import MouseGlow from "@/components/MouseGlow";
 import HeroFloatingParticles from "@/components/HeroFloatingParticles";
 
 export const metadata: Metadata = {
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
 
 /**
  * דף תצוגה מקדימה לרקע.
- * רשת + נקודות “אניות” (HeroFloatingParticles) + זוהר עכבר.
+ * רשת + אוניות (HeroFloatingParticles).
  */
 export default function BgDemosPage() {
   return (
@@ -18,7 +17,6 @@ export default function BgDemosPage() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
         <HeroFloatingParticles variant="ships" />
       </div>
-      <MouseGlow />
     </div>
   );
 }

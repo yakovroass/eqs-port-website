@@ -43,17 +43,17 @@ export const t = {
     headline: { en: "The Global Market Is Complex", he: "השוק הגלובלי מורכב" },
     sub: { en: "", he: "" },
     subBelow: {
-      en: "Every step becomes a project: buyers and sellers face challenges at every stage and lose valuable time.",
+      en: "Every step becomes a project, buyers and sellers face challenges at every stage and lose valuable time.",
       he: "כל צעד הופך לפרויקט, קונים ומוכרים נתקלים באתגרים בכל שלב ומאבדים זמן יקר.",
     },
     pain1: { en: "Hundreds of Companies & Suppliers Worldwide", he: "מאות חברות וספקים ברחבי העולם" },
     pain1d: {
-      en: "Deals pass through multiple marketplaces and many intermediaries; digital systems are fragmented and there is no unified search — slowing work and hurting efficiency and margins.",
+      en: "Deals pass through multiple markets and many intermediaries, digital systems are fragmented and there is no unified search, slowing work and hurting efficiency and margins.",
       he: "עסקאות עוברות דרך מספר שווקים, דרך מתווכים רבים, המערכות הדיגיטליות מוגבלות וללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
-      en: "Information gaps: no transparent pricing and many follow-up questions; on top of that, fair market value and product quality are hard to judge without deep expertise and data.",
+      en: "No transparent pricing and many follow-up questions, on top of that, fair market value and product quality are hard to judge without deep expertise and data.",
       he: "חסר מידע, אין מחירים זמינים ונדרשות שאלות רבות, ובנוסף בלתי אפשרי לקבוע שווי שוק הוגן ואיכות מוצרים ללא מומחיות ונתונים מעמיקים.",
     },
     pain3: { en: "Complex Logistics", he: "לוגיסטיקה מורכבת" },
@@ -71,7 +71,7 @@ export const t = {
     label: { en: "The Market", he: "השוק" },
     headline: { en: "Opportunity for Breakout Growth", he: "הזדמנות לצמיחה מתפרצת" },
     sub: {
-      en: "Our activities focus on the intersection of trillion-dollar industries on steep growth paths — and each market within these industries is vast in its own right.",
+      en: "Our activities focus on the intersection of trillion-dollar industries on steep growth paths, and each market within these industries is vast in its own right.",
       he: "הפעילות מתמקדת בצומת של תעשיות בשווי טריליוני דולרים עם מסלולי צמיחה אדירים, וכל שוק בתעשיות הללו עצום בפני עצמו.",
     },
     /** מתחת לטבלה — רק שמות מקורות, בלי הסברים */
@@ -206,8 +206,8 @@ export const t = {
       he: "לפחות 15 שלבים מפוצלים — ובפועל, הרבה יותר. הפלטפורמה שלנו מטפלת בכולם מאחורי הקלעים, מסריקת שוק אלגוריתמית ועד משלוח סופי לאתר.",
     },
     realitySub: {
-      en: "Manually scanning the entire market is impossible, and valuable opportunities are lost. But that is only the beginning — price analysis, verifying details, permits, site inspection, negotiation, contracts, payments, export documents, shipping quotes, loading, tracking, customs clearance, delivery to destination, and months of grueling work — for example, this is what procuring a mobile crane can look like...",
-      he: "סריקת השוק כולו באופן ידני בלתי אפשרית והזדמנויות יקרות הולכות לאיבוד. אבל זו רק ההתחלה של הבעיה — ניתוח מחירים, אימות פרטים, הוצאת היתרים, בדיקה בשטח, משא ומתן, חוזים, תשלומים, מסמכי יצוא, הצעות מחיר למשלוחים, העמסה, מעקב, שחרור ממכס, משלוח ליעד, וחודשים של עבודה מייגעת, למשל כך נראה תהליך רכש של מנוף נייד...",
+      en: "Manually scanning the entire market is impossible, and valuable opportunities are lost. But that is only the beginning of the problem — price analysis, verifying details, permits, site inspection, negotiation, contracts, payments, export documents, shipping quotes, loading, tracking, customs clearance, delivery to destination. An exhausting process... For example, this is what procuring a mobile crane can look like...",
+      he: "סריקת השוק כולו באופן ידני בלתי אפשרית והזדמנויות יקרות הולכות לאיבוד. אבל זו רק ההתחלה של הבעיה — ניתוח מחירים, אימות פרטים, הוצאת היתרים, בדיקה בשטח, משא ומתן, חוזים, תשלומים, מסמכי יצוא, הצעות מחיר למשלוחים, העמסה, מעקב, שחרור ממכס, משלוח ליעד. תהליך מייגע... למשל כך נראה תהליך רכש של מנוף נייד...",
     },
     realityTitle: { en: "How Procurement Looks Today", he: "ככה נראה הרכש היום" },
     replaceCaption: {
@@ -229,7 +229,7 @@ export const t = {
     unifiedSteps: {
       en: [
         "Use algorithmic scanning",
-        "Review the best offers worldwide",
+        "Review the world's best offers",
         "Get all-in-one quotes",
         "Sign SLA and arrange payment",
         "Get updates and ETA",
@@ -249,19 +249,19 @@ export const t = {
     finalSub: { en: "READY TO WORK", he: "מוכנה לעבודה" },
     globalReachTitle: { en: "Our Global Reach", he: "הנוכחות הגלובלית שלנו" },
     globalReachIntro: {
-      en: "Real connections. Complete, up-to-date data. This is not a mockup — this is the system.",
-      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים. זו לא הדמיה — זו המערכת.",
+      en: "Real connections. Complete up-to-date data. This is not a simulation — this is the system.",
+      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים. זו לא סימולציה — זו המערכת.",
     },
     globalReachIntroMobile: {
-      en: "Real connections. Complete, up-to-date data.\nThis is not a mockup — this is the system.",
-      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים.\nזו לא הדמיה — זו המערכת.",
+      en: "Real connections. Complete up-to-date data.\nThis is not a simulation — this is the system.",
+      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים.\nזו לא סימולציה — זו המערכת.",
     },
     globalSearchTitle: {
       en: "Thorough intelligent global search",
       he: "חיפוש גלובלי חכם ויסודי",
     },
     globalSearchDesc: {
-      en: "Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, and piece of equipment.",
+      en: "Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, every piece of equipment.",
       he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי נתונים, מיקום, מבצעת ניתוחי עומק לכל רישום, לכל מוכר, לכל ציוד.",
     },
     globalPortsTitle: {
@@ -282,7 +282,7 @@ export const t = {
     },
     globalStrategicTitle: { en: "Strategic market intelligence", he: "מודיעין שווקים אסטרטגי" },
     globalStrategicDesc: {
-      en: "Using market data on strategic materials and minerals suppliers, infrastructure projects, and emerging opportunities — for example, Africa — one of the world's fastest-growing industrial markets.",
+      en: "Using market data on strategic materials and minerals suppliers, infrastructure projects and emerging opportunities — for example, Africa — one of the world's fastest-growing industrial markets.",
       he: "שימוש בנתוני שוק על ספקי חומרים ומינרלים אסטרטגיים, פרויקטי תשתית והזדמנויות מתפתחות לדוגמא — אפריקה — אחד השווקים התעשייתיים הצומחים ביותר בעולם.",
     },
   },

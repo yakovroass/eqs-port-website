@@ -17,17 +17,18 @@ import {
  * התחלה פזורה לאורך המקטע (כולל מרכז) כדי שלא ייכנסו כולן מהדופן בכל ריענון.
  * (רקע חי בדף הבית + /bg-demos)
  */
-/** אוניות במקביל — וריאנטי מכולות שונים מסתובבים בין קבצי SVG */
+/** סה״כ אוניות בדף; בכל רצועת גובה (~מסך) עד MAX_SHIPS_PER_VIEWPORT_BAND */
 const SHIP_COUNT = 20;
+const MAX_SHIPS_PER_VIEWPORT_BAND = 3;
 
 /** מהירות שיוט (px/s) — נמוך = איטי יותר */
 const SHIP_SAIL_SPEED_PX_PER_SEC = 2.05;
 
-/** הפרדה בין מסלולים (מותאם לריבוי אוניות SVG) */
+/** הפרדה בין מסלולים — מספיק שלא יידבקו; לא דורש מרחק גדול בין כולן */
 function shipPathSeparationOpts(w: number, h: number) {
   const m = Math.min(w, h);
   return {
-    minSegClear: Math.max(154, m * 0.205),
+    minSegClear: Math.max(168, m * 0.22),
     minYStretch: 1.38,
     bandYWiden: 1.22,
   } as const;
@@ -42,7 +43,7 @@ const DURATION_MIN_SEC = 220;
 const DURATION_MAX_SEC = 320;
 
 /** נקודות צפות ב־Hero — 4 נקודות כמו במקור */
-const ORIGINAL_DOT_COUNT = 4;
+const ORIGINAL_DOT_COUNT = 9;
 /** נקודות איטיות מעט כי המסלולים ארוכים יותר (גובה מלא) */
 const ORIGINAL_DOT_SPEED_PX_PER_SEC = 4.2;
 
@@ -213,9 +214,9 @@ function shipThresholds(w: number, h: number) {
   const m = Math.min(w, h);
   const sep = shipPathSeparationOpts(w, h);
   return {
-    minCross: Math.max(120, m * 0.22),
+    minCross: Math.max(128, m * 0.2),
     segClear: Math.max(sep.minSegClear, m * 0.09),
-    endClear: Math.max(56, m * 0.06),
+    endClear: Math.max(56, m * 0.055),
   };
 }
 
@@ -286,6 +287,46 @@ function randomShipSegment(w: number, h: number, pad: number): Segment {
   return randomCandidate(w, h, pad);
 }
 
+/** מסלול אונייה שמרוכז ברצועת Y [yMin,yMax] — כדי שלא יהיו יותר מ־3 «באותו מסך» בגלילה */
+function randomShipSegmentInBand(
+  w: number,
+  h: number,
+  pad: number,
+  yMin: number,
+  yMax: number,
+): Segment {
+  const maxX = w - pad - DOT;
+  const ymin = Math.max(pad + 4, Math.min(yMin, yMax - 48));
+  const ymax = Math.min(h - pad - 4, Math.max(yMax, ymin + 48));
+  const roll = Math.random();
+
+  if (roll < 0.62) {
+    const y = randomRange(ymin, ymax);
+    const ySkew = randomRange(-(ymax - ymin) * 0.32, (ymax - ymin) * 0.32);
+    const y2 = Math.min(ymax, Math.max(ymin, y + ySkew));
+    return {
+      from: { x: -EDGE_OFFSCREEN_PX, y },
+      to: { x: w + EDGE_OFFSCREEN_PX, y: y2 },
+    };
+  }
+  if (roll < 0.86) {
+    const pickLow = Math.random() < 0.5;
+    const from = pickLow
+      ? { x: randomRange(pad, maxX * 0.45), y: ymax + EDGE_OFFSCREEN_PX }
+      : { x: randomRange(maxX * 0.55, maxX), y: ymin - EDGE_OFFSCREEN_PX };
+    const to = pickLow
+      ? { x: randomRange(maxX * 0.55, maxX), y: ymin - EDGE_OFFSCREEN_PX }
+      : { x: randomRange(pad, maxX * 0.45), y: ymax + EDGE_OFFSCREEN_PX };
+    return { from, to };
+  }
+  const x = randomRange(pad + w * 0.06, maxX - w * 0.06);
+  const x2 = Math.min(maxX, Math.max(pad, x + randomRange(-w * 0.14, w * 0.14)));
+  return {
+    from: { x, y: ymin - EDGE_OFFSCREEN_PX },
+    to: { x: x2, y: ymax + EDGE_OFFSCREEN_PX },
+  };
+}
+
 function fallbackPath(w: number, h: number, pad: number, variant: number): Path {
   const corners: Segment[] = [
     { from: { x: pad, y: pad }, to: { x: w - pad - DOT, y: h - pad - DOT } },
@@ -323,13 +364,13 @@ function generatePathAvoidingCore(
   let best: Path | null = null;
   let bestScore = -1;
 
-  for (let attempt = 0; attempt < 130; attempt++) {
+  for (let attempt = 0; attempt < 180; attempt++) {
     const { from, to } = pickSegment(w, h, pad);
     if (dist(from, to) < minCross) continue;
 
     const dSeg = minDistToOthers(from, to, others);
     const dEnd = minEndpointClearance(from, to, others);
-    const score = Math.min(dSeg, dEnd * 0.85);
+    const score = Math.min(dSeg, dEnd * 0.88);
 
     if (dSeg >= segClear && dEnd >= endClear) {
       return pathWithScreenExit(
@@ -354,7 +395,7 @@ function generatePathAvoidingCore(
     }
   }
 
-  if (best && bestScore > segClear * 0.45) return best;
+  if (best && bestScore > segClear * 0.42) return best;
   return fallbackPath(w, h, pad, variant);
 }
 
@@ -372,6 +413,49 @@ function generateShipPathAvoiding(
     shipThresholds(w, h),
     randomShipSegment,
   );
+}
+
+function generateShipPathAvoidingInBand(
+  w: number,
+  h: number,
+  others: Segment[],
+  variant: number,
+  yMin: number,
+  yMax: number,
+): Path {
+  return generatePathAvoidingCore(
+    w,
+    h,
+    others,
+    variant,
+    shipThresholds(w, h),
+    (wi, hi, p) => randomShipSegmentInBand(wi, hi, p, yMin, yMax),
+  );
+}
+
+function assignShipsToBands(
+  numBands: number,
+  total: number,
+  maxPerBand: number,
+): number[] {
+  const counts = Array.from({ length: numBands }, () => 0);
+  const out: number[] = [];
+  for (let i = 0; i < total; i++) {
+    let bestBand = -1;
+    let bestCount = Infinity;
+    for (let b = 0; b < numBands; b++) {
+      if (counts[b]! < maxPerBand && counts[b]! < bestCount) {
+        bestCount = counts[b]!;
+        bestBand = b;
+      }
+    }
+    if (bestBand < 0) {
+      bestBand = counts.indexOf(Math.min(...counts));
+    }
+    counts[bestBand]++;
+    out.push(bestBand);
+  }
+  return out;
 }
 
 /** נקודת התחלה פנימית לאורך המקטע — רוב הפעמים סביב מרכול המסך */
@@ -412,7 +496,58 @@ function withRandomShipStart(
   };
 }
 
-/** נקודות Hero: כניסה/יציאה מדפנות שונות — אלכסונים אקראיים (לא רק שמאל↔ימין) */
+/**
+ * נקודות: אופקי/אנכי עם סטייה + אלכסונים חוצים + קצה↔קצה — תנועה אלכסונית מגוונת
+ */
+function randomDotSegment(w: number, h: number, pad: number): Segment {
+  const maxX = w - pad - DOT;
+  const maxY = h - pad - DOT;
+  const roll = Math.random();
+
+  if (roll < 0.22) {
+    const y = randomRange(pad + h * 0.06, maxY - h * 0.06);
+    const ySkew = randomRange(-h * 0.22, h * 0.22);
+    const y2 = Math.min(maxY, Math.max(pad, y + ySkew));
+    return {
+      from: { x: -EDGE_OFFSCREEN_PX, y },
+      to: { x: w + EDGE_OFFSCREEN_PX, y: y2 },
+    };
+  }
+  if (roll < 0.44) {
+    const x = randomRange(pad + w * 0.06, maxX - w * 0.06);
+    const xSkew = randomRange(-w * 0.22, w * 0.22);
+    const x2 = Math.min(maxX, Math.max(pad, x + xSkew));
+    return {
+      from: { x, y: -EDGE_OFFSCREEN_PX },
+      to: { x: x2, y: h + EDGE_OFFSCREEN_PX },
+    };
+  }
+  if (roll < 0.78) {
+    const pickLow = Math.random() < 0.5;
+    const from = pickLow
+      ? {
+          x: randomRange(pad, maxX * 0.44),
+          y: h + EDGE_OFFSCREEN_PX,
+        }
+      : {
+          x: randomRange(maxX * 0.56, maxX),
+          y: -EDGE_OFFSCREEN_PX,
+        };
+    const to = pickLow
+      ? {
+          x: randomRange(maxX * 0.54, maxX),
+          y: -EDGE_OFFSCREEN_PX,
+        }
+      : {
+          x: randomRange(pad, maxX * 0.46),
+          y: h + EDGE_OFFSCREEN_PX,
+        };
+    return { from, to };
+  }
+  return randomCandidate(w, h, pad);
+}
+
+/** נקודות Hero: כניסה/יציאה מדפנות — אלכסונים אקראיים + הימנעות ממסלולים אחרים */
 function generateDotPathAvoiding(
   w: number,
   h: number,
@@ -429,7 +564,7 @@ function generateDotPathAvoiding(
   let bestScore = -1;
 
   for (let attempt = 0; attempt < 120; attempt++) {
-    const { from, to } = randomCandidate(w, h, pad);
+    const { from, to } = randomDotSegment(w, h, pad);
     if (dist(from, to) < minCross) continue;
     const dSeg = minDistToOthers(from, to, others);
     const dEnd = minEndpointClearance(from, to, others);
@@ -476,11 +611,33 @@ function generateOriginalDotPaths(w: number, h: number): Path[] {
   return acc;
 }
 
-function generateAllPaths(w: number, h: number): Path[] {
+/** טווח Y לרצועת גלילה של אונייה מסוימת (עקבי עם assignShipsToBands) */
+function getShipBandYRange(
+  shipIndex: number,
+  h: number,
+  viewportH: number,
+): { yMin: number; yMax: number } {
+  const pad = 14;
+  const vh = Math.max(280, viewportH);
+  const minBands = Math.ceil(SHIP_COUNT / MAX_SHIPS_PER_VIEWPORT_BAND);
+  const numBands = Math.max(Math.ceil(h / vh), minBands);
+  const bandHeight = h / numBands;
+  const bands = assignShipsToBands(numBands, SHIP_COUNT, MAX_SHIPS_PER_VIEWPORT_BAND);
+  const b = bands[shipIndex] ?? 0;
+  return {
+    yMin: b * bandHeight + pad,
+    yMax: (b + 1) * bandHeight - pad,
+  };
+}
+
+function generateAllPaths(w: number, h: number, viewportH: number): Path[] {
   const acc: Path[] = [];
   for (let i = 0; i < SHIP_COUNT; i++) {
     const others: Segment[] = acc.map((p) => ({ from: p.from, to: p.to }));
-    acc.push(generateShipPathAvoiding(w, h, others, i * 19 + 7));
+    const { yMin, yMax } = getShipBandYRange(i, h, viewportH);
+    acc.push(
+      generateShipPathAvoidingInBand(w, h, others, i * 19 + 7, yMin, yMax),
+    );
   }
   return acc;
 }
@@ -506,7 +663,7 @@ function GalleryShipSprite({
     <div
       className="pointer-events-none select-none overflow-visible [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]"
       style={{
-        width: "clamp(4rem, 15vw, 7.25rem)",
+        width: "clamp(10rem, 33vw, 17rem)",
         aspectRatio: "1580 / 330",
         transform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
         WebkitTransform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
@@ -514,12 +671,14 @@ function GalleryShipSprite({
         WebkitBackfaceVisibility: "hidden",
       }}
     >
-      <object
-        type="image/svg+xml"
-        data={data}
-        className="block h-full w-full opacity-[0.9] bg-transparent [background:transparent] [transform:translateZ(0)] [-webkit-transform:translateZ(0)]"
+      {/* img — תאימות טובה יותר ל־iOS/Safari מול <object> ל־SVG חיצוני */}
+      <img
+        src={data}
+        alt=""
+        decoding="async"
+        fetchPriority="low"
+        className="block h-full w-full opacity-[0.92] object-contain object-center bg-transparent [transform:translateZ(0)] [-webkit-transform:translateZ(0)]"
         aria-hidden
-        tabIndex={-1}
       />
     </div>
   );
@@ -528,7 +687,7 @@ function GalleryShipSprite({
 function DotSprite() {
   return (
     <div
-      className="h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[1px] bg-accent/45 shadow-[0_0_10px_rgba(0,168,255,0.65),0_0_4px_rgba(0,168,255,0.9)]"
+      className="h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[1px] bg-accent/70 shadow-[0_0_12px_rgba(51,187,255,0.75),0_0_5px_rgba(51,187,255,0.95)]"
       aria-hidden
     />
   );
@@ -692,7 +851,9 @@ function ShipsFloatingParticles() {
 
   const respawnShipPaths = useCallback(() => {
     if (sw < 41 || sh < 41) return;
-    const init = generateAllPaths(sw, sh).map((p) =>
+    const vh =
+      typeof window !== "undefined" ? Math.floor(window.innerHeight) : 900;
+    const init = generateAllPaths(sw, sh, vh).map((p) =>
       withRandomShipStart(p, sw, sh, SHIP_SAIL_SPEED_PX_PER_SEC),
     );
     setPaths(init);
@@ -724,16 +885,21 @@ function ShipsFloatingParticles() {
   const handleParticleComplete = useCallback(
     (i: number) => {
       if (sw < 41 || sh < 41) return;
+      const vh =
+        typeof window !== "undefined" ? Math.floor(window.innerHeight) : 900;
       setPaths((prev) => {
         if (!prev) return prev;
         const others: Segment[] = prev
           .filter((_, j) => j !== i)
           .map((p) => ({ from: p.from, to: p.to }));
-        const nextPathRaw = generateShipPathAvoiding(
+        const { yMin, yMax } = getShipBandYRange(i, sh, vh);
+        const nextPathRaw = generateShipPathAvoidingInBand(
           sw,
           sh,
           others,
           i * 23 + Math.floor(Math.random() * 60),
+          yMin,
+          yMax,
         );
         const next = [...prev];
         next[i] = withRandomShipStart(

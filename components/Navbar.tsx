@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 import LanguageToggle from "./LanguageToggle";
+import { navChromeButton } from "@/lib/navChrome";
 
 const NAV_HREFS = ["#hero", "#problem", "#market", "#solution", "#process", "#future", "#invest", "#contact"] as const;
 
@@ -77,7 +78,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-dark-900/80 backdrop-blur-xl border-b border-accent/10 shadow-lg shadow-accent/5"
+          ? "bg-[rgb(10_18_36/0.42)] backdrop-blur-xl border-b border-gray-600/25 shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
           : "bg-transparent"
       }`}
     >
@@ -112,24 +113,24 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col justify-center gap-[5px] px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] items-center rounded-lg border border-accent/20 bg-dark-800/50 hover:bg-accent/10 hover:border-accent/40 transition-colors"
+              className={`flex flex-col justify-center gap-[5px] items-center px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] ${navChromeButton}`}
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
+                className="w-[15px] h-[1.5px] bg-gray-200 rounded-full block origin-center"
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.15 }}
-                className="w-[15px] h-[1.5px] bg-accent rounded-full block"
+                className="w-[15px] h-[1.5px] bg-gray-200 rounded-full block"
               />
               <motion.span
                 animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-[15px] h-[1.5px] bg-accent rounded-full block origin-center"
+                className="w-[15px] h-[1.5px] bg-gray-200 rounded-full block origin-center"
               />
             </button>
             <AnimatePresence>

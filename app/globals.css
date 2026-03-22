@@ -7,8 +7,8 @@
 :root {
   --bg-primary: #050810;
   --bg-secondary: #0a0e1a;
-  --accent: #00a8ff;
-  --accent-glow: rgba(0, 168, 255, 0.15);
+  --accent: #33bbff;
+  --accent-glow: rgba(51, 187, 255, 0.2);
   --text-primary: #eef2fa;
   --text-secondary: #a8b4cc;
 }
@@ -37,7 +37,7 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 168, 255, 0.3);
+  background: rgba(51, 187, 255, 0.3);
   color: #fff;
 }
 
@@ -50,12 +50,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 168, 255, 0.3);
+  background: rgba(51, 187, 255, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 168, 255, 0.5);
+  background: rgba(51, 187, 255, 0.5);
 }
 
 @layer components {
@@ -64,17 +64,17 @@ body {
   }
 
   .glow-text {
-    text-shadow: 0 0 20px rgba(0, 168, 255, 0.5), 0 0 40px rgba(0, 168, 255, 0.2);
+    text-shadow: 0 0 20px rgba(51, 187, 255, 0.5), 0 0 40px rgba(51, 187, 255, 0.2);
   }
 
   .glow-border {
-    box-shadow: 0 0 15px rgba(0, 168, 255, 0.1), inset 0 0 15px rgba(0, 168, 255, 0.05);
-    border: 1px solid rgba(0, 168, 255, 0.2);
+    box-shadow: 0 0 15px rgba(51, 187, 255, 0.1), inset 0 0 15px rgba(51, 187, 255, 0.05);
+    border: 1px solid rgba(51, 187, 255, 0.2);
   }
 
   .glow-border-strong {
-    box-shadow: 0 0 25px rgba(0, 168, 255, 0.2), inset 0 0 25px rgba(0, 168, 255, 0.05);
-    border: 1px solid rgba(0, 168, 255, 0.4);
+    box-shadow: 0 0 25px rgba(51, 187, 255, 0.2), inset 0 0 25px rgba(51, 187, 255, 0.05);
+    border: 1px solid rgba(51, 187, 255, 0.4);
   }
 
   /* כותרות — גרדיאנט במחשב */
@@ -95,10 +95,12 @@ body {
     background-clip: text;
   }
 
+  /** פאנל זכוכית אחיד — rgb(10 18 36) בשקיפות ~0.3 + blur כמו כל הקוביות */
   .glass-card {
-    background: rgba(10, 14, 26, 0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 168, 255, 0.1);
+    background-color: rgb(10 18 36 / 0.3);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgb(55 65 81 / 0.28);
   }
 }
 
@@ -184,25 +186,27 @@ body {
   color: rgb(160 174 196) !important;
 }
 .mobile-readable .glass-card {
-  background: rgba(14, 18, 32, 0.88);
-  border-color: rgba(0, 168, 255, 0.18);
+  background-color: rgb(10 18 36 / 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgb(55 65 81 / 0.28);
 }
 
 /* רשת אחת: רק קווים אופקיים+אנכיים (בלי שכבת נקודות נפרדת) */
 .animated-grid-bg {
   background-image:
-    linear-gradient(rgba(0, 168, 255, 0.04) 1.3px, transparent 1.3px),
-    linear-gradient(90deg, rgba(0, 168, 255, 0.04) 1.3px, transparent 1.3px);
+    linear-gradient(rgba(51, 187, 255, 0.04) 1.3px, transparent 1.3px),
+    linear-gradient(90deg, rgba(51, 187, 255, 0.04) 1.3px, transparent 1.3px);
   background-size: 60px 60px, 60px 60px;
   background-position: 0 0, 0 0;
   background-repeat: repeat;
-  animation: grid-bg 78s linear infinite;
+  animation: grid-bg 52s linear infinite;
   will-change: background-position;
 }
 
 @media (max-width: 768px) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 98s linear infinite !important;
+    animation: grid-bg-mobile 66s linear infinite !important;
     will-change: background-position, transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -220,7 +224,7 @@ body {
 /* מובייל חייב לזוז גם אם המכשיר על reduce-motion */
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .animated-grid-bg {
-    animation: grid-bg-mobile 98s linear infinite !important;
+    animation: grid-bg-mobile 66s linear infinite !important;
     will-change: background-position, transform;
   }
 }
