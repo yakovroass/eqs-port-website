@@ -363,8 +363,8 @@ export const t = {
     fund7: { en: "Prepare for successful Series A round", he: "הכנה לסבב Series A מוצלח" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     proven: {
-      en: "Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge! We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
-      he: "כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו! ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו!",
     },
     downloadPdfShort: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
     downloadOnePagerShort: { en: "One Pager (HEB)", he: "One Pager (HEB)" },
@@ -457,8 +457,8 @@ export const t = {
     fund4: { en: "15% Infra", he: "15% תשתית" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     vision1: {
-      en: "Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge! We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
-      he: "כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו! ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו!",
     },
     visionStat1: { en: "Current Market", he: "שוק נוכחי" },
     visionStat2: { en: "Global B2B Vision", he: "חזון B2B גלובלי" },

@@ -6,6 +6,9 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
+/** עדכון קובץ ב־public/images — העלה גרסה כדי לפרוץ מטמון דפדפן */
+const EQS_3STEPS_ASSET_VER = "2";
+
 /** ככה נראה הרכש → „ובדרך אחרת“ + חץ + 5 שלבים + תמונת 3 השלבים — מיד אחרי הבעיה */
 export default function ProcessRealityIntro() {
   const { lang } = useLanguage();
@@ -94,7 +97,7 @@ export default function ProcessRealityIntro() {
             <div className="border-t border-gray-700/15">
               <motion.div whileHover={{ scale: 1.005 }} transition={{ duration: 0.2 }}>
                 <Image
-                  src="/images/eqs-3steps.png"
+                  src={`/images/eqs-3steps.png?v=${EQS_3STEPS_ASSET_VER}`}
                   alt={
                     lang === "en"
                       ? "EQS.PORT 3-Step Process: Browse, Approval, Machine On Site"

@@ -34,11 +34,11 @@ export default function Investment() {
       <div className="relative z-10 section-container">
         <ScrollReveal>
           <motion.div whileHover={{ scale: 1.01 }} className="max-w-4xl mx-auto mb-12 md:mb-14">
-            <div className="relative rounded-2xl overflow-hidden border border-gray-700/40 bg-[rgb(4_10_24/0.72)] backdrop-blur-xl ring-1 ring-accent/25 shadow-[0_0_36px_rgba(0,168,255,0.2),0_0_72px_-12px_rgba(0,168,255,0.1),0_12px_40px_rgba(0,0,0,0.35)]">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-700/40 bg-[rgb(4_10_24/0.72)] backdrop-blur-xl ring-1 ring-cyan-400/12 shadow-[0_0_22px_rgba(56,189,248,0.09),0_10px_32px_rgba(0,0,0,0.28)]">
               <div className="px-6 sm:px-10 py-8 sm:py-10">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <div className="w-11 h-11 rounded-full bg-cyan-500/10 flex items-center justify-center shrink-0 ring-1 ring-cyan-400/15">
+                    <svg className="w-6 h-6 text-cyan-200/90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                     </svg>
                   </div>
