@@ -23,7 +23,7 @@ const charts = [
     maxVal: 60,
   },
   {
-    title: { en: "Used construction equipment", he: "ציוד בנייה משומש" },
+    title: { en: "Used heavy equipment", he: "ציוד כבד משומש" },
     unit: "USD B",
     from: { year: "2024", value: 22.5, label: "22.5 B" },
     to: { year: "2030", value: 35.8, label: "35.8 B" },

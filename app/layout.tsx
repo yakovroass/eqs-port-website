@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "industrial trade",
     "AI procurement",
     "heavy equipment",
+    "used heavy equipment",
     "global trade platform",
     "B2B",
-    "construction equipment",
   ],
   openGraph: {
     title: ogTitle,
