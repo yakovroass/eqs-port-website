@@ -16,20 +16,29 @@
         animation-delay: 4.25s;
       }
       @keyframes beamBreathCf {
-        0%, 100% { opacity: 0.96; }
-        50% { opacity: 0.86; }
+        0%, 100% { opacity: 0.98; }
+        50% { opacity: 0.78; }
       }
       .nvBeamsBreathCf {
         animation: beamBreathCf 8.5s ease-in-out infinite;
       }
-      /* אלומה קדמית — נדנוד קל ימינה־שמאל */
+      /* אלומה קדמית — נדנוד ימינה־שמאל (חזק יותר) */
       @keyframes nvBowSwayAnimCf {
-        0%, 100% { transform: rotate(-1.38deg); }
-        50% { transform: rotate(1.38deg); }
+        0%, 100% { transform: rotate(-1.92deg); }
+        50% { transform: rotate(1.92deg); }
       }
       .nvBowSwayCf {
         transform-origin: 0 0;
         animation: nvBowSwayAnimCf 6s ease-in-out infinite;
+      }
+      /* אלומה אחורית — נדנוד עדין (מנוגד לקדמה) */
+      @keyframes nvSternSwayAnimCf {
+        0%, 100% { transform: rotate(1.35deg); }
+        50% { transform: rotate(-1.35deg); }
+      }
+      .nvSternSwayCf {
+        transform-origin: 32px 80px;
+        animation: nvSternSwayAnimCf 6.8s ease-in-out infinite;
       }
       /* צלחת מכ״ם — סיבוב מלא איטי */
       @keyframes bridgeSearchSpinCf {
@@ -54,7 +63,7 @@
       }
       @media (prefers-reduced-motion: reduce) {
         .nvBeamsBreathCf { animation: none; opacity: 0.92; }
-        .nvBowSwayCf { animation: none; transform: none; }
+        .nvBowSwayCf, .nvSternSwayCf { animation: none; transform: none; }
         .bridgeSearchSpinCf { animation: none; }
         .lifeboatPulseCf-a, .lifeboatPulseCf-b { animation: none; opacity: 1; filter: none; }
       }
@@ -218,7 +227,9 @@
     </g>
   </g>
   <g class="nvBeamsBreathCf" aria-hidden="true" pointer-events="none">
-    <path fill="url(#nvWB-cf)" filter="url(#nvFW-cf)" d="M 32 80 L -300 62 L -300 98 Z"/>
+    <g class="nvSternSwayCf">
+      <path fill="url(#nvWB-cf)" filter="url(#nvFW-cf)" d="M 32 80 L -300 62 L -300 98 Z"/>
+    </g>
   </g>
   <g transform="translate(500,80)" class="nvBeamsBreathCf" aria-hidden="true" pointer-events="none">
     <g class="nvBowSwayCf">
