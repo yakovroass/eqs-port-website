@@ -68,7 +68,7 @@ export default function Investment() {
 
         <ScrollReveal delay={0.12}>
           <motion.div whileHover={{ scale: 1.002 }} className="max-w-4xl mx-auto mb-16">
-            <div className="relative rounded-3xl p-[1px] bg-gradient-to-br from-accent/80 via-neon-cyan/50 to-neon-purple/60">
+            <div className="relative rounded-3xl p-[1.5px] bg-gradient-to-br from-sky-400 via-cyan-300 to-fuchsia-400 shadow-[0_0_28px_rgba(56,189,248,0.22)]">
               <div className="rounded-3xl px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 border-0 bg-[rgb(4_10_26/0.78)] backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                 <div className="text-center border-b border-gray-700/40 pb-8 mb-8">
                   <p className="text-sm sm:text-base md:text-lg font-semibold text-accent tracking-[0.2em] uppercase mb-4">
