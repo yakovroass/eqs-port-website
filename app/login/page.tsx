@@ -6,6 +6,23 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PasswordField from "@/components/PasswordField";
 import HeroFloatingParticles from "@/components/HeroFloatingParticles";
 
+function loginUiMessage(
+  status: number,
+  data: { error?: string; code?: string }
+): string {
+  const code = data.code;
+  if (code === "DB_UNAVAILABLE" || status === 503) {
+    return "השרת לא מתחבר למסד הנתונים. בדוק ש־DATABASE_URL מוגדר ב-Amplify (כולל runtime), בלי טקסט מצורף אחרי ה־URL, ואז Redeploy. אפשר גם לפתוח /api/health באתר.";
+  }
+  if (code === "INVALID_CREDENTIALS" || status === 401) {
+    return "שם משתמש או סיסמה לא תואמים למה שנשמר במסד. ודא שאתה משתמש ב־ADMIN_USERNAME / ADMIN_PASSWORD, ושאחרי שינוי סיסמה בוצע דיפלוי (כדי ש־db:seed יעדכן את ה־hash).";
+  }
+  if (code === "MISSING_CREDENTIALS" || status === 400) {
+    return "חסרים שם משתמש או סיסמה.";
+  }
+  return data.error || "Login failed";
+}
+
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -34,9 +51,9 @@ function LoginForm() {
         credentials: "include",
         body: JSON.stringify({ username, password }),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      const data = (await res.json().catch(() => ({}))) as { error?: string; code?: string };
       if (!res.ok) {
-        setError(data.error || "Login failed");
+        setError(loginUiMessage(res.status, data));
         return;
       }
       router.replace("/");
