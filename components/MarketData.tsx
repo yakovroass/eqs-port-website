@@ -148,7 +148,7 @@ function ChartCard({
   return (
     <div className={`flex flex-col ${minHClass}`}>
       <div
-        className={`rounded-t-lg sm:rounded-t-xl border border-gray-700/30 border-b-0 bg-[rgb(10_18_36/0.3)] backdrop-blur-md px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
+        className={`rounded-t-lg sm:rounded-t-xl glass-card border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
       >
         <h3
           className={`font-semibold text-white leading-snug line-clamp-3 ${
@@ -168,7 +168,7 @@ function ChartCard({
         </div>
       </div>
       <div
-        className={`rounded-b-lg sm:rounded-b-xl border border-gray-700/30 border-t-0 -mt-px bg-[rgb(10_18_36/0.3)] backdrop-blur-md flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
+        className={`rounded-b-lg sm:rounded-b-xl glass-card border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
       >
         <GrowthBar
           fromPct={(chart.from.value / chart.maxVal) * 100}
@@ -226,7 +226,7 @@ export default function MarketData() {
 
         <ScrollReveal delay={0.08}>
           <div className="max-w-5xl mx-auto mb-6">
-            <div className="rounded-xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md">
+            <div className="rounded-xl overflow-hidden glass-card">
               <div className="overflow-x-auto">
               <table className="w-full min-w-0">
                 <thead>

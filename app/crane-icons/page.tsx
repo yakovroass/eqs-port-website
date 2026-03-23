@@ -38,7 +38,7 @@ export default function CraneIconsPickerPage() {
           {OPTIONS.map(({ id, label, Icon }) => (
             <div
               key={id}
-              className="flex items-center gap-4 rounded-xl border border-gray-700/30 bg-[rgb(10_18_36/0.35)] backdrop-blur-md px-4 py-3"
+              className="flex items-center gap-4 rounded-xl glass-card px-4 py-3"
             >
               <div className="shrink-0 w-14 h-14 rounded-lg bg-white/5 flex items-center justify-center text-cyan-300">
                 <Icon className="w-9 h-9" stroke={1.5} />

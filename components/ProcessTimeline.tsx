@@ -6,6 +6,9 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
+/** קובץ: public/images/crane-app.png — העלה גרסה כדי לפרוץ מטמון אחרי החלפת קובץ */
+const CRANE_APP_ASSET_VER = "1";
+
 export default function ProcessTimeline() {
   const { lang } = useLanguage();
 
@@ -31,7 +34,7 @@ export default function ProcessTimeline() {
           <ScrollReveal delay={0.1}>
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="rounded-2xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
+              className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
             >
               <Image
                 src="/images/global-search.png"
@@ -57,7 +60,7 @@ export default function ProcessTimeline() {
           <ScrollReveal delay={0.2}>
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="rounded-2xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
+              className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
             >
               <Image
                 src="/images/global-ports.png"
@@ -83,13 +86,13 @@ export default function ProcessTimeline() {
           <ScrollReveal delay={0.3}>
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="rounded-2xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
+              className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
             >
               <Image
-                src="/images/crane-app.png"
+                src={`/images/crane-app.png?v=${CRANE_APP_ASSET_VER}`}
                 alt="EQS.PORT Crane Specifications App"
-                width={1760}
-                height={3317}
+                width={1749}
+                height={2915}
                 quality={95}
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
                 className="w-full h-auto"
@@ -109,7 +112,7 @@ export default function ProcessTimeline() {
           <ScrollReveal delay={0.4}>
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="rounded-2xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
+              className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
             >
               <Image
                 src="/images/africa-minerals.png"

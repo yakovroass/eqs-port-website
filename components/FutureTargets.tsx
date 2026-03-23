@@ -94,7 +94,8 @@ export default function FutureTargets() {
             <ScrollReveal key={i} delay={i * 0.15}>
               <div className="relative flex gap-4 sm:gap-8 w-full min-w-0 max-w-full">
                 {/* Timeline column */}
-                <div className={`hidden sm:flex flex-col items-center shrink-0 ${lang === "he" ? "order-last" : ""}`}>
+                {/* בעברית (rtl) הפריט הראשון ב-flex נשאר ב-main-start = ימין — העיגולים מימין לכרטיס */}
+                <div className="hidden sm:flex flex-col items-center shrink-0">
                   <div
                     className={`rounded-full bg-gradient-to-br ${phase.color} flex items-center justify-center text-white shadow-lg shadow-accent/10 z-10 w-16 h-16`}
                   >
@@ -114,15 +115,15 @@ export default function FutureTargets() {
                   <div
                     className={
                       isVisionCard
-                        ? "relative rounded-2xl overflow-hidden max-w-full shadow-[0_10px_40px_rgba(0,0,0,0.32),0_0_48px_rgba(51,65,85,0.08)]"
+                        ? "relative rounded-2xl overflow-hidden max-w-full border border-gray-700/40 ring-1 ring-cyan-400/12 shadow-[0_0_22px_rgba(56,189,248,0.09),0_10px_32px_rgba(0,0,0,0.28)]"
                         : "relative rounded-2xl overflow-hidden max-w-full"
                     }
                   >
                     <div
                       className={
                         isVisionCard
-                          ? "relative rounded-2xl overflow-hidden bg-[rgb(6_14_30/0.82)] backdrop-blur-xl sm:px-8 sm:py-8 px-3 py-5 max-w-full min-w-0 box-border"
-                          : "relative px-3 py-5 sm:p-8 rounded-2xl border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md hover:border-gray-600/40 transition-all sm:px-8 max-w-full min-w-0 box-border"
+                          ? "relative rounded-2xl overflow-hidden glass-surface sm:px-8 sm:py-8 px-3 py-5 max-w-full min-w-0 box-border"
+                          : "relative px-3 py-5 sm:p-8 rounded-2xl glass-card hover:border-gray-600/40 transition-all sm:px-8 max-w-full min-w-0 box-border"
                       }
                     >
                       {isVisionCard ? (

@@ -95,12 +95,30 @@ body {
     background-clip: text;
   }
 
-  /** פאנל זכוכית אחיד — rgb(10 18 36) בשקיפות ~0.3 + blur כמו כל הקוביות */
+  /**
+   * זכוכית אחידה מעל שכבת האוניות (z-0): אותו גוון כהה, ~44% אטימות,
+   * blur חזק — טקסט קריא, עדיין רואים תנועה מתחת.
+   */
   .glass-card {
-    background-color: rgb(10 18 36 / 0.3);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgb(55 65 81 / 0.28);
+    background-color: rgb(10 18 36 / 0.44);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgb(55 65 81 / 0.32);
+  }
+
+  /** שורות/רשימות פנימיות — מעט יותר אטימות, אותו בסיס צבע */
+  .glass-inset {
+    background-color: rgb(10 18 36 / 0.52);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgb(75 85 99 / 0.28);
+  }
+
+  /** רקע+blur כמו glass-card — בלי מסגרת (פנים בתוך מסגרת חיצונית) */
+  .glass-surface {
+    background-color: rgb(10 18 36 / 0.44);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 }
 
@@ -186,10 +204,23 @@ body {
   color: rgb(160 174 196) !important;
 }
 .mobile-readable .glass-card {
-  background-color: rgb(10 18 36 / 0.3);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgb(55 65 81 / 0.28);
+  background-color: rgb(10 18 36 / 0.44);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(55 65 81 / 0.32);
+}
+
+.mobile-readable .glass-inset {
+  background-color: rgb(10 18 36 / 0.52);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(75 85 99 / 0.28);
+}
+
+.mobile-readable .glass-surface {
+  background-color: rgb(10 18 36 / 0.44);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* רשת אחת: רק קווים אופקיים+אנכיים (בלי שכבת נקודות נפרדת) */

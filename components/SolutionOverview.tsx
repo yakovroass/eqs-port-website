@@ -61,7 +61,7 @@ export default function SolutionOverview() {
               <ScrollReveal key={key} delay={i * 0.05} className="h-full min-h-0">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="group h-full min-h-[168px] sm:min-h-[188px] flex flex-col text-left p-4 sm:p-5 rounded-xl border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md transition-all duration-200 hover:border-accent/45 hover:bg-[rgb(10_18_36/0.44)] hover:shadow-[0_0_28px_rgba(0,168,255,0.18)] hover:ring-2 hover:ring-accent/30"
+                  className="group h-full min-h-[168px] sm:min-h-[188px] flex flex-col text-left p-4 sm:p-5 rounded-xl glass-card transition-all duration-200 hover:border-accent/45 hover:bg-[rgb(10_18_36/0.52)] hover:backdrop-blur-xl hover:shadow-[0_0_28px_rgba(0,168,255,0.18)] hover:ring-2 hover:ring-accent/30"
                 >
                   <div className="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center mb-3 transition-colors bg-dark-600/60 text-gray-400 group-hover:bg-accent/25 group-hover:text-accent">
                     {capIcons[key]}

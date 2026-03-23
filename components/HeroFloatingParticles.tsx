@@ -506,15 +506,15 @@ function generateDotPathAvoiding(
 ): Path {
   const pad = 14;
   const m = Math.min(w, h);
-  const mult = isMobileLayout(w) ? 1.4 : 1;
-  const minCross = Math.max(88, m * 0.17) * mult;
-  const segClear = Math.max(38, m * 0.052) * mult;
-  const endClear = Math.max(26, m * 0.038) * mult;
+  /** אותם ספים בכל רוחב מסך — כדי שהנקודות יתנהגו כמו בדסקטופ */
+  const minCross = Math.max(88, m * 0.17);
+  const segClear = Math.max(38, m * 0.052);
+  const endClear = Math.max(26, m * 0.038);
 
   let best: Path | null = null;
   let bestScore = -1;
 
-  const dotAttempts = isMobileLayout(w) ? 220 : 140;
+  const dotAttempts = 180;
   for (let attempt = 0; attempt < dotAttempts; attempt++) {
     const seg =
       dotOpts?.fixedEntryEdge !== undefined
@@ -632,12 +632,23 @@ function GalleryShipSprite({
   );
 }
 
+/** זוהר רך ומטושטש — ב־max-sm מחוזק מעט (Safari/מובייל נוטים לרכך פחות blur) */
 function DotSprite() {
   return (
     <div
-      className="h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[0.5px] bg-sky-300/55 shadow-[0_0_10px_rgba(56,189,248,0.5),0_0_18px_rgba(125,211,252,0.25)]"
+      className="relative flex h-10 w-10 items-center justify-center pointer-events-none [transform:translate3d(-50%,-50%,0)] [will-change:transform]"
       aria-hidden
-    />
+    >
+      <div
+        className="absolute h-8 w-8 max-sm:h-9 max-sm:w-9 rounded-full bg-[rgba(51,187,255,0.14)] max-sm:bg-[rgba(51,187,255,0.2)] blur-xl opacity-90 max-sm:opacity-100"
+        aria-hidden
+      />
+      <div
+        className="absolute h-5 w-5 max-sm:h-6 max-sm:w-6 rounded-full bg-[rgba(51,187,255,0.1)] max-sm:bg-[rgba(51,187,255,0.14)] blur-md opacity-80 max-sm:opacity-95"
+        aria-hidden
+      />
+      <div className="relative h-1.5 w-1.5 max-sm:h-[7px] max-sm:w-[7px] rounded-full bg-white/25 max-sm:bg-white/30 blur-[3px] max-sm:blur-[4px] shadow-[0_0_22px_rgba(51,187,255,0.42),0_0_44px_rgba(51,187,255,0.18),0_0_64px_rgba(51,187,255,0.08)] max-sm:shadow-[0_0_26px_rgba(51,187,255,0.5),0_0_48px_rgba(51,187,255,0.28),0_0_72px_rgba(51,187,255,0.12)]" />
+    </div>
   );
 }
 

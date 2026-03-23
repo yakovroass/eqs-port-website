@@ -41,7 +41,7 @@ export default function Problem() {
             <ScrollReveal key={i} delay={i * 0.1}>
               <motion.div
                 whileHover={{ x: lang === "he" ? -4 : 4 }}
-                className="relative rounded-xl border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md p-6 sm:p-7
+                className="relative rounded-xl glass-card p-6 sm:p-7
                            hover:border-amber-500/30 transition-all group h-full flex flex-col"
               >
                 <div className="flex items-start gap-4">

@@ -34,14 +34,19 @@ export default function Investment() {
       <div className="relative z-10 section-container">
         <ScrollReveal>
           <motion.div whileHover={{ scale: 1.01 }} className="max-w-4xl mx-auto mb-12 md:mb-14">
-            <div className="relative rounded-2xl overflow-hidden border border-gray-700/40 bg-[rgb(4_10_24/0.72)] backdrop-blur-xl ring-1 ring-cyan-400/12 shadow-[0_0_22px_rgba(56,189,248,0.09),0_10px_32px_rgba(0,0,0,0.28)]">
+            <div className="relative rounded-2xl overflow-hidden glass-card border-gray-700/40 shadow-[0_10px_28px_rgba(0,0,0,0.22)]">
               <div className="px-6 sm:px-10 py-8 sm:py-10">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-full bg-cyan-500/10 flex items-center justify-center shrink-0 ring-1 ring-cyan-400/15">
-                    <svg className="w-6 h-6 text-cyan-200/90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                    </svg>
-                  </div>
+                  <svg
+                    className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 text-cyan-200/95 [filter:drop-shadow(0_0_10px_rgba(165,243,252,0.9))_drop-shadow(0_0_22px_rgba(51,187,255,0.55))_drop-shadow(0_0_40px_rgba(51,187,255,0.28))]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                  </svg>
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center sm:text-start">
                     {tx(t.invest.provenTitle, lang)}
                   </h3>
@@ -68,10 +73,10 @@ export default function Investment() {
 
         <ScrollReveal delay={0.12}>
           <motion.div whileHover={{ scale: 1.002 }} className="max-w-4xl mx-auto mb-16">
-            <div className="relative rounded-3xl p-[1.5px] bg-gradient-to-br from-sky-400 via-cyan-300 to-fuchsia-400 shadow-[0_0_28px_rgba(56,189,248,0.22)]">
-              <div className="rounded-3xl px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 border-0 bg-[rgb(4_10_26/0.78)] backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                <div className="text-center border-b border-gray-700/40 pb-8 mb-8">
-                  <p className="text-sm sm:text-base md:text-lg font-semibold text-accent tracking-[0.2em] uppercase mb-4">
+            <div className="relative rounded-3xl overflow-hidden glass-card ring-1 ring-accent/12 shadow-[0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.05)]">
+              <div className="relative z-[1] px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12">
+                <div className="text-center border-b border-gray-700/25 pb-8 mb-8">
+                  <p className="text-sm sm:text-base md:text-lg font-semibold text-amber-400/90 tracking-[0.2em] uppercase mb-4">
                     {tx(t.invest.seedLabel, lang)}
                   </p>
                   <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tabular-nums leading-none mb-3">
@@ -95,7 +100,7 @@ export default function Investment() {
                       {revenueStreams.map((stream) => (
                         <li
                           key={stream.title}
-                          className={`flex gap-3 rounded-xl border border-gray-600/30 bg-[rgb(8_16_34/0.55)] backdrop-blur-md hover:border-accent/35 transition-colors ${
+                          className={`flex gap-3 rounded-xl glass-inset hover:border-accent/35 transition-colors ${
                             lang === "en" ? "p-4 sm:p-[1.125rem]" : "p-3.5"
                           }`}
                         >

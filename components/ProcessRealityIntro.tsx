@@ -29,7 +29,7 @@ export default function ProcessRealityIntro() {
             <p className="text-gray-400 text-center text-base sm:text-lg leading-relaxed px-5 py-6 sm:px-8 sm:py-7 border-b border-amber-500/15">
               {tx(t.process.realitySub, lang)}
             </p>
-            <div className="bg-[rgb(10_18_36/0.3)] backdrop-blur-md border-t border-amber-500/10">
+            <div className="glass-card border-t border-amber-500/10">
               <Image
                 src={`/images/process-15steps.png?v=${PROCESS_15_STEPS_ASSET_VER}`}
                 alt={lang === "en" ? "15-step procurement and delivery process flowchart" : "תרשים זרימה: 15 שלבי הרכש והמשלוח"}
@@ -60,7 +60,7 @@ export default function ProcessRealityIntro() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="w-14 h-14 rounded-full flex items-center justify-center border border-gray-600/45 bg-[rgb(10_18_36/0.4)] backdrop-blur-md ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
+            className="w-14 h-14 rounded-full flex items-center justify-center border border-gray-600/45 glass-card ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
           >
             <svg
               className="w-7 h-7 text-gray-100 drop-shadow-[0_0_10px_rgba(203,213,225,0.85),0_0_22px_rgba(148,163,184,0.55),0_0_34px_rgba(100,116,139,0.35)]"
@@ -76,7 +76,7 @@ export default function ProcessRealityIntro() {
         </div>
 
         <ScrollReveal>
-          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden border border-gray-700/30 bg-[rgb(10_18_36/0.3)] backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
             <div className="px-5 py-6 sm:px-8 sm:py-8 border-b border-gray-700/20">
               <ul className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
                 {t.process.unifiedSteps[lang].map((step, i) => (
