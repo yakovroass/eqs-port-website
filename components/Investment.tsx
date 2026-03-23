@@ -76,7 +76,7 @@ export default function Investment() {
             <div className="relative rounded-3xl overflow-hidden glass-card ring-1 ring-accent/12 shadow-[0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.05)]">
               <div className="relative z-[1] px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12">
                 <div className="text-center border-b border-gray-700/25 pb-8 mb-8">
-                  <p className="text-sm sm:text-base md:text-lg font-semibold text-amber-400/90 tracking-[0.2em] uppercase mb-4">
+                  <p className="text-sm sm:text-base md:text-lg font-semibold tracking-[0.2em] uppercase mb-4 gradient-text">
                     {tx(t.invest.seedLabel, lang)}
                   </p>
                   <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tabular-nums leading-none mb-3">

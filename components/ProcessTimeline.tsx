@@ -6,9 +6,7 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
-/** קובץ: public/images/crane-app.png — העלה גרסה כדי לפרוץ מטמון אחרי החלפת קובץ */
-const CRANE_APP_ASSET_VER = "1";
-
+/** קובץ: public/images/crane-app.png — אחרי החלפת קובץ: שנה שם קובץ או הוסף unoptimized (לא להשתמש ב־?v= על next/image בפרודקשן) */
 export default function ProcessTimeline() {
   const { lang } = useLanguage();
 
@@ -89,13 +87,14 @@ export default function ProcessTimeline() {
               className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
             >
               <Image
-                src={`/images/crane-app.png?v=${CRANE_APP_ASSET_VER}`}
+                src="/images/crane-app.png"
                 alt="EQS.PORT Crane Specifications App"
                 width={1749}
                 height={2915}
-                quality={95}
+                quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
                 className="w-full h-auto"
+                unoptimized
               />
               <div className="p-5 sm:p-6">
                 <h4 className="text-base sm:text-lg font-semibold text-white mb-1.5">
