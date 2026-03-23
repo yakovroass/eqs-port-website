@@ -6,9 +6,9 @@ frontend:
     preBuild:
       commands:
         - npm ci
-        - test -n "$DATABASE_URL" || (echo "Amplify env: set DATABASE_URL to a PostgreSQL URL (e.g. Neon)" && exit 1)
+        - 'test -n "$DATABASE_URL" || (echo "Amplify env: set DATABASE_URL to a PostgreSQL URL (e.g. Neon)" && exit 1)'
         - npx prisma migrate deploy
-        - npm run db:seed
+        - 'npm run db:seed'
     build:
       commands:
         - npm run build
