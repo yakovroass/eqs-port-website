@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma";
 
 async function main() {
-  const username = process.env.ADMIN_USERNAME || "admin";
+  const username = process.env.ADMIN_USERNAME || "ADMIN";
   const password = process.env.ADMIN_PASSWORD || "changeme";
   if (password.length < 8) {
     throw new Error("ADMIN_PASSWORD must be at least 8 characters (set in .env).");

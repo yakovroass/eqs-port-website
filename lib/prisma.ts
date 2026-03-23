@@ -1,13 +1,14 @@
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@/lib/generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined };
 
-function createPrisma() {
-  // Keep build-time import safe on platforms that don't expose env vars during "next build".
-  // At runtime this still prefers DATABASE_URL when present.
-  const databaseUrl = process.env.DATABASE_URL ?? "file:./dev.db";
-  const adapter = new PrismaBetterSqlite3({ url: databaseUrl });
+function createPrisma(): PrismaClient {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is not set");
+  }
+  const adapter = new PrismaPg({ connectionString });
   return new PrismaClient({ adapter });
 }
 
@@ -18,6 +19,7 @@ function getPrisma(): PrismaClient {
   return globalForPrisma.prisma;
 }
 
+/** Lazy client so route modules can load during `next build` before any DB access. */
 export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
   get(_target, prop, receiver) {
     const client = getPrisma();
