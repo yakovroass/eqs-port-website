@@ -14,10 +14,7 @@ export async function POST(request: Request) {
   }
   const typed = username.trim();
   const user = await prisma.user.findFirst({
-    where: {
-      OR: [{ username: typed }, { username: typed.toLowerCase() }, { username: typed.toUpperCase() }],
-    },
-    orderBy: { createdAt: "asc" },
+    where: { username: typed },
   });
   if (!user || !user.active) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
