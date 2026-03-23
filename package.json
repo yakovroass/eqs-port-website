@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
     "dev": "next dev",
-    "dev:3000": "next dev -p 3000",
+    "dev:3000": "npx --yes kill-port 3000 && next dev -p 3000",
     "dev:clean": "npm run clean && next dev",
     "dev:turbo": "next dev --turbo",
     "build": "next build",
