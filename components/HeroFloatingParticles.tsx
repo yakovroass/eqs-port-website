@@ -13,13 +13,13 @@ import {
 } from "@/lib/shipGalleryItems";
 
 /**
- * אוניות SVG מהגלריה — רשת תאים (5×4) מכסה את כל גובה הדף; כל אונייה שטה בתוך תא
- * במסלולים אלכסוניים אקראיים, עם הפרדה בין מסלולים.
+ * אוניות SVG מהגלריה — חוצות את כל המסך באלכסונים אקראיים (קצה→קצה), פחות בולט מתאים.
+ * נקודות Hero — על קווי הרשת (כמו animated-grid-bg) + fade-in רך.
  * (רקע חי בדף הבית + /bg-demos)
  */
-/** סה״כ אוניות — רשת תאים (5×4=20) מחלקת את הדף באופן שווה */
-const SHIP_COUNT_DESKTOP = 20;
-const SHIP_COUNT_MOBILE = 20;
+/** סה״כ אוניות — פחות מספרים כי המסלול ארוך על כל המסך */
+const SHIP_COUNT_DESKTOP = 14;
+const SHIP_COUNT_MOBILE = 10;
 
 function shipCountForWidth(w: number) {
   return w < 768 ? SHIP_COUNT_MOBILE : SHIP_COUNT_DESKTOP;
@@ -30,8 +30,11 @@ function isMobileLayout(w: number) {
   return w < 768;
 }
 
-/** מהירות שיוט (px/s) — נמוך = איטי יותר */
-const SHIP_SAIL_SPEED_PX_PER_SEC = 2.05;
+/** מהירות שיוט (px/s) — נמוך = איטי יותר, פחות בולט על מסלול מלא */
+const SHIP_SAIL_SPEED_PX_PER_SEC = 1.65;
+
+/** חייב להתאים ל־background-size ב־.animated-grid-bg (globals.css) */
+const BG_GRID_PX = 60;
 
 /** הפרדה בין מסלולים — מספיק שלא יידבקו; לא דורש מרחק גדול בין כולן */
 function shipPathSeparationOpts(w: number, h: number) {
@@ -230,6 +233,49 @@ function randomCandidate(w: number, h: number, pad: number): Segment {
   return { from: pointOnEdge(a, w, h, pad), to: pointOnEdge(b, w, h, pad) };
 }
 
+/** נקודות על קווי חלוקת הרשת (יישור לרקע המונפש) */
+function pointOnEdgeGrid(e: Edge, w: number, h: number, pad: number): Pt {
+  const g = BG_GRID_PX;
+  const maxX = w - pad - DOT;
+  const maxY = h - pad - DOT;
+  const maxKx = Math.max(0, Math.floor((maxX - pad) / g));
+  const maxKy = Math.max(0, Math.floor((maxY - pad) / g));
+  switch (e) {
+    case 0: {
+      const k = maxKx > 0 ? Math.floor(Math.random() * (maxKx + 1)) : 0;
+      const x = Math.min(maxX, pad + k * g);
+      return { x, y: -EDGE_OFFSCREEN_PX };
+    }
+    case 1: {
+      const k = maxKy > 0 ? Math.floor(Math.random() * (maxKy + 1)) : 0;
+      const y = Math.min(maxY, pad + k * g);
+      return { x: w + EDGE_OFFSCREEN_PX, y };
+    }
+    case 2: {
+      const k = maxKx > 0 ? Math.floor(Math.random() * (maxKx + 1)) : 0;
+      const x = Math.min(maxX, pad + k * g);
+      return { x, y: h + EDGE_OFFSCREEN_PX };
+    }
+    case 3:
+    default: {
+      const k = maxKy > 0 ? Math.floor(Math.random() * (maxKy + 1)) : 0;
+      const y = Math.min(maxY, pad + k * g);
+      return { x: -EDGE_OFFSCREEN_PX, y };
+    }
+  }
+}
+
+function randomGridCandidate(w: number, h: number, pad: number): Segment {
+  let a = Math.floor(Math.random() * 4) as Edge;
+  let b = Math.floor(Math.random() * 4) as Edge;
+  let guard = 0;
+  while (a === b && guard++ < 12) {
+    b = Math.floor(Math.random() * 4) as Edge;
+  }
+  if (a === b) b = ((a + 1) % 4) as Edge;
+  return { from: pointOnEdgeGrid(a, w, h, pad), to: pointOnEdgeGrid(b, w, h, pad) };
+}
+
 function entryEdgeFromFrom(from: Pt, w: number, h: number): Edge {
   const margin = 28;
   if (from.x <= margin) return 3;
@@ -247,7 +293,7 @@ function entryEdgeFromFrom(from: Pt, w: number, h: number): Edge {
   return 2;
 }
 
-function randomDotSegmentFromEntry(
+function randomDotSegmentFromEntryGrid(
   w: number,
   h: number,
   pad: number,
@@ -265,8 +311,8 @@ function randomDotSegmentFromEntry(
     if (exitE === entry) exitE = ((entry + 1) % 4) as Edge;
   }
   return {
-    from: pointOnEdge(entry, w, h, pad),
-    to: pointOnEdge(exitE, w, h, pad),
+    from: pointOnEdgeGrid(entry, w, h, pad),
+    to: pointOnEdgeGrid(exitE, w, h, pad),
   };
 }
 
@@ -274,7 +320,7 @@ function randomDotSegmentFromEntry(
 function randomDotDiagonalOnly(w: number, h: number, pad: number): Segment {
   const maxX = w - pad - DOT;
   if (Math.random() < 0.9) {
-    return randomCandidate(w, h, pad);
+    return randomGridCandidate(w, h, pad);
   }
   const pickLow = Math.random() < 0.5;
   const from = pickLow
@@ -302,141 +348,6 @@ type DotPathOpts = {
   forbidEntryEdges?: Set<Edge>;
 };
 
-type CellRect = {
-  xMin: number;
-  yMin: number;
-  xMax: number;
-  yMax: number;
-};
-
-/** רשת: 20 תאים (5×4), או 12 (4×3) כשמספר אוניות נמוך יותר */
-function gridLayoutForShips(total: number): { cols: number; rows: number } {
-  if (total <= 12) return { cols: 4, rows: 3 };
-  return { cols: 5, rows: 4 };
-}
-
-function shuffleCellAssignment(total: number): number[] {
-  const { cols, rows } = gridLayoutForShips(total);
-  const cellCount = cols * rows;
-  const perm = Array.from({ length: cellCount }, (_, i) => i);
-  for (let i = cellCount - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const t = perm[i]!;
-    perm[i] = perm[j]!;
-    perm[j] = t;
-  }
-  return perm.slice(0, total);
-}
-
-function getCellRectFromLinear(
-  linear: number,
-  cols: number,
-  rows: number,
-  w: number,
-  h: number,
-): CellRect {
-  const col = linear % cols;
-  const row = Math.floor(linear / cols);
-  const inset = Math.max(8, Math.min(w, h) * 0.008);
-  const cw = w / cols;
-  const ch = h / rows;
-  return {
-    xMin: col * cw + inset,
-    yMin: row * ch + inset,
-    xMax: (col + 1) * cw - inset,
-    yMax: (row + 1) * ch - inset,
-  };
-}
-
-function randomSegmentInCell(rect: CellRect, pad: number): Segment {
-  const { xMin, yMin, xMax, yMax } = rect;
-  if (xMax - xMin < pad * 4 || yMax - yMin < pad * 4) {
-    return {
-      from: { x: xMin, y: yMin },
-      to: { x: xMax, y: yMax },
-    };
-  }
-  let edgeA = Math.floor(Math.random() * 4);
-  let edgeB = Math.floor(Math.random() * 4);
-  if (Math.random() < 0.72) {
-    edgeB = (edgeA + 2) % 4;
-  }
-  let guard = 0;
-  while (edgeB === edgeA && guard++ < 14) {
-    edgeB = Math.floor(Math.random() * 4);
-  }
-  if (edgeB === edgeA) edgeB = (edgeA + 1) % 4;
-
-  function pointOnCellEdge(e: number): Pt {
-    switch (e) {
-      case 0:
-        return { x: xMin, y: randomRange(yMin, yMax) };
-      case 1:
-        return { x: xMax, y: randomRange(yMin, yMax) };
-      case 2:
-        return { x: randomRange(xMin, xMax), y: yMin };
-      case 3:
-      default:
-        return { x: randomRange(xMin, xMax), y: yMax };
-    }
-  }
-  return { from: pointOnCellEdge(edgeA), to: pointOnCellEdge(edgeB) };
-}
-
-function pathCellLocal(from: Pt, to: Pt, id: string, speedPxPerSec: number): Path {
-  const d = dist(from, to);
-  return {
-    id,
-    from,
-    to,
-    duration: Math.max(0.35, d / speedPxPerSec),
-  };
-}
-
-function generateShipPathAvoidingInCell(
-  w: number,
-  h: number,
-  others: Segment[],
-  variant: number,
-  rect: CellRect,
-): Path {
-  const pad = 6;
-  const rw = rect.xMax - rect.xMin;
-  const rh = rect.yMax - rect.yMin;
-  const m = Math.min(rw, rh);
-  const minCross = Math.max(28, m * 0.2);
-  const segClear = Math.max(12, m * 0.055);
-  const endClear = Math.max(8, m * 0.045);
-  const maxAttempts = isMobileLayout(w) ? 200 : 160;
-
-  let best: Path | null = null;
-  let bestScore = -1;
-
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const { from, to } = randomSegmentInCell(rect, pad);
-    if (dist(from, to) < minCross) continue;
-    const dSeg = minDistToOthers(from, to, others);
-    const dEnd = minEndpointClearance(from, to, others);
-    const score = Math.min(dSeg, dEnd * 0.88);
-    const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const p = pathCellLocal(from, to, id, SHIP_SAIL_SPEED_PX_PER_SEC);
-    if (dSeg >= segClear && dEnd >= endClear) return p;
-    if (score > bestScore) {
-      bestScore = score;
-      best = p;
-    }
-  }
-
-  if (best && bestScore > segClear * 0.32) return best;
-  const fb = randomSegmentInCell(rect, pad);
-  return pathCellLocal(
-    fb.from,
-    fb.to,
-    `${Date.now()}-fb-${variant}`,
-    SHIP_SAIL_SPEED_PX_PER_SEC,
-  );
-}
-
 function fallbackPath(w: number, h: number, pad: number, variant: number): Path {
   const corners: Segment[] = [
     { from: { x: pad, y: pad }, to: { x: w - pad - DOT, y: h - pad - DOT } },
@@ -458,42 +369,73 @@ function fallbackPath(w: number, h: number, pad: number, variant: number): Path 
   );
 }
 
-/** נקודת התחלה פנימית לאורך המקטע — רוב הפעמים סביב מרכול המסך */
-function randomStartTInView(from: Pt, to: Pt, w: number, h: number): number {
-  const MIN_REMAIN = 92;
-  const full = dist(from, to);
-  if (full < MIN_REMAIN + 40) return 0;
-  const pickT = () =>
-    Math.random() < 0.58
-      ? randomRange(0.26, 0.74)
-      : randomRange(0.06, 0.93);
-  for (let k = 0; k < 48; k++) {
-    const t = pickT();
-    const sx = from.x + (to.x - from.x) * t;
-    const sy = from.y + (to.y - from.y) * t;
-    if (sx < 8 || sx > w - 8 || sy < 8 || sy > h - 8) continue;
-    const rem = full * (1 - t);
-    if (rem < MIN_REMAIN) continue;
-    return t;
-  }
-  return Math.max(0, Math.min(0.42, 1 - MIN_REMAIN / full));
+/** מסלול אונייה: קצה→קצה + המשך עד מחוץ למסך, מהירות קבועה */
+function pathShipFullScreen(from: Pt, toLogical: Pt, w: number, h: number, id: string): Path {
+  const toExit = extendToOffScreen(from, toLogical, w, h);
+  const len = dist(from, toExit);
+  return {
+    id,
+    from,
+    to: toExit,
+    duration: Math.max(0.55, len / SHIP_SAIL_SPEED_PX_PER_SEC),
+  };
 }
 
-function withRandomShipStart(
-  base: Path,
+/** התחלה קרובה לדופן בלבד — בלי הופעה באמצע המסך */
+function withLightShipStart(p: Path, speedPxPerSec: number): Path {
+  const t0 = Math.random() * 0.06;
+  const sx = p.from.x + (p.to.x - p.from.x) * t0;
+  const sy = p.from.y + (p.to.y - p.from.y) * t0;
+  const d = dist({ x: sx, y: sy }, p.to);
+  return {
+    ...p,
+    startT: t0,
+    duration: Math.max(0.5, d / speedPxPerSec),
+  };
+}
+
+function generateShipPathAvoidingFull(
   w: number,
   h: number,
-  speedPxPerSec: number,
+  others: Segment[],
+  variant: number,
 ): Path {
-  const t0 = randomStartTInView(base.from, base.to, w, h);
-  const sx = base.from.x + (base.to.x - base.from.x) * t0;
-  const sy = base.from.y + (base.to.y - base.from.y) * t0;
-  const d = dist({ x: sx, y: sy }, base.to);
-  return {
-    ...base,
-    startT: t0,
-    duration: Math.max(0.4, d / speedPxPerSec),
-  };
+  const pad = 8;
+  const m = Math.min(w, h);
+  const minCross = Math.max(120, m * 0.28);
+  const opts = shipPathSeparationOpts(w, h);
+  const segClear = opts.minSegClear * 0.92;
+  const endClear = Math.max(44, m * 0.065);
+  const maxAttempts = isMobileLayout(w) ? 240 : 200;
+
+  let best: Path | null = null;
+  let bestScore = -1;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const { from, to } = randomCandidate(w, h, pad);
+    if (dist(from, to) < minCross) continue;
+    const dSeg = minDistToOthers(from, to, others);
+    const dEnd = minEndpointClearance(from, to, others);
+    const score = Math.min(dSeg, dEnd * 0.86);
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const p = pathShipFullScreen(from, to, w, h, id);
+    if (dSeg >= segClear && dEnd >= endClear) {
+      return withLightShipStart(p, SHIP_SAIL_SPEED_PX_PER_SEC);
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = p;
+    }
+  }
+
+  if (best && bestScore > segClear * 0.34) {
+    return withLightShipStart(best, SHIP_SAIL_SPEED_PX_PER_SEC);
+  }
+  const { from, to } = randomCandidate(w, h, pad);
+  return withLightShipStart(
+    pathShipFullScreen(from, to, w, h, `${Date.now()}-fb-${variant}`),
+    SHIP_SAIL_SPEED_PX_PER_SEC,
+  );
 }
 
 /** נקודות Hero: כניסה/יציאה מדפנות — אלכסונים אקראיים + הימנעות ממסלולים אחרים */
@@ -518,7 +460,7 @@ function generateDotPathAvoiding(
   for (let attempt = 0; attempt < dotAttempts; attempt++) {
     const seg =
       dotOpts?.fixedEntryEdge !== undefined
-        ? randomDotSegmentFromEntry(w, h, pad, dotOpts.fixedEntryEdge)
+        ? randomDotSegmentFromEntryGrid(w, h, pad, dotOpts.fixedEntryEdge)
         : randomDotDiagonalOnly(w, h, pad);
     const { from, to } = seg;
     if (dotOpts?.forbidEntryEdges && dotOpts.forbidEntryEdges.size > 0) {
@@ -576,16 +518,12 @@ function generateOriginalDotPaths(w: number, h: number): Path[] {
   return acc;
 }
 
-/** מסלולי אוניות: תא ברשת (5×4) לאונייה אחת — שיוט בתוך התא בלבד */
-function generateAllPaths(w: number, h: number, cellAssignment: number[]): Path[] {
-  const total = cellAssignment.length;
-  const { cols, rows } = gridLayoutForShips(total);
+/** מסלולי אוניות: אלכסון על כל השטח, קצה→קצה */
+function generateAllShipPathsFullViewport(w: number, h: number, total: number): Path[] {
   const acc: Path[] = [];
   for (let i = 0; i < total; i++) {
     const others: Segment[] = acc.map((p) => ({ from: p.from, to: p.to }));
-    const linear = cellAssignment[i]!;
-    const rect = getCellRectFromLinear(linear, cols, rows, w, h);
-    acc.push(generateShipPathAvoidingInCell(w, h, others, i * 19 + 7, rect));
+    acc.push(generateShipPathAvoidingFull(w, h, others, i * 19 + 7));
   }
   return acc;
 }
@@ -761,17 +699,24 @@ function Particle({
     shipFile ??
     LIVE_BACKGROUND_SHIP_FILES[index % LIVE_BACKGROUND_SHIP_FILES.length]!;
 
+  const fadeDots = variant === "original";
+
   return (
     <motion.div
       key={path.id}
       className="absolute left-0 top-0 overflow-visible"
-      initial={{ x: fromX, y: fromY }}
-      animate={{ x: path.to.x, y: path.to.y }}
+      initial={{
+        x: fromX,
+        y: fromY,
+        opacity: fadeDots ? 0 : 1,
+      }}
+      animate={{ x: path.to.x, y: path.to.y, opacity: 1 }}
       transition={{
-        type: "tween",
-        duration,
-        ease: "linear",
-        delay,
+        x: { duration, ease: "linear", delay },
+        y: { duration, ease: "linear", delay },
+        opacity: fadeDots
+          ? { duration: 0.52, ease: [0.22, 1, 0.36, 1], delay }
+          : { duration: 0 },
       }}
       onAnimationComplete={handleDone}
     >
@@ -789,7 +734,6 @@ function ShipsFloatingParticles() {
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   const [paths, setPaths] = useState<Path[] | null>(null);
   const wasIntersectingRef = useRef<boolean | null>(null);
-  const cellAssignmentRef = useRef<number[] | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -818,12 +762,7 @@ function ShipsFloatingParticles() {
   const respawnShipPaths = useCallback(() => {
     if (sw < 41 || sh < 41) return;
     const total = shipCountForWidth(sw);
-    const assignment = shuffleCellAssignment(total);
-    cellAssignmentRef.current = assignment;
-    const init = generateAllPaths(sw, sh, assignment).map((p) =>
-      withRandomShipStart(p, sw, sh, SHIP_SAIL_SPEED_PX_PER_SEC),
-    );
-    setPaths(init);
+    setPaths(generateAllShipPathsFullViewport(sw, sh, total));
   }, [sw, sh]);
 
   useEffect(() => {
@@ -854,28 +793,17 @@ function ShipsFloatingParticles() {
       if (sw < 41 || sh < 41) return;
       setPaths((prev) => {
         if (!prev) return prev;
-        const assignment = cellAssignmentRef.current;
-        if (!assignment || assignment.length !== prev.length) return prev;
         const others: Segment[] = prev
           .filter((_, j) => j !== i)
           .map((p) => ({ from: p.from, to: p.to }));
-        const { cols, rows } = gridLayoutForShips(assignment.length);
-        const linear = assignment[i]!;
-        const rect = getCellRectFromLinear(linear, cols, rows, sw, sh);
-        const nextPathRaw = generateShipPathAvoidingInCell(
+        const nextPath = generateShipPathAvoidingFull(
           sw,
           sh,
           others,
           i * 23 + Math.floor(Math.random() * 60),
-          rect,
         );
         const next = [...prev];
-        next[i] = withRandomShipStart(
-          nextPathRaw,
-          sw,
-          sh,
-          SHIP_SAIL_SPEED_PX_PER_SEC,
-        );
+        next[i] = nextPath;
         return next;
       });
     },
