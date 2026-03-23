@@ -7,7 +7,7 @@ import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
 /** עדכון קבצים ב־public/images — העלה גרסה כדי לפרוץ מטמון דפדפן */
-const PROCESS_15_STEPS_ASSET_VER = "3";
+const PROCESS_15_STEPS_ASSET_VER = "4";
 const EQS_3STEPS_ASSET_VER = "2";
 
 /** ככה נראה הרכש → „ובדרך אחרת“ + חץ + 5 שלבים + תמונת 3 השלבים — מיד אחרי הבעיה */
