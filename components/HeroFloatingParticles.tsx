@@ -13,8 +13,8 @@ import {
 } from "@/lib/shipGalleryItems";
 
 /**
- * אוניות SVG מהגלריה — חוצות את כל המסך באלכסונים אקראיים (קצה→קצה), פחות בולט מתאים.
- * נקודות Hero — על קווי הרשת (כמו animated-grid-bg) + fade-in רך.
+ * אוניות + נקודות Hero: רק חצייה מדופן שמאל ↔ ימין (בלי כניסה מלמעלה/מטה).
+ * מיקום אנכי (Y) לא ננעל על קווי רוחב של רשת הרקע — רק מרחק מינימלי מקווי ה־60px.
  * (רקע חי בדף הבית + /bg-demos)
  */
 /** סה״כ אוניות — פחות מספרים כי המסלול ארוך על כל המסך */
@@ -193,87 +193,59 @@ function minEndpointClearance(from: Pt, to: Pt, others: Segment[]): number {
 
 type Edge = 0 | 1 | 2 | 3;
 
-function pointOnEdge(e: Edge, w: number, h: number, pad: number): Pt {
-  const maxX = w - pad - DOT;
+/** Y לא מונח על קווי רוחב של רשת הרקע (מניעת "יציאה מתוך קו אופקי") */
+function yAvoidHorizontalGridLines(h: number, pad: number): number {
   const maxY = h - pad - DOT;
-  switch (e) {
-    case 0:
-      /* Top: מגיע מלמעלה */
-      return { x: randomRange(pad, maxX), y: -EDGE_OFFSCREEN_PX };
-    case 1:
-      /* Right: מגיע מימין */
-      return { x: w + EDGE_OFFSCREEN_PX, y: randomRange(pad, maxY) };
-    case 2:
-      /* Bottom: מגיע מלמטה */
-      return { x: randomRange(pad, maxX), y: h + EDGE_OFFSCREEN_PX };
-    case 3:
-      /* Left: מגיע משמאל */
-      return { x: -EDGE_OFFSCREEN_PX, y: randomRange(pad, maxY) };
-    default:
-      return { x: -EDGE_OFFSCREEN_PX, y: randomRange(pad, maxY) };
+  const g = BG_GRID_PX;
+  const minGap = 10;
+  for (let attempt = 0; attempt < 56; attempt++) {
+    const y = randomRange(pad, maxY);
+    const offset = ((y - pad) % g + g) % g;
+    const distToLine = Math.min(offset, g - offset);
+    if (distToLine >= minGap) return y;
   }
+  return pad + g * (0.27 + Math.random() * 0.46);
 }
 
-function randomInterior(w: number, h: number, pad: number): Pt {
+/** נקודה על דופן שמאל (3) או ימין (1) בלבד */
+function pointOnVerticalEdge(e: Edge, w: number, h: number, pad: number, y: number): Pt {
+  const maxY = h - pad - DOT;
+  const yy = Math.min(maxY, Math.max(pad, y));
+  if (e === 3) return { x: -EDGE_OFFSCREEN_PX, y: yy };
+  return { x: w + EDGE_OFFSCREEN_PX, y: yy };
+}
+
+/** חצייה מלאה משמאל לימין או הפוך — אלכסון קל בלבד (y שונה בקצוות) */
+function randomHorizontalCrossing(w: number, h: number, pad: number): Segment {
+  const y1 = yAvoidHorizontalGridLines(h, pad);
+  const y2 = yAvoidHorizontalGridLines(h, pad);
+  const fromLeft = Math.random() < 0.5;
+  if (fromLeft) {
+    return {
+      from: pointOnVerticalEdge(3, w, h, pad, y1),
+      to: pointOnVerticalEdge(1, w, h, pad, y2),
+    };
+  }
   return {
-    x: randomRange(pad, w - pad - DOT),
-    y: randomRange(pad, h - pad - DOT),
+    from: pointOnVerticalEdge(1, w, h, pad, y1),
+    to: pointOnVerticalEdge(3, w, h, pad, y2),
   };
 }
 
-function randomCandidate(w: number, h: number, pad: number): Segment {
-  /* תמיד מקצה לקצה: כניסה מדופן אחת, יציאה מדופן אחרת */
-  let a = Math.floor(Math.random() * 4) as Edge;
-  let b = Math.floor(Math.random() * 4) as Edge;
-  let guard = 0;
-  while (a === b && guard++ < 12) {
-    b = Math.floor(Math.random() * 4) as Edge;
-  }
-  if (a === b) b = ((a + 1) % 4) as Edge;
-  return { from: pointOnEdge(a, w, h, pad), to: pointOnEdge(b, w, h, pad) };
-}
-
-/** נקודות על קווי חלוקת הרשת (יישור לרקע המונפש) */
-function pointOnEdgeGrid(e: Edge, w: number, h: number, pad: number): Pt {
-  const g = BG_GRID_PX;
-  const maxX = w - pad - DOT;
-  const maxY = h - pad - DOT;
-  const maxKx = Math.max(0, Math.floor((maxX - pad) / g));
-  const maxKy = Math.max(0, Math.floor((maxY - pad) / g));
-  switch (e) {
-    case 0: {
-      const k = maxKx > 0 ? Math.floor(Math.random() * (maxKx + 1)) : 0;
-      const x = Math.min(maxX, pad + k * g);
-      return { x, y: -EDGE_OFFSCREEN_PX };
-    }
-    case 1: {
-      const k = maxKy > 0 ? Math.floor(Math.random() * (maxKy + 1)) : 0;
-      const y = Math.min(maxY, pad + k * g);
-      return { x: w + EDGE_OFFSCREEN_PX, y };
-    }
-    case 2: {
-      const k = maxKx > 0 ? Math.floor(Math.random() * (maxKx + 1)) : 0;
-      const x = Math.min(maxX, pad + k * g);
-      return { x, y: h + EDGE_OFFSCREEN_PX };
-    }
-    case 3:
-    default: {
-      const k = maxKy > 0 ? Math.floor(Math.random() * (maxKy + 1)) : 0;
-      const y = Math.min(maxY, pad + k * g);
-      return { x: -EDGE_OFFSCREEN_PX, y };
-    }
-  }
-}
-
-function randomGridCandidate(w: number, h: number, pad: number): Segment {
-  let a = Math.floor(Math.random() * 4) as Edge;
-  let b = Math.floor(Math.random() * 4) as Edge;
-  let guard = 0;
-  while (a === b && guard++ < 12) {
-    b = Math.floor(Math.random() * 4) as Edge;
-  }
-  if (a === b) b = ((a + 1) % 4) as Edge;
-  return { from: pointOnEdgeGrid(a, w, h, pad), to: pointOnEdgeGrid(b, w, h, pad) };
+function randomDotSegmentFromEntryHorizontal(
+  w: number,
+  h: number,
+  pad: number,
+  entry: Edge,
+): Segment {
+  const side = entry === 1 || entry === 3 ? entry : (Math.random() < 0.5 ? 3 : 1);
+  const exitE = side === 3 ? 1 : 3;
+  const yFrom = yAvoidHorizontalGridLines(h, pad);
+  const yTo = yAvoidHorizontalGridLines(h, pad);
+  return {
+    from: pointOnVerticalEdge(side, w, h, pad, yFrom),
+    to: pointOnVerticalEdge(exitE, w, h, pad, yTo),
+  };
 }
 
 function entryEdgeFromFrom(from: Pt, w: number, h: number): Edge {
@@ -293,47 +265,9 @@ function entryEdgeFromFrom(from: Pt, w: number, h: number): Edge {
   return 2;
 }
 
-function randomDotSegmentFromEntryGrid(
-  w: number,
-  h: number,
-  pad: number,
-  entry: Edge,
-): Segment {
-  let exitE: Edge;
-  if (Math.random() < 0.78) {
-    exitE = ((entry + 2) % 4) as Edge;
-  } else {
-    exitE = Math.floor(Math.random() * 4) as Edge;
-    let g = 0;
-    while (exitE === entry && g++ < 14) {
-      exitE = Math.floor(Math.random() * 4) as Edge;
-    }
-    if (exitE === entry) exitE = ((entry + 1) % 4) as Edge;
-  }
-  return {
-    from: pointOnEdgeGrid(entry, w, h, pad),
-    to: pointOnEdgeGrid(exitE, w, h, pad),
-  };
-}
-
-/** נקודות Hero: קצה↔קצה אלכסוני בלבד (בלי מסלולים כמעט אופקיים) */
-function randomDotDiagonalOnly(w: number, h: number, pad: number): Segment {
-  const maxX = w - pad - DOT;
-  if (Math.random() < 0.9) {
-    return randomGridCandidate(w, h, pad);
-  }
-  const pickLow = Math.random() < 0.5;
-  const from = pickLow
-    ? { x: randomRange(pad, maxX * 0.44), y: h + EDGE_OFFSCREEN_PX }
-    : { x: randomRange(maxX * 0.56, maxX), y: -EDGE_OFFSCREEN_PX };
-  const to = pickLow
-    ? { x: randomRange(maxX * 0.54, maxX), y: -EDGE_OFFSCREEN_PX }
-    : { x: randomRange(pad, maxX * 0.46), y: h + EDGE_OFFSCREEN_PX };
-  return { from, to };
-}
-
-function shuffleEdges(): Edge[] {
-  const arr: Edge[] = [0, 1, 2, 3];
+/** כניסות רק משמאל/ימין — לסיבוב בין 4 הנקודות */
+function shuffleVerticalEntryEdges(): Edge[] {
+  const arr: Edge[] = [1, 3, 1, 3];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const t = arr[i]!;
@@ -348,20 +282,19 @@ type DotPathOpts = {
   forbidEntryEdges?: Set<Edge>;
 };
 
-function fallbackPath(w: number, h: number, pad: number, variant: number): Path {
-  const corners: Segment[] = [
-    { from: { x: pad, y: pad }, to: { x: w - pad - DOT, y: h - pad - DOT } },
-    { from: { x: w - pad - DOT, y: pad }, to: { x: pad, y: h - pad - DOT } },
-    { from: { x: pad, y: h - pad - DOT }, to: { x: w - pad - DOT, y: pad } },
-    {
-      from: { x: w - pad - DOT, y: h - pad - DOT },
-      to: { x: pad, y: pad },
-    },
-  ];
-  const s = corners[variant % 4];
+function fallbackPathHorizontal(w: number, h: number, pad: number, variant: number): Path {
+  const y1 = yAvoidHorizontalGridLines(h, pad);
+  const y2 = yAvoidHorizontalGridLines(h, pad);
+  const fromLeft = variant % 2 === 0;
+  const from = fromLeft
+    ? pointOnVerticalEdge(3, w, h, pad, y1)
+    : pointOnVerticalEdge(1, w, h, pad, y1);
+  const to = fromLeft
+    ? pointOnVerticalEdge(1, w, h, pad, y2)
+    : pointOnVerticalEdge(3, w, h, pad, y2);
   return pathWithScreenExit(
-    s.from,
-    s.to,
+    from,
+    to,
     w,
     h,
     `${Date.now()}-${Math.random().toString(36).slice(2)}`,
@@ -412,7 +345,7 @@ function generateShipPathAvoidingFull(
   let bestScore = -1;
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const { from, to } = randomCandidate(w, h, pad);
+    const { from, to } = randomHorizontalCrossing(w, h, pad);
     if (dist(from, to) < minCross) continue;
     const dSeg = minDistToOthers(from, to, others);
     const dEnd = minEndpointClearance(from, to, others);
@@ -431,7 +364,7 @@ function generateShipPathAvoidingFull(
   if (best && bestScore > segClear * 0.34) {
     return withLightShipStart(best, SHIP_SAIL_SPEED_PX_PER_SEC);
   }
-  const { from, to } = randomCandidate(w, h, pad);
+  const { from, to } = randomHorizontalCrossing(w, h, pad);
   return withLightShipStart(
     pathShipFullScreen(from, to, w, h, `${Date.now()}-fb-${variant}`),
     SHIP_SAIL_SPEED_PX_PER_SEC,
@@ -460,8 +393,8 @@ function generateDotPathAvoiding(
   for (let attempt = 0; attempt < dotAttempts; attempt++) {
     const seg =
       dotOpts?.fixedEntryEdge !== undefined
-        ? randomDotSegmentFromEntryGrid(w, h, pad, dotOpts.fixedEntryEdge)
-        : randomDotDiagonalOnly(w, h, pad);
+        ? randomDotSegmentFromEntryHorizontal(w, h, pad, dotOpts.fixedEntryEdge)
+        : randomHorizontalCrossing(w, h, pad);
     const { from, to } = seg;
     if (dotOpts?.forbidEntryEdges && dotOpts.forbidEntryEdges.size > 0) {
       const ee = entryEdgeFromFrom(from, w, h);
@@ -497,7 +430,7 @@ function generateDotPathAvoiding(
       duration: dist(best.from, best.to) / ORIGINAL_DOT_SPEED_PX_PER_SEC,
     };
   }
-  const fb = fallbackPath(w, h, pad, variant);
+  const fb = fallbackPathHorizontal(w, h, pad, variant);
   return {
     ...fb,
     duration: dist(fb.from, fb.to) / ORIGINAL_DOT_SPEED_PX_PER_SEC,
@@ -505,7 +438,7 @@ function generateDotPathAvoiding(
 }
 
 function generateOriginalDotPaths(w: number, h: number): Path[] {
-  const edges = shuffleEdges();
+  const edges = shuffleVerticalEntryEdges();
   const acc: Path[] = [];
   for (let i = 0; i < ORIGINAL_DOT_COUNT; i++) {
     const others: Segment[] = acc.map((p) => ({ from: p.from, to: p.to }));
