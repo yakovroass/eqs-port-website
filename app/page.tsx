@@ -14,6 +14,7 @@ import ProcessTimeline from "@/components/ProcessTimeline";
 import FutureTargets from "@/components/FutureTargets";
 import Investment from "@/components/Investment";
 import Contact from "@/components/Contact";
+import SessionPing from "@/components/SessionPing";
 
 export default function Home() {
   const [lang, setLangState] = useState<Lang>("en");
@@ -37,6 +38,7 @@ export default function Home() {
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, dir }}>
+      <SessionPing />
       <div dir={dir} className="mobile-readable overflow-x-hidden max-w-[100vw] relative">
         <div className="animated-grid-bg fixed inset-0 pointer-events-none z-0" />
         {/* אוניות — כל גובה הדף */}

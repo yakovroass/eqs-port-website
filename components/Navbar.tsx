@@ -37,12 +37,22 @@ export default function Navbar() {
   const { lang, dir } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authUser, setAuthUser] = useState<{ username: string; isAdmin: boolean } | null>(null);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/auth/me", { credentials: "include" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { user?: { username: string; isAdmin: boolean } } | null) =>
+        setAuthUser(d?.user ?? null)
+      )
+      .catch(() => setAuthUser(null));
   }, []);
 
   useEffect(() => {
@@ -140,10 +150,10 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full end-0 mt-2 w-[min(16.5rem,calc(100vw-1.5rem))] z-[100] rounded-xl border border-gray-700 bg-[#0b0f18] shadow-2xl shadow-black/50 overflow-hidden"
+                  className="absolute top-full end-0 mt-2 w-[min(22rem,calc(100vw-1rem))] z-[100] rounded-xl border border-gray-700 bg-[#0b0f18] shadow-2xl shadow-black/50"
                 >
                   <div
-                    className={`py-2 px-1 flex flex-col gap-0.5 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain ${dir === "rtl" ? "items-stretch" : ""}`}
+                    className={`py-2 px-1 flex flex-col gap-0.5 ${dir === "rtl" ? "items-stretch" : ""}`}
                   >
                     {NAV_HREFS.map((href, i) => (
                       <button
@@ -157,6 +167,32 @@ export default function Navbar() {
                         {navLabelAt(i, lang)}
                       </button>
                     ))}
+                    {authUser && (
+                      <div className="border-t border-gray-700/80 mt-1 pt-1 flex flex-col gap-0.5">
+                        {authUser.isAdmin && (
+                          <a
+                            href="/admin/users"
+                            className={`w-full px-3 py-2.5 text-sm text-cyan-300/90 hover:bg-white/10 rounded-lg ${
+                              dir === "rtl" ? "text-right" : "text-left"
+                            }`}
+                          >
+                            Admin
+                          </a>
+                        )}
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+                            window.location.href = "/login";
+                          }}
+                          className={`w-full px-3 py-2.5 text-sm text-gray-300 hover:bg-white/10 rounded-lg ${
+                            dir === "rtl" ? "text-right" : "text-left"
+                          }`}
+                        >
+                          Log out
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               )}

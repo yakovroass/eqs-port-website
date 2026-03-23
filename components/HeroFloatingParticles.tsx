@@ -21,7 +21,8 @@ import {
 const SHIP_COUNT_DESKTOP = 14;
 const SHIP_COUNT_MOBILE = 10;
 
-function shipCountForWidth(w: number) {
+function shipCountForWidth(w: number, override?: number) {
+  if (typeof override === "number" && override > 0) return Math.floor(override);
   return w < 768 ? SHIP_COUNT_MOBILE : SHIP_COUNT_DESKTOP;
 }
 
@@ -68,6 +69,7 @@ function randomRange(a: number, b: number) {
 type Pt = { x: number; y: number };
 
 type Segment = { from: Pt; to: Pt };
+type ShipMotionMode = "horizontal" | "random";
 
 type Path = {
   id: string;
@@ -232,6 +234,28 @@ function randomHorizontalCrossing(w: number, h: number, pad: number): Segment {
   };
 }
 
+function pointOnAnyEdge(e: Edge, w: number, h: number, pad: number): Pt {
+  const minX = pad;
+  const maxX = w - pad;
+  const minY = pad;
+  const maxY = h - pad;
+  if (e === 0) return { x: randomRange(minX, maxX), y: -EDGE_OFFSCREEN_PX };
+  if (e === 2) return { x: randomRange(minX, maxX), y: h + EDGE_OFFSCREEN_PX };
+  if (e === 3) return { x: -EDGE_OFFSCREEN_PX, y: randomRange(minY, maxY) };
+  return { x: w + EDGE_OFFSCREEN_PX, y: randomRange(minY, maxY) };
+}
+
+function randomAnyEdgeCrossing(w: number, h: number, pad: number): Segment {
+  const edges: Edge[] = [0, 1, 2, 3];
+  const fromE = edges[Math.floor(Math.random() * edges.length)]!;
+  const possibleTo = edges.filter((e) => e !== fromE) as Edge[];
+  const toE = possibleTo[Math.floor(Math.random() * possibleTo.length)]!;
+  return {
+    from: pointOnAnyEdge(fromE, w, h, pad),
+    to: pointOnAnyEdge(toE, w, h, pad),
+  };
+}
+
 function randomDotSegmentFromEntryHorizontal(
   w: number,
   h: number,
@@ -314,9 +338,9 @@ function pathShipFullScreen(from: Pt, toLogical: Pt, w: number, h: number, id: s
   };
 }
 
-/** התחלה קרובה לדופן בלבד — בלי הופעה באמצע המסך */
+/** התחלה אקראית לאורך המסלול — כדי שברענון כבר ייראו בשיוט */
 function withLightShipStart(p: Path, speedPxPerSec: number): Path {
-  const t0 = Math.random() * 0.06;
+  const t0 = randomRange(0.14, 0.82);
   const sx = p.from.x + (p.to.x - p.from.x) * t0;
   const sy = p.from.y + (p.to.y - p.from.y) * t0;
   const d = dist({ x: sx, y: sy }, p.to);
@@ -332,6 +356,7 @@ function generateShipPathAvoidingFull(
   h: number,
   others: Segment[],
   variant: number,
+  mode: ShipMotionMode = "horizontal",
 ): Path {
   const pad = 8;
   const m = Math.min(w, h);
@@ -345,7 +370,10 @@ function generateShipPathAvoidingFull(
   let bestScore = -1;
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const { from, to } = randomHorizontalCrossing(w, h, pad);
+    const { from, to } =
+      mode === "random"
+        ? randomAnyEdgeCrossing(w, h, pad)
+        : randomHorizontalCrossing(w, h, pad);
     if (dist(from, to) < minCross) continue;
     const dSeg = minDistToOthers(from, to, others);
     const dEnd = minEndpointClearance(from, to, others);
@@ -364,7 +392,10 @@ function generateShipPathAvoidingFull(
   if (best && bestScore > segClear * 0.34) {
     return withLightShipStart(best, SHIP_SAIL_SPEED_PX_PER_SEC);
   }
-  const { from, to } = randomHorizontalCrossing(w, h, pad);
+  const { from, to } =
+    mode === "random"
+      ? randomAnyEdgeCrossing(w, h, pad)
+      : randomHorizontalCrossing(w, h, pad);
   return withLightShipStart(
     pathShipFullScreen(from, to, w, h, `${Date.now()}-fb-${variant}`),
     SHIP_SAIL_SPEED_PX_PER_SEC,
@@ -383,8 +414,8 @@ function generateDotPathAvoiding(
   const m = Math.min(w, h);
   /** אותם ספים בכל רוחב מסך — כדי שהנקודות יתנהגו כמו בדסקטופ */
   const minCross = Math.max(88, m * 0.17);
-  const segClear = Math.max(38, m * 0.052);
-  const endClear = Math.max(26, m * 0.038);
+  const segClear = Math.max(56, m * 0.078);
+  const endClear = Math.max(34, m * 0.05);
 
   let best: Path | null = null;
   let bestScore = -1;
@@ -452,11 +483,16 @@ function generateOriginalDotPaths(w: number, h: number): Path[] {
 }
 
 /** מסלולי אוניות: אלכסון על כל השטח, קצה→קצה */
-function generateAllShipPathsFullViewport(w: number, h: number, total: number): Path[] {
+function generateAllShipPathsFullViewport(
+  w: number,
+  h: number,
+  total: number,
+  mode: ShipMotionMode = "horizontal",
+): Path[] {
   const acc: Path[] = [];
   for (let i = 0; i < total; i++) {
     const others: Segment[] = acc.map((p) => ({ from: p.from, to: p.to }));
-    acc.push(generateShipPathAvoidingFull(w, h, others, i * 19 + 7));
+    acc.push(generateShipPathAvoidingFull(w, h, others, i * 19 + 7, mode));
   }
   return acc;
 }
@@ -496,7 +532,7 @@ function GalleryShipSprite({
         alt=""
         decoding="async"
         fetchPriority="low"
-        className="block h-full w-full opacity-[0.94] object-contain object-center bg-transparent [transform:translateZ(0)] [-webkit-transform:translateZ(0)] [filter:drop-shadow(0_0_22px_rgba(51,187,255,0.55))_drop-shadow(0_0_48px_rgba(51,187,255,0.35))_drop-shadow(0_0_88px_rgba(51,187,255,0.2))_drop-shadow(0_0_6px_rgba(255,255,255,0.12))]"
+        className="block h-full w-full opacity-[0.88] object-contain object-center bg-transparent [transform:translateZ(0)] [-webkit-transform:translateZ(0)] [filter:drop-shadow(0_0_10px_rgba(248,248,232,0.16))_drop-shadow(0_0_20px_rgba(248,248,232,0.08))_drop-shadow(0_0_38px_rgba(248,248,232,0.04))]"
         aria-hidden
       />
     </div>
@@ -511,14 +547,14 @@ function DotSprite() {
       aria-hidden
     >
       <div
-        className="absolute h-8 w-8 max-sm:h-9 max-sm:w-9 rounded-full bg-[rgba(51,187,255,0.14)] max-sm:bg-[rgba(51,187,255,0.2)] blur-xl opacity-90 max-sm:opacity-100"
+        className="absolute h-8 w-8 max-sm:h-9 max-sm:w-9 rounded-full bg-[rgba(51,187,255,0.078)] max-sm:bg-[rgba(51,187,255,0.104)] blur-xl opacity-54 max-sm:opacity-63"
         aria-hidden
       />
       <div
-        className="absolute h-5 w-5 max-sm:h-6 max-sm:w-6 rounded-full bg-[rgba(51,187,255,0.1)] max-sm:bg-[rgba(51,187,255,0.14)] blur-md opacity-80 max-sm:opacity-95"
+        className="absolute h-5 w-5 max-sm:h-6 max-sm:w-6 rounded-full bg-[rgba(51,187,255,0.058)] max-sm:bg-[rgba(51,187,255,0.088)] blur-md opacity-49 max-sm:opacity-59"
         aria-hidden
       />
-      <div className="relative h-1.5 w-1.5 max-sm:h-[7px] max-sm:w-[7px] rounded-full bg-white/25 max-sm:bg-white/30 blur-[3px] max-sm:blur-[4px] shadow-[0_0_22px_rgba(51,187,255,0.42),0_0_44px_rgba(51,187,255,0.18),0_0_64px_rgba(51,187,255,0.08)] max-sm:shadow-[0_0_26px_rgba(51,187,255,0.5),0_0_48px_rgba(51,187,255,0.28),0_0_72px_rgba(51,187,255,0.12)]" />
+      <div className="relative h-1.5 w-1.5 max-sm:h-[7px] max-sm:w-[7px] rounded-full bg-white/13 max-sm:bg-white/17 blur-[3px] max-sm:blur-[4px] shadow-[0_0_18px_rgba(51,187,255,0.2),0_0_36px_rgba(51,187,255,0.095),0_0_52px_rgba(51,187,255,0.045)] max-sm:shadow-[0_0_20px_rgba(51,187,255,0.25),0_0_40px_rgba(51,187,255,0.125),0_0_56px_rgba(51,187,255,0.062)]" />
     </div>
   );
 }
@@ -653,7 +689,13 @@ function Particle({
   );
 }
 
-function ShipsFloatingParticles() {
+function ShipsFloatingParticles({
+  countOverride,
+  motionMode = "horizontal",
+}: {
+  countOverride?: number;
+  motionMode?: ShipMotionMode;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   const [paths, setPaths] = useState<Path[] | null>(null);
@@ -684,9 +726,9 @@ function ShipsFloatingParticles() {
 
   const respawnShipPaths = useCallback(() => {
     if (sw < 41 || sh < 41) return;
-    const total = shipCountForWidth(sw);
-    setPaths(generateAllShipPathsFullViewport(sw, sh, total));
-  }, [sw, sh]);
+    const total = shipCountForWidth(sw, countOverride);
+    setPaths(generateAllShipPathsFullViewport(sw, sh, total, motionMode));
+  }, [sw, sh, countOverride, motionMode]);
 
   useEffect(() => {
     if (sw < 41 || sh < 41) return;
@@ -706,13 +748,14 @@ function ShipsFloatingParticles() {
           sh,
           others,
           i * 23 + Math.floor(Math.random() * 60),
+          motionMode,
         );
         const next = [...prev];
         next[i] = nextPath;
         return next;
       });
     },
-    [sw, sh],
+    [sw, sh, motionMode],
   );
 
   return (
@@ -746,12 +789,16 @@ function ShipsFloatingParticles() {
 
 export default function HeroFloatingParticles({
   variant = "original",
+  shipCountOverride,
+  shipMotionMode = "horizontal",
 }: {
   variant?: "original" | "ships";
+  shipCountOverride?: number;
+  shipMotionMode?: ShipMotionMode;
 }) {
   if (variant === "original") {
     return <HeroOriginalDiagonalDots />;
   }
 
-  return <ShipsFloatingParticles />;
+  return <ShipsFloatingParticles countOverride={shipCountOverride} motionMode={shipMotionMode} />;
 }

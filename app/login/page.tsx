@@ -1,0 +1,136 @@
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import PasswordField from "@/components/PasswordField";
+import HeroFloatingParticles from "@/components/HeroFloatingParticles";
+
+function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const reason = searchParams.get("reason");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/me", { credentials: "include" })
+      .then((r) => {
+        if (r.ok) router.replace("/");
+      })
+      .catch(() => {});
+  }, [router]);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ username, password }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setError(data.error || "Login failed");
+        return;
+      }
+      router.replace("/");
+      router.refresh();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="relative min-h-[100dvh] overflow-hidden bg-[#050810]">
+      <div className="animated-grid-bg fixed inset-0 pointer-events-none z-0" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden>
+        <HeroFloatingParticles variant="ships" shipCountOverride={3} shipMotionMode="random" />
+      </div>
+      <div className="absolute top-0 left-0 right-0 h-[100dvh] min-h-[100svh] overflow-hidden pointer-events-none z-0" aria-hidden>
+        <div className="relative h-full w-full">
+          <HeroFloatingParticles variant="original" />
+        </div>
+      </div>
+
+      <div className="relative z-10 min-h-[100dvh] flex items-center justify-center px-4 py-8 sm:py-10">
+        <div className="w-full max-w-[22rem] rounded-2xl overflow-hidden border border-gray-500/20 bg-[rgb(10_18_36/0.2)] shadow-[0_8px_40px_rgba(0,0,0,0.2)] backdrop-blur-xl">
+          <div className="relative bg-black/10" dir="ltr">
+            <div className="pointer-events-none absolute inset-x-6 top-1/2 h-28 -translate-y-1/2 rounded-full bg-cyan-400/30 blur-3xl" />
+            <Image
+              src="/og-logo.png"
+              alt="EQS.PORT"
+              width={1200}
+              height={630}
+              sizes="(max-width: 448px) 100vw, 352px"
+              className="relative z-10 block h-auto w-full drop-shadow-[0_0_28px_rgba(34,211,238,0.38)]"
+              priority
+              quality={92}
+            />
+          </div>
+          <div className="px-5 pb-6 pt-1 sm:px-6 sm:pb-7 sm:pt-2">
+            {reason === "revoked" && (
+              <p className="text-sm text-amber-300/95 mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
+                Your access is no longer valid. Please request access from the site owner.
+              </p>
+            )}
+            <form onSubmit={onSubmit}>
+              <div className="space-y-1.5">
+                <div>
+                  <label htmlFor="username" className="block text-xs font-medium text-gray-400 mb-0.5">
+                    Username
+                  </label>
+                  <input
+                    id="username"
+                    autoComplete="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full rounded-lg border border-gray-700 bg-slate-950/90 px-3 py-2 text-sm text-gray-200 placeholder:text-gray-500 focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/35"
+                    required
+                  />
+                </div>
+                <PasswordField
+                  id="password"
+                  label="Password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={setPassword}
+                  required
+                  className="[&_label]:mb-0.5"
+                  inputClassName="w-full rounded-lg border border-gray-700 bg-slate-950/90 py-2 ps-3 pe-11 text-sm text-gray-200 placeholder:text-gray-500 focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/35"
+                />
+              </div>
+              {error && <p className="mt-2.5 text-sm text-red-400">{error}</p>}
+              <button
+                type="submit"
+                disabled={loading}
+                className="mt-4 w-full rounded-lg bg-cyan-600/90 hover:bg-cyan-500 text-white text-sm font-medium py-2 transition-colors disabled:opacity-50"
+              >
+                {loading ? "Signing in…" : "Sign in"}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[100dvh] flex items-center justify-center bg-[#050810] text-gray-400">
+          Loading…
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
+  );
+}
