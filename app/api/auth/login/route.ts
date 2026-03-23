@@ -3,24 +3,32 @@ import { randomBytes } from "crypto";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE } from "@/lib/auth";
+import { sessionCookieSecure } from "@/lib/session-cookie";
 
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const { username, password } = body as { username?: string; password?: string };
-  if (!username?.trim() || !password) {
+  const typed = username?.trim() ?? "";
+  const pass = typeof password === "string" ? password.trim() : "";
+  if (!typed || !pass) {
     return NextResponse.json({ error: "Missing credentials" }, { status: 400 });
   }
-  const typed = username.trim();
-  const user = await prisma.user.findFirst({
-    where: { username: typed },
+  const candidates = await prisma.user.findMany({
+    where: {
+      username: { equals: typed, mode: "insensitive" },
+      active: true,
+    },
   });
-  if (!user || !user.active) {
-    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+  let user: (typeof candidates)[0] | null = null;
+  for (const u of candidates) {
+    if (await bcrypt.compare(pass, u.passwordHash)) {
+      user = u;
+      break;
+    }
   }
-  const ok = await bcrypt.compare(password, user.passwordHash);
-  if (!ok) {
+  if (!user) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
   const token = randomBytes(32).toString("hex");
@@ -33,7 +41,7 @@ export async function POST(request: Request) {
     sameSite: "lax",
     path: "/",
     maxAge: MAX_AGE_SECONDS,
-    secure: process.env.NODE_ENV === "production",
+    secure: sessionCookieSecure(request),
   });
   return response;
 }

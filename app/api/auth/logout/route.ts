@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE } from "@/lib/auth";
+import { sessionCookieSecure } from "@/lib/session-cookie";
 import { computeSessionDurationMs } from "@/lib/sessionDuration";
 
-export async function POST() {
+export async function POST(request: Request) {
   const token = cookies().get(SESSION_COOKIE)?.value;
   if (token) {
     const sess = await prisma.session.findFirst({
@@ -25,7 +26,7 @@ export async function POST() {
     path: "/",
     maxAge: 0,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: sessionCookieSecure(request),
   });
   return res;
 }

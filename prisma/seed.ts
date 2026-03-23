@@ -9,15 +9,22 @@ async function main() {
     throw new Error("ADMIN_PASSWORD must be at least 8 characters (set in .env).");
   }
   const passwordHash = await bcrypt.hash(password, 10);
-  const existing = await prisma.user.findFirst({
+  const existing = await prisma.user.findMany({
     where: { username: { equals: username, mode: "insensitive" } },
     select: { id: true },
   });
-  if (existing) {
-    await prisma.user.update({
-      where: { id: existing.id },
-      data: { passwordHash, isAdmin: true, active: true },
-    });
+  if (existing.length > 0) {
+    for (const row of existing) {
+      await prisma.user.update({
+        where: { id: row.id },
+        data: {
+          username,
+          passwordHash,
+          isAdmin: true,
+          active: true,
+        },
+      });
+    }
   } else {
     await prisma.user.create({
       data: { username, passwordHash, isAdmin: true, active: true },
