@@ -146,9 +146,11 @@ function ChartCard({
     chartHeight >= CHART_H_LARGE ? "min-h-[280px] sm:min-h-[300px]" : "min-h-[200px] sm:min-h-[210px]";
 
   return (
-    <div className={`flex flex-col ${minHClass}`}>
+    <div
+      className={`flex flex-col rounded-lg sm:rounded-xl glass-card overflow-hidden ${minHClass}`}
+    >
       <div
-        className={`rounded-t-lg sm:rounded-t-xl glass-card border-b-0 px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
+        className={`px-2 py-3 sm:px-4 sm:py-4 flex flex-col items-center justify-center text-center shrink-0 ${titleBlockH}`}
       >
         <h3
           className={`font-semibold text-white leading-snug line-clamp-3 ${
@@ -168,7 +170,7 @@ function ChartCard({
         </div>
       </div>
       <div
-        className={`rounded-b-lg sm:rounded-b-xl glass-card border-t-0 -mt-px flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-2 ${chartAreaMinH}`}
+        className={`flex-1 flex flex-col justify-end px-2 pb-3 sm:px-4 sm:pb-5 pt-1 ${chartAreaMinH}`}
       >
         <GrowthBar
           fromPct={(chart.from.value / chart.maxVal) * 100}
@@ -228,9 +230,9 @@ export default function MarketData() {
           <div className="max-w-5xl mx-auto mb-6">
             <div className="rounded-xl overflow-hidden glass-card">
               <div className="overflow-x-auto">
-              <table className="w-full min-w-0">
+              <table className="w-full min-w-0 border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-700/25 bg-white/[0.05]">
+                  <tr className="border-b border-white/[0.08] bg-[rgb(10_18_36/0.38)] backdrop-blur-md">
                     <th className="px-2 sm:px-5 py-2.5 text-left text-[9px] sm:text-xs font-bold text-white uppercase tracking-wider">
                       {lang === "en" ? "Category" : "קטגוריה"}
                     </th>
@@ -253,7 +255,7 @@ export default function MarketData() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="border-b border-white/[0.06] hover:bg-white/[0.03] transition-colors"
+                      className="border-b border-white/[0.05] hover:bg-[rgb(10_18_36/0.35)] transition-colors"
                     >
                       <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-medium">{row.category[lang]}</td>
                       <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-bold">{row.market}</td>
@@ -266,7 +268,7 @@ export default function MarketData() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="bg-white/[0.05] border-t border-accent/15"
+                    className="bg-[rgb(10_18_36/0.42)] backdrop-blur-sm border-t border-accent/20"
                   >
                     <td className="px-2 sm:px-5 py-3 text-[10px] sm:text-sm text-white font-bold">{total.category[lang]}</td>
                     <td className="px-2 sm:px-5 py-3 text-sm sm:text-xl text-white font-black">{total.market}</td>

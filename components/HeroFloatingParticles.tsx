@@ -496,7 +496,7 @@ function GalleryShipSprite({
         alt=""
         decoding="async"
         fetchPriority="low"
-        className="block h-full w-full opacity-[0.92] object-contain object-center bg-transparent [transform:translateZ(0)] [-webkit-transform:translateZ(0)]"
+        className="block h-full w-full opacity-[0.94] object-contain object-center bg-transparent [transform:translateZ(0)] [-webkit-transform:translateZ(0)] [filter:drop-shadow(0_0_22px_rgba(51,187,255,0.55))_drop-shadow(0_0_48px_rgba(51,187,255,0.35))_drop-shadow(0_0_88px_rgba(51,187,255,0.2))_drop-shadow(0_0_6px_rgba(255,255,255,0.12))]"
         aria-hidden
       />
     </div>
@@ -591,7 +591,7 @@ function HeroOriginalDiagonalDots() {
       {size && paths
         ? paths.map((path, i) => (
             <Particle
-              key={`orig-dot-${i}-${path.id}`}
+              key={`orig-dot-${i}`}
               path={path}
               index={i}
               onComplete={handleDotComplete}
@@ -632,24 +632,15 @@ function Particle({
     shipFile ??
     LIVE_BACKGROUND_SHIP_FILES[index % LIVE_BACKGROUND_SHIP_FILES.length]!;
 
-  const fadeDots = variant === "original";
-
   return (
     <motion.div
       key={path.id}
       className="absolute left-0 top-0 overflow-visible"
-      initial={{
-        x: fromX,
-        y: fromY,
-        opacity: fadeDots ? 0 : 1,
-      }}
+      initial={{ x: fromX, y: fromY, opacity: 1 }}
       animate={{ x: path.to.x, y: path.to.y, opacity: 1 }}
       transition={{
         x: { duration, ease: "linear", delay },
         y: { duration, ease: "linear", delay },
-        opacity: fadeDots
-          ? { duration: 0.52, ease: [0.22, 1, 0.36, 1], delay }
-          : { duration: 0 },
       }}
       onAnimationComplete={handleDone}
     >
@@ -666,7 +657,6 @@ function ShipsFloatingParticles() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   const [paths, setPaths] = useState<Path[] | null>(null);
-  const wasIntersectingRef = useRef<boolean | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -703,24 +693,6 @@ function ShipsFloatingParticles() {
     respawnShipPaths();
   }, [sw, sh, respawnShipPaths]);
 
-  /** כשנכנסים שוב ל־Hero אחרי גלילה החוצה — פיזור מחדש במסך (לא רק מדופן) */
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el || sw < 41 || sh < 41) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        const vis = entry.isIntersecting && entry.intersectionRatio > 0.04;
-        if (vis && wasIntersectingRef.current === false) {
-          respawnShipPaths();
-        }
-        wasIntersectingRef.current = vis;
-      },
-      { threshold: [0, 0.05, 0.12] },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [sw, sh, respawnShipPaths]);
-
   const handleParticleComplete = useCallback(
     (i: number) => {
       if (sw < 41 || sh < 41) return;
@@ -754,7 +726,7 @@ function ShipsFloatingParticles() {
         {size && paths
           ? paths.map((path, i) => (
               <Particle
-                key={`slot-${i}-${path.id}`}
+                key={`ship-${i}`}
                 path={path}
                 index={i}
                 onComplete={handleParticleComplete}
