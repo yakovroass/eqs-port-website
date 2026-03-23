@@ -6,7 +6,8 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
-/** עדכון קובץ ב־public/images — העלה גרסה כדי לפרוץ מטמון דפדפן */
+/** עדכון קבצים ב־public/images — העלה גרסה כדי לפרוץ מטמון דפדפן */
+const PROCESS_15_STEPS_ASSET_VER = "2";
 const EQS_3STEPS_ASSET_VER = "2";
 
 /** ככה נראה הרכש → „ובדרך אחרת“ + חץ + 5 שלבים + תמונת 3 השלבים — מיד אחרי הבעיה */
@@ -30,7 +31,7 @@ export default function ProcessRealityIntro() {
             </p>
             <div className="bg-[rgb(10_18_36/0.3)] backdrop-blur-md border-t border-amber-500/10">
               <Image
-                src="/images/process-15steps.png"
+                src={`/images/process-15steps.png?v=${PROCESS_15_STEPS_ASSET_VER}`}
                 alt={lang === "en" ? "15-step procurement and delivery process flowchart" : "תרשים זרימה: 15 שלבי הרכש והמשלוח"}
                 width={887}
                 height={829}
