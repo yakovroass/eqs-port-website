@@ -61,7 +61,7 @@ function LoginForm() {
         r.json().catch(() => ({}))
       )) as { user?: unknown };
       if (!me.user) {
-        setError("ההתחברות הצליחה אבל הסשן לא נקלט בדפדפן. נסה רענון מלא (Ctrl+F5) ואז כניסה מחדש.");
+        window.location.assign("/login?reason=session");
         return;
       }
       window.location.assign("/");
@@ -101,6 +101,12 @@ function LoginForm() {
             {reason === "revoked" && (
               <p className="text-sm text-amber-300/95 mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
                 Your access is no longer valid. Please request access from the site owner.
+              </p>
+            )}
+            {reason === "session" && (
+              <p className="text-sm text-red-300/95 mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2">
+                Sign in succeeded, but the session cookie was not available on the next request. Please
+                clear site cookies and sign in again.
               </p>
             )}
             <form onSubmit={onSubmit}>
