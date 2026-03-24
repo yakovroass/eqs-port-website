@@ -27,12 +27,19 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
+    const needsAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
     const cookie = request.cookies.get(SESSION_COOKIE)?.value;
     if (!cookie) {
       if (pathname.startsWith("/api")) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
       }
       return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    // For regular site pages, cookie presence is enough.
+    // We still enforce full DB-backed session validation for admin surfaces.
+    if (!needsAdmin) {
+      return NextResponse.next();
     }
 
     const verifyUrl = new URL("/api/auth/session-check", request.url);
@@ -56,7 +63,6 @@ export async function middleware(request: NextRequest) {
     }
 
     const data = (await res.json()) as { ok?: boolean; isAdmin?: boolean };
-    const needsAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
     if (needsAdmin && !data.isAdmin) {
       if (pathname.startsWith("/api")) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
