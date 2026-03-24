@@ -57,8 +57,14 @@ function LoginForm() {
         setError(loginUiMessage(res.status, data));
         return;
       }
-      router.replace("/");
-      router.refresh();
+      const me = (await fetch("/api/auth/me", { credentials: "include" }).then((r) =>
+        r.json().catch(() => ({}))
+      )) as { user?: unknown };
+      if (!me.user) {
+        setError("ההתחברות הצליחה אבל הסשן לא נקלט בדפדפן. נסה רענון מלא (Ctrl+F5) ואז כניסה מחדש.");
+        return;
+      }
+      window.location.assign("/");
     } finally {
       setLoading(false);
     }
