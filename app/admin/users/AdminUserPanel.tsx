@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import PasswordField from "@/components/PasswordField";
 
@@ -77,6 +77,7 @@ export default function AdminUserPanel({
   users: UserRow[];
   currentUserId: string;
 }) {
+  const PASSWORD_STORE_KEY = "eqs-known-passwords-v1";
   const [users, setUsers] = useState(initial);
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -93,6 +94,27 @@ export default function AdminUserPanel({
   >({});
 
   const [knownPasswordsByUser, setKnownPasswordsByUser] = useState<Record<string, string>>({});
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(PASSWORD_STORE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Record<string, string>;
+      if (parsed && typeof parsed === "object") {
+        setKnownPasswordsByUser(parsed);
+      }
+    } catch {
+      // ignore malformed local storage
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(PASSWORD_STORE_KEY, JSON.stringify(knownPasswordsByUser));
+    } catch {
+      // ignore storage write failures
+    }
+  }, [knownPasswordsByUser]);
+
 
   const generateNumericPassword = (len = 8) => {
     let out = "";
