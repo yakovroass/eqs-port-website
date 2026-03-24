@@ -33,13 +33,14 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (reason) return;
     fetch("/api/auth/me", { credentials: "include" })
       .then((r) => r.json())
       .then((d: { user?: unknown }) => {
         if (d?.user) router.replace("/");
       })
       .catch(() => {});
-  }, [router]);
+  }, [router, reason]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
