@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE } from "@/lib/auth";
-import { sessionCookieSecure } from "@/lib/session-cookie";
+import { sessionCookieDomain, sessionCookieSecure } from "@/lib/session-cookie";
 import { computeSessionDurationMs } from "@/lib/sessionDuration";
 
 export async function POST(request: Request) {
@@ -27,6 +27,7 @@ export async function POST(request: Request) {
     maxAge: 0,
     sameSite: "lax",
     secure: sessionCookieSecure(request),
+    domain: sessionCookieDomain(request),
   });
   return res;
 }

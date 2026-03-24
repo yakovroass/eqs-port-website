@@ -14,3 +14,15 @@ export function sessionCookieSecure(request: Request): boolean {
     return false;
   }
 }
+
+/** Share session across eqsport.io and www.eqsport.io. */
+export function sessionCookieDomain(request: Request): string | undefined {
+  const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host");
+  const host = hostHeader?.split(",")[0].trim().toLowerCase();
+  if (!host) return undefined;
+  const hostname = host.split(":")[0];
+  if (hostname === "eqsport.io" || hostname.endsWith(".eqsport.io")) {
+    return ".eqsport.io";
+  }
+  return undefined;
+}

@@ -3,7 +3,7 @@ import { randomBytes } from "crypto";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE } from "@/lib/auth";
-import { sessionCookieSecure } from "@/lib/session-cookie";
+import { sessionCookieDomain, sessionCookieSecure } from "@/lib/session-cookie";
 
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
@@ -53,6 +53,7 @@ export async function POST(request: Request) {
       path: "/",
       maxAge: MAX_AGE_SECONDS,
       secure: sessionCookieSecure(request),
+      domain: sessionCookieDomain(request),
     });
     return response;
   } catch (e) {
