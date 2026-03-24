@@ -11,6 +11,10 @@ frontend:
         - 'npm run db:seed'
     build:
       commands:
+        # Amplify console env vars are not passed to Next.js SSR runtime by default; writing to
+        # .env.production before `next build` is the AWS-documented fix (see SSR env vars in Amplify docs).
+        - rm -f .env.production
+        - env | grep -e '^DATABASE_URL=' >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

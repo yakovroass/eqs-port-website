@@ -20,6 +20,7 @@ npm-debug.log*
 # env files
 .env
 .env*.local
+.env.production
 
 # SQLite local DB
 *.db
