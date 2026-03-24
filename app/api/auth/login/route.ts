@@ -27,9 +27,13 @@ export async function POST(request: Request) {
     });
     let user: (typeof candidates)[0] | null = null;
     for (const u of candidates) {
-      if (await bcrypt.compare(pass, u.passwordHash)) {
-        user = u;
-        break;
+      try {
+        if (await bcrypt.compare(pass, u.passwordHash)) {
+          user = u;
+          break;
+        }
+      } catch {
+        /* invalid hash format */
       }
     }
     if (!user) {
