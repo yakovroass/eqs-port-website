@@ -27,7 +27,6 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    const needsAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
     const cookie = request.cookies.get(SESSION_COOKIE)?.value;
     if (!cookie) {
       if (pathname.startsWith("/api")) {
@@ -36,43 +35,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    // For regular site pages, cookie presence is enough.
-    // We still enforce full DB-backed session validation for admin surfaces.
-    if (!needsAdmin) {
-      return NextResponse.next();
-    }
-
-    const verifyUrl = new URL("/api/auth/me", request.url);
-    const res = await fetch(verifyUrl, {
-      headers: { cookie: request.headers.get("cookie") || "" },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      if (pathname.startsWith("/api")) {
-        return NextResponse.json(
-          { error: "Unauthorized" },
-          { status: 401 }
-        );
-      }
-      const login = new URL("/login", request.url);
-      return NextResponse.redirect(login);
-    }
-
-    const data = (await res.json()) as { user?: { isAdmin?: boolean } | null };
-    if (!data.user) {
-      if (pathname.startsWith("/api")) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-      }
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-    if (needsAdmin && !data.user.isAdmin) {
-      if (pathname.startsWith("/api")) {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-      }
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-
+    // Do not perform DB-backed user checks inside middleware.
+    // Admin pages and admin APIs already enforce `isAdmin` server-side.
     return NextResponse.next();
   } catch (e) {
     console.error("[middleware]", e instanceof Error ? e.message : e);
