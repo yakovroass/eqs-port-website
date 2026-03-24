@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const s = await getSessionUser();
     if (!s) {
-      return NextResponse.json({ user: null }, { status: 401 });
+      return NextResponse.json({ user: null });
     }
     return NextResponse.json({
       user: {
@@ -18,6 +18,6 @@ export async function GET() {
     });
   } catch (e) {
     console.error("[auth/me]", e instanceof Error ? e.message : e);
-    return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
+    return NextResponse.json({ user: null });
   }
 }

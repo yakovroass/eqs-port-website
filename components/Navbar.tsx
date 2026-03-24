@@ -48,8 +48,8 @@ export default function Navbar() {
 
   useEffect(() => {
     fetch("/api/auth/me", { credentials: "include" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d: { user?: { username: string; isAdmin: boolean } } | null) =>
+      .then((r) => r.json())
+      .then((d: { user?: { username: string; isAdmin: boolean } }) =>
         setAuthUser(d?.user ?? null)
       )
       .catch(() => setAuthUser(null));

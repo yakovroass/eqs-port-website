@@ -34,8 +34,9 @@ function LoginForm() {
 
   useEffect(() => {
     fetch("/api/auth/me", { credentials: "include" })
-      .then((r) => {
-        if (r.ok) router.replace("/");
+      .then((r) => r.json())
+      .then((d: { user?: unknown }) => {
+        if (d?.user) router.replace("/");
       })
       .catch(() => {});
   }, [router]);

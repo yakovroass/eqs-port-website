@@ -8,6 +8,7 @@ function isPublicPath(pathname: string): boolean {
   if (pathname === "/login") return true;
   if (pathname === "/health") return true;
   if (pathname === "/api/auth/login") return true;
+  if (pathname === "/api/auth/me") return true;
   if (pathname === "/api/health") return true;
   if (pathname === "/api/auth/session-check") return true;
   if (pathname.startsWith("/ship-refs/")) return true;
