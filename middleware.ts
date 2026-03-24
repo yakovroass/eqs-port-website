@@ -42,7 +42,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    const verifyUrl = new URL("/api/auth/session-check", request.url);
+    const verifyUrl = new URL("/api/auth/me", request.url);
     const res = await fetch(verifyUrl, {
       headers: { cookie: request.headers.get("cookie") || "" },
       cache: "no-store",
@@ -51,19 +51,22 @@ export async function middleware(request: NextRequest) {
     if (!res.ok) {
       if (pathname.startsWith("/api")) {
         return NextResponse.json(
-          { error: res.status === 403 ? "Access revoked" : "Unauthorized" },
-          { status: res.status === 403 ? 403 : 401 }
+          { error: "Unauthorized" },
+          { status: 401 }
         );
       }
       const login = new URL("/login", request.url);
-      if (res.status === 403) {
-        login.searchParams.set("reason", "revoked");
-      }
       return NextResponse.redirect(login);
     }
 
-    const data = (await res.json()) as { ok?: boolean; isAdmin?: boolean };
-    if (needsAdmin && !data.isAdmin) {
+    const data = (await res.json()) as { user?: { isAdmin?: boolean } | null };
+    if (!data.user) {
+      if (pathname.startsWith("/api")) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    if (needsAdmin && !data.user.isAdmin) {
       if (pathname.startsWith("/api")) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
