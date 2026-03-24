@@ -22,6 +22,7 @@ export async function GET(
   }
 
   const totalLogins = await prisma.session.count({ where: { userId } });
+  const totalVisits = await prisma.visitSession.count({ where: { userId } });
 
   const rows = await prisma.session.findMany({
     where: { userId },
@@ -61,10 +62,47 @@ export async function GET(
     };
   });
 
+  const visitRows = await prisma.visitSession.findMany({
+    where: { userId },
+    orderBy: { startedAt: "desc" },
+    take: 100,
+    select: {
+      id: true,
+      startedAt: true,
+      lastSeenAt: true,
+      endedAt: true,
+      durationMs: true,
+    },
+  });
+  const visits = visitRows.map((row) => {
+    const ended = Boolean(row.endedAt);
+    const stored = row.durationMs;
+    const computed =
+      stored ??
+      (ended ? computeSessionDurationMs(row.startedAt, row.lastSeenAt) : null);
+    const activeApproxMs = !ended
+      ? computeSessionDurationMs(row.startedAt, row.lastSeenAt)
+      : null;
+    const displayMs = computed ?? activeApproxMs ?? 0;
+    return {
+      id: row.id,
+      startedAt: row.startedAt.toISOString(),
+      lastSeenAt: row.lastSeenAt.toISOString(),
+      endedAt: row.endedAt?.toISOString() ?? null,
+      ended,
+      durationLabel: formatDurationHe(displayMs),
+      note: ended
+        ? "ביקור נסגר. משך לפי פעילות אחרונה מדווחת."
+        : "ביקור פעיל כרגע.",
+    };
+  });
+
   return NextResponse.json({
     username: user.username,
     totalLogins,
+    totalVisits,
     sessions,
+    visits,
   });
 }
 
@@ -78,8 +116,9 @@ export async function DELETE(
   }
   const { id: userId } = params;
   if (userId === s.user.id) {
-    return NextResponse.json({ error: "Cannot reset your own sessions" }, { status: 400 });
+    return NextResponse.json({ error: "Cannot reset your own activity" }, { status: 400 });
   }
   await prisma.session.deleteMany({ where: { userId } });
+  await prisma.visitSession.deleteMany({ where: { userId } });
   return NextResponse.json({ ok: true });
 }

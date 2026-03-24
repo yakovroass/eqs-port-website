@@ -18,6 +18,19 @@ export async function POST(request: Request) {
         where: { id: sess.id },
         data: { endedAt, durationMs },
       });
+      const activeVisit = await prisma.visitSession.findFirst({
+        where: { userId: sess.userId, endedAt: null },
+        orderBy: { lastSeenAt: "desc" },
+      });
+      if (activeVisit) {
+        await prisma.visitSession.update({
+          where: { id: activeVisit.id },
+          data: {
+            endedAt,
+            durationMs: computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt),
+          },
+        });
+      }
     }
   }
   const res = NextResponse.json({ ok: true });

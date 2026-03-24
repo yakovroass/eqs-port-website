@@ -16,7 +16,7 @@ export default async function AdminUsersPage() {
       isAdmin: true,
       active: true,
       createdAt: true,
-      _count: { select: { sessions: true } },
+      _count: { select: { sessions: true, visitSessions: true } },
     },
   });
 
@@ -28,6 +28,7 @@ export default async function AdminUsersPage() {
     active: u.active,
     createdAt: u.createdAt.toISOString(),
     loginCount: u._count.sessions,
+    visitCount: u._count.visitSessions,
   }));
 
   return (

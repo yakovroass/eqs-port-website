@@ -12,9 +12,10 @@ export type UserRow = {
   active: boolean;
   createdAt: string;
   loginCount: number;
+  visitCount: number;
 };
 
-type SessionRow = {
+type LoginSessionRow = {
   id: string;
   loginAt: string;
   lastSeenAt: string;
@@ -24,20 +25,34 @@ type SessionRow = {
   note: string;
 };
 
-function SessionPackTable({ pack }: { pack: { totalLogins: number; sessions: SessionRow[] } }) {
+type VisitRow = {
+  id: string;
+  startedAt: string;
+  lastSeenAt: string;
+  endedAt: string | null;
+  ended: boolean;
+  durationLabel: string;
+  note: string;
+};
+
+function SessionPackTable({
+  pack,
+}: {
+  pack: { totalLogins: number; totalVisits: number; sessions: LoginSessionRow[]; visits: VisitRow[] };
+}) {
   return (
     <div className="space-y-3">
       <p className="text-xs text-gray-500">
-        סה״כ סשנים (כניסות): <strong className="text-gray-300">{pack.totalLogins}</strong>
+        סה״כ התחברויות: <strong className="text-gray-300">{pack.totalLogins}</strong>
         {pack.totalLogins > pack.sessions.length && (
-          <span> — מוצגים {pack.sessions.length} האחרונים</span>
+          <span> — מוצגות {pack.sessions.length} האחרונות</span>
         )}
       </p>
       <div className="overflow-x-auto rounded-lg border border-gray-700/50">
         <table className="w-full text-xs text-right min-w-[36rem]">
           <thead className="bg-black/40 text-gray-500">
             <tr>
-              <th className="px-2 py-1.5">כניסה</th>
+              <th className="px-2 py-1.5">התחברות</th>
               <th className="px-2 py-1.5">פעילות אחרונה</th>
               <th className="px-2 py-1.5">סגירה</th>
               <th className="px-2 py-1.5">משך משוער</th>
@@ -60,6 +75,45 @@ function SessionPackTable({ pack }: { pack: { totalLogins: number; sessions: Ses
                 <td className="px-2 py-1.5 text-gray-500 max-w-[12rem]">
                   {s.ended ? "נסגר" : "פעיל"}
                   <span className="block text-[10px] text-gray-600 mt-0.5">{s.note}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-gray-500 pt-1">
+        סה״כ פעילויות (Visit): <strong className="text-gray-300">{pack.totalVisits}</strong>
+        {pack.totalVisits > pack.visits.length && (
+          <span> — מוצגות {pack.visits.length} האחרונות</span>
+        )}
+      </p>
+      <div className="overflow-x-auto rounded-lg border border-gray-700/50">
+        <table className="w-full text-xs text-right min-w-[36rem]">
+          <thead className="bg-black/40 text-gray-500">
+            <tr>
+              <th className="px-2 py-1.5">תחילת פעילות</th>
+              <th className="px-2 py-1.5">פעילות אחרונה</th>
+              <th className="px-2 py-1.5">סגירה</th>
+              <th className="px-2 py-1.5">משך משוער</th>
+              <th className="px-2 py-1.5">סטטוס</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pack.visits.map((v) => (
+              <tr key={v.id} className="border-t border-gray-800/80">
+                <td className="px-2 py-1.5 whitespace-nowrap text-gray-300">
+                  {new Date(v.startedAt).toLocaleString("he-IL")}
+                </td>
+                <td className="px-2 py-1.5 whitespace-nowrap text-gray-400">
+                  {new Date(v.lastSeenAt).toLocaleString("he-IL")}
+                </td>
+                <td className="px-2 py-1.5 whitespace-nowrap text-gray-500">
+                  {v.endedAt ? new Date(v.endedAt).toLocaleString("he-IL") : "—"}
+                </td>
+                <td className="px-2 py-1.5 text-cyan-200/90">{v.durationLabel}</td>
+                <td className="px-2 py-1.5 text-gray-500 max-w-[12rem]">
+                  {v.ended ? "נסגר" : "פעיל"}
+                  <span className="block text-[10px] text-gray-600 mt-0.5">{v.note}</span>
                 </td>
               </tr>
             ))}
@@ -90,7 +144,12 @@ export default function AdminUserPanel({
   const [myAccountOpen, setMyAccountOpen] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [sessionsByUser, setSessionsByUser] = useState<
-    Record<string, { totalLogins: number; sessions: SessionRow[] } | "loading" | "error">
+    Record<
+      string,
+      | { totalLogins: number; totalVisits: number; sessions: LoginSessionRow[]; visits: VisitRow[] }
+      | "loading"
+      | "error"
+    >
   >({});
 
   const [knownPasswordsByUser, setKnownPasswordsByUser] = useState<Record<string, string>>({});
@@ -164,7 +223,9 @@ export default function AdminUserPanel({
     const r = await fetch("/api/admin/users", { credentials: "include" });
     if (!r.ok) return;
     const data = (await r.json()) as {
-      users: Array<UserRow & { loginCount?: number; _count?: { sessions: number } }>;
+      users: Array<
+        UserRow & { loginCount?: number; visitCount?: number; _count?: { sessions: number; visitSessions: number } }
+      >;
     };
     setUsers(
       data.users.map((u) => ({
@@ -175,6 +236,7 @@ export default function AdminUserPanel({
         active: u.active,
         createdAt: typeof u.createdAt === "string" ? u.createdAt : String(u.createdAt),
         loginCount: u.loginCount ?? u._count?.sessions ?? 0,
+        visitCount: u.visitCount ?? u._count?.visitSessions ?? 0,
       }))
     );
   }, []);
@@ -186,7 +248,12 @@ export default function AdminUserPanel({
       setSessionsByUser((m) => ({ ...m, [userId]: "error" }));
       return;
     }
-    const data = (await r.json()) as { totalLogins: number; sessions: SessionRow[] };
+    const data = (await r.json()) as {
+      totalLogins: number;
+      totalVisits: number;
+      sessions: LoginSessionRow[];
+      visits: VisitRow[];
+    };
     setSessionsByUser((m) => ({ ...m, [userId]: data }));
   };
 
@@ -483,7 +550,7 @@ export default function AdminUserPanel({
               <th className="px-4 py-2">סיסמה ידועה</th>
               <th className="px-4 py-2">מנהל</th>
               <th className="px-4 py-2">פעיל</th>
-              <th className="px-4 py-2">סשנים</th>
+              <th className="px-4 py-2">פעילות / התחברויות</th>
               <th className="px-4 py-2 w-48">פעולות</th>
             </tr>
           </thead>
@@ -502,7 +569,8 @@ export default function AdminUserPanel({
                   <td className="px-4 py-2">{u.isAdmin ? "כן" : "—"}</td>
                   <td className="px-4 py-2">{u.active ? "כן" : "לא"}</td>
                   <td className="px-4 py-2 text-gray-300">
-                    <span className="block">{u.loginCount}</span>
+                    <span className="block">פעילויות: {u.visitCount}</span>
+                    <span className="block">התחברויות: {u.loginCount}</span>
                     <span className="block text-[11px] text-gray-500 whitespace-nowrap">
                       נוצר: {new Date(u.createdAt).toLocaleString("he-IL")}
                     </span>
@@ -514,7 +582,7 @@ export default function AdminUserPanel({
                         onClick={() => toggleExpand(u)}
                         className="text-cyan-400 hover:text-cyan-300 text-xs"
                       >
-                        {expandedId === u.id ? "סגור פעילות" : "פעילות / סשנים"}
+                        {expandedId === u.id ? "סגור פעילות" : "פעילות / התחברויות"}
                       </button>
                       <button
                         type="button"
@@ -568,7 +636,14 @@ export default function AdminUserPanel({
                       )}
                       {sessionsByUser[u.id] && typeof sessionsByUser[u.id] === "object" && (
                         <SessionPackTable
-                          pack={sessionsByUser[u.id] as { totalLogins: number; sessions: SessionRow[] }}
+                          pack={
+                            sessionsByUser[u.id] as {
+                              totalLogins: number;
+                              totalVisits: number;
+                              sessions: LoginSessionRow[];
+                              visits: VisitRow[];
+                            }
+                          }
                         />
                       )}
                     </td>

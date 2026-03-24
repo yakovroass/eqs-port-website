@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE } from "@/lib/auth";
 import { sessionCookieDomain, sessionCookieSecure } from "@/lib/session-cookie";
+import { computeSessionDurationMs } from "@/lib/sessionDuration";
 
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
@@ -45,6 +46,23 @@ export async function POST(request: Request) {
     const token = randomBytes(32).toString("hex");
     await prisma.session.create({
       data: { token, userId: user.id },
+    });
+    const now = new Date();
+    const activeVisit = await prisma.visitSession.findFirst({
+      where: { userId: user.id, endedAt: null },
+      orderBy: { lastSeenAt: "desc" },
+    });
+    if (activeVisit) {
+      await prisma.visitSession.update({
+        where: { id: activeVisit.id },
+        data: {
+          endedAt: now,
+          durationMs: computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt),
+        },
+      });
+    }
+    await prisma.visitSession.create({
+      data: { userId: user.id, startedAt: now, lastSeenAt: now },
     });
     const response = NextResponse.json({ ok: true });
     response.cookies.set(SESSION_COOKIE, token, {

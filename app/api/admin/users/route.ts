@@ -17,7 +17,7 @@ export async function GET() {
       isAdmin: true,
       active: true,
       createdAt: true,
-      _count: { select: { sessions: true } },
+      _count: { select: { sessions: true, visitSessions: true } },
     },
   });
   return NextResponse.json({ users });
