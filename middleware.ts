@@ -25,44 +25,52 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const cookie = request.cookies.get(SESSION_COOKIE)?.value;
-  if (!cookie) {
+  try {
+    const cookie = request.cookies.get(SESSION_COOKIE)?.value;
+    if (!cookie) {
+      if (pathname.startsWith("/api")) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    const verifyUrl = new URL("/api/auth/session-check", request.url);
+    const res = await fetch(verifyUrl, {
+      headers: { cookie: request.headers.get("cookie") || "" },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      if (pathname.startsWith("/api")) {
+        return NextResponse.json(
+          { error: res.status === 403 ? "Access revoked" : "Unauthorized" },
+          { status: res.status === 403 ? 403 : 401 }
+        );
+      }
+      const login = new URL("/login", request.url);
+      if (res.status === 403) {
+        login.searchParams.set("reason", "revoked");
+      }
+      return NextResponse.redirect(login);
+    }
+
+    const data = (await res.json()) as { ok?: boolean; isAdmin?: boolean };
+    const needsAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
+    if (needsAdmin && !data.isAdmin) {
+      if (pathname.startsWith("/api")) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    return NextResponse.next();
+  } catch (e) {
+    console.error("[middleware]", e instanceof Error ? e.message : e);
     if (pathname.startsWith("/api")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
     }
     return NextResponse.redirect(new URL("/login", request.url));
   }
-
-  const verifyUrl = new URL("/api/auth/session-check", request.url);
-  const res = await fetch(verifyUrl, {
-    headers: { cookie: request.headers.get("cookie") || "" },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    if (pathname.startsWith("/api")) {
-      return NextResponse.json(
-        { error: res.status === 403 ? "Access revoked" : "Unauthorized" },
-        { status: res.status === 403 ? 403 : 401 }
-      );
-    }
-    const login = new URL("/login", request.url);
-    if (res.status === 403) {
-      login.searchParams.set("reason", "revoked");
-    }
-    return NextResponse.redirect(login);
-  }
-
-  const data = (await res.json()) as { ok?: boolean; isAdmin?: boolean };
-  const needsAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
-  if (needsAdmin && !data.isAdmin) {
-    if (pathname.startsWith("/api")) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  return NextResponse.next();
 }
 
 export const config = {
