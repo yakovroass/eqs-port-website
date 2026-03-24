@@ -92,13 +92,7 @@ export default function AdminUserPanel({
     Record<string, { totalLogins: number; sessions: SessionRow[] } | "loading" | "error">
   >({});
 
-  const [renameId, setRenameId] = useState<string | null>(null);
-  const [renameValue, setRenameValue] = useState("");
-  const [renameDisplayName, setRenameDisplayName] = useState("");
   const [knownPasswordsByUser, setKnownPasswordsByUser] = useState<Record<string, string>>({});
-  const [resetPwdId, setResetPwdId] = useState<string | null>(null);
-  const [resetPwd, setResetPwd] = useState("");
-  const [resetPwd2, setResetPwd2] = useState("");
 
   const generateNumericPassword = (len = 8) => {
     let out = "";
@@ -118,6 +112,23 @@ export default function AdminUserPanel({
     try {
       await navigator.clipboard.writeText(text);
       setMsg("הטקסט הועתק");
+    } catch {
+      setErr("ההעתקה נכשלה");
+    }
+  };
+
+  const copyCredentialsForUser = async (u: UserRow) => {
+    setErr(null);
+    setMsg(null);
+    const known = knownPasswordsByUser[u.id];
+    if (!known) {
+      setErr("אין סיסמה ידועה עבור המשתמש הזה (צריך ליצור/לאפס סיסמה כדי להעתיק)");
+      return;
+    }
+    const text = `שם משתמש: ${u.username}\nסיסמא: ${known}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setMsg("פרטי המשתמש הועתקו");
     } catch {
       setErr("ההעתקה נכשלה");
     }
@@ -218,6 +229,32 @@ export default function AdminUserPanel({
     await refresh();
   };
 
+  const resetSessions = async (user: UserRow) => {
+    setErr(null);
+    setMsg(null);
+    if (user.id === currentUserId) {
+      setErr("לא ניתן לאפס את הסשנים של המשתמש הנוכחי");
+      return;
+    }
+    const r = await fetch(`/api/admin/users/${user.id}/sessions`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    const data = (await r.json().catch(() => ({}))) as { error?: string };
+    if (!r.ok) {
+      setErr(data.error || "איפוס סשנים נכשל");
+      return;
+    }
+    setSessionsByUser((prev) => {
+      const next = { ...prev };
+      delete next[user.id];
+      return next;
+    });
+    if (expandedId === user.id) setExpandedId(null);
+    setMsg("סשנים אופסו למשתמש");
+    await refresh();
+  };
+
   const deleteUser = async (user: UserRow) => {
     setErr(null);
     const r = await fetch(`/api/admin/users/${user.id}`, {
@@ -237,61 +274,6 @@ export default function AdminUserPanel({
     });
     setMsg("המשתמש נמחק לגמרי");
     await refresh();
-  };
-
-  const submitRename = async (userId: string) => {
-    setErr(null);
-    const trimmed = renameValue.trim();
-    if (!trimmed) {
-      setErr("שם משתמש ריק");
-      return;
-    }
-    const r = await fetch(`/api/admin/users/${userId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        username: trimmed,
-        displayName: renameDisplayName,
-      }),
-    });
-    const data = (await r.json().catch(() => ({}))) as { error?: string };
-    if (!r.ok) {
-      setErr(data.error || "Failed");
-      return;
-    }
-    setRenameId(null);
-    setRenameValue("");
-    setRenameDisplayName("");
-    await refresh();
-  };
-
-  const submitResetPassword = async (userId: string) => {
-    setErr(null);
-    if (resetPwd.length < 8) {
-      setErr("סיסמה קצרה מדי (מינימום 8 תווים)");
-      return;
-    }
-    if (resetPwd !== resetPwd2) {
-      setErr("הסיסמאות אינן תואמות");
-      return;
-    }
-    const r = await fetch(`/api/admin/users/${userId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ password: resetPwd }),
-    });
-    const data = (await r.json().catch(() => ({}))) as { error?: string };
-    if (!r.ok) {
-      setErr(data.error || "Failed");
-      return;
-    }
-    setResetPwdId(null);
-    setKnownPasswordsByUser((prev) => ({ ...prev, [userId]: resetPwd }));
-    setResetPwd("");
-    setResetPwd2("");
-    setMsg("הסיסמה עודכנה");
   };
 
   const saveMyPassword = async () => {
@@ -479,8 +461,7 @@ export default function AdminUserPanel({
               <th className="px-4 py-2">סיסמה ידועה</th>
               <th className="px-4 py-2">מנהל</th>
               <th className="px-4 py-2">פעיל</th>
-              <th className="px-4 py-2">כניסות (סה״כ)</th>
-              <th className="px-4 py-2">נוצר</th>
+              <th className="px-4 py-2">סשנים</th>
               <th className="px-4 py-2 w-48">פעולות</th>
             </tr>
           </thead>
@@ -498,9 +479,11 @@ export default function AdminUserPanel({
                   <td className="px-4 py-2 text-gray-300">{knownPasswordsByUser[u.id] || "לא ידועה"}</td>
                   <td className="px-4 py-2">{u.isAdmin ? "כן" : "—"}</td>
                   <td className="px-4 py-2">{u.active ? "כן" : "לא"}</td>
-                  <td className="px-4 py-2 text-gray-300">{u.loginCount}</td>
-                  <td className="px-4 py-2 text-gray-500 whitespace-nowrap">
-                    {new Date(u.createdAt).toLocaleString("he-IL")}
+                  <td className="px-4 py-2 text-gray-300">
+                    <span className="block">{u.loginCount}</span>
+                    <span className="block text-[11px] text-gray-500 whitespace-nowrap">
+                      נוצר: {new Date(u.createdAt).toLocaleString("he-IL")}
+                    </span>
                   </td>
                   <td className="px-4 py-2">
                     <div className="flex flex-wrap gap-2 justify-end">
@@ -511,32 +494,20 @@ export default function AdminUserPanel({
                       >
                         {expandedId === u.id ? "סגור פעילות" : "פעילות / סשנים"}
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => void copyCredentialsForUser(u)}
+                        className="text-gray-400 hover:text-white text-xs"
+                      >
+                        העתק משתמש+סיסמה
+                      </button>
                       {u.id !== currentUserId && (
                         <button
                           type="button"
-                          onClick={() => {
-                            setRenameId(u.id);
-                            setRenameValue(u.username);
-                            setRenameDisplayName(u.displayName || "");
-                            setResetPwdId(null);
-                          }}
-                          className="text-gray-400 hover:text-white text-xs"
+                          onClick={() => void resetSessions(u)}
+                          className="text-indigo-300 hover:text-indigo-200 text-xs"
                         >
-                          שם
-                        </button>
-                      )}
-                      {u.id !== currentUserId && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setResetPwdId(u.id);
-                            setResetPwd("");
-                            setResetPwd2("");
-                            setRenameId(null);
-                          }}
-                          className="text-gray-400 hover:text-white text-xs"
-                        >
-                          סיסמה
+                          אפס סשנים
                         </button>
                       )}
                       {u.id !== currentUserId && (
@@ -566,7 +537,7 @@ export default function AdminUserPanel({
                 </tr>
                 {expandedId === u.id && (
                   <tr className="border-t border-gray-800 bg-black/25">
-                    <td colSpan={8} className="px-4 py-4 text-start" dir="rtl">
+                    <td colSpan={7} className="px-4 py-4 text-start" dir="rtl">
                       {sessionsByUser[u.id] === "loading" && (
                         <p className="text-gray-500 text-sm">טוען…</p>
                       )}
@@ -577,74 +548,6 @@ export default function AdminUserPanel({
                         <SessionPackTable
                           pack={sessionsByUser[u.id] as { totalLogins: number; sessions: SessionRow[] }}
                         />
-                      )}
-                      {renameId === u.id && (
-                        <div className="mt-4 p-3 rounded-lg border border-gray-700 bg-black/30 space-y-2 max-w-md">
-                          <p className="text-xs text-gray-400">עדכון פרטי המשתמש</p>
-                          <label className="block text-[11px] text-gray-500">איש קשר</label>
-                          <input
-                            value={renameDisplayName}
-                            onChange={(e) => setRenameDisplayName(e.target.value)}
-                            className="w-full rounded border border-gray-600 bg-black/40 px-2 py-1.5 text-sm text-white"
-                          />
-                          <label className="block text-[11px] text-gray-500">שם משתמש</label>
-                          <input
-                            value={renameValue}
-                            onChange={(e) => setRenameValue(e.target.value)}
-                            className="w-full rounded border border-gray-600 bg-black/40 px-2 py-1.5 text-sm text-white"
-                          />
-                          <div className="flex gap-2">
-                            <button
-                              type="button"
-                              onClick={() => submitRename(u.id)}
-                              className="text-xs bg-cyan-800 hover:bg-cyan-700 px-3 py-1.5 rounded text-white"
-                            >
-                              שמור שם
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setRenameId(null)}
-                              className="text-xs text-gray-400 hover:text-white"
-                            >
-                              ביטול
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                      {resetPwdId === u.id && (
-                        <div className="mt-4 p-3 rounded-lg border border-gray-700 bg-black/30 space-y-3 max-w-md">
-                          <p className="text-xs text-gray-400">איפוס סיסמה</p>
-                          <PasswordField
-                            label="סיסמה חדשה"
-                            value={resetPwd}
-                            onChange={setResetPwd}
-                            minLength={8}
-                            inputClassName="w-full rounded-lg border border-gray-600 bg-black/40 py-2 ps-3 pe-11 text-sm text-white focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                          />
-                          <PasswordField
-                            label="אימות סיסמה"
-                            value={resetPwd2}
-                            onChange={setResetPwd2}
-                            minLength={8}
-                            inputClassName="w-full rounded-lg border border-gray-600 bg-black/40 py-2 ps-3 pe-11 text-sm text-white focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                          />
-                          <div className="flex gap-2">
-                            <button
-                              type="button"
-                              onClick={() => submitResetPassword(u.id)}
-                              className="text-xs bg-cyan-800 hover:bg-cyan-700 px-3 py-1.5 rounded text-white"
-                            >
-                              שמור סיסמה
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setResetPwdId(null)}
-                              className="text-xs text-gray-400 hover:text-white"
-                            >
-                              ביטול
-                            </button>
-                          </div>
-                        </div>
                       )}
                     </td>
                   </tr>

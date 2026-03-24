@@ -67,3 +67,19 @@ export async function GET(
     sessions,
   });
 }
+
+export async function DELETE(
+  _request: Request,
+  { params }: { params: { id: string } }
+) {
+  const s = await getSessionUser();
+  if (!s?.user.isAdmin) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+  const { id: userId } = params;
+  if (userId === s.user.id) {
+    return NextResponse.json({ error: "Cannot reset your own sessions" }, { status: 400 });
+  }
+  await prisma.session.deleteMany({ where: { userId } });
+  return NextResponse.json({ ok: true });
+}
