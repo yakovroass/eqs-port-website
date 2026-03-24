@@ -6,6 +6,7 @@ function isPublicPath(pathname: string): boolean {
   if (pathname.startsWith("/_next")) return true;
   if (pathname === "/favicon.ico") return true;
   if (pathname === "/login") return true;
+  if (pathname === "/health") return true;
   if (pathname === "/api/auth/login") return true;
   if (pathname === "/api/health") return true;
   if (pathname === "/api/auth/session-check") return true;

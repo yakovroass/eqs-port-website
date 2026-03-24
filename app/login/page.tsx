@@ -12,7 +12,7 @@ function loginUiMessage(
 ): string {
   const code = data.code;
   if (code === "DB_UNAVAILABLE" || status === 503) {
-    return "השרת לא מתחבר למסד הנתונים. בדוק ש־DATABASE_URL מוגדר ב-Amplify (כולל runtime), בלי טקסט מצורף אחרי ה־URL, ואז Redeploy. אפשר גם לפתוח /api/health באתר.";
+    return "השרת לא מתחבר למסד הנתונים. בדוק ש־DATABASE_URL מוגדר ב-Amplify (כולל runtime), בלי טקסט מצורף אחרי ה־URL, ואז Redeploy. בדיקה: פתח את כתובת האתר האמיתית עם /health או /api/health.";
   }
   if (code === "INVALID_CREDENTIALS" || status === 401) {
     return "שם משתמש או סיסמה לא תואמים למה שנשמר במסד. ודא שאתה משתמש ב־ADMIN_USERNAME / ADMIN_PASSWORD, ושאחרי שינוי סיסמה בוצע דיפלוי (כדי ש־db:seed יעדכן את ה־hash).";
