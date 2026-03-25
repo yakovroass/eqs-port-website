@@ -131,7 +131,11 @@ export default function AdminUserPanel({
   users: UserRow[];
   currentUserId: string;
 }) {
-  const PASSWORD_STORE_KEY = "eqs-known-passwords-v1";
+  // We only ever know plaintext passwords at the moment we create/reset them in this UI.
+  // Persist them robustly in localStorage so they remain visible on future visits.
+  const PASSWORD_STORE_KEY_V1 = "eqs-known-passwords-v1"; // { [userId]: password }
+  const PASSWORD_STORE_KEY_V0 = "eqs-known-passwords-v0"; // legacy: { [usernameLower]: password }
+  const PASSWORD_STORE_KEY_BY_USERNAME = "eqs-known-passwords-by-username-v1"; // { [usernameLower]: password }
   const [users, setUsers] = useState(initial);
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -155,24 +159,73 @@ export default function AdminUserPanel({
   const [knownPasswordsByUser, setKnownPasswordsByUser] = useState<Record<string, string>>({});
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(PASSWORD_STORE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as Record<string, string>;
-      if (parsed && typeof parsed === "object") {
-        setKnownPasswordsByUser(parsed);
+      const rawV1 = localStorage.getItem(PASSWORD_STORE_KEY_V1);
+      const rawLegacy = localStorage.getItem(PASSWORD_STORE_KEY_V0);
+      const rawByUsername = localStorage.getItem(PASSWORD_STORE_KEY_BY_USERNAME);
+
+      const v1 =
+        rawV1 && rawV1.trim()
+          ? (JSON.parse(rawV1) as unknown as Record<string, string>)
+          : ({} as Record<string, string>);
+      const legacyByUsername =
+        rawLegacy && rawLegacy.trim()
+          ? (JSON.parse(rawLegacy) as unknown as Record<string, string>)
+          : ({} as Record<string, string>);
+      const byUsername =
+        rawByUsername && rawByUsername.trim()
+          ? (JSON.parse(rawByUsername) as unknown as Record<string, string>)
+          : ({} as Record<string, string>);
+
+      const safeV1 = v1 && typeof v1 === "object" ? v1 : {};
+      const safeLegacy = legacyByUsername && typeof legacyByUsername === "object" ? legacyByUsername : {};
+      const safeByUsername = byUsername && typeof byUsername === "object" ? byUsername : {};
+
+      // Migrate legacy username-based store into current userId-based mapping when possible.
+      const migrated: Record<string, string> = { ...safeV1 };
+      for (const u of initial) {
+        if (migrated[u.id]) continue;
+        const key = u.username.trim().toLowerCase();
+        const pwd = safeByUsername[key] || safeLegacy[key];
+        if (pwd) migrated[u.id] = pwd;
       }
+
+      setKnownPasswordsByUser(migrated);
+
+      // Keep username-indexed store up-to-date so even if IDs change (rare), we can recover.
+      const nextByUsername: Record<string, string> = { ...safeByUsername };
+      for (const u of initial) {
+        const pwd = migrated[u.id];
+        if (!pwd) continue;
+        nextByUsername[u.username.trim().toLowerCase()] = pwd;
+      }
+      localStorage.setItem(PASSWORD_STORE_KEY_BY_USERNAME, JSON.stringify(nextByUsername));
+      localStorage.setItem(PASSWORD_STORE_KEY_V1, JSON.stringify(migrated));
     } catch {
       // ignore malformed local storage
     }
-  }, []);
+  }, [initial]);
 
   useEffect(() => {
     try {
-      localStorage.setItem(PASSWORD_STORE_KEY, JSON.stringify(knownPasswordsByUser));
+      localStorage.setItem(PASSWORD_STORE_KEY_V1, JSON.stringify(knownPasswordsByUser));
+      // Also mirror by-username for resilience across migrations.
+      const rawByUsername = localStorage.getItem(PASSWORD_STORE_KEY_BY_USERNAME);
+      const byUsername =
+        rawByUsername && rawByUsername.trim()
+          ? (JSON.parse(rawByUsername) as unknown as Record<string, string>)
+          : {};
+      const safeByUsername = byUsername && typeof byUsername === "object" ? byUsername : {};
+      const nextByUsername: Record<string, string> = { ...safeByUsername };
+      for (const u of users) {
+        const pwd = knownPasswordsByUser[u.id];
+        if (!pwd) continue;
+        nextByUsername[u.username.trim().toLowerCase()] = pwd;
+      }
+      localStorage.setItem(PASSWORD_STORE_KEY_BY_USERNAME, JSON.stringify(nextByUsername));
     } catch {
       // ignore storage write failures
     }
-  }, [knownPasswordsByUser]);
+  }, [knownPasswordsByUser, users]);
 
 
   const generateNumericPassword = (len = 8) => {
@@ -289,6 +342,21 @@ export default function AdminUserPanel({
       const createdId = data.user?.id;
       if (createdId) {
         setKnownPasswordsByUser((prev) => ({ ...prev, [createdId]: password }));
+      }
+      try {
+        const key = username.trim().toLowerCase();
+        const rawByUsername = localStorage.getItem(PASSWORD_STORE_KEY_BY_USERNAME);
+        const byUsername =
+          rawByUsername && rawByUsername.trim()
+            ? (JSON.parse(rawByUsername) as unknown as Record<string, string>)
+            : {};
+        const safeByUsername = byUsername && typeof byUsername === "object" ? byUsername : {};
+        localStorage.setItem(
+          PASSWORD_STORE_KEY_BY_USERNAME,
+          JSON.stringify({ ...safeByUsername, [key]: password })
+        );
+      } catch {
+        // ignore
       }
       setUsername("");
       setDisplayName("");
