@@ -99,10 +99,10 @@ export default function Navbar() {
           className="flex items-center gap-3 sm:gap-5 group shrink-0 min-w-0"
         >
           <Image
-            src="/logo.png"
+            src="/og-logo.png"
             alt="EQS.PORT"
-            width={587}
-            height={555}
+            width={1061}
+            height={992}
             priority
             quality={95}
             sizes="(max-width: 640px) 56px, 72px"

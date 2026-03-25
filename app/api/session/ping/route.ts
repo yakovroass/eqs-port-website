@@ -26,32 +26,39 @@ export async function POST() {
       data: { lastSeenAt: now },
     });
 
-    const activeVisit = await prisma.visitSession.findFirst({
-      where: { userId: session.userId, endedAt: null },
-      orderBy: { lastSeenAt: "desc" },
-    });
-    if (!activeVisit) {
-      await prisma.visitSession.create({
-        data: { userId: session.userId, startedAt: now, lastSeenAt: now },
+    try {
+      const activeVisit = await prisma.visitSession.findFirst({
+        where: { userId: session.userId, endedAt: null },
+        orderBy: { lastSeenAt: "desc" },
       });
-    } else {
-      const idleForMs = now.getTime() - activeVisit.lastSeenAt.getTime();
-      if (idleForMs > VISIT_IDLE_MS) {
-        const endedAt = now;
-        const durationMs = computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt);
-        await prisma.visitSession.update({
-          where: { id: activeVisit.id },
-          data: { endedAt, durationMs },
-        });
+      if (!activeVisit) {
         await prisma.visitSession.create({
           data: { userId: session.userId, startedAt: now, lastSeenAt: now },
         });
       } else {
-        await prisma.visitSession.update({
-          where: { id: activeVisit.id },
-          data: { lastSeenAt: now },
-        });
+        const idleForMs = now.getTime() - activeVisit.lastSeenAt.getTime();
+        if (idleForMs > VISIT_IDLE_MS) {
+          const endedAt = now;
+          const durationMs = computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt);
+          await prisma.visitSession.update({
+            where: { id: activeVisit.id },
+            data: { endedAt, durationMs },
+          });
+          await prisma.visitSession.create({
+            data: { userId: session.userId, startedAt: now, lastSeenAt: now },
+          });
+        } else {
+          await prisma.visitSession.update({
+            where: { id: activeVisit.id },
+            data: { lastSeenAt: now },
+          });
+        }
       }
+    } catch (visitErr) {
+      console.error(
+        "[session/ping] visitSession",
+        visitErr instanceof Error ? visitErr.message : visitErr
+      );
     }
     return NextResponse.json({ ok: true });
   } catch (e) {

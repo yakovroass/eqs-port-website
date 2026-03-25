@@ -20,9 +20,19 @@ function isPublicPath(pathname: string): boolean {
   return false;
 }
 
+function isLocalDevHost(request: NextRequest): boolean {
+  const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host") || "";
+  const host = hostHeader.split(",")[0].trim().toLowerCase();
+  const hostname = host.split(":")[0];
+  return hostname === "localhost" || hostname === "127.0.0.1";
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (isPublicPath(pathname)) {
+    return NextResponse.next();
+  }
+  if (pathname === "/" && isLocalDevHost(request)) {
     return NextResponse.next();
   }
 

@@ -84,21 +84,21 @@ function LoginForm() {
       </div>
 
       <div className="relative z-10 min-h-[100dvh] flex items-center justify-center px-4 py-8 sm:py-10">
-        <div className="w-full max-w-[22rem] rounded-2xl overflow-hidden border border-gray-500/20 bg-[rgb(10_18_36/0.2)] shadow-[0_8px_40px_rgba(0,0,0,0.2)] backdrop-blur-xl">
-          <div className="relative bg-black/10" dir="ltr">
-            <div className="pointer-events-none absolute inset-x-6 top-1/2 h-28 -translate-y-1/2 rounded-full bg-cyan-400/30 blur-3xl" />
+        <div className="flex w-full max-w-[min(100%,36rem)] flex-col items-center gap-6">
+          <div className="flex w-full justify-center px-2" dir="ltr">
             <Image
-              src="/og-logo.png"
+              src="/pngwlogo.png"
               alt="EQS.PORT"
-              width={1200}
-              height={630}
-              sizes="(max-width: 448px) 100vw, 352px"
-              className="relative z-10 block h-auto w-full drop-shadow-[0_0_28px_rgba(34,211,238,0.38)]"
+              width={1061}
+              height={992}
+              sizes="(max-width: 640px) 96vw, 560px"
+              className="h-auto w-full max-w-[24rem] sm:max-w-[30rem] will-change-[filter] motion-safe:animate-[eqs-logo-edge-glow_3.6s_ease-in-out_infinite]"
               priority
               quality={92}
             />
           </div>
-          <div className="px-5 pb-6 pt-1 sm:px-6 sm:pb-7 sm:pt-2">
+          <div className="w-full max-w-[22rem] mx-auto rounded-2xl overflow-hidden border border-gray-500/20 bg-[rgb(10_18_36/0.2)] shadow-[0_8px_40px_rgba(0,0,0,0.2)] backdrop-blur-xl">
+          <div className="px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
             {reason === "revoked" && (
               <p className="text-sm text-amber-300/95 mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
                 Your access is no longer valid. Please request access from the site owner.
@@ -145,6 +145,7 @@ function LoginForm() {
                 {loading ? "Signing in…" : "Sign in"}
               </button>
             </form>
+          </div>
           </div>
         </div>
       </div>

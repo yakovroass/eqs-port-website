@@ -169,6 +169,23 @@ body {
   }
 }
 
+/* Login logo: animated edge emphasis around PNG lines (no movement). */
+@keyframes eqs-logo-edge-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 1px rgba(5, 8, 16, 0.88))
+      drop-shadow(0 0 6px rgba(5, 8, 16, 0.72))
+      drop-shadow(0 0 14px rgba(10, 18, 36, 0.58))
+      drop-shadow(0 0 24px rgba(10, 18, 36, 0.42));
+  }
+  50% {
+    filter: drop-shadow(0 0 1px rgba(5, 8, 16, 0.96))
+      drop-shadow(0 0 9px rgba(5, 8, 16, 0.82))
+      drop-shadow(0 0 20px rgba(10, 18, 36, 0.68))
+      drop-shadow(0 0 34px rgba(10, 18, 36, 0.52));
+  }
+}
+
 /* Same font as main section headlines - use for section labels so they match */
 .headline-font {
   font-family: "Inter", system-ui, sans-serif !important;

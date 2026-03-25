@@ -9,7 +9,9 @@ export default function SessionPing() {
     const ping = async () => {
       try {
         const res = await fetch("/api/session/ping", { method: "POST", credentials: "include" });
-        if (!res.ok) {
+        // Only treat definitive auth outcomes as "signed out". 5xx (e.g. DB blip) must not
+        // redirect — login page would still see /api/auth/me as logged-in → bounce / ↔ /login.
+        if (res.status === 401 || res.status === 403) {
           const url = res.status === 403 ? "/login?reason=revoked" : "/login";
           window.location.replace(url);
         }
