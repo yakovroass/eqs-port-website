@@ -34,8 +34,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-logo.png",
+        url: "https://www.eqsport.io/og-logo.png",
         alt: "EQS. PORT logo",
+        width: 1200,
+        height: 630,
+        type: "image/png",
       },
     ],
   },
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: ogTitle,
     description: ogDescription,
-    images: ["/og-logo.png"],
+    images: ["https://www.eqsport.io/og-logo.png"],
   },
 };
 
