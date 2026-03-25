@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
 import { computeSessionDurationMs } from "@/lib/sessionDuration";
+import { encryptKnownPassword } from "@/lib/knownPassword";
 
 export async function PATCH(
   request: Request,
@@ -33,7 +34,14 @@ export async function PATCH(
       return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
     }
     const passwordHash = await bcrypt.hash(password, 10);
-    await prisma.user.update({ where: { id }, data: { passwordHash } });
+    await prisma.user.update({
+      where: { id },
+      data: {
+        passwordHash,
+        knownPasswordEnc: encryptKnownPassword(password),
+        knownPasswordSetAt: new Date(),
+      },
+    });
     did = true;
   }
 

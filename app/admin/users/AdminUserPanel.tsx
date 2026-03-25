@@ -13,6 +13,7 @@ export type UserRow = {
   createdAt: string;
   loginCount: number;
   visitCount: number;
+  knownPassword?: string | null;
 };
 
 type LoginSessionRow = {
@@ -277,9 +278,21 @@ export default function AdminUserPanel({
     if (!r.ok) return;
     const data = (await r.json()) as {
       users: Array<
-        UserRow & { loginCount?: number; visitCount?: number; _count?: { sessions: number; visitSessions: number } }
+        UserRow & {
+          knownPassword?: string | null;
+          loginCount?: number;
+          visitCount?: number;
+          _count?: { sessions: number; visitSessions: number };
+        }
       >;
     };
+    setKnownPasswordsByUser((prev) => {
+      const next = { ...prev };
+      for (const u of data.users) {
+        if (u.knownPassword && !next[u.id]) next[u.id] = u.knownPassword;
+      }
+      return next;
+    });
     setUsers(
       data.users.map((u) => ({
         id: u.id,
@@ -290,6 +303,7 @@ export default function AdminUserPanel({
         createdAt: typeof u.createdAt === "string" ? u.createdAt : String(u.createdAt),
         loginCount: u.loginCount ?? u._count?.sessions ?? 0,
         visitCount: u.visitCount ?? u._count?.visitSessions ?? 0,
+        knownPassword: u.knownPassword ?? null,
       }))
     );
   }, []);
@@ -633,12 +647,14 @@ export default function AdminUserPanel({
                       <span className="text-amber-400/90 text-xs font-normal ms-2">(אתה)</span>
                     )}
                   </td>
-                  <td className="px-4 py-2 text-gray-300">{knownPasswordsByUser[u.id] || "לא ידועה"}</td>
+                  <td className="px-4 py-2 text-gray-300">
+                    {knownPasswordsByUser[u.id] || u.knownPassword || "לא ידועה"}
+                  </td>
                   <td className="px-4 py-2">{u.isAdmin ? "כן" : "—"}</td>
                   <td className="px-4 py-2">{u.active ? "כן" : "לא"}</td>
                   <td className="px-4 py-2 text-gray-300">
-                    <span className="block">פעילויות: {u.visitCount}</span>
-                    <span className="block">התחברויות: {u.loginCount}</span>
+                    <span className="block">ביקורים (פעילויות): {u.visitCount}</span>
+                    <span className="block">התחברויות (Logins): {u.loginCount}</span>
                     <span className="block text-[11px] text-gray-500 whitespace-nowrap">
                       נוצר: {new Date(u.createdAt).toLocaleString("he-IL")}
                     </span>
