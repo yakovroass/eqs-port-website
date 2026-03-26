@@ -364,7 +364,7 @@ export const t = {
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     proven: {
       en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו, אנו חושפים את החברות לתחרות אבל לא רק ברמה המקומית, אנחנו מייצרים תחרות ברמה הגלובלית — וזה היתרון התחרותי שלנו!",
     },
     downloadPdfShort: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
     downloadOnePagerShort: { en: "One Pager (HEB)", he: "One Pager (HEB)" },
@@ -458,7 +458,7 @@ export const t = {
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     vision1: {
       en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו ואנחנו השחקן החסר, אנחנו יוצרים חיבורים שלא היו קודם — וזה היתרון התחרותי שלנו!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו, אנו חושפים את החברות לתחרות אבל לא רק ברמה המקומית, אנחנו מייצרים תחרות ברמה הגלובלית — וזה היתרון התחרותי שלנו!",
     },
     visionStat1: { en: "Current Market", he: "שוק נוכחי" },
     visionStat2: { en: "Global B2B Vision", he: "חזון B2B גלובלי" },

@@ -8,6 +8,17 @@ import { computeSessionDurationMs } from "@/lib/sessionDuration";
 
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
+function readCookieValue(request: Request, name: string): string | null {
+  const cookie = request.headers.get("cookie");
+  if (!cookie) return null;
+  const pairs = cookie.split(";").map((p) => p.trim());
+  for (const p of pairs) {
+    if (!p.startsWith(`${name}=`)) continue;
+    return decodeURIComponent(p.slice(name.length + 1));
+  }
+  return null;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
@@ -45,7 +56,20 @@ export async function POST(request: Request) {
     }
     const token = randomBytes(32).toString("hex");
     const now = new Date();
+    const prevToken = readCookieValue(request, SESSION_COOKIE);
     await prisma.$transaction(async (tx) => {
+      if (prevToken) {
+        const prev = await tx.session.findUnique({ where: { token: prevToken } });
+        if (prev && !prev.endedAt) {
+          await tx.session.update({
+            where: { id: prev.id },
+            data: {
+              endedAt: now,
+              durationMs: computeSessionDurationMs(prev.createdAt, prev.lastSeenAt),
+            },
+          });
+        }
+      }
       await tx.session.create({
         data: { token, userId: user.id },
       });

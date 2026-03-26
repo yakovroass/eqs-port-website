@@ -327,6 +327,14 @@ export default function AdminUserPanel({
     return () => window.clearInterval(id);
   }, [refresh]);
 
+  useEffect(() => {
+    // Keep admin row in "ACTIVE NOW" while actively using admin page.
+    const id = window.setInterval(() => {
+      void fetch("/api/session/ping", { method: "POST", credentials: "include" }).catch(() => {});
+    }, 15_000);
+    return () => window.clearInterval(id);
+  }, []);
+
   const loadSessions = async (userId: string) => {
     setSessionsByUser((m) => ({ ...m, [userId]: "loading" }));
     const r = await fetch(`/api/admin/users/${userId}/sessions`, { credentials: "include" });
@@ -729,17 +737,15 @@ export default function AdminUserPanel({
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-2 text-gray-300">
-                    {knownPasswordsByUser[u.id] || u.knownPassword || "לא ידועה"}
-                  </td>
+                  <td className="px-4 py-2 text-gray-300">{knownPasswordsByUser[u.id] || u.knownPassword || "לא ידועה"}</td>
                   <td className="px-4 py-2">{u.isAdmin ? "כן" : "—"}</td>
                   <td className="px-4 py-2">{u.active ? "כן" : "לא"}</td>
                   <td className="px-4 py-2 text-gray-300">
                     <span className="block">
-                      VISITS: {u.visitCount}
+                      LOGGED IN (רשומות): {u.loginCount}
                     </span>
                     <span className="block">
-                      LOGGED IN (רשומות): {u.loginCount}
+                      VISITS: {u.visitCount}
                     </span>
                     <span className="block text-[11px] text-gray-500 whitespace-nowrap">
                       נוצר: {new Date(u.createdAt).toLocaleString("he-IL")}
