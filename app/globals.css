@@ -170,6 +170,22 @@ body {
 }
 
 /* Login logo: animated edge emphasis around PNG lines (no movement). */
+@keyframes eqs-admin-active-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0);
+  }
+}
+
+.eqs-admin-active-dot {
+  animation: eqs-admin-active-pulse 1.4s ease-in-out infinite;
+}
+
 @keyframes eqs-logo-edge-glow {
   0%,
   100% {

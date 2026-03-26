@@ -44,25 +44,27 @@ export async function POST(request: Request) {
       );
     }
     const token = randomBytes(32).toString("hex");
-    await prisma.session.create({
-      data: { token, userId: user.id },
-    });
     const now = new Date();
-    const activeVisit = await prisma.visitSession.findFirst({
-      where: { userId: user.id, endedAt: null },
-      orderBy: { lastSeenAt: "desc" },
-    });
-    if (activeVisit) {
-      await prisma.visitSession.update({
-        where: { id: activeVisit.id },
-        data: {
-          endedAt: now,
-          durationMs: computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt),
-        },
+    await prisma.$transaction(async (tx) => {
+      await tx.session.create({
+        data: { token, userId: user.id },
       });
-    }
-    await prisma.visitSession.create({
-      data: { userId: user.id, startedAt: now, lastSeenAt: now },
+      const activeVisit = await tx.visitSession.findFirst({
+        where: { userId: user.id, endedAt: null },
+        orderBy: { lastSeenAt: "desc" },
+      });
+      if (activeVisit) {
+        await tx.visitSession.update({
+          where: { id: activeVisit.id },
+          data: {
+            endedAt: now,
+            durationMs: computeSessionDurationMs(activeVisit.startedAt, activeVisit.lastSeenAt),
+          },
+        });
+      }
+      await tx.visitSession.create({
+        data: { userId: user.id, startedAt: now, lastSeenAt: now },
+      });
     });
     const response = NextResponse.json({ ok: true });
     response.cookies.set(SESSION_COOKIE, token, {

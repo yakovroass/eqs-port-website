@@ -14,6 +14,11 @@ export type UserRow = {
   loginCount: number;
   visitCount: number;
   knownPassword?: string | null;
+  /** יש סשן התחברות פתוח (לוגין→טרם לוגאאוט), למשל מחשב ו/או מובייל */
+  loggedIn?: boolean;
+  /** פעיל עכשיו באתר (ping אחרון תוך ~90 שנ׳) */
+  activeNow?: boolean;
+  openDeviceCount?: number;
 };
 
 type LoginSessionRow = {
@@ -44,7 +49,8 @@ function SessionPackTable({
   return (
     <div className="space-y-3">
       <p className="text-xs text-gray-500">
-        סה״כ התחברויות: <strong className="text-gray-300">{pack.totalLogins}</strong>
+        סה״כ רשומות <strong className="text-gray-200">LOGGED IN</strong> (login→logout):{" "}
+        <strong className="text-gray-300">{pack.totalLogins}</strong>
         {pack.totalLogins > pack.sessions.length && (
           <span> — מוצגות {pack.sessions.length} האחרונות</span>
         )}
@@ -53,7 +59,7 @@ function SessionPackTable({
         <table className="w-full text-xs text-right min-w-[36rem]">
           <thead className="bg-black/40 text-gray-500">
             <tr>
-              <th className="px-2 py-1.5">התחברות</th>
+              <th className="px-2 py-1.5">התחלת logged in</th>
               <th className="px-2 py-1.5">פעילות אחרונה</th>
               <th className="px-2 py-1.5">סגירה</th>
               <th className="px-2 py-1.5">משך משוער</th>
@@ -83,7 +89,7 @@ function SessionPackTable({
         </table>
       </div>
       <p className="text-xs text-gray-500 pt-1">
-        סה״כ פעילויות (Visit): <strong className="text-gray-300">{pack.totalVisits}</strong>
+        סה״כ <strong className="text-gray-200">VISITS</strong>: <strong className="text-gray-300">{pack.totalVisits}</strong>
         {pack.totalVisits > pack.visits.length && (
           <span> — מוצגות {pack.visits.length} האחרונות</span>
         )}
@@ -92,7 +98,7 @@ function SessionPackTable({
         <table className="w-full text-xs text-right min-w-[36rem]">
           <thead className="bg-black/40 text-gray-500">
             <tr>
-              <th className="px-2 py-1.5">תחילת פעילות</th>
+              <th className="px-2 py-1.5">תחילת VISIT</th>
               <th className="px-2 py-1.5">פעילות אחרונה</th>
               <th className="px-2 py-1.5">סגירה</th>
               <th className="px-2 py-1.5">משך משוער</th>
@@ -255,7 +261,7 @@ export default function AdminUserPanel({
   const copyCredentialsForUser = async (u: UserRow) => {
     setErr(null);
     setMsg(null);
-    const known = knownPasswordsByUser[u.id];
+    const known = knownPasswordsByUser[u.id] || u.knownPassword;
     if (!known) {
       setErr("אין סיסמה ידועה עבור המשתמש הזה (צריך ליצור/לאפס סיסמה כדי להעתיק)");
       return;
@@ -282,6 +288,9 @@ export default function AdminUserPanel({
           knownPassword?: string | null;
           loginCount?: number;
           visitCount?: number;
+          loggedIn?: boolean;
+          activeNow?: boolean;
+          openDeviceCount?: number;
           _count?: { sessions: number; visitSessions: number };
         }
       >;
@@ -304,9 +313,19 @@ export default function AdminUserPanel({
         loginCount: u.loginCount ?? u._count?.sessions ?? 0,
         visitCount: u.visitCount ?? u._count?.visitSessions ?? 0,
         knownPassword: u.knownPassword ?? null,
+        loggedIn: u.loggedIn,
+        activeNow: u.activeNow,
+        openDeviceCount: u.openDeviceCount,
       }))
     );
   }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      void refresh();
+    }, 20_000);
+    return () => window.clearInterval(id);
+  }, [refresh]);
 
   const loadSessions = async (userId: string) => {
     setSessionsByUser((m) => ({ ...m, [userId]: "loading" }));
@@ -447,6 +466,27 @@ export default function AdminUserPanel({
     await refresh();
   };
 
+  const resetMyActivity = async () => {
+    setErr(null);
+    setMsg(null);
+    if (!confirm("לאפס את כל רשומות ה־LOGGED IN וה־VISITS שלך (מנהל)? תידרש להתחבר מחדש.")) {
+      return;
+    }
+    const r = await fetch("/api/admin/users/me/activity", { method: "DELETE", credentials: "include" });
+    const data = (await r.json().catch(() => ({}))) as { error?: string };
+    if (!r.ok) {
+      setErr(data.error || "איפוס נכשל");
+      return;
+    }
+    setMsg("נתוני הפעילות שלך אופסו. התחבר שוב.");
+    setExpandedId(null);
+    setSessionsByUser({});
+    await refresh();
+    window.setTimeout(() => {
+      window.location.assign("/login");
+    }, 800);
+  };
+
   const saveMyPassword = async () => {
     setErr(null);
     setMsg(null);
@@ -529,6 +569,13 @@ export default function AdminUserPanel({
               >
                 שמור סיסמה חדשה
               </button>
+              <button
+                type="button"
+                onClick={() => void resetMyActivity()}
+                className="ms-3 rounded-lg border border-amber-600/60 bg-black/30 hover:bg-black/45 px-4 py-2 text-sm text-amber-100"
+              >
+                אפס LOGGED IN + VISITS (שלי)
+              </button>
             </div>
           </div>
           </>
@@ -551,6 +598,10 @@ export default function AdminUserPanel({
             <p>2) סיסמה אקראית מספרית: כפתור ליד שדה הסיסמה.</p>
             <p>3) הפעל/כבה גישה לכל משתמש בשורה שלו.</p>
             <p>4) מחק לגמרי משתמש אם הוא לא נדרש.</p>
+            <p>
+              <strong>LOGGED IN</strong> = תקופה מלוגין עד לוגאאוט (רשומת Session).{" "}
+              <strong>VISITS</strong> = כניסות/קטעי פעילות כשכבר מחובר (מובייל או מחשב; ייתכנו כמה במקביל).
+            </p>
           </div>
         )}
       </section>
@@ -629,10 +680,11 @@ export default function AdminUserPanel({
             <tr>
               <th className="px-4 py-2">איש קשר</th>
               <th className="px-4 py-2">שם משתמש</th>
+              <th className="px-4 py-2">סטטוס</th>
               <th className="px-4 py-2">סיסמה ידועה</th>
               <th className="px-4 py-2">מנהל</th>
               <th className="px-4 py-2">פעיל</th>
-              <th className="px-4 py-2">פעילות / התחברויות</th>
+              <th className="px-4 py-2">LOGGED IN / VISITS</th>
               <th className="px-4 py-2 w-48">פעולות</th>
             </tr>
           </thead>
@@ -647,14 +699,48 @@ export default function AdminUserPanel({
                       <span className="text-amber-400/90 text-xs font-normal ms-2">(אתה)</span>
                     )}
                   </td>
+                  <td className="px-4 py-2 text-gray-300 text-xs leading-relaxed">
+                    <div className="flex flex-col items-end gap-1">
+                      {u.loggedIn && u.activeNow ? (
+                        <span className="inline-flex items-center gap-1.5 text-emerald-300 font-medium">
+                          <span
+                            className="eqs-admin-active-dot inline-block h-2 w-2 rounded-full bg-emerald-400 shrink-0"
+                            aria-hidden
+                          />
+                          ACTIVE NOW
+                        </span>
+                      ) : null}
+                      <span
+                        className={
+                          u.loggedIn
+                            ? "text-cyan-200/90 font-medium tracking-wide"
+                            : "text-gray-500 tracking-wide"
+                        }
+                      >
+                        {u.loggedIn ? "LOGGED IN" : "LOGGED OUT"}
+                      </span>
+                      {u.loggedIn && !u.activeNow ? (
+                        <span className="text-[10px] text-gray-500">מחובר, לא LIVE כרגע</span>
+                      ) : null}
+                      {u.loggedIn && (u.openDeviceCount ?? 0) > 1 && (
+                        <span className="text-[10px] text-gray-500">
+                          {u.openDeviceCount} מכשירים פתוחים
+                        </span>
+                      )}
+                    </div>
+                  </td>
                   <td className="px-4 py-2 text-gray-300">
                     {knownPasswordsByUser[u.id] || u.knownPassword || "לא ידועה"}
                   </td>
                   <td className="px-4 py-2">{u.isAdmin ? "כן" : "—"}</td>
                   <td className="px-4 py-2">{u.active ? "כן" : "לא"}</td>
                   <td className="px-4 py-2 text-gray-300">
-                    <span className="block">ביקורים (פעילויות): {u.visitCount}</span>
-                    <span className="block">התחברויות (Logins): {u.loginCount}</span>
+                    <span className="block">
+                      VISITS: {u.visitCount}
+                    </span>
+                    <span className="block">
+                      LOGGED IN (רשומות): {u.loginCount}
+                    </span>
                     <span className="block text-[11px] text-gray-500 whitespace-nowrap">
                       נוצר: {new Date(u.createdAt).toLocaleString("he-IL")}
                     </span>
@@ -666,7 +752,7 @@ export default function AdminUserPanel({
                         onClick={() => toggleExpand(u)}
                         className="text-cyan-400 hover:text-cyan-300 text-xs"
                       >
-                        {expandedId === u.id ? "סגור פעילות" : "פעילות / התחברויות"}
+                        {expandedId === u.id ? "סגור פירוט" : "פירוט LOGGED IN + VISITS"}
                       </button>
                       <button
                         type="button"
@@ -711,7 +797,7 @@ export default function AdminUserPanel({
                 </tr>
                 {expandedId === u.id && (
                   <tr className="border-t border-gray-800 bg-black/25">
-                    <td colSpan={7} className="px-4 py-4 text-start" dir="rtl">
+                    <td colSpan={8} className="px-4 py-4 text-start" dir="rtl">
                       {sessionsByUser[u.id] === "loading" && (
                         <p className="text-gray-500 text-sm">טוען…</p>
                       )}

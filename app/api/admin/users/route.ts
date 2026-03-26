@@ -3,36 +3,50 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
 import { decryptKnownPassword, encryptKnownPassword } from "@/lib/knownPassword";
+import { presenceMapFromOpenSessions } from "@/lib/adminPresence";
 
 export async function GET() {
   const s = await getSessionUser();
   if (!s?.user.isAdmin) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
-  const users = await prisma.user.findMany({
-    orderBy: { username: "asc" },
-    select: {
-      id: true,
-      displayName: true,
-      username: true,
-      isAdmin: true,
-      active: true,
-      createdAt: true,
-      knownPasswordEnc: true,
-      _count: { select: { sessions: true, visitSessions: true } },
-    },
-  });
+  const [users, openSessions] = await Promise.all([
+    prisma.user.findMany({
+      orderBy: { username: "asc" },
+      select: {
+        id: true,
+        displayName: true,
+        username: true,
+        isAdmin: true,
+        active: true,
+        createdAt: true,
+        knownPasswordEnc: true,
+        _count: { select: { sessions: true, visitSessions: true } },
+      },
+    }),
+    prisma.session.findMany({
+      where: { endedAt: null },
+      select: { userId: true, lastSeenAt: true },
+    }),
+  ]);
+  const presence = presenceMapFromOpenSessions(openSessions);
   return NextResponse.json({
-    users: users.map((u) => ({
-      id: u.id,
-      displayName: u.displayName,
-      username: u.username,
-      isAdmin: u.isAdmin,
-      active: u.active,
-      createdAt: u.createdAt,
-      knownPassword: u.knownPasswordEnc ? decryptKnownPassword(u.knownPasswordEnc) : null,
-      _count: u._count,
-    })),
+    users: users.map((u) => {
+      const p = presence.get(u.id);
+      return {
+        id: u.id,
+        displayName: u.displayName,
+        username: u.username,
+        isAdmin: u.isAdmin,
+        active: u.active,
+        createdAt: u.createdAt,
+        knownPassword: u.knownPasswordEnc ? decryptKnownPassword(u.knownPasswordEnc) : null,
+        _count: u._count,
+        loggedIn: Boolean(p?.loggedIn),
+        activeNow: Boolean(p?.activeNow),
+        openDeviceCount: p?.openDeviceCount ?? 0,
+      };
+    }),
   });
 }
 
