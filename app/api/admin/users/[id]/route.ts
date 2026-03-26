@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
 import { computeSessionDurationMs } from "@/lib/sessionDuration";
-import { encryptKnownPassword } from "@/lib/knownPassword";
+import { encodeKnownPasswordForAdmin } from "@/lib/knownPassword";
 
 export async function PATCH(
   request: Request,
@@ -38,7 +38,7 @@ export async function PATCH(
       where: { id },
       data: {
         passwordHash,
-        knownPasswordEnc: encryptKnownPassword(password),
+        knownPasswordEnc: encodeKnownPasswordForAdmin(password),
         knownPasswordSetAt: new Date(),
       },
     });

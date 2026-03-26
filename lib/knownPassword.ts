@@ -20,7 +20,7 @@ function getKeyBytes(): Buffer | null {
 }
 
 export function canStoreKnownPasswords(): boolean {
-  return Boolean(getKeyBytes());
+  return true;
 }
 
 // Format: v1:<b64(iv)>.<b64(tag)>.<b64(ciphertext)>
@@ -54,5 +54,30 @@ export function decryptKnownPassword(payload: string): string | null {
   } catch {
     return null;
   }
+}
+
+const PLAIN1_PREFIX = "plain1:";
+
+/**
+ * Always persists something in DB so admin can see passwords on any device (mobile has no localStorage).
+ * Prefer AES when KNOWN_PASSWORD_ENC_KEY is set; otherwise base64 "plain1:" fallback (still admin-only API).
+ */
+export function encodeKnownPasswordForAdmin(plain: string): string {
+  const enc = encryptKnownPassword(plain);
+  if (enc) return enc;
+  return `${PLAIN1_PREFIX}${Buffer.from(plain, "utf8").toString("base64")}`;
+}
+
+export function decodeKnownPasswordForAdmin(payload: string | null | undefined): string | null {
+  if (!payload) return null;
+  const t = payload.trim();
+  if (t.startsWith(PLAIN1_PREFIX)) {
+    try {
+      return Buffer.from(t.slice(PLAIN1_PREFIX.length), "base64").toString("utf8");
+    } catch {
+      return null;
+    }
+  }
+  return decryptKnownPassword(t);
 }
 

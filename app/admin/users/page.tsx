@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
-import { decryptKnownPassword } from "@/lib/knownPassword";
+import { decodeKnownPasswordForAdmin } from "@/lib/knownPassword";
 import { presenceMapFromOpenSessions } from "@/lib/adminPresence";
 import AdminUserPanel, { type UserRow } from "./AdminUserPanel";
 
@@ -41,7 +41,7 @@ export default async function AdminUsersPage() {
       createdAt: u.createdAt.toISOString(),
       loginCount: u._count.sessions,
       visitCount: u._count.visitSessions,
-      knownPassword: u.knownPasswordEnc ? decryptKnownPassword(u.knownPasswordEnc) : null,
+      knownPassword: decodeKnownPasswordForAdmin(u.knownPasswordEnc),
       loggedIn: Boolean(p?.loggedIn),
       activeNow: Boolean(p?.activeNow),
       openDeviceCount: p?.openDeviceCount ?? 0,

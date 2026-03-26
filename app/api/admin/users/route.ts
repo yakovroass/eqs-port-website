@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
-import { decryptKnownPassword, encryptKnownPassword } from "@/lib/knownPassword";
+import { decodeKnownPasswordForAdmin, encodeKnownPasswordForAdmin } from "@/lib/knownPassword";
 import { presenceMapFromOpenSessions } from "@/lib/adminPresence";
 
 export async function GET() {
@@ -40,7 +40,7 @@ export async function GET() {
         isAdmin: u.isAdmin,
         active: u.active,
         createdAt: u.createdAt,
-        knownPassword: u.knownPasswordEnc ? decryptKnownPassword(u.knownPasswordEnc) : null,
+        knownPassword: decodeKnownPasswordForAdmin(u.knownPasswordEnc),
         _count: u._count,
         loggedIn: Boolean(p?.loggedIn),
         activeNow: Boolean(p?.activeNow),
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
     );
   }
   const passwordHash = await bcrypt.hash(password, 10);
-  const knownPasswordEnc = encryptKnownPassword(password);
+  const knownPasswordEnc = encodeKnownPasswordForAdmin(password);
   try {
     const user = await prisma.user.create({
       data: {
