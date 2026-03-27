@@ -93,9 +93,6 @@ export default function ProcessRealityIntro() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-center text-sm sm:text-base text-cyan-200/90 font-medium">
-                {tx(t.process.unifiedStepsFootnote, lang)}
-              </p>
             </div>
 
             <div className="border-t border-gray-700/15">
