@@ -228,19 +228,23 @@ export const t = {
     },
     unifiedSteps: {
       en: [
-        "Use algorithmic scanning",
-        "Review the world's best offers",
-        "Get all-in-one quotes",
+        "Request or use algorithmic scanning",
+        "Review the best offers and prices worldwide",
+        "Receive detailed all-in-one quotes",
         "Sign SLA and arrange payment",
-        "Get updates and ETA",
+        "Receive updates and ETA",
       ],
       he: [
-        "השתמש בסריקה אלגוריתמית",
-        "בחן את ההצעות הטובות בעולם",
-        "קבל הצעות מחיר הכל-באחד",
+        "בקש או השתמש בסריקה אלגוריתמית",
+        "בחן את ההצעות והמחירים הטובים בעולם",
+        "קבל הצעות מחיר מפורטות הכל-באחד",
         "חתום על SLA ובצע הסדרי תשלום",
         "קבל עדכונים ו-ETA",
       ],
+    },
+    unifiedStepsFootnote: {
+      en: "Returning customers receive direct access to the platform.",
+      he: "לקוחות קבועים יקבלו גישה ישירה למערכת",
     },
     phase1: { en: "BROWSE", he: "סריקה" },
     phase2: { en: "APPROVAL", he: "אישור" },
@@ -289,8 +293,8 @@ export const t = {
   roadmap: {
     label: { en: "Future Roadmap", he: "מפת דרכים עתידית" },
     intro: {
-      en: "Our data and connections are the foundation for a global procurement intelligence system that will scan the world to find the best deal for every customer.",
-      he: "הפעילות הנתונים והקשרים שלנו הם הבסיס למערכת מסחר גלובלית שתסרוק את העולם כדי למצוא את העסקה הטובה ביותר לכל לקוח.",
+      en: "The system we've built together with our activity and relationships is the foundation for the global trading system — it will create connections that never existed before and scan the entire world to find the best deal for every customer.",
+      he: "המערכת שפיתחנו יחד עם הפעילות והקשרים שלנו הם הבסיס למערכת המסחר הגלובלית, שתיצור חיבורים שלא היו קודם ותסרוק את העולם כולו כדי למצוא את העסקה הטובה ביותר לכל לקוח.",
     },
     marketsHeadline: {
       en: "Each market in these industries is vast on its own.",
@@ -363,8 +367,8 @@ export const t = {
     fund7: { en: "Prepare for successful Series A round", he: "הכנה לסבב Series A מוצלח" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     proven: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו, אנו חושפים את החברות לתחרות אבל לא רק ברמה המקומית, אנחנו מייצרים תחרות ברמה הגלובלית — וזה היתרון התחרותי שלנו!",
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact — we create competition at the global level and turn procurement departments worldwide into our partners, which attracts the best suppliers to us, and it all happens in one place — that's our competitive advantage!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה — אנחנו מייצרים תחרות ברמה הגלובלית והופכים מחלקות רכש מכל העולם לשותפים שלנו, מה שמושך אלינו את הספקים הטובים ביותר, וכל זה מתבצע במקום אחד — וזה היתרון התחרותי שלנו!",
     },
     downloadPdfShort: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
     downloadOnePagerShort: { en: "One Pager (HEB)", he: "One Pager (HEB)" },
@@ -457,8 +461,8 @@ export const t = {
     fund4: { en: "15% Infra", he: "15% תשתית" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     vision1: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact. Every company in the world buys something — we're the missing player, we create connections that never existed — and that's our competitive edge!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה. כל חברה בעולם קונה משהו, אנו חושפים את החברות לתחרות אבל לא רק ברמה המקומית, אנחנו מייצרים תחרות ברמה הגלובלית — וזה היתרון התחרותי שלנו!",
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact — we create competition at the global level and turn procurement departments worldwide into our partners, which attracts the best suppliers to us, and it all happens in one place — that's our competitive advantage!",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה — אנחנו מייצרים תחרות ברמה הגלובלית והופכים מחלקות רכש מכל העולם לשותפים שלנו, מה שמושך אלינו את הספקים הטובים ביותר, וכל זה מתבצע במקום אחד — וזה היתרון התחרותי שלנו!",
     },
     visionStat1: { en: "Current Market", he: "שוק נוכחי" },
     visionStat2: { en: "Global B2B Vision", he: "חזון B2B גלובלי" },

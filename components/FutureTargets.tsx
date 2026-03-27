@@ -77,11 +77,7 @@ export default function FutureTargets() {
               {tx(t.roadmap.label, lang)}
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {lang === "en" ? "This Is" : "זו רק"}{" "}
-            <span className="gradient-text">{lang === "en" ? "Just the Beginning" : "ההתחלה"}</span>
-          </h2>
-          <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
+          <p className="text-gray-300 text-center max-w-3xl mx-auto mb-16 text-lg md:text-xl leading-relaxed">
             {tx(t.roadmap.intro, lang)}
           </p>
         </ScrollReveal>
