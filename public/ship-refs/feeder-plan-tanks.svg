@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 125" width="600" height="125" aria-label="Feeder top view tanks">
+  <defs>
+    <linearGradient id="planWaterT" gradientUnits="userSpaceOnUse" x1="300" y1="0" x2="300" y2="125">
+      <stop offset="0%" stop-color="#155e75"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="125" fill="url(#planWaterT)"/>
+  <ellipse cx="300" cy="62.5" rx="268" ry="48" fill="#57534e" stroke="#44403c" stroke-width="1.4"/>
+  <ellipse cx="300" cy="62.5" rx="248" ry="36" fill="#78716c" opacity="0.95"/>
+  <rect x="95" y="44" width="410" height="37" rx="5" fill="#292524" stroke="#1c1917" stroke-width="0.8"/>
+  <g stroke="#334155" stroke-width="0.6">
+    <ellipse cx="145" cy="62" rx="28" ry="14" fill="#94a3b8"/>
+    <ellipse cx="145" cy="62" rx="18" ry="8" fill="#cbd5e1" opacity="0.35"/>
+    <ellipse cx="215" cy="62" rx="32" ry="15" fill="#64748b"/>
+    <ellipse cx="215" cy="62" rx="20" ry="9" fill="#e2e8f0" opacity="0.3"/>
+    <ellipse cx="295" cy="62" rx="30" ry="14" fill="#94a3b8"/>
+    <ellipse cx="365" cy="62" rx="26" ry="13" fill="#64748b"/>
+    <ellipse cx="430" cy="62" rx="34" ry="15" fill="#94a3b8"/>
+    <ellipse cx="430" cy="62" rx="22" ry="10" fill="#cbd5e1" opacity="0.35"/>
+  </g>
+  <line x1="173" y1="62" x2="183" y2="62" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+  <line x1="247" y1="62" x2="265" y2="62" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+  <line x1="325" y1="62" x2="339" y2="62" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+  <rect x="472" y="52" width="22" height="20" rx="2" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+</svg>

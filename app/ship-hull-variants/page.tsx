@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SHIP_REF_SVG_CACHE, SITE_HULL_VARIANTS } from "@/lib/shipGalleryItems";
+import {
+  ALL_HULL_VARIANTS,
+  SHIP_REF_SVG_CACHE,
+  SITE_HULL_VARIANTS,
+} from "@/lib/shipGalleryItems";
 
 export const metadata: Metadata = {
   title: "וריאנטי צבע גוף — Feeder | EQS.PORT",
@@ -9,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function ShipHullVariantsPage() {
   const v = SHIP_REF_SVG_CACHE;
+  const liveFiles = new Set(SITE_HULL_VARIANTS.map((x) => x.file));
   return (
     <div dir="rtl" lang="he" className="min-h-screen bg-[#d4d4d4] text-slate-900 pb-12">
       <div
@@ -29,8 +34,11 @@ export default function ShipHullVariantsPage() {
           </p>
           <h1 className="text-xl md:text-2xl font-bold text-slate-900">אותה אונייה — צבעי גוף שונים</h1>
           <p className="text-sm text-slate-600 mt-2">
-            כאן מוצגים רק וריאנטי הגוף שמופיעים ברקע החי בדף הבית. דגם Feeder מכולות זהה (פנסים,
-            מכ״ם, אלומות, מכולות) — משתנה רק גרדיאנט הדופן וההילה. המספרים תואמים למספור הדגם.
+            כאן כל וריאנטי הגוף והדגם המקורי — אותו Feeder (פנסים, מכ״ם, אלומות, מכולות), רק גרדיאנט
+            דופן והילה. התג הירוק ״ברקע החי״ = מופיע כרגע ברקע הצף בדף הבית. כשתחליט מה להשאיר,
+            עדכן את <code className="bg-white/80 px-1 rounded text-xs">SITE_HULL_VARIANTS</code> ב־
+            <code className="bg-white/80 px-1 rounded text-xs">lib/shipGalleryItems.ts</code> (רק קבצי
+            hull, בלי המקורי — או נוסיף תמיכה אם תרצה).
           </p>
           <p className="text-xs text-slate-500 mt-3">
             <Link href="/ship-gallery" className="text-sky-700 underline">
@@ -44,10 +52,14 @@ export default function ShipHullVariantsPage() {
         </header>
 
         <div className="max-w-7xl mx-auto px-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {SITE_HULL_VARIANTS.map((item) => (
+          {ALL_HULL_VARIANTS.map((item) => (
             <figure
               key={item.key}
-              className="rounded-xl border border-slate-400/60 bg-white/90 shadow-sm overflow-hidden"
+              className={`rounded-xl border bg-white/90 shadow-sm overflow-hidden ${
+                liveFiles.has(item.file)
+                  ? "border-emerald-500/55 ring-1 ring-emerald-400/30"
+                  : "border-slate-400/60"
+              }`}
             >
               <figcaption className="px-4 py-3 border-b border-slate-200/90 bg-slate-50/90">
                 <div className="flex items-start justify-between gap-3">
@@ -58,7 +70,14 @@ export default function ShipHullVariantsPage() {
                     {item.n}
                   </span>
                   <div className="min-w-0 flex-1 text-right">
-                    <div className="font-semibold text-slate-900">{item.title}</div>
+                    <div className="flex flex-wrap items-center justify-end gap-2">
+                      <div className="font-semibold text-slate-900">{item.title}</div>
+                      {liveFiles.has(item.file) ? (
+                        <span className="text-[0.65rem] font-semibold uppercase tracking-wide rounded-md bg-emerald-600/90 text-white px-2 py-0.5">
+                          ברקע החי
+                        </span>
+                      ) : null}
+                    </div>
                     <div className="text-xs text-slate-600 mt-0.5">{item.note}</div>
                   </div>
                 </div>

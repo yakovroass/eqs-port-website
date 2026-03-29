@@ -59,13 +59,7 @@ export default function ProcessRealityIntro() {
 
         <ScrollReveal>
           <div className="w-full mt-10 sm:mt-14 mb-6 sm:mb-8 text-center">
-            <h2
-              className={
-                lang === "en"
-                  ? "text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight gradient-text"
-                  : "text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text"
-              }
-            >
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 leading-tight gradient-text">
               {tx(t.process.replaceCaption, lang)}
             </h2>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed whitespace-pre-line">

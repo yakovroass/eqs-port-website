@@ -234,8 +234,8 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "Our systems simply execute everything.\nProcurement, agreements, permits, logistics and tracking.\nBetter, faster, cheaper.",
-      he: "המערכות שלנו פשוט מבצעות את הכל.\nרכש, הסכמים, היתרים, לוגיסטיקה ומעקב.\nטוב יותר, מהר יותר, זול יותר.",
+      en: "Our systems simply do everything.\nProcurement, permits, logistics.\nBetter, faster, cheaper.",
+      he: "המערכות שלנו פשוט מבצעות את הכל.\nרכש, היתרים, לוגיסטיקה.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
@@ -256,8 +256,8 @@ export const t = {
     /** מתחת לתמונת 3 השלבים (אחרי replaceCaption) */
     provenAfterStepsTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     provenAfterSteps: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
+      en: "We've successfully executed complex procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
+      he: "ביצענו בהצלחה רכש מורכב, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
     },
     phase1: { en: "BROWSE", he: "סריקה" },
     phase2: { en: "APPROVAL", he: "אישור" },
@@ -460,8 +460,8 @@ export const t = {
     fund4: { en: "15% Infra", he: "15% תשתית" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     vision1: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
+      en: "We've successfully executed complex procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
+      he: "ביצענו בהצלחה רכש מורכב, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
     },
     visionStat1: { en: "Current Market", he: "שוק נוכחי" },
     visionStat2: { en: "Global B2B Vision", he: "חזון B2B גלובלי" },

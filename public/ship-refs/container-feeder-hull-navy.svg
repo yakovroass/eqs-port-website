@@ -48,23 +48,23 @@
       .nvBowSwayCf {
         -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
-        -webkit-animation: nvBowSwayAnimCf 7.2s ease-in-out infinite;
-        animation: nvBowSwayAnimCf 7.2s ease-in-out infinite;
+        -webkit-animation: nvBowSwayAnimCf 24s ease-in-out infinite;
+        animation: nvBowSwayAnimCf 24s ease-in-out infinite;
       }
-      /* אלומה אחורית — נדנוד עדין (מנוגד לקדמה) */
+      /* אלומה אחורית — זווית משלימה לקדמה (אלומה לכיוון -x); סנכרון ויזואלי לאותו צד */
       @-webkit-keyframes nvSternSwayAnimCf {
-        0%, 100% { -webkit-transform: rotate(2.75deg); transform: rotate(2.75deg); }
-        50% { -webkit-transform: rotate(-2.75deg); transform: rotate(-2.75deg); }
+        0%, 100% { -webkit-transform: rotate(3.85deg); transform: rotate(3.85deg); }
+        50% { -webkit-transform: rotate(-3.85deg); transform: rotate(-3.85deg); }
       }
       @keyframes nvSternSwayAnimCf {
-        0%, 100% { -webkit-transform: rotate(2.75deg); transform: rotate(2.75deg); }
-        50% { -webkit-transform: rotate(-2.75deg); transform: rotate(-2.75deg); }
+        0%, 100% { -webkit-transform: rotate(3.85deg); transform: rotate(3.85deg); }
+        50% { -webkit-transform: rotate(-3.85deg); transform: rotate(-3.85deg); }
       }
       .nvSternSwayCf {
         -webkit-transform-origin: 32px 80px;
         transform-origin: 32px 80px;
-        -webkit-animation: nvSternSwayAnimCf 8s ease-in-out infinite;
-        animation: nvSternSwayAnimCf 8s ease-in-out infinite;
+        -webkit-animation: nvSternSwayAnimCf 24s ease-in-out infinite;
+        animation: nvSternSwayAnimCf 24s ease-in-out infinite;
       }
       /* צלחת מכ״ם — סיבוב מלא איטי (iOS/WebKit בתוך object: קידומת -webkit-) */
       @-webkit-keyframes bridgeSearchSpinCf {
