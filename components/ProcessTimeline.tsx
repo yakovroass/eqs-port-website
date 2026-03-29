@@ -67,9 +67,9 @@ export default function ProcessTimeline() {
             </motion.div>
           </ScrollReveal>
 
-          {/* מודיעין טכני (צר) + מודיעין שווקים (רחב) — יחס עמודות לפי יחס גובה/רוחב של התמונות כדי שגובה התצוגה יהיה זהה */}
+          {/* מודיעין טכני + מודיעין שווקים — במובייל אחד מתחת לשני; מ־md ומעלה שתי עמודות ביחס רוחב התמונות */}
           <ScrollReveal delay={0.3}>
-            <div className="grid grid-cols-[minmax(0,682fr)_minmax(0,1000fr)] gap-2.5 sm:gap-5 md:gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,682fr)_minmax(0,1000fr)] gap-2.5 sm:gap-5 md:gap-8 items-stretch">
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)] flex flex-col min-w-0 h-full"
@@ -80,7 +80,7 @@ export default function ProcessTimeline() {
                   width={1749}
                   height={2915}
                   quality={90}
-                  sizes="(max-width: 768px) 38vw, (max-width: 1280px) 34vw, 480px"
+                  sizes="(max-width: 767px) 100vw, (max-width: 1280px) 34vw, 480px"
                   className="w-full h-auto block"
                   unoptimized
                 />
@@ -104,7 +104,7 @@ export default function ProcessTimeline() {
                   width={901}
                   height={1024}
                   quality={95}
-                  sizes="(max-width: 768px) 58vw, (max-width: 1280px) 52vw, 640px"
+                  sizes="(max-width: 767px) 100vw, (max-width: 1280px) 52vw, 640px"
                   className="w-full h-auto block"
                 />
                 <div className="p-5 sm:p-6 flex-1 flex flex-col">
