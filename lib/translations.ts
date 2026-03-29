@@ -7,7 +7,7 @@ export const t = {
     market: { en: "Market", he: "השוק" },
     solution: { en: "Solution", he: "הפתרון" },
     platform: { en: "Platform", he: "הפלטפורמה" },
-    process: { en: "How It Works", he: "איך זה עובד" },
+    process: { en: "Process", he: "התהליך" },
     future: { en: "Vision", he: "חזון" },
     invest: { en: "Invest", he: "השקעה" },
     contact: { en: "Contact", he: "צור קשר" },
@@ -378,13 +378,13 @@ export const t = {
   contact: {
     label: { en: "Get In Touch", he: "צור קשר" },
     sub: {
-      en: "Interested in our vision? Reach out to discuss investment.",
-      he: "מעוניין בחזון שלנו? פנה אלינו לדיון על השקעה.",
+      en: "Reach out for demos, partnerships, or anything else we can help with.",
+      he: "ליצירת קשר בנושא הדגמות, שיתופי פעולה או כל שאלה אחרת.",
     },
-    /** מובייל עברית — שבירת שורה אחרי השאלה */
+    /** מובייל עברית — שבירת שורה */
     subHeMobile: {
-      en: "Interested in our vision? Reach out to discuss investment.",
-      he: "מעוניין בחזון שלנו?\nפנה אלינו לדיון על השקעה.",
+      en: "Reach out for demos, partnerships, or anything else we can help with.",
+      he: "ליצירת קשר בנושא הדגמות ושיתופי פעולה,\nאו כל שאלה אחרת.",
     },
     name: { en: "Name", he: "שם" },
     email: { en: "Email", he: "אימייל" },
