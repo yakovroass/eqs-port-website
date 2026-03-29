@@ -75,10 +75,6 @@ export default function Contact() {
               {tx(t.contact.label, lang)}
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {tx(t.contact.headline, lang)}{" "}
-            <span className="gradient-text">{tx(t.contact.headlineAccent, lang)}</span>
-          </h2>
           <p
             className={`text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg ${
               lang === "he" ? "sm:whitespace-normal whitespace-pre-line" : ""

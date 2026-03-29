@@ -126,7 +126,7 @@ export default function ProcessRealityIntro() {
               </motion.div>
             </div>
 
-            <div className="border-t border-amber-500/15 bg-amber-500/[0.05] px-5 py-6 sm:px-8 sm:py-8">
+            <div className="border-t border-gray-700/15 px-5 py-6 sm:px-8 sm:py-8">
               <div className="flex flex-col items-center text-center gap-3">
                 <div
                   dir={lang === "he" ? "rtl" : "ltr"}

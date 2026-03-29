@@ -222,8 +222,8 @@ export const t = {
     realityHeadlineLead: { en: "Global procurement", he: "רכש גלובלי" },
     realityHeadlineAccent: { en: "today", he: "היום" },
     replaceCaption: {
-      en: "While a better way exists...",
-      he: "ובעוד שדרך טובה יותר קיימת...",
+      en: "Or the way we offer...",
+      he: "או הדרך שאנו מציעים...",
     },
     step1Title: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
     step1Sub: { en: "Global search, matching, RFQs", he: "חיפוש גלובלי, התאמה, RFQs" },
@@ -377,8 +377,6 @@ export const t = {
   },
   contact: {
     label: { en: "Get In Touch", he: "צור קשר" },
-    headline: { en: "Let's Build", he: "בוא נבנה" },
-    headlineAccent: { en: "Together", he: "ביחד" },
     sub: {
       en: "Interested in our vision? Reach out to discuss investment.",
       he: "מעוניין בחזון שלנו? פנה אלינו לדיון על השקעה.",

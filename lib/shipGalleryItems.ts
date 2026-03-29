@@ -17,7 +17,7 @@ export const SHIP_GALLERY_SECTION_LABELS: Record<ShipGalleryCategory, string> = 
  * - `/bg-demos` — אותו רקע אוניות כמו בדף הבית
  * - `/ship-hull-variants` — כל וריאנטי הגוף לבחירה (`ALL_HULL_VARIANTS`); ברקע החי רק `SITE_HULL_VARIANTS`
  */
-export const SHIP_REF_SVG_CACHE = "95";
+export const SHIP_REF_SVG_CACHE = "96";
 
 /** מטא־דאטה לדף `/ship-hull-variants` — כל הצבעים והדגם המקורי (לבחירתך מול הרקע החי). */
 export type HullVariantMeta = {
@@ -44,10 +44,9 @@ export const ALL_HULL_VARIANTS: readonly HullVariantMeta[] = [
   { n: 13, key: "lilac", file: "container-feeder-hull-lilac.svg", title: "לילך / אפור־סגול", note: "סגול אפור רך, הילה לילך" },
 ];
 
-/** רקע חי: 1 מקורי, 11 ארקטי, 7 נחושת */
+/** רקע חי: 1 מקורי, 7 נחושת */
 export const SITE_HULL_VARIANTS: readonly HullVariantMeta[] = [
   { n: 1, key: "original", file: "container-feeder-top.svg", title: "מקורי — כחול־פלדה", note: "הדגם הבסיסי כמו בגלריה (מס׳ 11)" },
-  { n: 11, key: "arctic", file: "container-feeder-hull-arctic.svg", title: "ארקטי / קרח", note: "כחול־אפור בהיר, הילה כמעט לבנה" },
   { n: 7, key: "copper", file: "container-feeder-hull-copper.svg", title: "נחושת / ברונזה", note: "מתכת חמה, הילה כתומה־זהובה" },
 ];
 
