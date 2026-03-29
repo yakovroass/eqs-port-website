@@ -84,6 +84,54 @@ function dist(a: Pt, b: Pt) {
   return Math.hypot(b.x - a.x, b.y - a.y);
 }
 
+function pathMidpoint(p: Path): Pt {
+  return { x: (p.from.x + p.to.x) / 2, y: (p.from.y + p.to.y) / 2 };
+}
+
+/**
+ * בוחר קובץ אונייה כך שלא יחזור צבע/וריאנט של אונייה אחרת שמרכז המסלול שלה קרוב (אותו "איזור").
+ */
+function pickShipFileForPath(
+  paths: Path[],
+  files: string[],
+  i: number,
+  w: number,
+  h: number,
+): string {
+  const list = LIVE_BACKGROUND_SHIP_FILES;
+  if (list.length === 0) return "";
+  const near = Math.min(w, h) * 0.34;
+  const mi = pathMidpoint(paths[i]!);
+  const avoid = new Set<string>();
+  for (let j = 0; j < paths.length; j++) {
+    if (j === i) continue;
+    const fj = files[j];
+    if (!fj) continue;
+    if (dist(mi, pathMidpoint(paths[j]!)) < near) avoid.add(fj);
+  }
+  for (let k = 0; k < list.length; k++) {
+    const f = list[(i + k) % list.length]!;
+    if (!avoid.has(f)) return f;
+  }
+  return list[i % list.length]!;
+}
+
+function buildShipFilesForPaths(paths: Path[], w: number, h: number): string[] {
+  const files = paths.map(() => "");
+  for (let i = 0; i < paths.length; i++) {
+    files[i] = pickShipFileForPath(paths, files, i, w, h);
+  }
+  const near = Math.min(w, h) * 0.34;
+  for (let i = 0; i < paths.length; i++) {
+    for (let j = i + 1; j < paths.length; j++) {
+      if (files[i] !== files[j]) continue;
+      if (dist(pathMidpoint(paths[i]!), pathMidpoint(paths[j]!)) >= near) continue;
+      files[j] = pickShipFileForPath(paths, files, j, w, h);
+    }
+  }
+  return files;
+}
+
 /** מרווח מעבר לקצה הקונטיינר — עד שהנקודה (והזוהר) באמת “מחוץ למסך” */
 const EXIT_MARGIN_PX = 24;
 
@@ -518,7 +566,7 @@ function GalleryShipSprite({
     <div
       className="pointer-events-none select-none overflow-visible [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]"
       style={{
-        width: "clamp(14rem, 44vw, 26rem)",
+        width: "clamp(16rem, 50vw, 30rem)",
         aspectRatio: "1580 / 330",
         transform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
         WebkitTransform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
@@ -698,7 +746,10 @@ function ShipsFloatingParticles({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
-  const [paths, setPaths] = useState<Path[] | null>(null);
+  const [shipLayer, setShipLayer] = useState<{
+    paths: Path[];
+    files: string[];
+  } | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -727,7 +778,9 @@ function ShipsFloatingParticles({
   const respawnShipPaths = useCallback(() => {
     if (sw < 41 || sh < 41) return;
     const total = shipCountForWidth(sw, countOverride);
-    setPaths(generateAllShipPathsFullViewport(sw, sh, total, motionMode));
+    const paths = generateAllShipPathsFullViewport(sw, sh, total, motionMode);
+    const files = buildShipFilesForPaths(paths, sw, sh);
+    setShipLayer({ paths, files });
   }, [sw, sh, countOverride, motionMode]);
 
   useEffect(() => {
@@ -738,9 +791,9 @@ function ShipsFloatingParticles({
   const handleParticleComplete = useCallback(
     (i: number) => {
       if (sw < 41 || sh < 41) return;
-      setPaths((prev) => {
+      setShipLayer((prev) => {
         if (!prev) return prev;
-        const others: Segment[] = prev
+        const others: Segment[] = prev.paths
           .filter((_, j) => j !== i)
           .map((p) => ({ from: p.from, to: p.to }));
         const nextPath = generateShipPathAvoidingFull(
@@ -750,13 +803,18 @@ function ShipsFloatingParticles({
           i * 23 + Math.floor(Math.random() * 60),
           motionMode,
         );
-        const next = [...prev];
-        next[i] = nextPath;
-        return next;
+        const nextPaths = [...prev.paths];
+        nextPaths[i] = nextPath;
+        const nextFiles = [...prev.files];
+        nextFiles[i] = pickShipFileForPath(nextPaths, nextFiles, i, sw, sh);
+        return { paths: nextPaths, files: nextFiles };
       });
     },
     [sw, sh, motionMode],
   );
+
+  const paths = shipLayer?.paths;
+  const files = shipLayer?.files;
 
   return (
     <MotionConfig reducedMotion="never">
@@ -766,7 +824,7 @@ function ShipsFloatingParticles({
         dir="ltr"
         aria-hidden
       >
-        {size && paths
+        {size && paths && files
           ? paths.map((path, i) => (
               <Particle
                 key={`ship-${i}`}
@@ -774,11 +832,7 @@ function ShipsFloatingParticles({
                 index={i}
                 onComplete={handleParticleComplete}
                 variant="ships"
-                shipFile={
-                  LIVE_BACKGROUND_SHIP_FILES[
-                    (i * 17 + 3) % LIVE_BACKGROUND_SHIP_FILES.length
-                  ]!
-                }
+                shipFile={files[i]!}
               />
             ))
           : null}
