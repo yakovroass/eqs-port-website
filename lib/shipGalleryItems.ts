@@ -17,7 +17,7 @@ export const SHIP_GALLERY_SECTION_LABELS: Record<ShipGalleryCategory, string> = 
  * - `/bg-demos` — אותו רקע אוניות כמו בדף הבית
  * - `/ship-hull-variants` — רק וריאנטי גוף שמופיעים ברקע החי (SITE_HULL_VARIANTS)
  */
-export const SHIP_REF_SVG_CACHE = "85";
+export const SHIP_REF_SVG_CACHE = "86";
 
 /** וריאנטי Feeder שמוצגים באתר (רקע חי + דף `/ship-hull-variants`). סדר התצוגה כמו ברקע. */
 export const SITE_HULL_VARIANTS: readonly {
@@ -29,7 +29,9 @@ export const SITE_HULL_VARIANTS: readonly {
 }[] = [
   { n: 7, key: "copper", file: "container-feeder-hull-copper.svg", title: "נחושת / ברונזה", note: "מתכת חמה, הילה כתומה־זהובה" },
   { n: 10, key: "crimson", file: "container-feeder-hull-crimson.svg", title: "אדום עמוק (Crimson)", note: "אדום תעשייתי, הילה אדומה" },
+  { n: 12, key: "amber", file: "container-feeder-hull-amber.svg", title: "ענבר / זהב", note: "צהוב־חום מתכתי, הילה זהובה" },
   { n: 11, key: "arctic", file: "container-feeder-hull-arctic.svg", title: "ארקטי / קרח", note: "כחול־אפור בהיר, הילה כמעט לבנה" },
+  { n: 2, key: "teal", file: "container-feeder-hull-teal.svg", title: "ירוק־כחול (Teal)", note: "גוף ירוק־ים, הילה תואמת" },
 ];
 
 /** מספור רציף — קבצים ב־public/ship-refs/ */
