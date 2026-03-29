@@ -11,7 +11,11 @@ export default function ProcessTimeline() {
   const { lang } = useLanguage();
 
   return (
-    <section id="process-detail" className="relative py-24 md:py-32 overflow-hidden" aria-label={lang === "en" ? "EQS process details" : "המשך תהליך EQS"}>
+    <section
+      id="process-detail"
+      className="relative pt-10 sm:pt-12 md:pt-14 pb-24 md:pb-32 overflow-hidden"
+      aria-label={lang === "en" ? "EQS process details" : "המשך תהליך EQS"}
+    >
 
       <div className="relative z-10 section-container">
         <div className="max-w-5xl mx-auto space-y-8">

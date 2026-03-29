@@ -70,18 +70,11 @@ export default function Contact() {
 
       <div className="relative z-10 section-container">
         <ScrollReveal>
-          <div className="text-center mb-6">
+          <div className="text-center mb-16">
             <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
               {tx(t.contact.label, lang)}
             </span>
           </div>
-          <p
-            className={`text-gray-400 text-center max-w-2xl mx-auto mb-16 text-lg ${
-              lang === "he" ? "sm:whitespace-normal whitespace-pre-line" : ""
-            }`}
-          >
-            {lang === "he" ? tx(t.contact.subHeMobile, lang) : tx(t.contact.sub, lang)}
-          </p>
         </ScrollReveal>
 
         <div className="max-w-xl mx-auto">

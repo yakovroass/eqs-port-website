@@ -8,16 +8,43 @@ import { t } from "@/lib/translations";
 import LanguageToggle from "./LanguageToggle";
 import { navChromeButton } from "@/lib/navChrome";
 
-/** סדר לפי זרימת הדף; ללא «הבעיה» בתפריט — הסקשן נשאר בדף */
-const NAV_ITEMS = [
-  { href: "#hero" as const, label: (lang: "en" | "he") => tx(t.nav.home, lang) },
-  { href: "#market" as const, label: (lang: "en" | "he") => tx(t.market.label, lang) },
-  { href: "#solution" as const, label: (lang: "en" | "he") => tx(t.nav.solution, lang) },
-  { href: "#process" as const, label: (lang: "en" | "he") => tx(t.nav.process, lang) },
-  { href: "#future" as const, label: (lang: "en" | "he") => tx(t.nav.future, lang) },
-  { href: "#invest" as const, label: (lang: "en" | "he") => tx(t.nav.invest, lang) },
-  { href: "#contact" as const, label: (lang: "en" | "he") => tx(t.contact.label, lang) },
-];
+/** סדר ועוגנים כמו ב־app/page.tsx — שינוי תפריט בלבד (בלי להוסיף כותרות לסקשנים בדף) */
+const NAV_HREFS = [
+  "#hero",
+  "#market",
+  "#problem",
+  "#process",
+  "#solution",
+  "#future",
+  "#invest",
+  "#contact",
+] as const;
+
+function navLabelAt(index: number, lang: "en" | "he"): string {
+  switch (index) {
+    case 0:
+      return tx(t.nav.home, lang);
+    case 1:
+      return tx(t.market.label, lang);
+    case 2:
+      return tx(t.problem.label, lang);
+    case 3: {
+      const lead = tx(t.process.realityHeadlineLead, lang).trim();
+      const accent = tx(t.process.realityHeadlineAccent, lang).trim();
+      return lead ? `${lead} ${accent}` : accent;
+    }
+    case 4:
+      return tx(t.solution.label, lang);
+    case 5:
+      return tx(t.roadmap.label, lang);
+    case 6:
+      return tx(t.invest.label, lang);
+    case 7:
+      return tx(t.contact.label, lang);
+    default:
+      return "";
+  }
+}
 
 export default function Navbar() {
   const { lang, dir } = useLanguage();
@@ -141,7 +168,7 @@ export default function Navbar() {
                   <div
                     className={`py-2 px-1 flex flex-col gap-0.5 ${dir === "rtl" ? "items-stretch" : ""}`}
                   >
-                    {NAV_ITEMS.map(({ href, label }) => (
+                    {NAV_HREFS.map((href, i) => (
                       <button
                         key={href}
                         type="button"
@@ -150,7 +177,7 @@ export default function Navbar() {
                           dir === "rtl" ? "text-right" : "text-left"
                         }`}
                       >
-                        {label(lang)}
+                        {navLabelAt(i, lang)}
                       </button>
                     ))}
                     {authUser && (

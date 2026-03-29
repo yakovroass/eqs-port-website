@@ -7,7 +7,7 @@ export const t = {
     market: { en: "Market", he: "השוק" },
     solution: { en: "Solution", he: "הפתרון" },
     platform: { en: "Platform", he: "הפלטפורמה" },
-    process: { en: "Process", he: "התהליך" },
+    process: { en: "How It Works", he: "איך זה עובד" },
     future: { en: "Vision", he: "חזון" },
     invest: { en: "Invest", he: "השקעה" },
     contact: { en: "Contact", he: "צור קשר" },
@@ -54,7 +54,7 @@ export const t = {
       he: "אלפי חברות וספקים בכל קטגוריה",
     },
     pain1d: {
-      en: "Deals pass through multiple markets and many intermediaries, digital systems are fragmented and there is no unified search, slowing work and hurting efficiency and margins.",
+      en: "Deals pass through multiple markets and many intermediaries; digital systems are limited and there is no unified search, which slows work and hurts efficiency and margins.",
       he: "עסקאות עוברות דרך מספר שווקים ודרך מתווכים רבים, המערכות הדיגיטליות מוגבלות וללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
@@ -69,8 +69,8 @@ export const t = {
     },
     pain4: { en: "Regulatory Barriers", he: "חסמים רגולטוריים" },
     pain4d: {
-      en: "Often there is insufficient expertise to verify equipment and parts, run thorough compliance checks, secure import permits under differing requirements in every country, and apply knowledge effectively...",
-      he: "לרוב חסר ידע באימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, הוצאת היתרי יבוא על פי דרישות תאימות שונות בכל מדינה ושימוש בידע לתועלת...",
+      en: "Often there is insufficient expertise to verify equipment and parts, run thorough compliance checks, and secure import permits under differing requirements from country to country.",
+      he: "לרוב חסר ידע באימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, והוצאת היתרי יבוא על פי דרישות תאימות שונות ממדינה למדינה.",
     },
   },
   market: {
@@ -104,7 +104,7 @@ export const t = {
       he: "הפתרון שלנו",
     },
     headline: { en: "One Platform,", he: "פלטפורמה אחת," },
-    headlineAccent: { en: "Infinite Reach", he: "השפעה בלתי מוגבלת" },
+    headlineAccent: { en: "Unlimited Impact", he: "השפעה בלתי מוגבלת" },
     sub: {
       en: "Our tools drive competition at the global level, make us the strategic partner of procurement departments worldwide, connect and attract the best suppliers, provide full up-to-date data, offer a complete solution — and that's our competitive advantage!",
       he: "הכלים שלנו יוצרים תחרות ברמה הגלובלית, הופכים אותנו לשותף האסטרטגי של מחלקות רכש מכל העולם, מחברים ומושכים את הספקים הטובים ביותר, מספקים נתונים מלאים ומעודכנים, ומציעים פתרון כולל — וזה היתרון התחרותי שלנו!",
@@ -376,16 +376,7 @@ export const t = {
     downloadOnePagerEn: { en: "One-Pager (EN)", he: "דף אחד (אנגלית)" },
   },
   contact: {
-    label: { en: "Get In Touch", he: "צור קשר" },
-    sub: {
-      en: "Reach out for demos, partnerships, or anything else we can help with.",
-      he: "ליצירת קשר בנושא הדגמות, שיתופי פעולה או כל שאלה אחרת.",
-    },
-    /** מובייל עברית — שבירת שורה */
-    subHeMobile: {
-      en: "Reach out for demos, partnerships, or anything else we can help with.",
-      he: "ליצירת קשר בנושא הדגמות ושיתופי פעולה,\nאו כל שאלה אחרת.",
-    },
+    label: { en: "Contact", he: "צור קשר" },
     name: { en: "Name", he: "שם" },
     email: { en: "Email", he: "אימייל" },
     company: { en: "Company", he: "חברה" },

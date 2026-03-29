@@ -30,13 +30,13 @@ const phases = [
     statusPill: { en: "Vision", he: "חזון" },
     title: { en: "The Global Trade Operating System", he: "מערכת ההפעלה של המסחר העולמי" },
     desc: {
-      en: "Every buyer everywhere deserves the best deal — and we'll find it. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement through our systems, and build trade lanes at massive scale across every category and country.",
+      en: "Our platform becomes each customer's or company's procurement department — or their strongest linked partner. We scan the entire world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement through our systems, and build trade lanes at massive scale, in every category, in every country.",
       he: "הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים ומוכרים, מבצעים דרך המערכות שלנו רכש ומייצרים קווי מסחר בקנה מידה עצום, בכל קטגוריה, בכל מדינה.",
     },
     stats: [
       { value: 432, suffix: "B+", label: { en: "Addressable Market", he: "שוק ניתן לטיפול" }, prefix: "$" },
       { value: 2, suffix: "M+", label: { en: "Potential Buyers", he: "קונים פוטנציאליים" } },
-      { value: 12, suffix: "T+", label: { en: "Global Trade", he: "רכש גלובלי" }, prefix: "$" },
+      { value: 12, suffix: "T+", label: { en: "Global Trade", he: "מסחר גלובלי" }, prefix: "$" },
       { value: 195, suffix: "", label: { en: "Countries Connected", he: "מדינות מחוברות" } },
     ],
     color: "from-indigo-500/85 to-sky-400/80",

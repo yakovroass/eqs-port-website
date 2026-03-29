@@ -40,7 +40,8 @@ export default function Home() {
     <LanguageContext.Provider value={{ lang, setLang, dir }}>
       <SessionPing />
       <div dir={dir} className="mobile-readable overflow-x-hidden max-w-[100vw] relative">
-        <div className="animated-grid-bg fixed inset-0 pointer-events-none z-0" />
+        {/* absolute בתוך העוטף היחסי — נגלל עם התוכן (לא כמו fixed שדבוק לחלון) */}
+        <div className="animated-grid-bg absolute inset-0 pointer-events-none z-0" aria-hidden />
         {/* אוניות — כל גובה הדף */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden>
           <HeroFloatingParticles variant="ships" />
