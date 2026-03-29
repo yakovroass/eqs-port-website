@@ -10,22 +10,34 @@ import { t } from "@/lib/translations";
 const PROCESS_15_STEPS_ASSET_VER = "5";
 const EQS_3STEPS_ASSET_VER = "2";
 
-/** ככה נראה הרכש → „ובדרך אחרת“ + חץ + 5 שלבים + תמונת 3 השלבים — מיד אחרי הבעיה */
+/** כותרת רכש גלובלי / היום → replaceCaption (גרדיאנט) + חץ + 5 שלבים + תמונת 3 השלבים — אחרי השוק והבעיה */
 export default function ProcessRealityIntro() {
   const { lang } = useLanguage();
+  const realityLead = tx(t.process.realityHeadlineLead, lang).trim();
 
   return (
     <section id="process" className="relative pt-4 pb-10 sm:pt-6 sm:pb-16 md:pb-24 overflow-hidden">
       <div className="relative z-10 section-container">
+        <div className="max-w-5xl mx-auto w-full">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-            {lang === "en" ? "This Is How" : "ככה נראה"}{" "}
-            <span className="text-amber-400">{lang === "en" ? "Procurement Works Today" : "הרכש היום"}</span>
+            {realityLead ? (
+              <>
+                {realityLead}{" "}
+                <span className="text-amber-400 tracking-wide">
+                  {tx(t.process.realityHeadlineAccent, lang)}
+                </span>
+              </>
+            ) : (
+              <span className="text-amber-400 tracking-wide">
+                {tx(t.process.realityHeadlineAccent, lang)}
+              </span>
+            )}
           </h2>
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden border border-amber-500/25 bg-amber-500/[0.04] shadow-lg shadow-amber-900/10">
+          <div className="w-full mb-12 rounded-2xl overflow-hidden border border-amber-500/25 bg-amber-500/[0.04] shadow-lg shadow-amber-900/10">
             <p className="text-gray-400 text-center text-base sm:text-lg leading-relaxed px-5 py-6 sm:px-8 sm:py-7 border-b border-amber-500/15">
               {tx(t.process.realitySub, lang)}
             </p>
@@ -46,8 +58,14 @@ export default function ProcessRealityIntro() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="max-w-3xl mx-auto mt-10 sm:mt-14 mb-6 sm:mb-8 text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text">
+          <div className="w-full mt-10 sm:mt-14 mb-6 sm:mb-8 text-center">
+            <h2
+              className={
+                lang === "en"
+                  ? "text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight gradient-text"
+                  : "text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight gradient-text"
+              }
+            >
               {tx(t.process.replaceCaption, lang)}
             </h2>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed whitespace-pre-line">
@@ -76,9 +94,9 @@ export default function ProcessRealityIntro() {
         </div>
 
         <ScrollReveal>
-          <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+          <div className="w-full mb-12 rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
             <div className="px-5 py-6 sm:px-8 sm:py-8 border-b border-gray-700/20">
-              <ul className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
+              <ul className="space-y-4 sm:space-y-5 max-w-3xl mx-auto">
                 {t.process.unifiedSteps[lang].map((step, i) => (
                   <li key={i} className="flex items-center gap-4 text-gray-200">
                     <span
@@ -113,8 +131,41 @@ export default function ProcessRealityIntro() {
                 />
               </motion.div>
             </div>
+
+            <div className="border-t border-amber-500/15 bg-amber-500/[0.05] px-5 py-6 sm:px-8 sm:py-8">
+              <div className="flex flex-col items-center text-center gap-3">
+                <div
+                  dir={lang === "he" ? "rtl" : "ltr"}
+                  className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+                >
+                  <span className="inline-flex shrink-0 p-0.5 [isolation:isolate]">
+                    <svg
+                      className="w-8 h-8 sm:w-9 sm:h-9 text-cyan-200/95 [filter:drop-shadow(0_0_5px_rgba(165,243,252,0.55))_drop-shadow(0_0_12px_rgba(51,187,255,0.25))]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                      />
+                    </svg>
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug text-balance">
+                    {tx(t.process.provenAfterStepsTitle, lang)}
+                  </h3>
+                </div>
+                <p className="w-full text-gray-200 text-sm sm:text-base md:text-lg leading-relaxed text-pretty">
+                  {tx(t.process.provenAfterSteps, lang)}
+                </p>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
+        </div>
       </div>
     </section>
   );

@@ -101,7 +101,7 @@ Every `en` string from `lib/translations.ts` appears in full **at least once** i
 - `problem.pain3d` — Preferred routes and transport permits, equipment checks, land and sea freight quotes, insurance, and more...  
 
 - `problem.pain4` — Regulatory Barriers  
-- `problem.pain4d` — Verifying equipment and parts, compliance checks, import permits — requirements differ in every country...  
+- `problem.pain4d` — Often there is insufficient expertise to verify equipment and parts, run thorough compliance checks, secure import permits under differing requirements in every country, and apply knowledge effectively...  
 
 **Bottom line**  
 - `problem.subBelow` — Every step becomes a project, buyers and sellers face challenges at every stage and lose valuable time.  
@@ -114,7 +114,7 @@ Every `en` string from `lib/translations.ts` appears in full **at least once** i
 
 - `market.label` — The Market  
 - `market.headline` — Opportunity for Breakout Growth  
-- `market.sub` — Our activities focus on the intersection of trillion-dollar industries on steep growth paths, and each market within these industries is vast in its own right.  
+- `market.sub` — Our activities focus on the intersection of trillion-dollar industries on steep growth paths, an expanding global customer base, and each market within these industries is vast in its own right.  
 
 ### Local in `MarketData.tsx` (English)
 
@@ -157,7 +157,7 @@ Every `en` string from `lib/translations.ts` appears in full **at least once** i
 - `solution.label` — Our Solution  
 - `solution.headline` — One Platform,  
 - `solution.headlineAccent` — Infinite Reach  
-- `solution.sub` — Our tools forge strategic connections and serve as gateways to thriving industries — opening access to vast markets and an expanding global customer base.  
+- `solution.sub` — Our tools drive competition at the global level, make us the strategic partner of procurement departments worldwide, connect and attract the best suppliers, provide full up-to-date data, offer a complete solution — and that's our competitive advantage!  
 
 **Translation file only (not in `SolutionOverview.tsx`)**  
 - `solution.prop1` / `prop1d` — Unified Interface · All sources, all data, one screen  
@@ -219,21 +219,21 @@ Manually scanning the entire market is impossible, and valuable opportunities ar
 
 **Image `alt` (local)** — 15-step procurement and delivery process flowchart  
 
-- `process.replaceCaption` — And in a different way...  
+- `process.replaceCaption` — While a better way exists...  
 - `process.replaceSub`:
 
   ```
-  We simply execute everything.
-  Procurement, logistics, permits, documents.
+  Our systems simply execute everything.
+  Procurement, agreements, permits, logistics and tracking.
   Better, faster, cheaper.
   ```
 
 **Five-step list** — `process.unifiedSteps.en`  
-1. Use algorithmic scanning  
-2. Review the world's best offers  
-3. Get all-in-one quotes  
+1. Request or use algorithmic scanning  
+2. Review the best offers in the world  
+3. Receive all-in-one price quotes  
 4. Sign SLA and arrange payment  
-5. Get updates and ETA  
+5. Receive updates and ETA  
 
 **Image `alt` for 3-step diagram (local)** — EQS.PORT 3-Step Process: Browse, Approval, Machine On Site  
 
@@ -255,7 +255,7 @@ Manually scanning the entire market is impossible, and valuable opportunities ar
 
 **Global search block**  
 - `process.globalSearchTitle` — Thorough intelligent global search  
-- `process.globalSearchDesc` — Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, every piece of equipment.  
+- `process.globalSearchDesc` — Our platform scans thousands of companies and suppliers worldwide — filtering by data and location, performing in-depth analysis for every listing, every seller, every piece of equipment, in every category.  
 
 **Ports block**  
 - `process.globalPortsTitle` — Global port & supplier network  
@@ -295,19 +295,19 @@ Manually scanning the entire market is impossible, and valuable opportunities ar
 - `roadmap.sub` — This is just the beginning  
 - `roadmap.stats` — 3,000+ contacts · 100+ countries · 4,000+ ports · 30K+ docs · $432B+ addressable market · 2M+ potential buyers  
 
-- `roadmap.intro` — Our data and connections are the foundation for a global procurement intelligence system that will scan the world to find the best deal for every customer.  
+- `roadmap.intro` — The system, data, activity, and relationships we've built over the years serve as a strong foundation for establishing an enhanced global trading system that creates connections that never existed before and finds the best deal for every customer.  
 
 **Phase 1 (local in `FutureTargets.tsx`)**  
 - Phase tag — Phase 1 — Now  
 - Title — Building the Network & Data Foundation  
-- Body — We're starting with heavy equipment and industrial procurement — but the real thing is what we're building underneath: a global network of 3,000+ contacts across 100+ countries, with deep supplier relationships, and proprietary market data that grows with every step. This is the infrastructure that enables everything — and what takes us to the next stage.  
+- Body — We've already used the software for trading in heavy equipment, spare parts, and industrial procurement — but the real move is what we're building underneath: advanced development to connect a global network of 3,000+ contacts across 100+ countries, building deep supplier relationships, and proprietary market data that grows with every deal. This is the infrastructure that enables everything — and what takes us to the next stage.  
 - Status badge — ACTIVE  
 - Stat labels — Contacts · Countries · Ports Database · Technical Docs  
 
 **Phase 2**  
 - Phase tag — Phase 2 — Near Future & Vision  
 - Title — The Global Trade Operating System  
-- Body — Every buyer everywhere deserves the best deal — and we'll find it. A buyer in Germany needs steel from Brazil, a contractor in Dubai needs cranes from Europe, a company in India needs materials from China. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement, and build trade lanes at massive scale across every category and country.  
+- Body — Every buyer everywhere deserves the best deal — and we'll find it. Our platform becomes each customer's procurement function — or their strongest linked partner. We scan the world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement through our systems, and build trade lanes at massive scale across every category and country.  
 - Stat labels — Addressable Market · Potential Buyers · Global Trade · Countries Connected  
 
 **Markets** *(from `translations`; not wired in `FutureTargets.tsx` — same structure as `site-content-he.md` §6)*  

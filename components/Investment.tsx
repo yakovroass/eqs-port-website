@@ -24,41 +24,11 @@ export default function Investment() {
     tx(t.invest.fund7, lang),
   ];
 
-  const dlBtn =
-    "flex flex-1 min-w-0 max-w-[10.5rem] sm:max-w-none items-center justify-center gap-2 py-3.5 sm:py-4 px-3 sm:px-5 rounded-xl font-semibold whitespace-nowrap text-xs sm:text-base leading-snug transition-colors";
-
   return (
     <section id="invest" className="relative py-24 md:py-32 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/3 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">
-        <ScrollReveal>
-          <motion.div whileHover={{ scale: 1.01 }} className="max-w-4xl mx-auto mb-12 md:mb-14">
-            <div className="relative rounded-2xl overflow-hidden glass-card border-gray-700/40 shadow-[0_10px_28px_rgba(0,0,0,0.22)]">
-              <div className="px-6 sm:px-10 py-8 sm:py-10">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
-                  <svg
-                    className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 text-cyan-200/95 [filter:drop-shadow(0_0_10px_rgba(165,243,252,0.9))_drop-shadow(0_0_22px_rgba(51,187,255,0.55))_drop-shadow(0_0_40px_rgba(51,187,255,0.28))]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    aria-hidden
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                  </svg>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center sm:text-start">
-                    {tx(t.invest.provenTitle, lang)}
-                  </h3>
-                </div>
-                <p className="max-w-3xl mx-auto text-center text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
-                  {tx(t.invest.proven, lang)}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </ScrollReveal>
-
         <ScrollReveal delay={0.08}>
           <div className="text-center mb-6">
             <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
@@ -72,7 +42,7 @@ export default function Investment() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.12}>
-          <motion.div whileHover={{ scale: 1.002 }} className="max-w-4xl mx-auto mb-16">
+          <motion.div whileHover={{ scale: 1.002 }} className="max-w-5xl mx-auto w-full mb-16">
             <div className="relative rounded-3xl overflow-hidden glass-card ring-1 ring-accent/12 shadow-[0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.05)]">
               <div className="relative z-[1] px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12">
                 <div className="text-center border-b border-gray-700/25 pb-8 mb-8">
@@ -133,35 +103,6 @@ export default function Investment() {
                       ))}
                     </ul>
                   </div>
-                </div>
-
-                <div className="mt-10 flex flex-nowrap justify-center gap-2 sm:gap-3 w-full max-w-2xl mx-auto">
-                  <motion.a
-                    href="/pitch-deck.pdf"
-                    download
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`${dlBtn} border border-accent/40 text-accent hover:bg-accent/10`}
-                  >
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                    </svg>
-                    <span className="sm:hidden">{tx(t.invest.downloadPdfShort, lang)}</span>
-                    <span className="hidden sm:inline">{tx(t.invest.downloadPdf, lang)}</span>
-                  </motion.a>
-                  <motion.a
-                    href="/EQS.PORT.1P.pdf"
-                    download
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`${dlBtn} border border-amber-500/40 text-amber-300 hover:bg-amber-500/15`}
-                  >
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                    </svg>
-                    <span className="sm:hidden">{tx(t.invest.downloadOnePagerShort, lang)}</span>
-                    <span className="hidden sm:inline">{tx(t.invest.downloadOnePager, lang)}</span>
-                  </motion.a>
                 </div>
               </div>
             </div>

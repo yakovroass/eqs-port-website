@@ -13,16 +13,16 @@
         100% { opacity: 1; }
       }
       .nvPortCf {
-        -webkit-animation: navBlinkCf 8.5s ease-in-out infinite;
-        animation: navBlinkCf 8.5s ease-in-out infinite;
+        -webkit-animation: navBlinkCf 8.35s ease-in-out infinite;
+        animation: navBlinkCf 8.35s ease-in-out infinite;
         -webkit-animation-delay: 0s;
         animation-delay: 0s;
       }
       .nvStbdCf {
-        -webkit-animation: navBlinkCf 8.5s ease-in-out infinite;
-        animation: navBlinkCf 8.5s ease-in-out infinite;
-        -webkit-animation-delay: 4.25s;
-        animation-delay: 4.25s;
+        -webkit-animation: navBlinkCf 8.35s ease-in-out infinite;
+        animation: navBlinkCf 8.35s ease-in-out infinite;
+        -webkit-animation-delay: 4.175s;
+        animation-delay: 4.175s;
       }
       @-webkit-keyframes beamBreathCf {
         0%, 100% { opacity: 0.98; }
@@ -33,8 +33,8 @@
         50% { opacity: 0.78; }
       }
       .nvBeamsBreathCf {
-        -webkit-animation: beamBreathCf 8.5s ease-in-out infinite;
-        animation: beamBreathCf 8.5s ease-in-out infinite;
+        -webkit-animation: beamBreathCf 8.35s ease-in-out infinite;
+        animation: beamBreathCf 8.35s ease-in-out infinite;
       }
       /* אלומה קדמית — נדנוד ימינה־שמאל (חזק יותר) */
       @-webkit-keyframes nvBowSwayAnimCf {
@@ -78,8 +78,8 @@
       .bridgeSearchSpinCf {
         -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
-        -webkit-animation: bridgeSearchSpinCf 36s linear infinite;
-        animation: bridgeSearchSpinCf 36s linear infinite;
+        -webkit-animation: bridgeSearchSpinCf 33.5s linear infinite;
+        animation: bridgeSearchSpinCf 33.5s linear infinite;
       }
       /* סירות הצלה — דופק עדין חליפי כדי שיבלטו כציוד בטיחות */
       @-webkit-keyframes lifeboatPulseCf {

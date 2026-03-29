@@ -58,9 +58,9 @@ export default function Home() {
         {/* מעל שכבת האוניות (absolute z-0) — בלי זה התוכן עלול להישאר מתחת ולהיעלם */}
         <main className="relative z-10">
           <Hero />
+          <MarketData />
           <Problem />
           <ProcessRealityIntro />
-          <MarketData />
           <SolutionOverview />
           <ProcessTimeline />
           <FutureTargets />

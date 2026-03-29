@@ -20,14 +20,10 @@ export default function Problem() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/3 rounded-full blur-3xl" />
 
       <div className="relative z-10 section-container">
+        <div className="max-w-5xl mx-auto w-full">
         <ScrollReveal>
-          <div className="text-center mb-6">
-            <span className="section-label headline-font text-3xl sm:text-4xl md:text-5xl text-amber-400 tracking-wide uppercase">
-              {tx(t.problem.label, lang)}
-            </span>
-          </div>
           <h2
-            className={`text-3xl md:text-5xl font-bold text-center text-white ${subText ? "mb-6" : "mb-12"}`}
+            className={`text-3xl md:text-5xl font-bold text-center text-amber-400 tracking-wide ${lang === "en" ? "uppercase" : ""} ${subText ? "mb-6" : "mb-12"}`}
           >
             {tx(t.problem.headline, lang)}
           </h2>
@@ -36,7 +32,7 @@ export default function Problem() {
           ) : null}
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-5xl mx-auto items-stretch">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 items-stretch">
           {pains.map((pain, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
               <motion.div
@@ -44,16 +40,9 @@ export default function Problem() {
                 className="relative rounded-xl glass-card p-6 sm:p-7
                            hover:border-amber-500/30 transition-all group h-full flex flex-col"
               >
-                <div className="flex items-start gap-4">
-                  <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/10
-                                  flex items-center justify-center text-amber-400 text-sm font-bold
-                                  group-hover:from-amber-500/30 group-hover:to-amber-600/20 transition-all">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-white mb-1.5">{pain.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{pain.desc}</p>
-                  </div>
+                <div>
+                  <h3 className="text-base font-semibold text-white mb-1.5">{pain.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{pain.desc}</p>
                 </div>
                 <div
                   className={`absolute top-3 bottom-3 w-[2px] bg-gradient-to-b from-amber-500/40 via-amber-500/20 to-transparent
@@ -70,6 +59,7 @@ export default function Problem() {
             {tx(t.problem.subBelow, lang)}
           </p>
         </ScrollReveal>
+        </div>
       </div>
     </section>
   );

@@ -15,8 +15,22 @@ export const SHIP_GALLERY_SECTION_LABELS: Record<ShipGalleryCategory, string> = 
  * - `/ship-gallery` — כרטיס לכל פריט ב־SHIP_GALLERY_ITEMS
  * - `/ship-11-live` — אונייה 11 אחת על מסלול
  * - `/bg-demos` — אותו רקע אוניות כמו בדף הבית
+ * - `/ship-hull-variants` — רק וריאנטי גוף שמופיעים ברקע החי (SITE_HULL_VARIANTS)
  */
-export const SHIP_REF_SVG_CACHE = "78";
+export const SHIP_REF_SVG_CACHE = "85";
+
+/** וריאנטי Feeder שמוצגים באתר (רקע חי + דף `/ship-hull-variants`). סדר התצוגה כמו ברקע. */
+export const SITE_HULL_VARIANTS: readonly {
+  n: number;
+  key: string;
+  file: string;
+  title: string;
+  note: string;
+}[] = [
+  { n: 7, key: "copper", file: "container-feeder-hull-copper.svg", title: "נחושת / ברונזה", note: "מתכת חמה, הילה כתומה־זהובה" },
+  { n: 10, key: "crimson", file: "container-feeder-hull-crimson.svg", title: "אדום עמוק (Crimson)", note: "אדום תעשייתי, הילה אדומה" },
+  { n: 11, key: "arctic", file: "container-feeder-hull-arctic.svg", title: "ארקטי / קרח", note: "כחול־אפור בהיר, הילה כמעט לבנה" },
+];
 
 /** מספור רציף — קבצים ב־public/ship-refs/ */
 export const SHIP_GALLERY_ITEMS: {
@@ -30,13 +44,7 @@ export const SHIP_GALLERY_ITEMS: {
 ];
 
 /**
- * קבצי SVG לרקע החי (דף הבית / bg-demos) — וריאנטי מכולות שונים לסירובין.
- * הגלריה מציגה רק את הפריטים ב־SHIP_GALLERY_ITEMS.
+ * קבצי SVG לרקע החי (דף הבית / bg-demos) — זהה לסדר `SITE_HULL_VARIANTS`.
+ * בכל קובץ — משכי אנימציה שונים (פנסים / מכ״ם) כדי שלא יסתנכרנו בין אוניות.
  */
-export const LIVE_BACKGROUND_SHIP_FILES: string[] = [
-  "container-feeder-top.svg",
-  "container-feeder-bg-2.svg",
-  "container-feeder-bg-3.svg",
-  "container-feeder-bg-4.svg",
-  "container-feeder-bg-5.svg",
-];
+export const LIVE_BACKGROUND_SHIP_FILES: string[] = SITE_HULL_VARIANTS.map((item) => item.file);

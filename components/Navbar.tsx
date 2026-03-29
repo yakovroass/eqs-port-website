@@ -8,24 +8,24 @@ import { t } from "@/lib/translations";
 import LanguageToggle from "./LanguageToggle";
 import { navChromeButton } from "@/lib/navChrome";
 
-const NAV_HREFS = ["#hero", "#problem", "#market", "#solution", "#process", "#future", "#invest", "#contact"] as const;
+const NAV_HREFS = ["#hero", "#market", "#problem", "#solution", "#process", "#future", "#invest", "#contact"] as const;
 
 function navLabelAt(index: number, lang: "en" | "he"): string {
   switch (index) {
     case 0:
       return tx(t.nav.home, lang);
     case 1:
-      return tx(t.problem.label, lang);
-    case 2:
       return tx(t.market.label, lang);
+    case 2:
+      return tx(t.problem.label, lang);
     case 3:
-      return tx(t.solution.label, lang);
+      return tx(t.nav.solution, lang);
     case 4:
-      return tx(t.process.label, lang);
+      return tx(t.nav.process, lang);
     case 5:
-      return tx(t.roadmap.label, lang);
+      return tx(t.nav.future, lang);
     case 6:
-      return tx(t.invest.label, lang);
+      return tx(t.nav.invest, lang);
     case 7:
       return tx(t.contact.label, lang);
     default:

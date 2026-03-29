@@ -51,6 +51,10 @@ export default function ShipGalleryPage() {
             <Link href="/ship-bridge-demos" className="text-sky-700 underline">
               דוגמאות מגדל פיקוח
             </Link>
+            {" · "}
+            <Link href="/ship-hull-variants" className="text-sky-700 underline">
+              וריאנטי צבע גוף
+            </Link>
           </p>
         </header>
 

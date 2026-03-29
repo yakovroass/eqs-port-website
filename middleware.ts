@@ -12,6 +12,15 @@ function isPublicPath(pathname: string): boolean {
   if (pathname === "/api/health") return true;
   if (pathname === "/api/auth/session-check") return true;
   if (pathname.startsWith("/ship-refs/")) return true;
+  /* דפי הדגמה — ללא התחברות (קישורים מגלריה / פיתוח) */
+  if (
+    pathname === "/ship-gallery" ||
+    pathname === "/ship-hull-variants" ||
+    pathname === "/ship-11-live" ||
+    pathname === "/ship-bridge-demos"
+  ) {
+    return true;
+  }
   if (pathname.startsWith("/images/")) return true;
   if (pathname.startsWith("/bg-demos/")) return true;
   const staticExt = /\.(?:svg|png|jpe?g|gif|webp|ico|txt|html?|pdf|md)$/i;
@@ -27,8 +36,15 @@ function isLocalDevHost(request: NextRequest): boolean {
   return hostname === "localhost" || hostname === "127.0.0.1";
 }
 
+function stripTrailingSlash(pathname: string): string {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
+}
+
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const pathname = stripTrailingSlash(request.nextUrl.pathname);
   if (isPublicPath(pathname)) {
     return NextResponse.next();
   }

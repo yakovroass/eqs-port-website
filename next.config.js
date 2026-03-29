@@ -2,8 +2,10 @@
 const nextConfig = {
   output: "standalone",
   async headers() {
-    return [
-      {
+    const out = [];
+    /* בפיתוח על http://localhost — upgrade-insecure-requests עלול לשבור טעינת SVG/משאבים */
+    if (process.env.NODE_ENV === "production") {
+      out.push({
         source: "/:path*",
         headers: [
           {
@@ -11,7 +13,10 @@ const nextConfig = {
             value: "upgrade-insecure-requests",
           },
         ],
-      },
+      });
+    }
+    return [
+      ...out,
       // דף הבית — must-revalidate כדי שעדכונים אחרי deploy יופיעו מהר (לא cache ישן)
       {
         source: "/",

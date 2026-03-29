@@ -28,7 +28,7 @@ export default function Hero() {
   const { lang } = useLanguage();
 
   const scrollToNext = () => {
-    document.querySelector("#problem")?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector("#market")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

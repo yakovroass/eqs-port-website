@@ -518,7 +518,7 @@ function GalleryShipSprite({
     <div
       className="pointer-events-none select-none overflow-visible [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]"
       style={{
-        width: "clamp(10rem, 33vw, 17rem)",
+        width: "clamp(14rem, 44vw, 26rem)",
         aspectRatio: "1580 / 330",
         transform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,
         WebkitTransform: `translate(-50%, -50%) rotate(${headingDeg}deg) translateZ(0)`,

@@ -40,16 +40,22 @@ export const t = {
   },
   problem: {
     label: { en: "The Problem", he: "הבעיה" },
-    headline: { en: "The Global Market Is Complex", he: "השוק הגלובלי מורכב" },
+    headline: {
+      en: "The Problem",
+      he: "הבעיה",
+    },
     sub: { en: "", he: "" },
     subBelow: {
       en: "Every step becomes a project, buyers and sellers face challenges at every stage and lose valuable time.",
       he: "כל צעד הופך לפרויקט, קונים ומוכרים נתקלים באתגרים בכל שלב ומאבדים זמן יקר.",
     },
-    pain1: { en: "Hundreds of Companies & Suppliers Worldwide", he: "מאות חברות וספקים ברחבי העולם" },
+    pain1: {
+      en: "Thousands of Companies & Suppliers in Every Category",
+      he: "אלפי חברות וספקים בכל קטגוריה",
+    },
     pain1d: {
       en: "Deals pass through multiple markets and many intermediaries, digital systems are fragmented and there is no unified search, slowing work and hurting efficiency and margins.",
-      he: "עסקאות עוברות דרך מספר שווקים, דרך מתווכים רבים, המערכות הדיגיטליות מוגבלות וללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
+      he: "עסקאות עוברות דרך מספר שווקים ודרך מתווכים רבים, המערכות הדיגיטליות מוגבלות וללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
@@ -58,21 +64,21 @@ export const t = {
     },
     pain3: { en: "Complex Logistics", he: "לוגיסטיקה מורכבת" },
     pain3d: {
-      en: "Preferred routes and transport permits, equipment checks, land and sea freight quotes, insurance, and more...",
-      he: "בחירת נתיבים מועדפים והוצאת היתרי הובלה, בדיקת ציוד, ניהול הצעות למשלוח יבשתי וימי, טיפול בביטוחים ועוד...",
+      en: "It takes substantial experience to understand logistics: preferred routes and transport permits, equipment checks, land and sea freight quotes, insurance, and more...",
+      he: "נדרש ניסיון רב להבנת הלוגיסטיקה, בחירת נתיבים מועדפים, הוצאת היתרי הובלה, בדיקת ציוד, ניהול הצעות למשלוח יבשתי וימי, טיפול בביטוחים ועוד...",
     },
     pain4: { en: "Regulatory Barriers", he: "חסמים רגולטוריים" },
     pain4d: {
-      en: "Verifying equipment and parts, compliance checks, import permits — requirements differ in every country...",
-      he: "אימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, הוצאת היתרי יבוא על פי דרישות תאימות שונות בכל מדינה...",
+      en: "Often there is insufficient expertise to verify equipment and parts, run thorough compliance checks, secure import permits under differing requirements in every country, and apply knowledge effectively...",
+      he: "לרוב חסר ידע באימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, הוצאת היתרי יבוא על פי דרישות תאימות שונות בכל מדינה ושימוש בידע לתועלת...",
     },
   },
   market: {
     label: { en: "The Market", he: "השוק" },
     headline: { en: "Opportunity for Breakout Growth", he: "הזדמנות לצמיחה מתפרצת" },
     sub: {
-      en: "Our activities focus on the intersection of trillion-dollar industries on steep growth paths, and each market within these industries is vast in its own right.",
-      he: "הפעילות מתמקדת בצומת של תעשיות בשווי טריליוני דולרים עם מסלולי צמיחה אדירים, וכל שוק בתעשיות הללו עצום בפני עצמו.",
+      en: "Our activities focus on the intersection of trillion-dollar industries on steep growth paths, an expanding global customer base, and each market within these industries is vast in its own right.",
+      he: "הפעילות מתמקדת בצומת של תעשיות בשווי טריליוני דולרים עם מסלולי צמיחה אדירים, בסיס לקוחות גלובלי מתרחב, וכל שוק בתעשיות הללו עצום בפני עצמו.",
     },
     /** מתחת לטבלה — רק שמות מקורות, בלי הסברים */
     dataNote: {
@@ -93,12 +99,15 @@ export const t = {
     tableMarket: { en: "Market", he: "שוק" },
   },
   solution: {
-    label: { en: "Our Solution", he: "הפתרון שלנו" },
+    label: {
+      en: "Our Solution",
+      he: "הפתרון שלנו",
+    },
     headline: { en: "One Platform,", he: "פלטפורמה אחת," },
     headlineAccent: { en: "Infinite Reach", he: "השפעה בלתי מוגבלת" },
     sub: {
-      en: "Our tools forge strategic connections and serve as gateways to thriving industries — opening access to vast markets and an expanding global customer base.",
-      he: "הכלים שלנו יוצרים חיבורים אסטרטגיים ומשמשים כשערים לתעשיות משגשגות, פותחים גישה לשווקים ענקיים ובסיס לקוחות גלובלי מתרחב.",
+      en: "Our tools drive competition at the global level, make us the strategic partner of procurement departments worldwide, connect and attract the best suppliers, provide full up-to-date data, offer a complete solution — and that's our competitive advantage!",
+      he: "הכלים שלנו יוצרים תחרות ברמה הגלובלית, הופכים אותנו לשותף האסטרטגי של מחלקות רכש מכל העולם, מחברים ומושכים את הספקים הטובים ביותר, מספקים נתונים מלאים ומעודכנים, ומציעים פתרון כולל — וזה היתרון התחרותי שלנו!",
     },
     prop1: { en: "Unified Interface", he: "ממשק אחיד" },
     prop1d: {
@@ -207,12 +216,14 @@ export const t = {
     },
     realitySub: {
       en: "Manually scanning the entire market is impossible, and valuable opportunities are lost. But that is only the beginning of the problem — price analysis, verifying details, permits, site inspection, negotiation, contracts, payments, export documents, shipping quotes, loading, tracking, customs clearance, delivery to destination. An exhausting process... For example, this is what procuring a mobile crane can look like...",
-      he: "סריקת השוק כולו באופן ידני בלתי אפשרית והזדמנויות יקרות הולכות לאיבוד. אבל זו רק ההתחלה של הבעיה — ניתוח מחירים, אימות פרטים, הוצאת היתרים, בדיקה בשטח, משא ומתן, חוזים, תשלומים, מסמכי יצוא, הצעות מחיר למשלוחים, העמסה, מעקב, שחרור ממכס, משלוח ליעד. תהליך מייגע... למשל כך נראה תהליך רכש של מנוף נייד...",
+      he: "סריקת השוק כולו באופן ידני בלתי אפשרית והזדמנויות יקרות הולכות לאיבוד. אבל זו רק התחלת הבעיה — ניתוח מחירים, אימות פרטים, הוצאת היתרים, בדיקה בשטח, משא ומתן, חוזים, תשלומים, מסמכי יצוא, הצעות מחיר למשלוחים, העמסה, מעקב, שחרור ממכס, משלוח ליעד. תהליך מייגע... למשל כך נראה תהליך רכש של מנוף נייד...",
     },
-    realityTitle: { en: "How Procurement Looks Today", he: "ככה נראה הרכש היום" },
+    /** כותרת H2 מעל תרשים 15 השלבים — חלק ראשון לבן, מודגש בענבר */
+    realityHeadlineLead: { en: "Global procurement", he: "רכש גלובלי" },
+    realityHeadlineAccent: { en: "today", he: "היום" },
     replaceCaption: {
-      en: "And in a different way...",
-      he: "ובדרך אחרת...",
+      en: "While a better way exists...",
+      he: "ובעוד שדרך טובה יותר קיימת...",
     },
     step1Title: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
     step1Sub: { en: "Global search, matching, RFQs", he: "חיפוש גלובלי, התאמה, RFQs" },
@@ -223,8 +234,8 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "We simply execute everything.\nProcurement, logistics, permits, documents.\nBetter, faster, cheaper.",
-      he: "אנחנו פשוט מבצעים את הכל.\nרכש, לוגיסטיקה, היתרים.\nטוב יותר, מהר יותר, זול יותר.",
+      en: "Our systems simply execute everything.\nProcurement, agreements, permits, logistics and tracking.\nBetter, faster, cheaper.",
+      he: "המערכות שלנו פשוט מבצעות את הכל.\nרכש, הסכמים, היתרים, לוגיסטיקה ומעקב.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
@@ -242,27 +253,24 @@ export const t = {
         "קבל עדכונים ו-ETA",
       ],
     },
+    /** מתחת לתמונת 3 השלבים (אחרי replaceCaption) */
+    provenAfterStepsTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
+    provenAfterSteps: {
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
+    },
     phase1: { en: "BROWSE", he: "סריקה" },
     phase2: { en: "APPROVAL", he: "אישור" },
     phase3: { en: "FINALE", he: "סיום" },
     final: { en: "Machine On Site", he: "מכונה באתר" },
     finalSub: { en: "READY TO WORK", he: "מוכנה לעבודה" },
-    globalReachTitle: { en: "Our Global Reach", he: "הנוכחות הגלובלית שלנו" },
-    globalReachIntro: {
-      en: "Real connections. Complete up-to-date data. This is not a simulation — this is the system.",
-      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים. זו לא סימולציה — זו המערכת.",
-    },
-    globalReachIntroMobile: {
-      en: "Real connections. Complete up-to-date data.\nThis is not a simulation — this is the system.",
-      he: "חיבורים אמיתיים. נתונים מלאים ומעודכנים.\nזו לא סימולציה — זו המערכת.",
-    },
     globalSearchTitle: {
       en: "Thorough intelligent global search",
       he: "חיפוש גלובלי חכם ויסודי",
     },
     globalSearchDesc: {
-      en: "Our platform scans thousands of companies and suppliers worldwide — filtering by sector, data, and location, analyzing every listing, seller, every piece of equipment.",
-      he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי נתונים, מיקום, מבצעת ניתוחי עומק לכל רישום, לכל מוכר, לכל ציוד.",
+      en: "Our platform scans thousands of companies and suppliers worldwide — filtering by data and location, performing in-depth analysis for every listing, every seller, every piece of equipment, in every category.",
+      he: "הפלטפורמה שלנו סורקת אלפי חברות וספקים ברחבי העולם — מסננת לפי נתונים, מיקום, מבצעת ניתוחי עומק לכל רישום, לכל מוכר, לכל ציוד, בכל קטגוריה.",
     },
     globalPortsTitle: {
       en: "Global port & supplier network",
@@ -289,8 +297,8 @@ export const t = {
   roadmap: {
     label: { en: "Future Roadmap", he: "מפת דרכים עתידית" },
     intro: {
-      en: "The system, data, activity, and relationships we've built serve as a strong foundation for a global trading system that creates connections that never existed before and finds the best deal for every customer.",
-      he: "המערכת, הנתונים, הפעילות והקשרים שבנינו — משמשים אותנו כבסיס חזק למערכת מסחר גלובלית שיוצרת חיבורים שלא היו קודם ומוצאת את העסקה הטובה ביותר לכל לקוח.",
+      en: "The system, data, activity, and relationships we've built over the years serve as a strong foundation for establishing an enhanced global trading system that creates connections that never existed before and finds the best deal for every customer.",
+      he: "המערכת, הנתונים, הפעילות והקשרים שבנינו לאורך השנים — משמשים אותנו כבסיס חזק להקמת מערכת מסחר גלובלית משופרת שיוצרת חיבורים שלא היו קודם ומוצאת את העסקה הטובה ביותר לכל לקוח.",
     },
     marketsHeadline: {
       en: "Each market in these industries is vast on its own.",
@@ -351,21 +359,16 @@ export const t = {
       he: "אבטחת מידע ורישום קניין רוחני",
     },
     fund3: {
-      en: "International legal and regulatory advisory",
-      he: "ייעוץ משפטי בינלאומי ורגולטורי",
+      en: "International legal advisory",
+      he: "ייעוץ משפטי בינלאומי",
     },
     fund4: { en: "Expand logistics and operations network", he: "הרחבת רשת לוגיסטיקה ותפעול" },
     fund5: {
-      en: "Establish regional representatives and launch pilots",
-      he: "ביסוס נציגויות אזוריות והקמת פיילוט",
+      en: "Establish representation and launch pilots",
+      he: "ביסוס נציגות והקמת פיילוט",
     },
-    fund6: { en: "Improve user strategies and market positioning", he: "שיפור אסטרטגיות משתמש ומיצוב שוק" },
+    fund6: { en: "Improve user strategies", he: "שיפור אסטרטגיות משתמש" },
     fund7: { en: "Prepare for successful Series A round", he: "הכנה לסבב Series A מוצלח" },
-    provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
-    proven: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact — we create competition at the global level, become the strategic partner of procurement departments worldwide, attract the best suppliers to us, and deliver an end-to-end solution — that's our competitive advantage!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה — אנחנו מייצרים תחרות ברמה הגלובלית, הופכים לשותף האסטרטגי של מחלקות רכש מכל העולם, מושכים אלינו את הספקים הטובים ביותר, ומספקים פתרון כולל — וזה היתרון התחרותי שלנו!",
-    },
     downloadPdfShort: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
     downloadOnePagerShort: { en: "One Pager (HEB)", he: "One Pager (HEB)" },
     downloadPdf: { en: "Presentation (ENG)", he: "Presentation (ENG)" },
@@ -377,13 +380,13 @@ export const t = {
     headline: { en: "Let's Build", he: "בוא נבנה" },
     headlineAccent: { en: "Together", he: "ביחד" },
     sub: {
-      en: "Interested in our vision? Reach out to discuss investment opportunities.",
-      he: "מעוניין בחזון שלנו? פנה אלינו לדיון על הזדמנויות השקעה.",
+      en: "Interested in our vision? Reach out to discuss investment.",
+      he: "מעוניין בחזון שלנו? פנה אלינו לדיון על השקעה.",
     },
     /** מובייל עברית — שבירת שורה אחרי השאלה */
     subHeMobile: {
-      en: "Interested in our vision? Reach out to discuss investment opportunities.",
-      he: "מעוניין בחזון שלנו?\nפנה אלינו לדיון על הזדמנויות השקעה.",
+      en: "Interested in our vision? Reach out to discuss investment.",
+      he: "מעוניין בחזון שלנו?\nפנה אלינו לדיון על השקעה.",
     },
     name: { en: "Name", he: "שם" },
     email: { en: "Email", he: "אימייל" },
@@ -411,7 +414,7 @@ export const t = {
     targeting: { en: "Targeting", he: "מטרה" },
     seriesTarget: { en: "Series A — 2027.Q4", he: "Series A — 2027.Q4" },
     contactEmail: { en: "yakovroass@gmail.com", he: "yakovroass@gmail.com" },
-    contactPhone: { en: "+972 (0) 54-261-1226", he: "+972 (0) 54-261-1226" },
+    contactPhone: { en: "+972(0) 542-611-226", he: "+972(0) 542-611-226" },
     contactLinkedIn: { en: "LinkedIn", he: "LinkedIn" },
     website: { en: "Website", he: "אתר" },
   },
@@ -457,8 +460,8 @@ export const t = {
     fund4: { en: "15% Infra", he: "15% תשתית" },
     provenTitle: { en: "Proven Track Record", he: "רקורד מוכח" },
     vision1: {
-      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact — we create competition at the global level, become the strategic partner of procurement departments worldwide, attract the best suppliers to us, and deliver an end-to-end solution — that's our competitive advantage!",
-      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה — אנחנו מייצרים תחרות ברמה הגלובלית, הופכים לשותף האסטרטגי של מחלקות רכש מכל העולם, מושכים אלינו את הספקים הטובים ביותר, ומספקים פתרון כולל — וזה היתרון התחרותי שלנו!",
+      en: "We've successfully executed complex overseas procurement, saved hundreds of thousands of dollars, and proved the platform's impact.",
+      he: "ביצענו בהצלחה רכש מורכב מעבר לים, חסכנו מאות אלפי דולרים והוכחנו את השפעת הפלטפורמה.",
     },
     visionStat1: { en: "Current Market", he: "שוק נוכחי" },
     visionStat2: { en: "Global B2B Vision", he: "חזון B2B גלובלי" },
