@@ -222,8 +222,8 @@ export const t = {
     realityHeadlineLead: { en: "Global procurement", he: "רכש גלובלי" },
     realityHeadlineAccent: { en: "today", he: "היום" },
     replaceCaption: {
-      en: "Or the way we offer...",
-      he: "או בדרך שאנו מציעים...",
+      en: "Or our way...",
+      he: "או בדרך שלנו...",
     },
     step1Title: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
     step1Sub: { en: "Global search, matching, RFQs", he: "חיפוש גלובלי, התאמה, RFQs" },
