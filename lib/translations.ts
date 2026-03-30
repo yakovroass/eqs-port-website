@@ -223,7 +223,7 @@ export const t = {
     realityHeadlineAccent: { en: "today", he: "היום" },
     replaceCaption: {
       en: "Or the way we offer...",
-      he: "או הדרך שאנו מציעים...",
+      he: "או בדרך שאנו מציעים...",
     },
     step1Title: { en: "Algorithmic scan", he: "סריקה אלגוריתמית" },
     step1Sub: { en: "Global search, matching, RFQs", he: "חיפוש גלובלי, התאמה, RFQs" },
