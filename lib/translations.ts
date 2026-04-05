@@ -19,13 +19,13 @@ export const t = {
       en: "Global Industrial Procurement",
       he: "רכש תעשייתי גלובלי",
     },
-    /** שתי שורות במובייל בלבד */
-    headlineMobileLine1: { en: "Global Industrial", he: "רכש תעשייתי" },
-    headlineMobileLine2: { en: "Procurement", he: "גלובלי" },
+    /** שתי שורות במובייל בלבד — מקביל לעברית: רכש תעשייתי / גלובלי */
+    headlineMobileLine1: { en: "Industrial procurement", he: "רכש תעשייתי" },
+    headlineMobileLine2: { en: "Global", he: "גלובלי" },
     /** שלוש שורות ראשיות מתחת לכותרת — מוצגות בכל רוחב */
     subLeadLines: {
-      en: ["B2B systems", "Strategic network", "End-to-end solution"],
-      he: ["מערכות B2B", "רשת אסטרטגית", "פתרון מקצה לקצה"],
+      en: ["Multilingual B2B systems", "Strategic community", "End-to-end solutions"],
+      he: ["מערכות B2B רב-לשוניות", "קהילה אסטרטגית", "פתרונות מקצה לקצה"],
     },
     /** יכולות — רשימה שטוחה (ב־UI ללא כותרות קבוצה) */
     capabilityItems: {
@@ -54,12 +54,12 @@ export const t = {
     },
     /** גיבוי טקסט אחיד (מסמכים / SEO) */
     sub: {
-      en: "B2B systems, Strategic network, End-to-end solution",
-      he: "מערכות B2B, רשת אסטרטגית, פתרון מקצה לקצה",
+      en: "Multilingual B2B systems, Strategic community, End-to-end solutions",
+      he: "מערכות B2B רב-לשוניות, קהילה אסטרטגית, פתרונות מקצה לקצה",
     },
     subMobile: {
-      en: "B2B systems\nStrategic network\nEnd-to-end solution",
-      he: "מערכות B2B\nרשת אסטרטגית\nפתרון מקצה לקצה",
+      en: "Multilingual B2B systems\nStrategic community\nEnd-to-end solutions",
+      he: "מערכות B2B רב-לשוניות\nקהילה אסטרטגית\nפתרונות מקצה לקצה",
     },
     cta1: { en: "Explore the Platform", he: "גלה את הפלטפורמה" },
     cta2: { en: "Download Pitch Deck", he: "הורד מצגת משקיעים" },

@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <LanguageContext.Provider value={{ lang, setLang, dir }}>
       <SessionPing />
-      <div dir={dir} className="mobile-readable overflow-x-hidden max-w-[100vw] relative">
+      <div dir={dir} className="mobile-readable relative w-full min-w-0 max-w-full overflow-x-hidden">
         {/* absolute בתוך העוטף היחסי — נגלל עם התוכן (לא כמו fixed שדבוק לחלון) */}
         <div className="animated-grid-bg absolute inset-0 pointer-events-none z-0" aria-hidden />
         {/* אוניות — כל גובה הדף */}

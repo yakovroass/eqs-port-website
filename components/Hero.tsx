@@ -5,6 +5,8 @@ import AnimatedCounter from "./AnimatedCounter";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
+const HERO_EN_PERMITS_IDX = t.hero.capabilityItems.en.indexOf("Permits and logistics operations");
+
 function GridBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -24,17 +26,63 @@ function GridBackground() {
   );
 }
 
+/**
+ * מובייל: וריאציה עדינה בלבד — רצפה ~92% כדי שלא יידרש רוחב צר שגורם לגלישה/שבירה אגרסיבית.
+ */
+const HERO_PILL_MOBILE_BY_INDEX = [
+  "max-sm:w-[min(100%,100%)]",
+  "max-sm:w-[min(100%,94%)]",
+  "max-sm:w-[min(100%,92%)]",
+  "max-sm:w-[min(100%,100%)]",
+  "max-sm:w-[min(100%,96%)]",
+  "max-sm:w-[min(100%,93%)]",
+  "max-sm:w-[min(100%,92%)]",
+  "max-sm:w-[min(100%,100%)]",
+  "max-sm:w-[min(100%,95%)]",
+  "max-sm:w-[min(100%,92%)]",
+  "max-sm:w-[min(100%,94%)]",
+  "max-sm:w-[min(100%,100%)]",
+] as const;
+
+/** דסקטופ: טווח רחב יותר בין פאץ' לפאץ' (רצפה ~82%) — עדיין מעל רוחב שגורם לגלישה */
+const HERO_PILL_WIDTH_CLASSES = [
+  "sm:w-[min(100%,100%)]",
+  "sm:w-[min(100%,84%)]",
+  "sm:w-[min(100%,94%)]",
+  "sm:w-[min(100%,88%)]",
+  "sm:w-[min(100%,98%)]",
+  "sm:w-[min(100%,82%)]",
+  "sm:w-[min(100%,93%)]",
+  "sm:w-[min(100%,86%)]",
+  "sm:w-[min(100%,97%)]",
+  "sm:w-[min(100%,83%)]",
+  "sm:w-[min(100%,95%)]",
+  "sm:w-[min(100%,90%)]",
+] as const;
+
+/** מובייל: אותה בריכת רוחבים לשתי השפות + מיפוי (×7+4) כמו בדסקטופ — נראה רנדומלי, לא לפי סדר שורות */
+function heroPillWidthMobile(sequentialIndex: number) {
+  const n = HERO_PILL_MOBILE_BY_INDEX.length;
+  return HERO_PILL_MOBILE_BY_INDEX[(sequentialIndex * 7 + 4) % n]!;
+}
+
+function heroPillWidthSmUp(sequentialIndex: number) {
+  const n = HERO_PILL_WIDTH_CLASSES.length;
+  return HERO_PILL_WIDTH_CLASSES[(sequentialIndex * 7 + 4) % n]!;
+}
+
 export default function Hero() {
   const { lang, dir } = useLanguage();
   const leads = t.hero.subLeadLines[lang];
   const capabilityItems = t.hero.capabilityItems[lang];
-  const capabilityPillClass =
-    "inline-flex max-w-full min-w-0 shrink sm:shrink-0 sm:max-w-[min(100%,15rem)] md:max-w-[min(100%,16.5rem)] items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-1.5 py-1 sm:px-2.5 sm:py-1.5 text-center text-[9px] min-[380px]:text-[10px] sm:text-xs font-medium text-gray-200/95 leading-tight sm:leading-snug shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] text-balance";
+  /** פאץ׳ בתוך גריד — רוחב משתנה קלות לפי אינדקס, ממורכז בתא */
+  const heroPillClass =
+    "inline-flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2.5 sm:px-2.5 sm:py-1.5 text-center text-[9px] min-[380px]:text-[10px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word]";
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center">
+    <section id="hero" className="relative min-h-screen w-full min-w-0 flex items-center justify-center py-6 max-sm:py-4 sm:py-8">
       <GridBackground />
-      <div className="relative z-10 w-full max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto text-center px-4 max-sm:ps-[max(1rem,env(safe-area-inset-left))] max-sm:pe-[max(1rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 flex flex-col justify-center">
         {/* בעברית: רוחב מלא לכותרת רק במובייל (מתחת ל־sm); מ־sm עמודה צרה כמו קודם */}
         <div
           className={
@@ -48,7 +96,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mb-7 mt-16 sm:mb-8 sm:mt-20 lg:mt-0 max-w-full px-2 sm:px-3 font-black tracking-tight"
+          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-12 md:mb-14 sm:mt-20 lg:mt-0 max-w-full px-2 sm:px-3 font-black tracking-tight"
         >
           {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
           {lang === "he" ? (
@@ -85,67 +133,45 @@ export default function Hero() {
         </motion.h1>
         </div>
 
-        {/* תת-כותרת: שלוש שורות — אותה רשת כמו המונים; מחוץ לעמודה הצרה בעברית */}
+        {/* פאצ׳ים: 12 פריטים; מובייל 2 עמודות, מ־sm ומעלה 3 עמודות (כמו קודם — בלי 4 עמודות ב־lg) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="mx-auto w-full max-w-6xl mb-7 sm:mb-10"
+          className="mx-auto w-full max-w-6xl mb-11 max-sm:mb-12 sm:mb-10"
         >
-          {/* שלוש עמודות כמו בדסקטופ; במובייל טקסט וריווחים מוקטנים כדי להימנע מגלילה */}
-          <div className="grid grid-cols-3 gap-1.5 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-5 sm:mb-8 w-full justify-items-center px-0.5 sm:px-2 [overflow-wrap:anywhere]">
-            {leads.map((line) => (
-              <div key={line} className="flex w-full min-w-0 max-w-full flex-col items-center px-0.5 sm:px-1 md:px-3">
-                <span
-                  className={
-                    lang === "en"
-                      ? "w-full max-w-full text-center text-[8.5px] min-[360px]:text-[9px] sm:text-xs md:text-sm lg:text-base font-semibold text-white/95 leading-tight sm:leading-snug tracking-tight text-balance break-words hyphens-auto"
-                      : "w-full max-w-full text-center text-[10px] min-[360px]:text-[11px] sm:text-sm md:text-base lg:text-lg font-semibold text-white/95 leading-tight sm:leading-snug tracking-tight text-balance break-words hyphens-auto"
-                  }
-                >
-                  {line}
-                </span>
-              </div>
+          <div
+            dir={dir}
+            className={
+              lang === "en"
+                ? "mx-auto grid w-full min-w-0 max-w-6xl grid-cols-2 justify-items-center gap-1.5 sm:grid-cols-3 sm:gap-2 px-0.5 [overflow-wrap:anywhere]"
+                : "mx-auto grid w-full min-w-0 max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] grid-cols-2 justify-items-center gap-1 sm:grid-cols-3 sm:gap-2 px-0.5 [overflow-wrap:anywhere]"
+            }
+          >
+            {leads.map((line, i) => (
+              <span
+                key={`lead-${line}`}
+                className={`${heroPillClass} ${heroPillWidthMobile(i)} ${heroPillWidthSmUp(i)}`}
+              >
+                {line}
+              </span>
+            ))}
+            {capabilityItems.map((item, i) => (
+              <span
+                key={`hero-cap-${i}`}
+                className={`${heroPillClass} ${heroPillWidthMobile(i + leads.length)} ${heroPillWidthSmUp(i + leads.length)}`}
+              >
+                {lang === "en" && i === HERO_EN_PERMITS_IDX ? (
+                  <>
+                    <span className="sm:hidden">Permits and logistics Ops</span>
+                    <span className="hidden sm:inline">{item}</span>
+                  </>
+                ) : (
+                  item
+                )}
+              </span>
             ))}
           </div>
-
-          {lang === "en" ? (
-            <div
-              dir={dir}
-              className="flex w-full max-w-6xl flex-col items-center gap-1.5 sm:gap-2 px-0.5 mx-auto"
-            >
-              {/* מובייל: wrap בלי גלילה; מ־md: שתי שורות קבועות עם גלילה רק אם צריך */}
-              <div className="w-full max-w-full overflow-x-visible md:overflow-x-auto md:[-webkit-overflow-scrolling:touch] md:[scrollbar-width:thin]">
-                <div className="flex max-w-full flex-wrap justify-center gap-1 sm:gap-2 md:flex-nowrap md:min-w-min md:mx-auto">
-                  {capabilityItems.slice(0, 5).map((item) => (
-                    <span key={item} className={capabilityPillClass}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="w-full max-w-full overflow-x-visible md:overflow-x-auto md:[-webkit-overflow-scrolling:touch] md:[scrollbar-width:thin]">
-                <div className="flex max-w-full flex-wrap justify-center gap-1 sm:gap-2 md:flex-nowrap md:min-w-min md:mx-auto">
-                  {capabilityItems.slice(5).map((item) => (
-                    <span key={item} className={capabilityPillClass}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div
-              dir={dir}
-              className="mx-auto flex w-full max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] flex-wrap justify-center content-center gap-1 sm:gap-2 px-0.5"
-            >
-              {capabilityItems.map((item) => (
-                <span key={item} className={capabilityPillClass}>
-                  {item}
-                </span>
-              ))}
-            </div>
-          )}
         </motion.div>
 
         {/* Stats — אותה רשת כמו שלוש שורות התת־כותרת */}
@@ -153,7 +179,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.75 }}
-          className="grid grid-cols-3 gap-2 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-12 sm:mb-14 w-full justify-items-center px-0.5 sm:px-0"
+          className="grid grid-cols-3 gap-2 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-12 sm:mb-14 w-full justify-items-center px-0.5 sm:px-0 max-sm:mt-1"
         >
           {[
             { value: 3000, suffix: "+", label: tx(t.hero.stat1Label, lang) },
@@ -169,7 +195,7 @@ export default function Hero() {
                   className="gradient-text inline-block font-bold tabular-nums"
                 />
               </div>
-              <div className="w-full max-w-full text-center text-[9px] min-[360px]:text-[10px] min-[400px]:text-xs sm:text-2xl md:text-3xl text-gray-300 mt-1 sm:mt-2 tracking-wide leading-tight sm:leading-snug px-0 sm:px-2 hyphens-none text-balance">
+              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-2xl md:text-3xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-2 tracking-wide leading-snug sm:leading-snug px-0 sm:px-2 hyphens-none text-balance">
                 {stat.label}
               </div>
             </div>
