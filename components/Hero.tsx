@@ -93,7 +93,10 @@ export default function Hero() {
     "flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2 sm:px-2.5 sm:py-1.5 text-center text-[10px] min-[380px]:text-[11px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] box-border";
 
   return (
-    <section id="hero" className="relative min-h-screen w-full min-w-0 flex items-center justify-center py-6 max-sm:py-4 sm:py-8">
+    <section
+      id="hero"
+      className="relative flex min-h-screen w-full min-w-0 items-center justify-center pt-[calc(4.75rem+1rem)] pb-8 max-sm:pb-6 sm:pt-[calc(5.5rem+2.5rem)] sm:pb-14 md:pt-[calc(5.5rem+3.5rem)] md:pb-16"
+    >
       <GridBackground />
       <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto text-center px-4 max-sm:ps-[max(1rem,env(safe-area-inset-left))] max-sm:pe-[max(1rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 flex flex-col justify-center">
         {/* בעברית: רוחב מלא לכותרת רק במובייל (מתחת ל־sm); מ־sm עמודה צרה כמו קודם */}
@@ -109,7 +112,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-12 md:mb-14 sm:mt-20 lg:mt-0 max-w-full px-2 sm:px-3 font-black tracking-tight"
+          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-12 md:mb-14 sm:mt-6 md:mt-8 max-w-full px-2 sm:px-3 font-black tracking-tight"
         >
           {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
           {lang === "he" ? (
