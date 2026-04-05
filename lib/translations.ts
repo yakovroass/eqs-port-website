@@ -16,19 +16,50 @@ export const t = {
     badge: { en: "B2B AI Platform", he: "פלטפורמת AI לסחר B2B" },
     headline1: { en: "", he: "" },
     headline2: {
-      en: "Global Industrial Trade Platform",
-      he: "פלטפורמת מסחר תעשייתי גלובלי",
+      en: "Global Industrial Procurement",
+      he: "רכש תעשייתי גלובלי",
     },
     /** שתי שורות במובייל בלבד */
-    headlineMobileLine1: { en: "Global Industrial", he: "פלטפורמת מסחר" },
-    headlineMobileLine2: { en: "Trade Platform", he: "תעשייתי גלובלי" },
+    headlineMobileLine1: { en: "Global Industrial", he: "רכש תעשייתי" },
+    headlineMobileLine2: { en: "Procurement", he: "גלובלי" },
+    /** שלוש שורות ראשיות מתחת לכותרת — מוצגות בכל רוחב */
+    subLeadLines: {
+      en: ["B2B systems", "Strategic network", "End-to-end solution"],
+      he: ["מערכות B2B", "רשת אסטרטגית", "פתרון מקצה לקצה"],
+    },
+    /** יכולות — רשימה שטוחה (ב־UI ללא כותרות קבוצה) */
+    capabilityItems: {
+      en: [
+        "Catalog management",
+        "Supplier bidding",
+        "Quality control",
+        "Business profile and rating",
+        "Up-to-date databases",
+        "Technical search engine",
+        "Geographic process mapping",
+        "Permits and logistics operations",
+        "Tax and regulatory tracking",
+      ],
+      he: [
+        "ניהול קטלוגים",
+        "מכרזי ספקים",
+        "בקרת איכות",
+        "פרופיל ודירוג עסקי",
+        "מאגרי נתונים מעודכנים",
+        "מנוע חיפוש טכני",
+        "מיפוי תהליכים גאוגרפי",
+        "היתרים ולוגיסטיקה",
+        "מעקב מיסוי ורגולציה",
+      ],
+    },
+    /** גיבוי טקסט אחיד (מסמכים / SEO) */
     sub: {
-      en: "Multilingual B2B systems. Market analytics. Actionable insights.",
-      he: "מערכות B2B רב-לשוניות. אנליטיקות שוק. תובנות מעשיות.",
+      en: "B2B systems, Strategic network, End-to-end solution",
+      he: "מערכות B2B, רשת אסטרטגית, פתרון מקצה לקצה",
     },
     subMobile: {
-      en: "Multilingual B2B systems.\nMarket analytics. Actionable insights.",
-      he: "מערכות B2B רב-לשוניות.\nאנליטיקות שוק. תובנות מעשיות.",
+      en: "B2B systems\nStrategic network\nEnd-to-end solution",
+      he: "מערכות B2B\nרשת אסטרטגית\nפתרון מקצה לקצה",
     },
     cta1: { en: "Explore the Platform", he: "גלה את הפלטפורמה" },
     cta2: { en: "Download Pitch Deck", he: "הורד מצגת משקיעים" },
@@ -46,31 +77,31 @@ export const t = {
     },
     sub: { en: "", he: "" },
     subBelow: {
-      en: "Every step becomes a project, buyers and sellers face challenges at every stage and lose valuable time.",
-      he: "כל צעד הופך לפרויקט, קונים ומוכרים נתקלים באתגרים בכל שלב ומאבדים זמן יקר.",
+      en: "Every step becomes a project. Companies and suppliers hit roadblocks at every stage and lose valuable time.",
+      he: "כל צעד הופך לפרויקט. חברות וספקים נתקלים באתגרים בכל שלב ומאבדים זמן יקר.",
     },
     pain1: {
-      en: "Thousands of Companies & Suppliers in Every Category",
-      he: "אלפי חברות וספקים בכל קטגוריה",
+      en: "Thousands of Suppliers in Every Category",
+      he: "אלפי ספקים בכל קטגוריה",
     },
     pain1d: {
-      en: "Deals pass through multiple markets and many intermediaries; digital systems are limited and there is no unified search, which slows work and hurts efficiency and margins.",
-      he: "עסקאות עוברות דרך מספר שווקים ודרך מתווכים רבים, המערכות הדיגיטליות מוגבלות וללא חיפוש אחיד, מה שגורם לעבודה איטית, פוגע ביעילות וברווחיות.",
+      en: "Deals pass through countries or many intermediaries, the digital systems are limited and lack a unified search, which slows work, hurts efficiency and profitability, and of course holds back growth.",
+      he: "עסקאות עוברות דרך מדינות או מתווכים רבים, מערכות דיגיטליות מוגבלות וללא חיפוש אחיד, מה שמאט את העבודה, פוגע ביעילות וברווחיות, וכמובן פוגע בצמיחה.",
     },
     pain2: { en: "No Full Transparency", he: "אין שקיפות מלאה" },
     pain2d: {
-      en: "No transparent pricing and many follow-up questions, on top of that, fair market value and product quality are hard to judge without deep expertise and data.",
-      he: "חסר מידע, אין מחירים זמינים ונדרשות שאלות רבות, ובנוסף בלתי אפשרי לקבוע שווי שוק הוגן ואיכות מוצרים ללא מומחיות ונתונים מעמיקים.",
+      en: "Critical information is missing, prices are not available, and many questions must be asked. Furthermore, without deep detail and market expertise it is impossible to understand the quality on offer or determine fair costs.",
+      he: "מידע קריטי חסר, מחירים אינם זמינים ונדרשות שאלות רבות. יתר על כן, ללא פרטים מעמיקים ומומחיות שוק, לא ניתן להבין מה האיכות המוצעת ולקבוע עלויות הוגנות.",
     },
     pain3: { en: "Complex Logistics", he: "לוגיסטיקה מורכבת" },
     pain3d: {
-      en: "It takes substantial experience to understand logistics: preferred routes and transport permits, equipment checks, land and sea freight quotes, insurance, and more...",
-      he: "נדרש ניסיון רב להבנת הלוגיסטיקה, בחירת נתיבים מועדפים, הוצאת היתרי הובלה, בדיקת ציוד, ניהול הצעות למשלוח יבשתי וימי, טיפול בביטוחים ועוד...",
+      en: "It takes effort to understand and manage the full supply chain, from selecting preferred routes and getting transport permits, quality checks, land and sea freight quotes, insurance, tracking volatile prices, and more...",
+      he: "דרוש מאמץ להבין ולנהל את שרשרת האספקה המלאה, בחירת מסלולים מועדפים וקבלת היתרי הובלה, בדיקות איכות, הצעות מחיר להובלה יבשתית וימית, ביטוח, מעקב אחר מחירים תנודתיים ועוד...",
     },
-    pain4: { en: "Regulatory Barriers", he: "חסמים רגולטוריים" },
+    pain4: { en: "Regulatory Barriers", he: "מחסומים רגולטוריים" },
     pain4d: {
-      en: "Often there is insufficient expertise to verify equipment and parts, run thorough compliance checks, and secure import permits under differing requirements from country to country.",
-      he: "לרוב חסר ידע באימות פרטי הציוד וחלקיו, בדיקות מקיפות לגבי תקנות, והוצאת היתרי יבוא על פי דרישות תאימות שונות ממדינה למדינה.",
+      en: "In many cases there is not enough information to verify equipment and part details, in-depth regulatory checks are required, and import permits and approvals must be secured under compliance rules that change from country to country and involve exhausting bureaucratic processes.",
+      he: "במקרים רבים אין מספיק מידע כדי לאמת את פרטי הציוד וחלקיו, נדרשות בדיקות רגולטוריות מעמיקות, הוצאת היתרי יבוא ואישורים במסגרת כללי תאימות המשתנים ממדינה למדינה וכרוכים בתהליכים בירוקרטיים מתישים.",
     },
   },
   market: {
@@ -106,8 +137,8 @@ export const t = {
     headline: { en: "One Platform,", he: "פלטפורמה אחת," },
     headlineAccent: { en: "Unlimited Impact", he: "השפעה בלתי מוגבלת" },
     sub: {
-      en: "Our tools drive competition at the global level, make us the strategic partner of procurement departments worldwide, connect and attract the best suppliers, provide full up-to-date data, offer a complete solution — and that's our competitive advantage!",
-      he: "הכלים שלנו יוצרים תחרות ברמה הגלובלית, הופכים אותנו לשותף האסטרטגי של מחלקות רכש מכל העולם, מחברים ומושכים את הספקים הטובים ביותר, מספקים נתונים מלאים ומעודכנים, ומציעים פתרון כולל — וזה היתרון התחרותי שלנו!",
+      en: "Our tools drive competition at the global level, make us the strategic partner of procurement departments worldwide, attract the best suppliers, provide full up-to-date data, and offer a complete solution — and that's our competitive advantage!",
+      he: "הכלים שלנו יוצרים תחרות ברמה הגלובלית, הופכים אותנו לשותף האסטרטגי של מחלקות רכש מכל העולם, מושכים את הספקים הטובים ביותר, מספקים נתונים מלאים ומעודכנים, ומציעים פתרון כולל — וזה היתרון התחרותי שלנו!",
     },
     prop1: { en: "Unified Interface", he: "ממשק אחיד" },
     prop1d: {
@@ -234,8 +265,8 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "Our systems simply do everything.\nProcurement, permits, logistics.\nBetter, faster, cheaper.",
-      he: "המערכות שלנו פשוט מבצעות את הכל.\nרכש, היתרים, לוגיסטיקה.\nטוב יותר, מהר יותר, זול יותר.",
+      en: "Our systems do everything. Simply\nProcurement, permits, logistics.\nBetter, faster, cheaper.",
+      he: "המערכות שלנו מבצעות את הכל. פשוט\nרכש, היתרים, לוגיסטיקה.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
@@ -411,12 +442,12 @@ export const t = {
     rights: { en: "All rights reserved.", he: "כל הזכויות שמורות." },
   },
   onePager: {
-    tagline: { en: "AI-Powered Global Industrial Trade Platform", he: "פלטפורמת סחר תעשייתי גלובלי מונעת AI" },
+    tagline: { en: "AI-Powered Global Industrial Procurement", he: "רכש תעשייתי גלובלי מונע AI" },
     contactName: { en: "Yakov Roass", he: "יעקב רואס" },
     founderTitle: { en: "Founder & CEO", he: "מייסד ומנכ\"ל" },
     heroHeadline: { en: "Powering Global", he: "מניעים את" },
     heroHeadlineAccent: { en: "Industrial Trade", he: "הסחר התעשייתי הגלובלי" },
-    heroSub: { en: "Multilingual AI platform that scans the world to find the best procurement insights for every buyer — connecting companies globally through data, relationships, and intelligent matchmaking across 100+ countries.", he: "פלטפורמת AI רב-לשונית שסורקת את העולם כדי למצוא את תובנות הרכש הטובות ביותר לכל קונה — מחברת חברות ברחבי העולם באמצעות נתונים, קשרים והתאמה חכמה ביותר מ-100 מדינות." },
+    heroSub: { en: "AI platform that scans the world to find the best procurement insights for every buyer — connecting companies globally through data, relationships, and intelligent matchmaking across 100+ countries.", he: "פלטפורמת AI שסורקת את העולם כדי למצוא את תובנות הרכש הטובות ביותר לכל קונה — מחברת חברות ברחבי העולם באמצעות נתונים, קשרים והתאמה חכמה ביותר מ-100 מדינות." },
     stat1: { en: "Industry Contacts", he: "אנשי קשר בתעשייה" },
     stat2: { en: "Countries", he: "מדינות" },
     stat3: { en: "Ports Database", he: "מאגר נמלים" },

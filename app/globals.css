@@ -208,10 +208,17 @@ body {
   font-weight: 700 !important;
 }
 
-/* RTL: force Inter on headings and section labels so Hebrew matches English */
-[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
-[dir="rtl"] .section-label {
-  font-family: "Inter", system-ui, sans-serif !important;
+/* RTL: Heebo נטען עם עברית — כותרת Hero, כותרות סקשן וטקסט לבן באותה משפחת סנס */
+[dir="rtl"] {
+  font-family: var(--font-heebo), var(--font-inter), system-ui, sans-serif !important;
+}
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] .section-label,
+[dir="rtl"] .headline-font,
+[dir="rtl"] .gradient-text {
+  font-family: var(--font-heebo), var(--font-inter), system-ui, sans-serif !important;
 }
 [dir="rtl"] .section-label {
   font-weight: 700 !important;

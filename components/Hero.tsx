@@ -25,86 +25,151 @@ function GridBackground() {
 }
 
 export default function Hero() {
-  const { lang } = useLanguage();
-
-  const scrollToNext = () => {
-    document.querySelector("#market")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const { lang, dir } = useLanguage();
+  const leads = t.hero.subLeadLines[lang];
+  const capabilityItems = t.hero.capabilityItems[lang];
+  const capabilityPillClass =
+    "inline-flex max-w-full min-w-0 shrink sm:shrink-0 sm:max-w-[min(100%,15rem)] md:max-w-[min(100%,16.5rem)] items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-1.5 py-1 sm:px-2.5 sm:py-1.5 text-center text-[9px] min-[380px]:text-[10px] sm:text-xs font-medium text-gray-200/95 leading-tight sm:leading-snug shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] text-balance";
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center">
       <GridBackground />
-      <div className="relative z-10 w-full max-w-7xl mx-auto text-center px-2 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        {/* בעברית: רוחב מלא לכותרת רק במובייל (מתחת ל־sm); מ־sm עמודה צרה כמו קודם */}
+        <div
+          className={
+            lang === "he"
+              ? "mx-auto w-full max-sm:max-w-full sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)]"
+              : "w-full"
+          }
+        >
         {/* Headline — כותרת אחת (ללא תג מעל הכותרת) */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mb-5 px-0.5 mt-16 sm:mt-20 lg:mt-0 font-black tracking-tight"
+          className="mb-7 mt-16 sm:mb-8 sm:mt-20 lg:mt-0 max-w-full px-2 sm:px-3 font-black tracking-tight"
         >
-          {/* מובייל: שתי שורות, פונט כמו דסקטופ (Inter), גרדיאנט בהיר */}
-          <div className="sm:hidden flex flex-col gap-1 leading-[1.1] font-black tracking-tight">
-            <span className="gradient-text block text-[clamp(2.5rem,11vw,4rem)]">
-              {tx(t.hero.headlineMobileLine1, lang)}
-            </span>
-            <span className="gradient-text block text-[clamp(2.5rem,11vw,4rem)]">
-              {tx(t.hero.headlineMobileLine2, lang)}
-            </span>
-          </div>
-          {/* טאבלט+ : אנגלית ועברית — אותו גודל ואותו גרדיאנט */}
-          <div className="hidden sm:block text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.08] font-black">
+          {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
+          {lang === "he" ? (
+            <div className="sm:hidden leading-[1.08] font-black tracking-tight px-0.5">
+              <span className="gradient-text block w-full text-center whitespace-nowrap text-[clamp(1.85rem,9vw,3.65rem)] [overflow-wrap:normal]">
+                {tx(t.hero.headline2, lang)}
+              </span>
+            </div>
+          ) : (
+            <div className="sm:hidden flex flex-col gap-0.5 leading-[1.08] font-black tracking-tight">
+              <span className="gradient-text block max-w-full break-words text-balance text-[clamp(1.9rem,9.5vw,3.35rem)]">
+                {tx(t.hero.headlineMobileLine1, lang)}
+              </span>
+              <span className="gradient-text block max-w-full break-words text-balance text-[clamp(1.9rem,9.5vw,3.35rem)]">
+                {tx(t.hero.headlineMobileLine2, lang)}
+              </span>
+            </div>
+          )}
+          {/* מ־sm ומעלה: דסקטופ/טאבלט — לא משתמש בפריסת «שורה אחת» של המובייל */}
+          <div className="hidden sm:block max-w-[min(100%,56rem)] mx-auto text-4xl md:text-5xl lg:text-6xl xl:text-6xl leading-[1.06] font-black">
             {tx(t.hero.headline1, lang).trim() ? (
               <>
-                <span className="text-white">{tx(t.hero.headline1, lang)}</span>
-                <br />
-                <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
+                <span className="block break-words text-balance text-white">{tx(t.hero.headline1, lang)}</span>
+                <span className="block break-words text-balance gradient-text">{tx(t.hero.headline2, lang)}</span>
               </>
             ) : lang === "en" ? (
-              <>
-                <span className="gradient-text block">Global Industrial</span>
-                <span className="gradient-text block">Trade Platform</span>
-              </>
+              <span className="gradient-text block max-w-full break-words text-balance text-4xl md:text-5xl lg:text-6xl xl:text-[clamp(2.85rem,4.5vw,3.65rem)] lg:whitespace-nowrap lg:break-normal">
+                {tx(t.hero.headline2, lang)}
+              </span>
             ) : (
-              <span className="gradient-text">{tx(t.hero.headline2, lang)}</span>
+              <span className="gradient-text block break-words text-balance">{tx(t.hero.headline2, lang)}</span>
             )}
           </div>
         </motion.h1>
+        </div>
 
-        {/* תת-כותרת — מובייל: שתי שורות */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="sm:hidden text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-snug whitespace-pre-line px-1"
-        >
-          {tx(t.hero.subMobile, lang)}
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="hidden sm:block text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto mb-14 leading-relaxed"
-        >
-          {tx(t.hero.sub, lang)}
-        </motion.p>
-
-        {/* Stats — מובייל רוחב מלא; מ־sm ומעלה רוחב כמו תת-הכותרת (max-w-3xl) */}
+        {/* תת-כותרת: שלוש שורות — אותה רשת כמו המונים; מחוץ לעמודה הצרה בעברית */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid grid-cols-3 gap-1 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-14 w-full justify-items-center"
+          transition={{ duration: 0.8, delay: 0.55 }}
+          className="mx-auto w-full max-w-6xl mb-7 sm:mb-10"
+        >
+          {/* שלוש עמודות כמו בדסקטופ; במובייל טקסט וריווחים מוקטנים כדי להימנע מגלילה */}
+          <div className="grid grid-cols-3 gap-1.5 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-5 sm:mb-8 w-full justify-items-center px-0.5 sm:px-2 [overflow-wrap:anywhere]">
+            {leads.map((line) => (
+              <div key={line} className="flex w-full min-w-0 max-w-full flex-col items-center px-0.5 sm:px-1 md:px-3">
+                <span
+                  className={
+                    lang === "en"
+                      ? "w-full max-w-full text-center text-[8.5px] min-[360px]:text-[9px] sm:text-xs md:text-sm lg:text-base font-semibold text-white/95 leading-tight sm:leading-snug tracking-tight text-balance break-words hyphens-auto"
+                      : "w-full max-w-full text-center text-[10px] min-[360px]:text-[11px] sm:text-sm md:text-base lg:text-lg font-semibold text-white/95 leading-tight sm:leading-snug tracking-tight text-balance break-words hyphens-auto"
+                  }
+                >
+                  {line}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {lang === "en" ? (
+            <div
+              dir={dir}
+              className="flex w-full max-w-6xl flex-col items-center gap-1.5 sm:gap-2 px-0.5 mx-auto"
+            >
+              {/* מובייל: wrap בלי גלילה; מ־md: שתי שורות קבועות עם גלילה רק אם צריך */}
+              <div className="w-full max-w-full overflow-x-visible md:overflow-x-auto md:[-webkit-overflow-scrolling:touch] md:[scrollbar-width:thin]">
+                <div className="flex max-w-full flex-wrap justify-center gap-1 sm:gap-2 md:flex-nowrap md:min-w-min md:mx-auto">
+                  {capabilityItems.slice(0, 5).map((item) => (
+                    <span key={item} className={capabilityPillClass}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full max-w-full overflow-x-visible md:overflow-x-auto md:[-webkit-overflow-scrolling:touch] md:[scrollbar-width:thin]">
+                <div className="flex max-w-full flex-wrap justify-center gap-1 sm:gap-2 md:flex-nowrap md:min-w-min md:mx-auto">
+                  {capabilityItems.slice(5).map((item) => (
+                    <span key={item} className={capabilityPillClass}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div
+              dir={dir}
+              className="mx-auto flex w-full max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] flex-wrap justify-center content-center gap-1 sm:gap-2 px-0.5"
+            >
+              {capabilityItems.map((item) => (
+                <span key={item} className={capabilityPillClass}>
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
+        </motion.div>
+
+        {/* Stats — אותה רשת כמו שלוש שורות התת־כותרת */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.75 }}
+          className="grid grid-cols-3 gap-2 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-12 sm:mb-14 w-full justify-items-center px-0.5 sm:px-0"
         >
           {[
             { value: 3000, suffix: "+", label: tx(t.hero.stat1Label, lang) },
             { value: 100, suffix: "+", label: tx(t.hero.stat2Label, lang) },
             { value: 50, suffix: "%", label: tx(t.hero.stat3Label, lang) },
           ].map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center w-full min-w-0 sm:px-4">
-              <div className="w-full text-center text-[clamp(1.85rem,6.8vw,3.15rem)] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent tabular-nums leading-none">
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2.5} />
+            <div key={stat.label} className="flex flex-col items-center w-full min-w-0 px-0.5 sm:px-4">
+              <div className="w-full text-center text-[clamp(1.72rem,6.35vw,2.9rem)] sm:text-4xl md:text-5xl lg:text-6xl font-bold tabular-nums leading-none">
+                <AnimatedCounter
+                  target={stat.value}
+                  suffix={stat.suffix}
+                  duration={2.5}
+                  className="gradient-text inline-block font-bold tabular-nums"
+                />
               </div>
-              <div className="w-full max-w-full text-center text-sm min-[400px]:text-base sm:text-2xl md:text-3xl text-gray-300 mt-1.5 sm:mt-2 tracking-wide leading-snug px-1 sm:px-2 hyphens-none text-balance">
+              <div className="w-full max-w-full text-center text-[9px] min-[360px]:text-[10px] min-[400px]:text-xs sm:text-2xl md:text-3xl text-gray-300 mt-1 sm:mt-2 tracking-wide leading-tight sm:leading-snug px-0 sm:px-2 hyphens-none text-balance">
                 {stat.label}
               </div>
             </div>

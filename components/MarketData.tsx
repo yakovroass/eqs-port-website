@@ -285,30 +285,35 @@ export default function MarketData() {
           </div>
         </ScrollReveal>
 
-        {/* מונים — $432B · 2M+ · 62% */}
+        {/* מונים — $432B · 2M+ · 62% — אותה רשת וריווח כמו 3 קוביות הגרפים */}
         <ScrollReveal delay={0.2}>
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 sm:flex sm:flex-wrap sm:justify-center sm:gap-12 md:gap-20 mt-10 max-w-2xl sm:max-w-none mx-auto px-2">
-            <div className="text-center min-w-0">
+          <div className="max-w-5xl mx-auto grid grid-cols-3 gap-2 sm:gap-6 items-start mt-10 sm:mt-12">
+            <div className="flex flex-col items-center text-center min-w-0 px-0.5">
               <div className="text-[clamp(1.35rem,5vw,2.5rem)] sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tabular-nums leading-none tracking-tight">
                 $<AnimatedCounter target={432} suffix="B+" duration={2} />
               </div>
-              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 px-0.5">
+              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 w-full text-balance">
                 {tx(t.market.statDirectTotalLabel, lang)}
               </div>
             </div>
-            <div className="text-center min-w-0">
+            <div className="flex flex-col items-center text-center min-w-0 px-0.5">
               <div className="text-[clamp(1.35rem,5vw,2.5rem)] sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tabular-nums leading-none tracking-tight">
                 <AnimatedCounter target={2} suffix="M+" duration={1.5} />
               </div>
-              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 px-0.5">
+              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 w-full text-balance">
                 {tx(t.market.statPotentialClientsLabel, lang)}
               </div>
             </div>
-            <div className="text-center min-w-0">
+            <div className="flex flex-col items-center text-center min-w-0 px-0.5">
               <div className="text-[clamp(1.35rem,5vw,2.5rem)] sm:text-4xl md:text-5xl lg:text-6xl font-black tabular-nums leading-none tracking-tight" dir="ltr">
-                <AnimatedCounter target={62} suffix="%" duration={1.8} className="text-accent inline-block" />
+                <AnimatedCounter
+                  target={62}
+                  suffix="%"
+                  duration={1.8}
+                  className="gradient-text inline-block font-black tabular-nums tracking-tight"
+                />
               </div>
-              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 px-0.5">
+              <div className="text-[10px] leading-snug sm:text-base md:text-lg text-white/90 mt-1.5 sm:mt-2 w-full text-balance">
                 {tx(t.market.statGrowthLabel, lang)}
               </div>
             </div>

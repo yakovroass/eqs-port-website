@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Heebo, Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
   variable: "--font-inter",
 });
 
+/** עברית: Inter לא כולל עברית — Heebo (סנס) לאחוד כותרות גרדיאנט וטקסט גוף */
+const heebo = Heebo({
+  subsets: ["hebrew", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-heebo",
+});
+
 const ogTitle = "EQS. PORT | Industrial Trade";
 const ogDescription =
-  "Multilingual. AI Insights. B2B Analytics.\n3,000+ Connections in 100+ Countries.";
+  "B2B systems. AI insights. Analytics.\n3,000+ connections in 100+ countries.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.eqsport.io"),
@@ -56,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${heebo.variable}`}>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>{children}</body>
     </html>
   );

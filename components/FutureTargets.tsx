@@ -13,8 +13,8 @@ const phases = [
     statusPill: { en: "Active", he: "פעיל" },
     title: { en: "Building the Network & Data Foundation", he: "בניית הרשת ומערכות בסיסי הנתונים" },
     desc: {
-      en: "We've already used the software for trading in heavy equipment, spare parts, and industrial procurement — but the real move is what we're building underneath: advanced development to connect a global network of 3,000+ contacts across 100+ countries, building deep supplier relationships, and proprietary market data that grows with every deal. This is the infrastructure that enables everything — and what takes us to the next stage.",
-      he: "כבר השתמשנו בתוכנה לצורך מסחר בציוד כבד, חלקי חילוף ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת — פיתוח מתקדם לחיבור רשת גלובלית של 3,000+ אנשי קשר, ביותר מ-100 מדינות, בניית קשרי ספקים עמוקים, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו תשתית שמאפשרת הכל, וזה מה שיקח אותנו לשלב הבא...",
+      en: "We've already executed trade in heavy equipment, spare parts, and industrial procurement through our systems — but the real move is what we're building underneath: a global network anchored in 4,000+ ports worldwide, 3,000+ strategic contacts and front-line professionals across 100+ countries, customer and supplier relationships at massive scale, and proprietary market data that grows with every deal. This is the infrastructure that enables everything — and what takes us to the next stage...",
+      he: "כבר ביצענו במערכות שלנו מסחר בציוד כבד, חלקי חילוף ורכש תעשייתי — אבל המהלך האמיתי הוא מה שאנחנו בונים מתחת — פיתוח רשת גלובלית המבוססת על 4000+ נמלים מסביב לעולם, 3,000+ אנשי קשר אסטרטגיים ובעלי מקצוע מהשורה הראשונה, ביותר מ-100 מדינות, בניית קשרי לקוחות וספקים בקנה מידה עצום, ונתוני שוק קנייניים שגדלים עם כל עסקה. זו תשתית שמאפשרת הכל, וזה מה שיקח אותנו לשלב הבא...",
     },
     stats: [
       { value: 3000, suffix: "+", label: { en: "Contacts", he: "אנשי קשר" } },
@@ -30,8 +30,8 @@ const phases = [
     statusPill: { en: "Vision", he: "חזון" },
     title: { en: "The Global Trade Operating System", he: "מערכת ההפעלה של המסחר העולמי" },
     desc: {
-      en: "Our platform becomes each customer's or company's procurement department — or their strongest linked partner. We scan the entire world to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement through our systems, and build trade lanes at massive scale, in every category, in every country.",
-      he: "הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים ומוכרים, מבצעים דרך המערכות שלנו רכש ומייצרים קווי מסחר בקנה מידה עצום, בכל קטגוריה, בכל מדינה.",
+      en: "Our platform becomes each customer's or company's procurement department — or their strongest linked partner. We scan the world non-stop to deliver actionable procurement insights, leverage data, algorithmically match buyers and sellers, execute procurement through our systems, and build trade lanes in every category, in every country.",
+      he: "הפלטפורמה שלנו הופכת למחלקת הרכש של כל לקוח או חברה — או לשותף המקושר החזק ביותר שלה. אנחנו סורקים ללא עצירה את העולם כולו כדי לספק תובנות רכש מעשיות, ממנפים נתונים, מתאימים אלגוריתמית קונים ומוכרים, מבצעים דרך המערכות שלנו רכש ומייצרים קווי מסחר בכל קטגוריה, בכל מדינה.",
     },
     stats: [
       { value: 432, suffix: "B+", label: { en: "Addressable Market", he: "שוק ניתן לטיפול" }, prefix: "$" },
