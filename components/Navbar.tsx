@@ -111,16 +111,18 @@ export default function Navbar() {
           onClick={() => handleClick("#hero")}
           className="flex items-center gap-3 sm:gap-5 group shrink-0 min-w-0"
         >
-          <Image
-            src="/og-logo.png"
-            alt="EQS.PORT"
-            width={1061}
-            height={992}
-            priority
-            quality={95}
-            sizes="(max-width: 640px) 56px, 72px"
-            className="w-14 h-14 sm:w-16 sm:h-16 object-contain shrink-0 rounded-xl"
-          />
+          <span className="relative flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 overflow-hidden rounded-xl bg-[#070b12] ring-1 ring-white/[0.08]">
+            <Image
+              src="/og-logo.png"
+              alt="EQS.PORT"
+              width={1061}
+              height={992}
+              priority
+              quality={95}
+              sizes="(max-width: 640px) 56px, 72px"
+              className="m-auto h-[88%] w-[88%] object-contain"
+            />
+          </span>
           <span
             dir="ltr"
             className="whitespace-nowrap font-black tracking-tighter text-white group-hover:text-gray-100 transition-colors leading-none flex items-center h-14 sm:h-16 text-[clamp(2.1rem,7.2vw,2.8rem)] sm:text-[clamp(2.6rem,5.8vw,3.5rem)]"

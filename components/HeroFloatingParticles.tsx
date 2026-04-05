@@ -600,8 +600,8 @@ function DotSprite() {
       />
       <div
         className="absolute h-5 w-5 max-sm:h-6 max-sm:w-6 rounded-full bg-[rgba(51,187,255,0.058)] max-sm:bg-[rgba(51,187,255,0.088)] blur-md opacity-49 max-sm:opacity-59"
-        aria-hidden
-      />
+      aria-hidden
+    />
       <div className="relative h-1.5 w-1.5 max-sm:h-[7px] max-sm:w-[7px] rounded-full bg-white/13 max-sm:bg-white/17 blur-[3px] max-sm:blur-[4px] shadow-[0_0_18px_rgba(51,187,255,0.2),0_0_36px_rgba(51,187,255,0.095),0_0_52px_rgba(51,187,255,0.045)] max-sm:shadow-[0_0_20px_rgba(51,187,255,0.25),0_0_40px_rgba(51,187,255,0.125),0_0_56px_rgba(51,187,255,0.062)]" />
     </div>
   );

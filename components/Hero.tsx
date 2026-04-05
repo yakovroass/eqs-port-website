@@ -5,8 +5,6 @@ import AnimatedCounter from "./AnimatedCounter";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
-const HERO_EN_PERMITS_IDX = t.hero.capabilityItems.en.indexOf("Permits and logistics operations");
-
 function GridBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -27,48 +25,63 @@ function GridBackground() {
 }
 
 /**
- * מובייל: וריאציה עדינה בלבד — רצפה ~92% כדי שלא יידרש רוחב צר שגורם לגלישה/שבירה אגרסיבית.
+ * מובייל: ~86%–96% — צעד אחד יחסי צר יותר מקודם, עדיין מעל רצפה בטוחה לטקסט.
  */
-const HERO_PILL_MOBILE_BY_INDEX = [
-  "max-sm:w-[min(100%,100%)]",
-  "max-sm:w-[min(100%,94%)]",
-  "max-sm:w-[min(100%,92%)]",
-  "max-sm:w-[min(100%,100%)]",
-  "max-sm:w-[min(100%,96%)]",
-  "max-sm:w-[min(100%,93%)]",
-  "max-sm:w-[min(100%,92%)]",
-  "max-sm:w-[min(100%,100%)]",
-  "max-sm:w-[min(100%,95%)]",
-  "max-sm:w-[min(100%,92%)]",
-  "max-sm:w-[min(100%,94%)]",
-  "max-sm:w-[min(100%,100%)]",
+const HERO_PILL_MOBILE_WIDTH_BY_SLOT = [
+  "max-sm:w-[96%] max-sm:max-w-none",
+  "max-sm:w-[89%] max-sm:max-w-none",
+  "max-sm:w-[94%] max-sm:max-w-none",
+  "max-sm:w-[87%] max-sm:max-w-none",
+  "max-sm:w-[96%] max-sm:max-w-none",
+  "max-sm:w-[90%] max-sm:max-w-none",
+  "max-sm:w-[92%] max-sm:max-w-none",
+  "max-sm:w-[86%] max-sm:max-w-none",
+  "max-sm:w-[96%] max-sm:max-w-none",
+  "max-sm:w-[88%] max-sm:max-w-none",
+  "max-sm:w-[91%] max-sm:max-w-none",
+  "max-sm:w-[93%] max-sm:max-w-none",
 ] as const;
 
-/** דסקטופ: טווח רחב יותר בין פאץ' לפאץ' (רצפה ~82%) — עדיין מעל רוחב שגורם לגלישה */
-const HERO_PILL_WIDTH_CLASSES = [
-  "sm:w-[min(100%,100%)]",
-  "sm:w-[min(100%,84%)]",
-  "sm:w-[min(100%,94%)]",
-  "sm:w-[min(100%,88%)]",
-  "sm:w-[min(100%,98%)]",
-  "sm:w-[min(100%,82%)]",
-  "sm:w-[min(100%,93%)]",
-  "sm:w-[min(100%,86%)]",
-  "sm:w-[min(100%,97%)]",
-  "sm:w-[min(100%,83%)]",
-  "sm:w-[min(100%,95%)]",
-  "sm:w-[min(100%,90%)]",
-] as const;
-
-/** מובייל: אותה בריכת רוחבים לשתי השפות + מיפוי (×7+4) כמו בדסקטופ — נראה רנדומלי, לא לפי סדר שורות */
-function heroPillWidthMobile(sequentialIndex: number) {
-  const n = HERO_PILL_MOBILE_BY_INDEX.length;
-  return HERO_PILL_MOBILE_BY_INDEX[(sequentialIndex * 7 + 4) % n]!;
+function heroPillMobileWidthClass(sequentialIndex: number) {
+  return HERO_PILL_MOBILE_WIDTH_BY_SLOT[sequentialIndex % HERO_PILL_MOBILE_WIDTH_BY_SLOT.length]!;
 }
 
-function heroPillWidthSmUp(sequentialIndex: number) {
-  const n = HERO_PILL_WIDTH_CLASSES.length;
-  return HERO_PILL_WIDTH_CLASSES[(sequentialIndex * 7 + 4) % n]!;
+/** דסקטופ עברית: רוחב יחסי בתא (~75%–92%). */
+const HERO_PILL_WIDTH_CLASSES = [
+  "sm:w-[min(100%,92%)]",
+  "sm:w-[min(100%,77%)]",
+  "sm:w-[min(100%,86%)]",
+  "sm:w-[min(100%,81%)]",
+  "sm:w-[min(100%,90%)]",
+  "sm:w-[min(100%,75%)]",
+  "sm:w-[min(100%,85%)]",
+  "sm:w-[min(100%,79%)]",
+  "sm:w-[min(100%,89%)]",
+  "sm:w-[min(100%,76%)]",
+  "sm:w-[min(100%,87%)]",
+  "sm:w-[min(100%,83%)]",
+] as const;
+
+/** דסקטופ אנגלית: עוד ~6–8 נקודות צר יותר — אין צורך ברוחב מלא של התא. */
+const HERO_PILL_WIDTH_CLASSES_EN = [
+  "sm:w-[min(100%,86%)]",
+  "sm:w-[min(100%,72%)]",
+  "sm:w-[min(100%,80%)]",
+  "sm:w-[min(100%,75%)]",
+  "sm:w-[min(100%,84%)]",
+  "sm:w-[min(100%,70%)]",
+  "sm:w-[min(100%,78%)]",
+  "sm:w-[min(100%,73%)]",
+  "sm:w-[min(100%,82%)]",
+  "sm:w-[min(100%,71%)]",
+  "sm:w-[min(100%,79%)]",
+  "sm:w-[min(100%,76%)]",
+] as const;
+
+function heroPillWidthSmUp(sequentialIndex: number, lang: "en" | "he") {
+  const pool = lang === "en" ? HERO_PILL_WIDTH_CLASSES_EN : HERO_PILL_WIDTH_CLASSES;
+  const n = pool.length;
+  return pool[(sequentialIndex * 7 + 4) % n]!;
 }
 
 export default function Hero() {
@@ -77,7 +90,7 @@ export default function Hero() {
   const capabilityItems = t.hero.capabilityItems[lang];
   /** פאץ׳ בתוך גריד — רוחב משתנה קלות לפי אינדקס, ממורכז בתא */
   const heroPillClass =
-    "inline-flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2.5 sm:px-2.5 sm:py-1.5 text-center text-[9px] min-[380px]:text-[10px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word]";
+    "flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2 sm:px-2.5 sm:py-1.5 text-center text-[10px] min-[380px]:text-[11px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] box-border";
 
   return (
     <section id="hero" className="relative min-h-screen w-full min-w-0 flex items-center justify-center py-6 max-sm:py-4 sm:py-8">
@@ -100,20 +113,20 @@ export default function Hero() {
         >
           {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
           {lang === "he" ? (
-            <div className="sm:hidden leading-[1.08] font-black tracking-tight px-0.5">
-              <span className="gradient-text block w-full text-center whitespace-nowrap text-[clamp(1.85rem,9vw,3.65rem)] [overflow-wrap:normal]">
+            <div className="sm:hidden w-full min-w-0 max-w-full leading-[1.08] font-black tracking-tight px-1">
+              <span className="gradient-text block w-full min-w-0 max-w-full text-center whitespace-nowrap text-[clamp(1.28rem,7.15vw,3.5rem)] [overflow-wrap:normal]">
                 {tx(t.hero.headline2, lang)}
               </span>
             </div>
           ) : (
-            <div className="sm:hidden flex flex-col gap-0.5 leading-[1.08] font-black tracking-tight">
-              <span className="gradient-text block max-w-full break-words text-balance text-[clamp(1.9rem,9.5vw,3.35rem)]">
-                {tx(t.hero.headlineMobileLine1, lang)}
-              </span>
-              <span className="gradient-text block max-w-full break-words text-balance text-[clamp(1.9rem,9.5vw,3.35rem)]">
-                {tx(t.hero.headlineMobileLine2, lang)}
-              </span>
-            </div>
+            <div className="sm:hidden flex w-full min-w-0 max-w-full flex-col gap-0.5 leading-[1.08] font-black tracking-tight px-0.5">
+              <span className="gradient-text block min-w-0 max-w-full break-words text-balance text-[clamp(1.65rem,8.5vw,3.35rem)]">
+              {tx(t.hero.headlineMobileLine1, lang)}
+            </span>
+              <span className="gradient-text block min-w-0 max-w-full break-words text-balance text-[clamp(1.65rem,8.5vw,3.35rem)]">
+              {tx(t.hero.headlineMobileLine2, lang)}
+            </span>
+          </div>
           )}
           {/* מ־sm ומעלה: דסקטופ/טאבלט — לא משתמש בפריסת «שורה אחת» של המובייל */}
           <div className="hidden sm:block max-w-[min(100%,56rem)] mx-auto text-4xl md:text-5xl lg:text-6xl xl:text-6xl leading-[1.06] font-black">
@@ -138,20 +151,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="mx-auto w-full max-w-6xl mb-11 max-sm:mb-12 sm:mb-10"
+          className="mx-auto w-full min-w-0 max-w-6xl mb-11 max-sm:mb-12 sm:mb-10 overflow-x-clip"
         >
           <div
             dir={dir}
             className={
               lang === "en"
-                ? "mx-auto grid w-full min-w-0 max-w-6xl grid-cols-2 justify-items-center gap-1.5 sm:grid-cols-3 sm:gap-2 px-0.5 [overflow-wrap:anywhere]"
-                : "mx-auto grid w-full min-w-0 max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] grid-cols-2 justify-items-center gap-1 sm:grid-cols-3 sm:gap-2 px-0.5 [overflow-wrap:anywhere]"
+                ? "mx-auto grid w-full min-w-0 max-w-6xl sm:max-w-[min(100%,36rem)] md:max-w-[min(100%,40rem)] lg:max-w-[min(100%,44rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1.5 sm:grid-cols-[repeat(3,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
+                : "mx-auto grid w-full min-w-0 max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1 sm:grid-cols-[repeat(3,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
             }
           >
             {leads.map((line, i) => (
               <span
                 key={`lead-${line}`}
-                className={`${heroPillClass} ${heroPillWidthMobile(i)} ${heroPillWidthSmUp(i)}`}
+                className={`${heroPillClass} ${heroPillMobileWidthClass(i)} ${heroPillWidthSmUp(i, lang)}`}
               >
                 {line}
               </span>
@@ -159,16 +172,9 @@ export default function Hero() {
             {capabilityItems.map((item, i) => (
               <span
                 key={`hero-cap-${i}`}
-                className={`${heroPillClass} ${heroPillWidthMobile(i + leads.length)} ${heroPillWidthSmUp(i + leads.length)}`}
+                className={`${heroPillClass} ${heroPillMobileWidthClass(i + leads.length)} ${heroPillWidthSmUp(i + leads.length, lang)}`}
               >
-                {lang === "en" && i === HERO_EN_PERMITS_IDX ? (
-                  <>
-                    <span className="sm:hidden">Permits and logistics Ops</span>
-                    <span className="hidden sm:inline">{item}</span>
-                  </>
-                ) : (
-                  item
-                )}
+                {item}
               </span>
             ))}
           </div>

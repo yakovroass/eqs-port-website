@@ -25,9 +25,9 @@
 | פרופיל ודירוג עסקי | Business profile and rating |
 | מאגרי נתונים מעודכנים | Up-to-date databases |
 | מנוע חיפוש טכני | Technical search engine |
-| מיפוי תהליכים גאוגרפי | Geographic process mapping |
+| מיפוי תהליכים גאוגרפי | Process mapping |
 | היתרים ולוגיסטיקה | Permits and logistics operations |
-| מעקב מיסוי ורגולציה | Tax and regulatory tracking |
+| מעקב מיסוי ורגולציה | Regulatory tracking |
 
 ## מונים
 

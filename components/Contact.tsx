@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
@@ -31,6 +32,14 @@ function DownloadRow({ className = "" }: { className?: string }) {
 
 export default function Contact() {
   const { lang } = useLanguage();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/me", { credentials: "include" })
+      .then((r) => r.json())
+      .then((d: { user?: { isAdmin?: boolean } }) => setIsAdmin(!!d?.user?.isAdmin))
+      .catch(() => setIsAdmin(false));
+  }, []);
 
   const contactLinks = [
     {
@@ -116,7 +125,7 @@ export default function Contact() {
                 </a>
               </div>
 
-              <DownloadRow className="w-full" />
+              {isAdmin ? <DownloadRow className="w-full" /> : null}
 
               <div className="glass-card rounded-2xl p-5 text-center w-full mt-6">
                 <div className="text-base text-gray-500 mb-1">{tx(t.contact.targeting, lang)}</div>

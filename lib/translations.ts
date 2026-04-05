@@ -19,47 +19,47 @@ export const t = {
       en: "Global Industrial Procurement",
       he: "רכש תעשייתי גלובלי",
     },
-    /** שתי שורות במובייל בלבד — מקביל לעברית: רכש תעשייתי / גלובלי */
-    headlineMobileLine1: { en: "Industrial procurement", he: "רכש תעשייתי" },
-    headlineMobileLine2: { en: "Global", he: "גלובלי" },
+    /** שתי שורות במובייל: EN — Global Industrial / Procurement; HE — רכש תעשייתי / גלובלי */
+    headlineMobileLine1: { en: "Global Industrial", he: "רכש תעשייתי" },
+    headlineMobileLine2: { en: "Procurement", he: "גלובלי" },
     /** שלוש שורות ראשיות מתחת לכותרת — מוצגות בכל רוחב */
     subLeadLines: {
-      en: ["Multilingual B2B systems", "Strategic community", "End-to-end solutions"],
-      he: ["מערכות B2B רב-לשוניות", "קהילה אסטרטגית", "פתרונות מקצה לקצה"],
+      en: ["Multilingual B2B", "Strategic Community", "End to End Solutions"],
+      he: ["B2B רב לשוני", "קהילה אסטרטגית", "פתרונות מקצה לקצה"],
     },
     /** יכולות — רשימה שטוחה (ב־UI ללא כותרות קבוצה) */
     capabilityItems: {
       en: [
-        "Catalog management",
-        "Supplier bidding",
-        "Quality control",
-        "Business profile and rating",
-        "Up-to-date databases",
-        "Technical search engine",
-        "Geographic process mapping",
-        "Permits and logistics operations",
-        "Tax and regulatory tracking",
+        "Catalog Management",
+        "Supplier Bidding",
+        "Tech Inspections",
+        "Business profiles",
+        "Updated databases",
+        "Tech search engine",
+        "Process mapping",
+        "Permits & logistics Ops",
+        "Regulatory tracking",
       ],
       he: [
         "ניהול קטלוגים",
         "מכרזי ספקים",
-        "בקרת איכות",
-        "פרופיל ודירוג עסקי",
+        "בדיקות טכניות",
+        "פרופילים עסקיים",
         "מאגרי נתונים מעודכנים",
         "מנוע חיפוש טכני",
-        "מיפוי תהליכים גאוגרפי",
+        "מיפוי תהליכים",
         "היתרים ולוגיסטיקה",
-        "מעקב מיסוי ורגולציה",
+        "מעקב רגולטורי",
       ],
     },
     /** גיבוי טקסט אחיד (מסמכים / SEO) */
     sub: {
-      en: "Multilingual B2B systems, Strategic community, End-to-end solutions",
-      he: "מערכות B2B רב-לשוניות, קהילה אסטרטגית, פתרונות מקצה לקצה",
+      en: "Multilingual B2B, Strategic Community, End to End Solutions",
+      he: "B2B רב לשוני, קהילה אסטרטגית, פתרונות מקצה לקצה",
     },
     subMobile: {
-      en: "Multilingual B2B systems\nStrategic community\nEnd-to-end solutions",
-      he: "מערכות B2B רב-לשוניות\nקהילה אסטרטגית\nפתרונות מקצה לקצה",
+      en: "Multilingual B2B\nStrategic Community\nEnd to End Solutions",
+      he: "B2B רב לשוני\nקהילה אסטרטגית\nפתרונות מקצה לקצה",
     },
     cta1: { en: "Explore the Platform", he: "גלה את הפלטפורמה" },
     cta2: { en: "Download Pitch Deck", he: "הורד מצגת משקיעים" },
@@ -250,8 +250,8 @@ export const t = {
       he: "סריקת השוק כולו באופן ידני בלתי אפשרית והזדמנויות יקרות הולכות לאיבוד. אבל זו רק התחלת הבעיה — ניתוח מחירים, אימות פרטים, הוצאת היתרים, בדיקה בשטח, משא ומתן, חוזים, תשלומים, מסמכי יצוא, הצעות מחיר למשלוחים, העמסה, מעקב, שחרור ממכס, משלוח ליעד. תהליך מייגע... למשל כך נראה תהליך רכש של מנוף נייד...",
     },
     /** כותרת H2 מעל תרשים 15 השלבים — חלק ראשון לבן, מודגש בענבר */
-    realityHeadlineLead: { en: "Global procurement", he: "רכש גלובלי" },
-    realityHeadlineAccent: { en: "today", he: "היום" },
+    realityHeadlineLead: { en: "Procurement", he: "רכש" },
+    realityHeadlineAccent: { en: "Today", he: "היום" },
     replaceCaption: {
       en: "Or our way...",
       he: "או בדרך שלנו...",
@@ -265,8 +265,8 @@ export const t = {
     feature3: { en: "Technical intelligence: 30,000+ PDF docs.", he: "מודיעין טכני: 30,000+ מסמכי PDF." },
     feature4: { en: "Strategic market intelligence: Market data, infrastructure projects.", he: "מודיעין שווקים אסטרטגי: נתוני שוק, פרויקטי תשתית." },
     replaceSub: {
-      en: "Our systems do everything. Simply\nProcurement, permits, logistics.\nBetter, faster, cheaper.",
-      he: "המערכות שלנו מבצעות את הכל. פשוט\nרכש, היתרים, לוגיסטיקה.\nטוב יותר, מהר יותר, זול יותר.",
+      en: "Our systems do everything. Simply.\nProcurement, permits, logistics.\nBetter, faster, cheaper.",
+      he: "המערכות שלנו מבצעות את הכל. פשוט.\nרכש, היתרים, לוגיסטיקה.\nטוב יותר, מהר יותר, זול יותר.",
     },
     unifiedSteps: {
       en: [
