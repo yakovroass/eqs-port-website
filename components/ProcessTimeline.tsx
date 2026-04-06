@@ -73,7 +73,7 @@ export default function ProcessTimeline() {
 
           {/* מודיעין טכני + מודיעין שווקים — במובייל אחד מתחת לשני; מ־md ומעלה שתי עמודות ביחס רוחב התמונות */}
           <ScrollReveal delay={0.3}>
-            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,682fr)_minmax(0,1000fr)] gap-2.5 sm:gap-5 md:gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,682fr)_minmax(0,1000fr)] gap-8 items-stretch">
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 className="rounded-2xl overflow-hidden glass-card shadow-[0_8px_40px_rgba(0,0,0,0.2)] flex flex-col min-w-0 h-full"
