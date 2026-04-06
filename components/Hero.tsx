@@ -114,14 +114,14 @@ export default function Hero() {
     "w-full text-center text-[11px] min-[380px]:text-[12px] sm:text-[13px] font-medium text-gray-200/95 leading-snug sm:leading-snug whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] lg:line-clamp-2 lg:leading-tight lg:text-[13.5px]";
 
   const heroStatsGridClass =
-    "grid grid-cols-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 max-sm:mb-7 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-1";
+    "grid grid-cols-2 max-sm:gap-x-2 max-sm:gap-y-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 max-sm:mb-5 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-0";
   const heroStatsGridLgMax =
     lang === "en" ? "lg:max-w-[min(100%,58.5rem)]" : "lg:max-w-[min(100%,56rem)]";
 
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen w-full min-w-0 items-center justify-center pt-[calc(4.75rem+1rem)] pb-8 max-sm:pb-6 sm:pt-[calc(5.5rem+1rem)] sm:pb-14 md:pt-[calc(5.5rem+1.5rem)] md:pb-16"
+      className="relative flex min-h-screen w-full min-w-0 items-center justify-center pt-[calc(4.75rem+1rem)] pb-8 max-sm:pb-4 sm:pt-[calc(5.5rem+1rem)] sm:pb-14 md:pt-[calc(5.5rem+1.5rem)] md:pb-16"
     >
       <GridBackground />
       <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto text-center px-4 max-sm:ps-[max(1rem,env(safe-area-inset-left))] max-sm:pe-[max(1rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 flex flex-col justify-center">
@@ -138,7 +138,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-10 md:mb-12 sm:mt-2 md:mt-3 max-w-full px-2 sm:px-3 font-black tracking-tight"
+          className="mb-12 max-sm:mb-[3.25rem] mt-5 max-sm:mt-2 sm:mb-10 md:mb-12 sm:mt-2 md:mt-3 max-w-full px-2 sm:px-3 font-black tracking-tight"
         >
           {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
           {lang === "he" ? (
@@ -180,7 +180,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="mx-auto w-full min-w-0 max-w-6xl mb-11 max-sm:mb-12 sm:mb-10 overflow-x-clip"
+          className="mx-auto w-full min-w-0 max-w-6xl mb-11 max-sm:mb-4 sm:mb-10 overflow-x-clip"
         >
           <div
             dir={dir}
