@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useLanguage, tx } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 import LanguageToggle from "./LanguageToggle";
-import { navChromeButton } from "@/lib/navChrome";
+import { navChromeMenuButton } from "@/lib/navChrome";
 
 /** סדר ועוגנים כמו ב־app/page.tsx — שינוי תפריט בלבד (בלי להוסיף כותרות לסקשנים בדף) */
 const NAV_HREFS = [
@@ -140,7 +140,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`flex flex-col justify-center gap-[5px] items-center px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] ${navChromeButton}`}
+              className={`flex flex-col justify-center gap-[5px] items-center px-3 py-2 min-w-[2.75rem] min-h-[2.75rem] ${navChromeMenuButton}`}
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
