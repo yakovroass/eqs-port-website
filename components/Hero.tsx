@@ -204,7 +204,7 @@ export default function Hero() {
                   className="gradient-text inline-block font-bold tabular-nums"
                 />
               </div>
-              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-2xl md:text-3xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-2 tracking-wide leading-snug sm:leading-snug px-0 sm:px-2 hyphens-none text-balance">
+              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-2xl md:text-3xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-2 tracking-wide leading-snug sm:leading-snug px-0 sm:px-2 hyphens-none text-balance whitespace-pre-line">
                 {stat.label}
               </div>
             </div>
