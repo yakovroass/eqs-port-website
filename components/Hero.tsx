@@ -114,7 +114,7 @@ export default function Hero() {
     "w-full text-center text-[11px] min-[380px]:text-[12px] sm:text-[13px] font-medium text-gray-200/95 leading-snug sm:leading-snug whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] lg:line-clamp-2 lg:leading-tight lg:text-[13.5px]";
 
   const heroStatsGridClass =
-    "grid grid-cols-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-1";
+    "grid grid-cols-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 max-sm:mb-7 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-1";
   const heroStatsGridLgMax =
     lang === "en" ? "lg:max-w-[min(100%,58.5rem)]" : "lg:max-w-[min(100%,56rem)]";
 
@@ -242,6 +242,31 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
+
+        <div className="flex justify-center mt-1 max-sm:-mt-1 mb-2 max-sm:mb-1 sm:mt-3 sm:mb-3">
+          <a
+            href="#market"
+            className="inline-flex rounded-full outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810]"
+            aria-label={lang === "he" ? "גלול לסקשן השוק" : "Scroll to market section"}
+          >
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="w-14 h-14 rounded-full flex items-center justify-center border border-gray-600/45 glass-card ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
+            >
+              <svg
+                className="w-7 h-7 text-gray-100 drop-shadow-[0_0_10px_rgba(203,213,225,0.85),0_0_22px_rgba(148,163,184,0.55),0_0_34px_rgba(100,116,139,0.35)]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </motion.div>
+          </a>
+        </div>
 
       </div>
     </section>
