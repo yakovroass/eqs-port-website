@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage, tx } from "@/lib/useLanguage";
+import { useMaxSm } from "@/lib/useMaxSm";
 import { t } from "@/lib/translations";
 
 /** עדכון קבצים ב־public/images — העלה גרסה כדי לפרוץ מטמון דפדפן */
@@ -13,6 +14,8 @@ const EQS_3STEPS_ASSET_VER = "2";
 /** כותרת רכש גלובלי / היום → replaceCaption (גרדיאנט) + חץ + 5 שלבים + תמונת 3 השלבים — אחרי השוק והבעיה */
 export default function ProcessRealityIntro() {
   const { lang } = useLanguage();
+  const maxSm = useMaxSm();
+  const sectionArrowY = maxSm ? 3 : 4;
   const realityLead = tx(t.process.realityHeadlineLead, lang).trim();
 
   return (
@@ -70,8 +73,8 @@ export default function ProcessRealityIntro() {
 
         <div className="flex justify-center my-8 sm:my-10">
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
+            animate={{ y: [0, sectionArrowY, 0] }}
+            transition={{ repeat: Infinity, duration: 2.45, ease: "easeInOut" }}
             className="w-14 h-14 rounded-full flex items-center justify-center border border-gray-600/45 glass-card ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
           >
             <svg

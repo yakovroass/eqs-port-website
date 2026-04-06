@@ -2,46 +2,37 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { navChromeButton } from "@/lib/navChrome";
+import { navChromeMenuButton } from "@/lib/navChrome";
 import { useLanguage } from "@/lib/useLanguage";
+import { useMaxSm } from "@/lib/useMaxSm";
 
-const LANG_ATTENTION_KEY = "eqs-lang-attention-shown";
-
-/** תנועת y כמו כפתור החץ; אחרי לחיצה או סוף המחזורים — עצירה (גם בפרודקשן) */
+/** תנועת y כמו החץ; ריענון = רמז שוב; לחיצה או סוף מחזורים = עצירה (בלי localStorage) */
 const LANG_HINT_TRANSITION = {
-  duration: 2,
+  duration: 2.45,
   repeat: 2,
   ease: "easeInOut" as const,
 };
 
-/** הילה רק על מסגרת הכפתור (box-shadow), לא על הטקסט — ערכים קטנים מהחץ */
+/** הילה על מסגרת הכפתור — חזקה וברורה */
 const LANG_HINT_GLOW_REST = "none";
 const LANG_HINT_GLOW_KEYFRAMES = [
-  "0 0 8px rgba(148,163,184,0.22), 0 0 16px rgba(100,116,139,0.1)",
-  "0 0 11px rgba(51,187,255,0.18), 0 0 20px rgba(148,163,184,0.18)",
-  "0 0 8px rgba(148,163,184,0.22), 0 0 16px rgba(100,116,139,0.1)",
+  "0 0 20px rgba(148,163,184,0.48), 0 0 38px rgba(100,116,139,0.26), 0 0 58px rgba(100,116,139,0.14)",
+  "0 0 26px rgba(51,187,255,0.42), 0 0 46px rgba(148,163,184,0.4), 0 0 72px rgba(100,116,139,0.22)",
+  "0 0 20px rgba(148,163,184,0.48), 0 0 38px rgba(100,116,139,0.26), 0 0 58px rgba(100,116,139,0.14)",
 ] as const;
 
 export default function LanguageToggle() {
   const { lang, setLang } = useLanguage();
+  const maxSm = useMaxSm();
   const [hintActive, setHintActive] = useState(false);
+  const hintY = maxSm ? 3 : 4;
 
   const dismissAttentionHint = useCallback(() => {
-    try {
-      localStorage.setItem(LANG_ATTENTION_KEY, "1");
-    } catch {
-      /* private mode */
-    }
     setHintActive(false);
   }, []);
 
   useEffect(() => {
-    try {
-      if (localStorage.getItem(LANG_ATTENTION_KEY)) return;
-      setHintActive(true);
-    } catch {
-      setHintActive(true);
-    }
+    setHintActive(true);
   }, []);
 
   useEffect(() => {
@@ -58,8 +49,8 @@ export default function LanguageToggle() {
         dismissAttentionHint();
         setLang(lang === "en" ? "he" : "en");
       }}
-      className={`relative flex min-h-[2.75rem] min-w-[2.75rem] items-center justify-center overflow-visible px-2 text-xs outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] sm:text-sm ${navChromeButton}`}
-      animate={hintActive ? { y: [0, 6, 0] } : { y: 0 }}
+      className={`relative flex min-h-[2.75rem] min-w-[2.75rem] items-center justify-center overflow-visible px-2 text-xs outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] sm:text-sm ${navChromeMenuButton}`}
+      animate={hintActive ? { y: [0, hintY, 0] } : { y: 0 }}
       transition={
         hintActive
           ? LANG_HINT_TRANSITION
