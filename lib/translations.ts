@@ -67,10 +67,15 @@ export const t = {
     stat1Label: { en: "Strategic\nConnections", he: "חיבורים\nאסטרטגיים" },
     stat2Label: { en: "Maritime\nCountries", he: "מדינות\nימיות" },
     stat3Label: { en: "Cost\nSaving", he: "חיסכון\nבעלויות" },
-    stat4Label: { en: "Time Optimization", he: "חיסכון\nבזמן" },
+    stat4Label: { en: "Time\nOptimization", he: "חיסכון\nבזמן" },
     statsLine: {
       en: "3,000+ global connections · 100+ countries · 50% cost savings · 30% time optimization",
       he: "3,000+ חיבורים גלובליים · 100+ מדינות · 50% חיסכון בעלויות · 30% חיסכון בזמן",
+    },
+    /** טקסט עזר ל־HeroPillsWheel (קומפוננטה אופציונלית) */
+    wheelHoverHint: {
+      en: "Hover a column to scroll the list.",
+      he: "רחף על עמודה כדי לגלול את הרשימה.",
     },
   },
   problem: {

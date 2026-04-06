@@ -60,6 +60,22 @@ body {
 }
 
 @layer components {
+  /* Hero pills: רוחב לפי אורך טקסט (משתני CSS מ־Hero.tsx) */
+  .hero-pill-w {
+    width: min(100%, var(--hero-pill-w-mobile, 92%));
+    max-width: 100%;
+  }
+  @media (min-width: 640px) {
+    .hero-pill-w {
+      width: min(100%, var(--hero-pill-w-sm, 82%));
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-pill-w {
+      width: min(100%, var(--hero-pill-w-lg, 88%)) !important;
+    }
+  }
+
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }

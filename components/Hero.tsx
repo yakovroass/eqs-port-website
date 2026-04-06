@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
 import { useLanguage, tx } from "@/lib/useLanguage";
@@ -25,108 +26,92 @@ function GridBackground() {
 }
 
 /**
- * מובייל: ~86%–96% — צעד אחד יחסי צר יותר מקודם, עדיין מעל רצפה בטוחה לטקסט.
+ * מדד «כמה טקסט יש» — תווים + משקל למילים (רווחים), עברית מעט רחבה יותר ויזואלית.
  */
-const HERO_PILL_MOBILE_WIDTH_BY_SLOT = [
-  "max-sm:w-[96%] max-sm:max-w-none",
-  "max-sm:w-[89%] max-sm:max-w-none",
-  "max-sm:w-[94%] max-sm:max-w-none",
-  "max-sm:w-[87%] max-sm:max-w-none",
-  "max-sm:w-[96%] max-sm:max-w-none",
-  "max-sm:w-[90%] max-sm:max-w-none",
-  "max-sm:w-[92%] max-sm:max-w-none",
-  "max-sm:w-[86%] max-sm:max-w-none",
-  "max-sm:w-[96%] max-sm:max-w-none",
-  "max-sm:w-[88%] max-sm:max-w-none",
-  "max-sm:w-[91%] max-sm:max-w-none",
-  "max-sm:w-[93%] max-sm:max-w-none",
-] as const;
-
-function heroPillMobileWidthClass(sequentialIndex: number) {
-  return HERO_PILL_MOBILE_WIDTH_BY_SLOT[sequentialIndex % HERO_PILL_MOBILE_WIDTH_BY_SLOT.length]!;
+function heroPillTextBulk(label: string, lang: "en" | "he"): number {
+  const chars = Array.from(label).length;
+  const words = label.trim().split(/\s+/).filter(Boolean).length;
+  const bulk = chars + words * 2;
+  return lang === "he" ? bulk * 1.08 : bulk;
 }
 
-/** דסקטופ עברית: רוחב יחסי בתא (~75%–92%). */
-const HERO_PILL_WIDTH_CLASSES = [
-  "sm:w-[min(100%,92%)]",
-  "sm:w-[min(100%,77%)]",
-  "sm:w-[min(100%,86%)]",
-  "sm:w-[min(100%,81%)]",
-  "sm:w-[min(100%,90%)]",
-  "sm:w-[min(100%,75%)]",
-  "sm:w-[min(100%,85%)]",
-  "sm:w-[min(100%,79%)]",
-  "sm:w-[min(100%,89%)]",
-  "sm:w-[min(100%,76%)]",
-  "sm:w-[min(100%,87%)]",
-  "sm:w-[min(100%,83%)]",
+/**
+ * ווב (גריד 4×3): רוחב לפי עמודה + שורה — דפוס קבוע, לא מדורג, נראה אקראי.
+ * סדר DOM: שורה 0 = סלוטים 0–3, שורה 1 = 4–7, שורה 2 = 8–11.
+ */
+const HERO_PILL_LG_COL_HE = [
+  [94, 78, 100],
+  [80, 96, 76],
+  [100, 84, 88],
+  [77, 90, 82],
 ] as const;
 
-/** דסקטופ אנגלית: עוד ~6–8 נקודות צר יותר — אין צורך ברוחב מלא של התא. */
-const HERO_PILL_WIDTH_CLASSES_EN = [
-  "sm:w-[min(100%,86%)]",
-  "sm:w-[min(100%,72%)]",
-  "sm:w-[min(100%,80%)]",
-  "sm:w-[min(100%,75%)]",
-  "sm:w-[min(100%,84%)]",
-  "sm:w-[min(100%,70%)]",
-  "sm:w-[min(100%,78%)]",
-  "sm:w-[min(100%,73%)]",
-  "sm:w-[min(100%,82%)]",
-  "sm:w-[min(100%,71%)]",
-  "sm:w-[min(100%,79%)]",
-  "sm:w-[min(100%,76%)]",
+const HERO_PILL_LG_COL_EN = [
+  [92, 76, 100],
+  [79, 95, 74],
+  [100, 82, 86],
+  [75, 91, 80],
 ] as const;
 
-function heroPillWidthSmUp(sequentialIndex: number, lang: "en" | "he") {
-  const pool = lang === "en" ? HERO_PILL_WIDTH_CLASSES_EN : HERO_PILL_WIDTH_CLASSES;
-  const n = pool.length;
-  return pool[(sequentialIndex * 7 + 4) % n]!;
+function heroPillLgWidthPercent(slotIndex: number, lang: "en" | "he"): number {
+  const col = slotIndex % 4;
+  const row = Math.floor(slotIndex / 4);
+  const table = lang === "he" ? HERO_PILL_LG_COL_HE : HERO_PILL_LG_COL_EN;
+  return table[col]![row]!;
 }
 
-/** ווב בלבד (lg+): שונות רוחב בולטת יותר; מינימום לא מתחת ל־sm (עברית 75%, אנגלית 70%). */
-const HERO_PILL_WIDTH_LG_HE = [
-  "lg:w-[min(100%,98%)]",
-  "lg:w-[min(100%,75%)]",
-  "lg:w-[min(100%,94%)]",
-  "lg:w-[min(100%,78%)]",
-  "lg:w-[min(100%,96%)]",
-  "lg:w-[min(100%,76%)]",
-  "lg:w-[min(100%,92%)]",
-  "lg:w-[min(100%,82%)]",
-  "lg:w-[min(100%,97%)]",
-  "lg:w-[min(100%,77%)]",
-  "lg:w-[min(100%,90%)]",
-  "lg:w-[min(100%,84%)]",
-] as const;
+/** היסט לפי סלוט — רק sm (טאבלט); lg מגיע מדפוס העמודות */
+const HERO_PILL_SLOT_SM_HE = [0, 8, 2, 10, -2, 9, 1, 7, 4, 9, -1, 6] as const;
+const HERO_PILL_SLOT_SM_EN = [-1, 8, 1, 10, -2, 9, 0, 8, 3, 9, -1, 7] as const;
 
-const HERO_PILL_WIDTH_LG_EN = [
-  "lg:w-[min(100%,97%)]",
-  "lg:w-[min(100%,70%)]",
-  "lg:w-[min(100%,93%)]",
-  "lg:w-[min(100%,74%)]",
-  "lg:w-[min(100%,98%)]",
-  "lg:w-[min(100%,72%)]",
-  "lg:w-[min(100%,91%)]",
-  "lg:w-[min(100%,78%)]",
-  "lg:w-[min(100%,95%)]",
-  "lg:w-[min(100%,71%)]",
-  "lg:w-[min(100%,89%)]",
-  "lg:w-[min(100%,76%)]",
-] as const;
+/**
+ * מובייל: נוסחה רכה בלבד (ללא שינוי מהותי מול הבקשה הקודמת).
+ * sm: לפי אורך טקסט + היסט סלוט.
+ * lg: אחוזים קבועים לפי עמודה/שורה (רנדומלי־נראה).
+ */
+function heroPillWidthVars(
+  label: string,
+  lang: "en" | "he",
+  slotIndex: number,
+): { "--hero-pill-w-mobile": string; "--hero-pill-w-sm": string; "--hero-pill-w-lg": string } {
+  const v = heroPillTextBulk(label, lang);
+  const rawT = Math.min(1, Math.max(0, (v - 8) / 28));
+  const t = rawT * rawT * 0.45 + rawT * 0.55;
+  const i = slotIndex % 12;
 
-function heroPillWidthLg(sequentialIndex: number, lang: "en" | "he") {
-  const pool = lang === "en" ? HERO_PILL_WIDTH_LG_EN : HERO_PILL_WIDTH_LG_HE;
-  return pool[(sequentialIndex * 7 + 4) % pool.length]!;
+  const rawTM = Math.min(1, Math.max(0, (v - 14) / 40));
+  const jitterM = ((slotIndex * 19 + Math.round(v * 2)) % 5) - 2;
+  let mobile = 86 + rawTM * 10 + jitterM * 0.4;
+  mobile = Math.min(98, Math.max(84, mobile));
+
+  let sm: number;
+  if (lang === "he") {
+    sm = 75 + t * 25 + HERO_PILL_SLOT_SM_HE[i]!;
+    sm = Math.min(98, Math.max(75, sm));
+  } else {
+    sm = 70 + t * 27 + HERO_PILL_SLOT_SM_EN[i]!;
+    sm = Math.min(97, Math.max(70, sm));
+  }
+
+  const lg = heroPillLgWidthPercent(slotIndex, lang);
+
+  const r = (n: number) => `${Math.round(n)}%`;
+  return {
+    "--hero-pill-w-mobile": r(mobile),
+    "--hero-pill-w-sm": r(sm),
+    "--hero-pill-w-lg": r(lg),
+  };
 }
 
 export default function Hero() {
   const { lang, dir } = useLanguage();
   const leads = t.hero.subLeadLines[lang];
   const capabilityItems = t.hero.capabilityItems[lang];
-  /** פאץ׳ בתוך גריד — רוחב משתנה קלות לפי אינדקס, ממורכז בתא */
+  /** פאץ׳: גובה אחיד רק ב־lg — נמוך יותר (לא «עבה» מדי) */
   const heroPillClass =
-    "flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2 sm:px-2.5 sm:py-1.5 text-center text-[10px] min-[380px]:text-[11px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] box-border";
+    "flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2 sm:px-2.5 sm:py-1.5 backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] box-border lg:h-[2.6rem] lg:max-h-[2.6rem] lg:overflow-hidden lg:py-1 lg:px-2";
+  const heroPillTextClass =
+    "w-full text-center text-[11px] min-[380px]:text-[12px] sm:text-[13px] font-medium text-gray-200/95 leading-snug sm:leading-snug whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] lg:line-clamp-2 lg:leading-tight lg:text-[13.5px]";
 
   const heroStatsGridClass =
     "grid grid-cols-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-1";
@@ -208,17 +193,19 @@ export default function Hero() {
             {leads.map((line, i) => (
               <span
                 key={`lead-${line}`}
-                className={`${heroPillClass} ${heroPillMobileWidthClass(i)} ${heroPillWidthSmUp(i, lang)}`}
+                className={`${heroPillClass} hero-pill-w`}
+                style={heroPillWidthVars(line, lang, i) as CSSProperties}
               >
-                {line}
+                <span className={heroPillTextClass}>{line}</span>
               </span>
             ))}
             {capabilityItems.map((item, i) => (
               <span
                 key={`hero-cap-${i}`}
-                className={`${heroPillClass} ${heroPillMobileWidthClass(i + leads.length)} ${heroPillWidthSmUp(i + leads.length, lang)} ${heroPillWidthLg(i + leads.length, lang)}`}
+                className={`${heroPillClass} hero-pill-w`}
+                style={heroPillWidthVars(item, lang, i + leads.length) as CSSProperties}
               >
-                {item}
+                <span className={heroPillTextClass}>{item}</span>
               </span>
             ))}
           </div>
@@ -246,9 +233,11 @@ export default function Hero() {
                   className="gradient-text inline-block font-bold tabular-nums"
                 />
               </div>
-              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-base md:text-lg lg:text-xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-1.5 tracking-wide leading-tight sm:leading-snug px-0 sm:px-1 hyphens-none text-balance">
-                <span className="lg:hidden whitespace-pre-line">{stat.label}</span>
-                <span className="hidden lg:inline">{stat.label.replace(/\n/g, " ")}</span>
+              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-base md:text-lg max-lg:text-balance text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-1.5 tracking-wide leading-tight sm:leading-snug px-0 sm:px-1 hyphens-none lg:text-sm xl:text-base lg:leading-tight">
+                <span className="block w-full whitespace-pre-line lg:hidden">{stat.label}</span>
+                <span className="hidden lg:block w-full min-w-0 max-w-full whitespace-nowrap text-center lg:px-0.5">
+                  {stat.label.replace(/\n/g, " ")}
+                </span>
               </div>
             </div>
           ))}
