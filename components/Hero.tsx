@@ -84,6 +84,42 @@ function heroPillWidthSmUp(sequentialIndex: number, lang: "en" | "he") {
   return pool[(sequentialIndex * 7 + 4) % n]!;
 }
 
+/** ווב בלבד (lg+): שונות רוחב בולטת יותר; מינימום לא מתחת ל־sm (עברית 75%, אנגלית 70%). */
+const HERO_PILL_WIDTH_LG_HE = [
+  "lg:w-[min(100%,98%)]",
+  "lg:w-[min(100%,75%)]",
+  "lg:w-[min(100%,94%)]",
+  "lg:w-[min(100%,78%)]",
+  "lg:w-[min(100%,96%)]",
+  "lg:w-[min(100%,76%)]",
+  "lg:w-[min(100%,92%)]",
+  "lg:w-[min(100%,82%)]",
+  "lg:w-[min(100%,97%)]",
+  "lg:w-[min(100%,77%)]",
+  "lg:w-[min(100%,90%)]",
+  "lg:w-[min(100%,84%)]",
+] as const;
+
+const HERO_PILL_WIDTH_LG_EN = [
+  "lg:w-[min(100%,97%)]",
+  "lg:w-[min(100%,70%)]",
+  "lg:w-[min(100%,93%)]",
+  "lg:w-[min(100%,74%)]",
+  "lg:w-[min(100%,98%)]",
+  "lg:w-[min(100%,72%)]",
+  "lg:w-[min(100%,91%)]",
+  "lg:w-[min(100%,78%)]",
+  "lg:w-[min(100%,95%)]",
+  "lg:w-[min(100%,71%)]",
+  "lg:w-[min(100%,89%)]",
+  "lg:w-[min(100%,76%)]",
+] as const;
+
+function heroPillWidthLg(sequentialIndex: number, lang: "en" | "he") {
+  const pool = lang === "en" ? HERO_PILL_WIDTH_LG_EN : HERO_PILL_WIDTH_LG_HE;
+  return pool[(sequentialIndex * 7 + 4) % pool.length]!;
+}
+
 export default function Hero() {
   const { lang, dir } = useLanguage();
   const leads = t.hero.subLeadLines[lang];
@@ -92,10 +128,15 @@ export default function Hero() {
   const heroPillClass =
     "flex min-w-0 max-w-full flex-col items-center justify-center rounded-md sm:rounded-lg border border-white/[0.07] bg-gradient-to-b from-white/[0.06] to-transparent px-2 py-1.5 max-sm:px-2 sm:px-2.5 sm:py-1.5 text-center text-[10px] min-[380px]:text-[11px] sm:text-xs font-medium text-gray-200/95 leading-snug sm:leading-snug backdrop-blur-sm shadow-[0_2px_14px_rgba(0,0,0,0.14)] sm:shadow-[0_3px_18px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-[0_5px_22px_rgba(56,189,248,0.07)] whitespace-normal text-balance break-words [overflow-wrap:anywhere] [word-break:break-word] box-border";
 
+  const heroStatsGridClass =
+    "grid grid-cols-2 gap-x-3 gap-y-5 max-w-xl sm:max-w-xl md:max-w-2xl mx-auto sm:gap-x-8 sm:gap-y-5 md:gap-x-10 md:gap-y-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8 mb-12 sm:mb-11 md:mb-12 w-full justify-items-center px-1 sm:px-0 max-sm:mt-1";
+  const heroStatsGridLgMax =
+    lang === "en" ? "lg:max-w-[min(100%,58.5rem)]" : "lg:max-w-[min(100%,56rem)]";
+
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen w-full min-w-0 items-center justify-center pt-[calc(4.75rem+1rem)] pb-8 max-sm:pb-6 sm:pt-[calc(5.5rem+2.5rem)] sm:pb-14 md:pt-[calc(5.5rem+3.5rem)] md:pb-16"
+      className="relative flex min-h-screen w-full min-w-0 items-center justify-center pt-[calc(4.75rem+1rem)] pb-8 max-sm:pb-6 sm:pt-[calc(5.5rem+1rem)] sm:pb-14 md:pt-[calc(5.5rem+1.5rem)] md:pb-16"
     >
       <GridBackground />
       <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto text-center px-4 max-sm:ps-[max(1rem,env(safe-area-inset-left))] max-sm:pe-[max(1rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 flex flex-col justify-center">
@@ -112,7 +153,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-12 md:mb-14 sm:mt-6 md:mt-8 max-w-full px-2 sm:px-3 font-black tracking-tight"
+          className="mb-12 max-sm:mb-[4.25rem] mt-5 max-sm:mt-3 sm:mb-10 md:mb-12 sm:mt-2 md:mt-3 max-w-full px-2 sm:px-3 font-black tracking-tight"
         >
           {/* מתחת ל־sm בלבד: עברית בשורה אחת; באנגלית שתי שורות */}
           {lang === "he" ? (
@@ -149,7 +190,7 @@ export default function Hero() {
         </motion.h1>
         </div>
 
-        {/* פאצ׳ים: 12 פריטים; מובייל 2 עמודות, מ־sm ומעלה 3 עמודות (כמו קודם — בלי 4 עמודות ב־lg) */}
+        {/* פאצ׳ים: מובייל 2 עמודות; sm–md 3; מ־lg (ווב) 4 עמודות + max-w מורחב כדי לשמור גודל פאצ׳ דומה */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -160,8 +201,8 @@ export default function Hero() {
             dir={dir}
             className={
               lang === "en"
-                ? "mx-auto grid w-full min-w-0 max-w-6xl sm:max-w-[min(100%,36rem)] md:max-w-[min(100%,40rem)] lg:max-w-[min(100%,44rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1.5 sm:grid-cols-[repeat(3,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
-                : "mx-auto grid w-full min-w-0 max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,42rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1 sm:grid-cols-[repeat(3,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
+                ? "mx-auto grid w-full min-w-0 max-w-6xl sm:max-w-[min(100%,36rem)] md:max-w-[min(100%,40rem)] lg:max-w-[min(100%,58.5rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1.5 sm:grid-cols-[repeat(3,minmax(0,1fr))] lg:grid-cols-[repeat(4,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
+                : "mx-auto grid w-full min-w-0 max-w-[min(100%,22rem)] min-[400px]:max-w-[min(100%,26rem)] sm:max-w-[min(100%,34rem)] md:max-w-[min(100%,38rem)] lg:max-w-[min(100%,56rem)] grid-cols-[repeat(2,minmax(0,1fr))] justify-items-center gap-1 sm:grid-cols-[repeat(3,minmax(0,1fr))] lg:grid-cols-[repeat(4,minmax(0,1fr))] sm:gap-3 md:gap-4 px-0.5 [overflow-wrap:anywhere] [&>*]:min-w-0"
             }
           >
             {leads.map((line, i) => (
@@ -175,7 +216,7 @@ export default function Hero() {
             {capabilityItems.map((item, i) => (
               <span
                 key={`hero-cap-${i}`}
-                className={`${heroPillClass} ${heroPillMobileWidthClass(i + leads.length)} ${heroPillWidthSmUp(i + leads.length, lang)}`}
+                className={`${heroPillClass} ${heroPillMobileWidthClass(i + leads.length)} ${heroPillWidthSmUp(i + leads.length, lang)} ${heroPillWidthLg(i + leads.length, lang)}`}
               >
                 {item}
               </span>
@@ -183,20 +224,21 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Stats — אותה רשת כמו שלוש שורות התת־כותרת */}
+        {/* Stats — מובייל 2×2; מ־lg שורה אחת של 4 עמודות; max-w ב־lg כמו גריד הפאצ׳ים לפי שפה */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.75 }}
-          className="grid grid-cols-3 gap-2 max-w-3xl mx-auto sm:gap-6 md:gap-10 lg:gap-12 mb-12 sm:mb-14 w-full justify-items-center px-0.5 sm:px-0 max-sm:mt-1"
+          className={`${heroStatsGridClass} ${heroStatsGridLgMax}`}
         >
           {[
             { value: 3000, suffix: "+", label: tx(t.hero.stat1Label, lang) },
             { value: 100, suffix: "+", label: tx(t.hero.stat2Label, lang) },
             { value: 50, suffix: "%", label: tx(t.hero.stat3Label, lang) },
-          ].map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center w-full min-w-0 px-0.5 sm:px-4">
-              <div className="w-full text-center text-[clamp(1.72rem,6.35vw,2.9rem)] sm:text-4xl md:text-5xl lg:text-6xl font-bold tabular-nums leading-none">
+            { value: 30, suffix: "%", label: tx(t.hero.stat4Label, lang) },
+          ].map((stat, i) => (
+            <div key={`hero-stat-${i}`} className="flex flex-col items-center w-full min-w-0 px-0.5 sm:px-3">
+              <div className="w-full text-center text-[clamp(1.72rem,6.35vw,2.9rem)] sm:text-3xl md:text-4xl lg:text-5xl font-bold tabular-nums leading-none">
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
@@ -204,8 +246,9 @@ export default function Hero() {
                   className="gradient-text inline-block font-bold tabular-nums"
                 />
               </div>
-              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-2xl md:text-3xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-2 tracking-wide leading-snug sm:leading-snug px-0 sm:px-2 hyphens-none text-balance whitespace-pre-line">
-                {stat.label}
+              <div className="w-full max-w-full text-center text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-base md:text-lg lg:text-xl text-gray-300 mt-1.5 max-sm:mt-2 sm:mt-1.5 tracking-wide leading-tight sm:leading-snug px-0 sm:px-1 hyphens-none text-balance">
+                <span className="lg:hidden whitespace-pre-line">{stat.label}</span>
+                <span className="hidden lg:inline">{stat.label.replace(/\n/g, " ")}</span>
               </div>
             </div>
           ))}
