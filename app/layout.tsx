@@ -64,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${heebo.variable}`}>
+    <html lang="he" dir="rtl" className={`dark ${inter.variable} ${heebo.variable}`}>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>{children}</body>
     </html>
   );

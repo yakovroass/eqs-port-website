@@ -16,17 +16,20 @@ import Investment from "@/components/Investment";
 import Contact from "@/components/Contact";
 import SessionPing from "@/components/SessionPing";
 
+/** מפתח נפרד מ־`eqs-lang` הישן (ברירת מחדל הייתה אנגלית) כדי שעברית תהיה ברירת מחדל אמיתית */
+const LANG_STORAGE_KEY = "eqs-port-lang";
+
 export default function Home() {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("he");
 
   useEffect(() => {
-    const saved = localStorage.getItem("eqs-lang") as Lang | null;
+    const saved = localStorage.getItem(LANG_STORAGE_KEY) as Lang | null;
     if (saved === "en" || saved === "he") setLangState(saved);
   }, []);
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    localStorage.setItem("eqs-lang", l);
+    localStorage.setItem(LANG_STORAGE_KEY, l);
   };
 
   const dir = lang === "he" ? "rtl" : "ltr";

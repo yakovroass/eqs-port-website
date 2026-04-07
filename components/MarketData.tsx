@@ -96,6 +96,7 @@ function GrowthBar({
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
           className={`${barClass} bg-accent rounded-t-md flex items-center justify-center shrink-0`}
+          style={{ background: "linear-gradient(to bottom, color-mix(in srgb, #33bbff 80%, white 20%), #33bbff 45%, color-mix(in srgb, #33bbff 80%, black 20%))" }}
         >
           <span className="text-[9px] sm:text-xs md:text-sm font-bold text-white whitespace-nowrap px-0.5" dir="ltr">
             {fromLabel}
@@ -106,7 +107,8 @@ function GrowthBar({
           whileInView={{ height: toH }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className={`${barClass} bg-emerald-500 rounded-t-md flex items-center justify-center shrink-0`}
+          className={`${barClass} bg-green-500 rounded-t-md flex items-center justify-center shrink-0`}
+          style={{ background: "linear-gradient(to bottom, color-mix(in srgb, #22c55e 80%, white 20%), #22c55e 45%, color-mix(in srgb, #22c55e 80%, black 20%))" }}
         >
           <span className="text-[9px] sm:text-xs md:text-sm font-bold text-white whitespace-nowrap px-0.5" dir="ltr">
             {toLabel}

@@ -10,9 +10,9 @@ interface LanguageContextType {
 }
 
 export const LanguageContext = createContext<LanguageContextType>({
-  lang: "en",
+  lang: "he",
   setLang: () => {},
-  dir: "ltr",
+  dir: "rtl",
 });
 
 export function useLanguage() {

@@ -13,12 +13,12 @@ const LANG_HINT_TRANSITION = {
   ease: "easeInOut" as const,
 };
 
-/** הילה על מסגרת הכפתור — חזקה וברורה */
+/** הילה ניטרלית (slate/gray) כמו כדור החץ — אין כחול */
 const LANG_HINT_GLOW_REST = "none";
 const LANG_HINT_GLOW_KEYFRAMES = [
-  "0 0 20px rgba(148,163,184,0.48), 0 0 38px rgba(100,116,139,0.26), 0 0 58px rgba(100,116,139,0.14)",
-  "0 0 26px rgba(51,187,255,0.42), 0 0 46px rgba(148,163,184,0.4), 0 0 72px rgba(100,116,139,0.22)",
-  "0 0 20px rgba(148,163,184,0.48), 0 0 38px rgba(100,116,139,0.26), 0 0 58px rgba(100,116,139,0.14)",
+  "0 0 16px rgba(148,163,184,0.38), 0 0 32px rgba(100,116,139,0.2), 0 0 50px rgba(100,116,139,0.1)",
+  "0 0 22px rgba(203,213,225,0.52), 0 0 44px rgba(148,163,184,0.34), 0 0 64px rgba(100,116,139,0.18)",
+  "0 0 16px rgba(148,163,184,0.38), 0 0 32px rgba(100,116,139,0.2), 0 0 50px rgba(100,116,139,0.1)",
 ] as const;
 
 export default function LanguageToggle() {
@@ -37,8 +37,9 @@ export default function LanguageToggle() {
 
   useEffect(() => {
     if (!hintActive) return;
-    const ms = LANG_HINT_TRANSITION.duration * (LANG_HINT_TRANSITION.repeat + 1) * 1000;
-    const id = window.setTimeout(dismissAttentionHint, ms);
+    const animMs = LANG_HINT_TRANSITION.duration * (LANG_HINT_TRANSITION.repeat + 1) * 1000;
+    /* מחכים לסיום האנימציה + 200ms buffer לפני שמכבים את ה-state (הפייד-אאוט הוא על ה-motion עצמו) */
+    const id = window.setTimeout(dismissAttentionHint, animMs + 200);
     return () => window.clearTimeout(id);
   }, [hintActive, dismissAttentionHint]);
 
@@ -54,7 +55,7 @@ export default function LanguageToggle() {
       transition={
         hintActive
           ? LANG_HINT_TRANSITION
-          : { duration: 0, type: "tween", ease: "linear" }
+          : { duration: 0.5, ease: "easeOut" }
       }
     >
       <motion.span
@@ -69,7 +70,7 @@ export default function LanguageToggle() {
         transition={
           hintActive
             ? LANG_HINT_TRANSITION
-            : { duration: 0, type: "tween", ease: "linear" }
+            : { duration: 0.9, ease: "easeOut" }
         }
       />
       <motion.span

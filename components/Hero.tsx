@@ -255,10 +255,10 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, heroArrowY, 0] }}
               transition={{ repeat: Infinity, duration: 2.45, ease: "easeInOut" }}
-              className="w-14 h-14 rounded-full flex items-center justify-center border border-gray-600/45 glass-card ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
+              className="w-14 h-14 max-sm:w-11 max-sm:h-11 rounded-full flex items-center justify-center border border-gray-600/45 glass-card ring-1 ring-inset ring-white/[0.07] shadow-[0_0_26px_rgba(148,163,184,0.45),0_0_52px_rgba(100,116,139,0.22),0_8px_26px_rgba(0,0,0,0.32)]"
             >
               <svg
-                className="w-7 h-7 text-gray-100 drop-shadow-[0_0_10px_rgba(203,213,225,0.85),0_0_22px_rgba(148,163,184,0.55),0_0_34px_rgba(100,116,139,0.35)]"
+                className="w-7 h-7 max-sm:w-5 max-sm:h-5 text-gray-100 drop-shadow-[0_0_10px_rgba(203,213,225,0.85),0_0_22px_rgba(148,163,184,0.55),0_0_34px_rgba(100,116,139,0.35)]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
